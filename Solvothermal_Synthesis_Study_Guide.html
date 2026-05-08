@@ -1,0 +1,2122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solvothermal Synthesis — Complete Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:           #faf8f5;
+    --bg-card:      #ffffff;
+    --bg-muted:     #f3f0ec;
+    --purple-deep:  #3b1f6b;
+    --purple-mid:   #5e35b1;
+    --purple-soft:  #7c4dcc;
+    --purple-pale:  #ede7f6;
+    --purple-tint:  #f5f0ff;
+    --accent:       #8b1a8b;
+    --accent-light: #f9e8f9;
+    --gold:         #b07d2a;
+    --gold-light:   #fdf5e6;
+    --teal:         #1a6b5e;
+    --teal-light:   #e6f5f2;
+    --red-warn:     #b71c1c;
+    --red-light:    #fce8e8;
+    --text-primary: #1a1224;
+    --text-body:    #2d2540;
+    --text-muted:   #6b5f80;
+    --border:       #d9d0e8;
+    --shadow:       rgba(59,31,107,0.10);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-body);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.75;
+  }
+
+  /* ── LAYOUT ── */
+  .wrapper { display: flex; min-height: 100vh; }
+
+  nav#toc {
+    width: 280px;
+    min-width: 280px;
+    background: var(--purple-deep);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 0 0 2rem 0;
+    flex-shrink: 0;
+    z-index: 100;
+  }
+
+  nav#toc::-webkit-scrollbar { width: 4px; }
+  nav#toc::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+
+  .toc-header {
+    background: linear-gradient(135deg, #2a0f52, #5e35b1);
+    padding: 1.5rem 1.25rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .toc-header .logo { font-family: 'Playfair Display', serif; color: #fff; font-size: 1rem; font-weight: 700; letter-spacing: .03em; line-height: 1.3; }
+  .toc-header .logo small { display: block; font-family: 'Crimson Pro', serif; font-weight: 300; font-size: .8rem; color: rgba(255,255,255,.65); margin-top:.2rem; }
+
+  .toc-section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .6rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.4);
+    padding: 1.2rem 1.25rem .4rem;
+  }
+
+  nav#toc a {
+    display: block;
+    padding: .35rem 1.25rem .35rem 1.5rem;
+    color: rgba(255,255,255,.75);
+    text-decoration: none;
+    font-size: .88rem;
+    line-height: 1.4;
+    transition: background .15s, color .15s, padding-left .15s;
+    border-left: 2px solid transparent;
+  }
+  nav#toc a:hover, nav#toc a.active {
+    background: rgba(255,255,255,.1);
+    color: #fff;
+    padding-left: 1.75rem;
+    border-left-color: #c29fff;
+  }
+  nav#toc a.sub { padding-left: 2rem; font-size: .82rem; color: rgba(255,255,255,.55); }
+  nav#toc a.sub:hover { padding-left: 2.25rem; color: rgba(255,255,255,.85); }
+
+  main {
+    flex: 1;
+    padding: 0;
+    max-width: 900px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #2a0f52 0%, #5e35b1 50%, #8b1a8b 100%);
+    padding: 4rem 3rem 3rem;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3Ccircle cx='0' cy='0' r='20'/%3E%3Ccircle cx='60' cy='60' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-tag { font-family: 'JetBrains Mono', monospace; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: .75rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; line-height: 1.15; margin-bottom: .75rem; }
+  .hero h1 em { font-style: italic; color: #d4b8ff; }
+  .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,.75); max-width: 520px; line-height: 1.6; margin-bottom: 1.5rem; }
+  .hero-badges { display: flex; gap: .5rem; flex-wrap: wrap; }
+  .badge { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); border-radius: 2rem; padding: .2rem .9rem; font-size: .78rem; color: rgba(255,255,255,.9); font-family: 'JetBrains Mono', monospace; }
+
+  /* ── CONTENT ── */
+  .content { padding: 2.5rem 3rem; }
+
+  /* ── SECTIONS ── */
+  section { margin-bottom: 4rem; }
+  section:last-child { margin-bottom: 2rem; }
+
+  .section-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .65rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--purple-soft); margin-bottom: .4rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem; font-weight: 700; color: var(--purple-deep);
+    margin-bottom: 1.25rem; line-height: 1.2;
+    padding-bottom: .6rem;
+    border-bottom: 2px solid var(--purple-pale);
+  }
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 600; color: var(--purple-mid);
+    margin: 1.75rem 0 .75rem;
+  }
+  h4 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.05rem; font-weight: 600; color: var(--purple-deep);
+    margin: 1.25rem 0 .5rem; letter-spacing: .02em;
+  }
+
+  p { margin-bottom: 1rem; }
+  p:last-child { margin-bottom: 0; }
+
+  strong { color: var(--purple-deep); font-weight: 600; }
+  em { color: var(--accent); }
+
+  /* ── BOXES ── */
+  .box {
+    border-radius: 8px; padding: 1.25rem 1.5rem;
+    margin: 1.25rem 0; border-left: 4px solid;
+  }
+  .box-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .68rem; letter-spacing: .18em; text-transform: uppercase;
+    margin-bottom: .6rem; font-weight: 500;
+  }
+  .box p, .box ul, .box ol { margin-bottom: .6rem; }
+  .box p:last-child, .box ul:last-child, .box ol:last-child { margin-bottom: 0; }
+
+  .def { background: var(--purple-tint); border-color: var(--purple-soft); }
+  .def .box-title { color: var(--purple-soft); }
+
+  .formula { background: var(--gold-light); border-color: var(--gold); font-family: 'Crimson Pro', serif; }
+  .formula .box-title { color: var(--gold); }
+  .formula code { font-family: 'JetBrains Mono', monospace; font-size: .9rem; background: rgba(176,125,42,.1); padding: .1rem .35rem; border-radius: 3px; }
+
+  .note { background: var(--teal-light); border-color: var(--teal); }
+  .note .box-title { color: var(--teal); }
+
+  .warn { background: var(--red-light); border-color: var(--red-warn); }
+  .warn .box-title { color: var(--red-warn); }
+
+  .highlight { background: var(--accent-light); border-color: var(--accent); }
+  .highlight .box-title { color: var(--accent); }
+
+  /* ── STEPS ── */
+  .steps { display: flex; flex-direction: column; gap: 1rem; margin: 1.25rem 0; }
+  .step {
+    display: flex; gap: 1.25rem; align-items: flex-start;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.1rem 1.25rem;
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .step:hover { transform: translateX(4px); box-shadow: 0 4px 16px var(--shadow); }
+  .step-num {
+    width: 2.2rem; height: 2.2rem; min-width: 2.2rem;
+    background: var(--purple-mid); color: #fff;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700;
+  }
+  .step-body { flex: 1; }
+  .step-title { font-weight: 600; color: var(--purple-deep); font-size: 1rem; margin-bottom: .25rem; }
+
+  /* ── COMPARE TABLE ── */
+  .compare-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: .93rem; }
+  .compare-table th {
+    background: var(--purple-deep); color: #fff;
+    padding: .7rem 1rem; text-align: left;
+    font-family: 'Crimson Pro', serif; font-weight: 600; font-size: 1rem;
+  }
+  .compare-table th:first-child { border-radius: 6px 0 0 0; }
+  .compare-table th:last-child { border-radius: 0 6px 0 0; }
+  .compare-table td { padding: .65rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .compare-table tr:nth-child(even) td { background: var(--bg-muted); }
+  .compare-table tr:last-child td:first-child { border-radius: 0 0 0 6px; }
+  .compare-table tr:last-child td:last-child { border-radius: 0 0 6px 0; }
+  .compare-table .check { color: #1a6b5e; font-weight: 700; }
+  .compare-table .cross { color: #b71c1c; font-weight: 700; }
+
+  /* ── GRID CARDS ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.25rem 0; }
+  .card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.1rem 1.25rem;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .card-icon { font-size: 1.5rem; margin-bottom: .5rem; }
+  .card h4 { margin: 0 0 .4rem; font-size: .97rem; }
+  .card p { font-size: .9rem; margin: 0; color: var(--text-muted); }
+  .card.accent-purple { border-top: 3px solid var(--purple-mid); }
+  .card.accent-gold { border-top: 3px solid var(--gold); }
+  .card.accent-teal { border-top: 3px solid var(--teal); }
+  .card.accent-pink { border-top: 3px solid var(--accent); }
+
+  /* ── MECHANISM FLOW ── */
+  .flow-container { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin: 1.25rem 0; }
+  .flow-step {
+    background: var(--purple-pale); border: 1px solid var(--border);
+    border-radius: 6px; padding: .5rem .9rem;
+    font-size: .85rem; color: var(--purple-deep); font-weight: 500;
+    white-space: nowrap;
+  }
+  .flow-arrow { color: var(--purple-soft); font-size: 1.2rem; font-weight: 700; }
+
+  /* ── PARAM TABLE ── */
+  .param-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin: 1.25rem 0; }
+  .param-card {
+    background: var(--purple-deep); color: #fff;
+    border-radius: 8px; padding: 1rem 1.1rem; text-align: center;
+  }
+  .param-card .param-label { font-family: 'JetBrains Mono', monospace; font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: .3rem; }
+  .param-card .param-value { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: #d4b8ff; }
+  .param-card .param-desc { font-size: .78rem; color: rgba(255,255,255,.65); margin-top: .2rem; }
+
+  /* ── REACTION BOX ── */
+  .reaction {
+    background: #1a1224; border-radius: 8px; padding: 1rem 1.5rem;
+    margin: 1rem 0; text-align: center;
+    font-family: 'JetBrains Mono', monospace; font-size: .95rem; color: #d4b8ff;
+    letter-spacing: .03em; line-height: 2;
+  }
+  .reaction .rxn-label { font-size: .65rem; color: rgba(255,255,255,.4); letter-spacing: .15em; text-transform: uppercase; display: block; margin-bottom: .25rem; }
+
+  /* ── SUMMARY BOX ── */
+  .section-summary {
+    background: linear-gradient(135deg, var(--purple-pale), var(--accent-light));
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 1.25rem 1.5rem; margin-top: 2rem;
+  }
+  .section-summary h4 { color: var(--purple-deep); margin: 0 0 .75rem; font-size: 1rem; }
+  .section-summary ul { padding-left: 1.25rem; font-size: .93rem; }
+  .section-summary li { margin-bottom: .3rem; }
+
+  /* ── TIMELINE ── */
+  .timeline { margin: 1.25rem 0; }
+  .tl-item { display: flex; gap: 1.25rem; padding-bottom: 1.5rem; position: relative; }
+  .tl-item::before { content: ''; position: absolute; left: 19px; top: 2.5rem; bottom: 0; width: 2px; background: var(--border); }
+  .tl-item:last-child::before { display: none; }
+  .tl-dot { width: 40px; height: 40px; min-width: 40px; background: var(--purple-mid); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'Playfair Display', serif; font-size: .85rem; font-weight: 700; position: relative; z-index: 1; }
+  .tl-body { flex: 1; }
+  .tl-date { font-family: 'JetBrains Mono', monospace; font-size: .7rem; color: var(--purple-soft); letter-spacing: .1em; }
+  .tl-title { font-weight: 600; color: var(--purple-deep); font-size: 1rem; margin: .1rem 0 .3rem; }
+  .tl-desc { font-size: .9rem; color: var(--text-muted); }
+
+  /* ── SPECTRUM BAR (QDs) ── */
+  .spectrum-bar {
+    height: 16px; border-radius: 8px;
+    background: linear-gradient(to right, #4400ff, #0066ff, #00bbff, #00cc00, #ffff00, #ff8800, #ff0000);
+    margin: .5rem 0; position: relative;
+  }
+
+  /* ── SOLVENT CARD ── */
+  .solvent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0; }
+  .solvent-card {
+    background: var(--bg-card); border-radius: 8px; padding: 1.1rem;
+    border: 1px solid var(--border); box-shadow: 0 2px 8px var(--shadow);
+    border-top: 3px solid;
+  }
+  .solvent-card .s-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--text-primary); }
+  .solvent-card .s-formula { font-family: 'JetBrains Mono', monospace; font-size: .75rem; color: var(--text-muted); margin-bottom: .5rem; }
+  .solvent-card .s-tags { display: flex; gap: .35rem; flex-wrap: wrap; margin-bottom: .6rem; }
+  .s-tag { background: var(--purple-pale); color: var(--purple-mid); border-radius: 3px; padding: .1rem .5rem; font-size: .72rem; font-weight: 600; }
+  .s-tag.warn { background: var(--red-light); color: var(--red-warn); }
+  .s-tag.good { background: var(--teal-light); color: var(--teal); }
+  .solvent-card p { font-size: .88rem; margin: 0; }
+
+  /* ── ADVANTAGE/LIMIT COLS ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0; }
+  .adv-col { background: var(--teal-light); border: 1px solid #a8d8ce; border-radius: 8px; padding: 1.1rem; }
+  .lim-col { background: var(--red-light); border: 1px solid #f5b8b8; border-radius: 8px; padding: 1.1rem; }
+  .adv-col h4, .lim-col h4 { margin: 0 0 .75rem; }
+  .adv-col h4 { color: var(--teal); }
+  .lim-col h4 { color: var(--red-warn); }
+  .adv-col ul, .lim-col ul { padding-left: 1.25rem; font-size: .9rem; }
+  .adv-col li, .lim-col li { margin-bottom: .4rem; }
+
+  /* ── MASTER SUMMARY ── */
+  .master-summary {
+    background: linear-gradient(135deg, #2a0f52, #5e35b1);
+    color: #fff; border-radius: 12px; padding: 2rem 2.5rem;
+    margin-top: 3rem;
+  }
+  .master-summary h2 { color: #d4b8ff; border-color: rgba(255,255,255,.2); font-size: 1.7rem; }
+  .master-summary h3 { color: #c9a0ff; }
+  .master-summary p, .master-summary li { color: rgba(255,255,255,.85); }
+  .master-summary strong { color: #fff; }
+  .master-summary ul { padding-left: 1.25rem; }
+  .master-summary li { margin-bottom: .35rem; }
+
+  /* ── LISTS ── */
+  ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+  li { margin-bottom: .3rem; }
+  ul li::marker { color: var(--purple-soft); }
+
+  /* ── MISC ── */
+  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+  code { font-family: 'JetBrains Mono', monospace; font-size: .85em; background: var(--bg-muted); padding: .1rem .35rem; border-radius: 3px; color: var(--accent); }
+
+  .tag-strip { display: flex; gap: .4rem; flex-wrap: wrap; margin: .6rem 0 1rem; }
+  .tag { font-family: 'JetBrains Mono', monospace; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; background: var(--purple-pale); color: var(--purple-mid); border-radius: 3px; padding: .2rem .55rem; }
+
+  .callout {
+    background: var(--purple-deep); color: #fff;
+    border-radius: 8px; padding: 1rem 1.4rem; margin: 1.25rem 0;
+    font-size: .95rem;
+  }
+  .callout strong { color: #d4b8ff; }
+
+  .comparison-vs {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem;
+    align-items: center; margin: 1.25rem 0;
+  }
+  .vs-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1.1rem; }
+  .vs-badge {
+    width: 3rem; height: 3rem; background: var(--purple-mid); color: #fff;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem;
+    justify-self: center;
+  }
+
+  @media (max-width: 900px) {
+    .wrapper { flex-direction: column; }
+    nav#toc { width: 100%; height: auto; position: relative; }
+    main { max-width: 100%; }
+    .content { padding: 1.5rem; }
+    .grid-2, .grid-3, .two-col, .param-grid, .solvent-grid, .comparison-vs { grid-template-columns: 1fr; }
+    .vs-badge { display: none; }
+    .hero { padding: 2rem 1.5rem; }
+    .hero h1 { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<!-- ══════════════════════ SIDEBAR NAV ══════════════════════ -->
+<nav id="toc">
+  <div class="toc-header">
+    <div class="logo">Solvothermal Synthesis<small>Complete Study Guide · Group 3</small></div>
+  </div>
+
+  <div class="toc-section-label">Foundations</div>
+  <a href="#s1">1. Definition & Overview</a>
+  <a href="#s2">2. Historical Background</a>
+  <a href="#s3">3. Hydrothermal vs Solvothermal</a>
+
+  <div class="toc-section-label">Mechanism</div>
+  <a href="#s4">4. Basic Principle (4 Stages)</a>
+  <a href="#s5">5. Detailed Mechanism (12 Steps)</a>
+  <a href="#s5-1" class="sub">5.1 Preparation & Ion Formation</a>
+  <a href="#s5-2" class="sub">5.2 Monomers & Autoclave</a>
+  <a href="#s5-3" class="sub">5.3 Nucleation & Growth</a>
+  <a href="#s5-4" class="sub">5.4 Ostwald Ripening & Recovery</a>
+  <a href="#s6">6. Reaction Conditions</a>
+
+  <div class="toc-section-label">Solvents & Materials</div>
+  <a href="#s7">7. Role of Solvents</a>
+  <a href="#s8">8. Key Solvents</a>
+  <a href="#s9">9. Materials Synthesized</a>
+  <a href="#s9-1" class="sub">9.1 Metal Oxides</a>
+  <a href="#s9-2" class="sub">9.2 MOFs</a>
+  <a href="#s9-3" class="sub">9.3 Quantum Dots</a>
+  <a href="#s9-4" class="sub">9.4 Sulfides, Nitrides & Carbon</a>
+
+  <div class="toc-section-label">Case Study</div>
+  <a href="#s10">10. Fe₃O₄ Case Study</a>
+  <a href="#s10-1" class="sub">10.1 Materials & Setup</a>
+  <a href="#s10-2" class="sub">10.2 Synthesis Protocol</a>
+  <a href="#s10-3" class="sub">10.3 Formation Mechanism</a>
+  <a href="#s11">11. Characterization</a>
+
+  <div class="toc-section-label">Applications & Prospects</div>
+  <a href="#s12">12. Applications</a>
+  <a href="#s13">13. Advantages & Limitations</a>
+  <a href="#s14">14. Advancements & Future</a>
+  <a href="#s15">15. Comparison with Other Methods</a>
+  <a href="#s16">16. Master Summary</a>
+</nav>
+
+<!-- ══════════════════════ MAIN CONTENT ══════════════════════ -->
+<main>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Nano Chemistry · Group 3 · PMAS ARID Agriculture University</div>
+    <h1>Solvothermal <em>Synthesis</em></h1>
+    <p class="hero-sub">A comprehensive study guide covering every concept — from fundamental principles and the complete 12-step mechanism to real-world applications, Fe₃O₄ case study, and future prospects.</p>
+    <div class="hero-badges">
+      <span class="badge">12-step mechanism</span>
+      <span class="badge">Fe₃O₄ case study</span>
+      <span class="badge">characterization</span>
+      <span class="badge">advantages & limits</span>
+      <span class="badge">future prospects</span>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ══════════ SECTION 1 ══════════ -->
+<section id="s1">
+  <div class="section-number">Section 01</div>
+  <h2>Definition & Overview</h2>
+
+  <div class="box def">
+    <div class="box-title">📘 Core Definition</div>
+    <p><strong>Solvothermal synthesis</strong> is a method of producing crystalline chemical compounds by reacting precursors dissolved in a <strong>non-aqueous organic solvent</strong> inside a <strong>sealed autoclave</strong> at temperatures above the solvent's boiling point, which generates elevated <strong>autogenous (self-generated) pressure</strong>.</p>
+    <p>In essence: <em>sealed vessel + organic solvent + heat above boiling point = extreme conditions that force perfect crystals to grow.</em></p>
+  </div>
+
+  <h3>What Does "Autogenous Pressure" Mean?</h3>
+  <p>When you heat a liquid above its normal boiling point in a <strong>sealed, rigid container</strong>, the liquid cannot escape as steam. Instead, pressure builds up inside the container on its own — this self-generated pressure is called <em>autogenous pressure</em>. It arises purely from the properties of the trapped liquid/vapor system, not from any external pump or gas supply. This is a critical feature of solvothermal synthesis: the high-pressure environment is created automatically just by sealing and heating.</p>
+
+  <div class="box note">
+    <div class="box-title">💡 Intuitive Analogy</div>
+    <p>Think of a pressure cooker. When you heat water inside a sealed pressure cooker, pressure builds because steam cannot escape. Now imagine doing this with a chemical reaction inside — the same principle applies. The high pressure in the autoclave fundamentally changes how molecules interact, dissolve, and crystallise, giving you control over nanomaterial properties that would be impossible at normal conditions.</p>
+  </div>
+
+  <h3>Operating Range</h3>
+  <div class="param-grid">
+    <div class="param-card">
+      <div class="param-label">Pressure Range</div>
+      <div class="param-value">1 – 10,000 atm</div>
+      <div class="param-desc">Autogenous, sealed autoclave</div>
+    </div>
+    <div class="param-card">
+      <div class="param-label">Temperature Range</div>
+      <div class="param-value">100 – 1000°C</div>
+      <div class="param-desc">Above solvent boiling point</div>
+    </div>
+    <div class="param-card">
+      <div class="param-label">Morphologies Achievable</div>
+      <div class="param-value">All forms</div>
+      <div class="param-desc">Thin films, powders, single crystals, nanocrystals</div>
+    </div>
+  </div>
+
+  <h3>The Three Essential Components</h3>
+  <div class="grid-3">
+    <div class="card accent-purple">
+      <div class="card-icon">🔗</div>
+      <h4>Organic Ligand (Linker)</h4>
+      <p>Connects metal nodes; critical for MOF frameworks and morphology control.</p>
+    </div>
+    <div class="card accent-gold">
+      <div class="card-icon">⚗️</div>
+      <h4>Metal Salt (Precursor)</h4>
+      <p>Source of metal ions that will form the final nanoparticles or crystals.</p>
+    </div>
+    <div class="card accent-teal">
+      <div class="card-icon">💧</div>
+      <h4>Solvent</h4>
+      <p>DMF, ethanol, acetone, methanol, acetonitrile — determines morphology, phase, and surface chemistry.</p>
+    </div>
+  </div>
+
+  <div class="box highlight">
+    <div class="box-title">⭐ Key Insight</div>
+    <p>Solvothermal synthesis is a <strong>bottom-up</strong> nanofabrication method — meaning nanomaterials are built atom by atom, ion by ion, from molecular precursors. This is in contrast to top-down methods (like ball milling) which break large materials down into smaller pieces. Bottom-up methods offer far superior control over size, shape, and surface chemistry.</p>
+  </div>
+
+  <div class="section-summary">
+    <h4>Section 1 Summary</h4>
+    <ul>
+      <li>Solvothermal synthesis = organic solvent + sealed autoclave + heat above boiling point → autogenous pressure</li>
+      <li>Operates at 100–1000°C and 1–10,000 atm</li>
+      <li>3 essential components: organic ligand, metal salt precursor, solvent</li>
+      <li>A bottom-up method giving precise control over nanoparticle properties</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 2 ══════════ -->
+<section id="s2">
+  <div class="section-number">Section 02</div>
+  <h2>Historical Background</h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot">🌍</div>
+      <div class="tl-body">
+        <div class="tl-date">Ancient Geology</div>
+        <div class="tl-title">Nature's Autoclave</div>
+        <div class="tl-desc">Long before chemists discovered this method, nature was using it. Hot, mineral-rich water under immense geological pressure deep in the Earth crystallised beautiful minerals — quartz, emeralds, and topaz. This natural phenomenon inspired early chemists to attempt the same in the laboratory.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">1</div>
+      <div class="tl-body">
+        <div class="tl-date">1839 — Robert Bunsen</div>
+        <div class="tl-title">Birth of Hydrothermal Synthesis</div>
+        <div class="tl-desc">The German chemist Robert Bunsen conducted the first laboratory hydrothermal experiments using sealed glass tubes. He successfully crystallised minerals at temperatures above 100°C — a landmark achievement that birthed the entire field. (PMC Review, 2021)</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">2</div>
+      <div class="tl-body">
+        <div class="tl-date">1900s – 1950s</div>
+        <div class="tl-title">Industrial Scale Applications</div>
+        <div class="tl-desc">The method scaled to industrial applications: synthetic quartz crystals were produced for watches, clocks, and electronics (quartz is piezoelectric — it generates electricity under pressure, essential for precise timekeeping). Zeolites were also synthesised for petroleum refining catalysis. Both are still produced this way today.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">3</div>
+      <div class="tl-body">
+        <div class="tl-date">1980s – 1990s</div>
+        <div class="tl-title">The Solvothermal Revolution</div>
+        <div class="tl-desc">A critical breakthrough: organic solvents <em>replaced</em> water. This was transformative because water-sensitive materials — sulfides, nitrides, and metal-organic frameworks (MOFs) — decompose when exposed to water. Organic solvents opened access to an entirely new class of materials. The field of solvothermal synthesis was born. The 1990s also saw the nanomaterials revolution and advances in high-resolution microscopy converge to drive this development. (PMC, 2021)</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">4</div>
+      <div class="tl-body">
+        <div class="tl-date">2000s – Present</div>
+        <div class="tl-title">The Nanomaterial Era</div>
+        <div class="tl-desc">Today, approximately <strong>80% of solvothermal literature</strong> focuses on nanocrystals. New variants have emerged: microwave-assisted solvothermal (hours → minutes), AI-optimised synthesis that predicts optimal conditions before experiments, and continuous flow reactors for industrial-scale production. (Sigma-Aldrich Review)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-summary">
+    <h4>Section 2 Summary</h4>
+    <ul>
+      <li>Inspired by geological mineral formation under heat and pressure</li>
+      <li>1839: Bunsen's first lab experiments in sealed tubes</li>
+      <li>1900s–1950s: Industrial quartz and zeolites</li>
+      <li>1980s–1990s: Solvothermal revolution — organic solvents replace water</li>
+      <li>2000s–present: Nanomaterial era, ~80% of literature on nanocrystals</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 3 ══════════ -->
+<section id="s3">
+  <div class="section-number">Section 03</div>
+  <h2>Hydrothermal vs. Solvothermal Synthesis</h2>
+
+  <p>Understanding the relationship between these two methods is fundamental. Solvothermal synthesis is the <em>generalised form</em>; hydrothermal is a special case where the solvent happens to be water.</p>
+
+  <div class="box def">
+    <div class="box-title">🔑 Key Conceptual Relationship</div>
+    <p><strong>Hydrothermal IS a special case of solvothermal synthesis</strong> — when water (H₂O) is the chosen solvent. Solvothermal synthesis simply replaces water with any organic solvent of choice, massively expanding what can be made.</p>
+  </div>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Hydrothermal</th>
+        <th>Solvothermal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Solvent</strong></td>
+        <td>Water ONLY (H₂O)</td>
+        <td>ANY organic — ethanol, DMF, ethylene glycol, toluene, acetonitrile, etc.</td>
+      </tr>
+      <tr>
+        <td><strong>Temperature limit</strong></td>
+        <td>100–374°C (limited by water's critical point)</td>
+        <td>Up to 600°C+ (no critical point limitation)</td>
+      </tr>
+      <tr>
+        <td><strong>Materials accessible</strong></td>
+        <td>Metal oxides, silicates, zeolites only</td>
+        <td>MOFs, sulfides, selenides, nitrides, QDs — far broader scope</td>
+      </tr>
+      <tr>
+        <td><strong>Origin</strong></td>
+        <td>1839 – Robert Bunsen</td>
+        <td>1980s–1990s (derived from hydrothermal)</td>
+      </tr>
+      <tr>
+        <td><strong>Solvent cost</strong></td>
+        <td>Zero (water is free)</td>
+        <td>Variable (organic solvents cost money)</td>
+      </tr>
+      <tr>
+        <td><strong>Toxicity</strong></td>
+        <td>Non-toxic (water)</td>
+        <td>Variable — DMF is toxic, ethanol is safe</td>
+      </tr>
+      <tr>
+        <td><strong>Water-sensitive materials?</strong></td>
+        <td class="cross">✗ CANNOT — they decompose in water</td>
+        <td class="check">✓ YES — easily accessible with organic solvents</td>
+      </tr>
+      <tr>
+        <td><strong>MOF synthesis quality</strong></td>
+        <td>Poor — MOFs hydrolyse in water</td>
+        <td>BEST crystallinity of all MOF synthesis methods</td>
+      </tr>
+      <tr>
+        <td><strong>N-doped graphene</strong></td>
+        <td class="cross">✗ Impossible via hydrothermal route</td>
+        <td class="check">✓ Gram-scale at ~300°C, 1–6 layer sheets</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box note">
+    <div class="box-title">💡 Why Can't Hydrothermal Make MOFs and Sulfides?</div>
+    <p><strong>MOFs (Metal-Organic Frameworks):</strong> Their organic linkers (like carboxylates, imidazolates) react with water at high temperatures and break down. The MOF framework collapses — no crystal forms.</p>
+    <p><strong>Sulfides and selenides:</strong> When metal sulfide precursors react with water at high temperature and pressure, the water reacts with the sulfide or selenide anions, displacing them with oxide/hydroxide groups. You end up with a metal oxide instead of the sulfide you wanted. Organic solvents don't do this — they leave sulfide chemistry intact.</p>
+  </div>
+
+  <div class="box highlight">
+    <div class="box-title">⭐ Extra Advantage of Solvothermal</div>
+    <p>Solvothermal synthesis at ~300°C enables <strong>gram-scale production of N-doped graphene</strong>, producing 1–6 layer graphene sheets. This is completely impossible via the hydrothermal route at the same temperature, demonstrating the superior versatility of organic solvents. (ScienceDirect Topics, 2021)</p>
+  </div>
+
+  <div class="section-summary">
+    <h4>Section 3 Summary</h4>
+    <ul>
+      <li>Hydrothermal = solvothermal with water as the solvent (a special case)</li>
+      <li>Solvothermal can use ANY organic solvent → much broader materials range</li>
+      <li>Hydrothermal cannot make water-sensitive materials (MOFs, sulfides, nitrides)</li>
+      <li>Solvothermal achieves BEST MOF crystallinity of all methods</li>
+      <li>Solvothermal enables N-doped graphene production — impossible hydrothermally</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 4 ══════════ -->
+<section id="s4">
+  <div class="section-number">Section 04</div>
+  <h2>Basic Principle of the Process (4 Core Stages)</h2>
+
+  <p>Before diving into the detailed 12-step mechanism, it is essential to understand the four fundamental operational stages that define every solvothermal synthesis. These represent the macro-level stages an operator experiences.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">🔒 Stage 1: Seal — Creating the Closed System</div>
+        <p>Precursors and organic solvent are loaded into the autoclave, filling it <strong>60–80% of its capacity</strong> (leaving headspace for pressure). The autoclave is then sealed completely. This creates a <strong>totally closed, isolated thermodynamic system</strong> — nothing can enter or escape, including gases, liquids, or solvent vapour.</p>
+        <p><strong>Why not fill 100%?</strong> If fully filled, there is no space for the liquid to expand as it heats, and no headspace for pressure equilibration. This would either prevent autogenous pressure build-up or cause catastrophic vessel failure. The 60–80% fill level is a strict safety and functional requirement.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">🔥 Stage 2: Heat — Generating Solvothermal Conditions</div>
+        <p>The sealed autoclave is placed in an oven and heated above the solvent's normal boiling point. Because the solvent cannot escape, the temperature rises far beyond what would be possible at atmospheric pressure. Simultaneously, <strong>autogenous pressure builds to 5–100+ atmospheres</strong>.</p>
+        <p>The solvent transitions into a <strong>superheated compressed fluid</strong> — a state with unique physicochemical properties: lower viscosity than normal liquid, higher diffusivity, altered dielectric constant, and enhanced ability to dissolve precursors that would be insoluble at normal conditions. This superheated solvent is the "magic ingredient."</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">💎 Stage 3: Nucleate &amp; Grow — Crystal Formation</div>
+        <p>Under the combined effect of high temperature and pressure:</p>
+        <ul>
+          <li><strong>Solubility increases dramatically</strong> — more precursor material dissolves than at normal conditions</li>
+          <li><strong>Reaction rates accelerate</strong> — following Arrhenius' law, reaction rate constant k = Ae<sup>(-Ea/RT)</sup>; higher temperature exponentially increases reaction speed</li>
+          <li>The solution eventually becomes <strong>supersaturated</strong>, triggering nucleation (tiny seed crystals form)</li>
+          <li>These nuclei then grow as more material deposits onto their surfaces</li>
+        </ul>
+        <p>Crystal morphology is controlled by <strong>solvent supersaturation, precursor concentration, and reaction kinetics</strong>. (Sigma-Aldrich)</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">❄️ Stage 4: Cool &amp; Collect — Preserving the Product</div>
+        <p>The autoclave is cooled — the reaction stops — and the crystals are preserved in their final form. Pressure drops safely as temperature decreases. The autoclave is opened <strong>ONLY after it has fully cooled</strong>. Depending on conditions, products emerge as thin films, powders, single crystals, or nanocrystals.</p>
+        <p><strong>Why slow cooling?</strong> Rapid temperature drops create sudden thermal stresses in the crystal lattice — like quenching hot glass — which can introduce structural defects and crack crystals. Slow, controlled cooling preserves crystal perfection.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box highlight">
+    <div class="box-title">⭐ Article Insight</div>
+    <p>The solvothermal method improves structural and chemical defects of crystal growth by adjusting factors like temperature, pressure, and solvent type — allowing <strong>precise control of morphology, pore size, and degree of functionalization</strong>. (ScienceDirect, Carbon Materials Review)</p>
+  </div>
+
+  <div class="box formula">
+    <div class="box-title">📐 Arrhenius Equation — Why High Temperature Matters</div>
+    <p><code>k = A × e^(-Ea/RT)</code></p>
+    <p>Where: <code>k</code> = rate constant, <code>A</code> = pre-exponential factor, <code>Ea</code> = activation energy (J/mol), <code>R</code> = gas constant (8.314 J/mol·K), <code>T</code> = temperature (Kelvin).</p>
+    <p>The negative exponential relationship means that even a modest increase in temperature causes a <strong>dramatic, exponential increase in reaction rate</strong>. At 200°C vs 100°C, reactions can proceed many times faster, enabling crystal nucleation and growth that wouldn't occur at ambient conditions.</p>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 5 ══════════ -->
+<section id="s5">
+  <div class="section-number">Section 05</div>
+  <h2>Detailed Mechanism — The Complete 12-Step Process</h2>
+
+  <p>The four macro-stages above break down into 12 detailed mechanistic steps. Understanding these steps individually, and how they connect, is essential for explaining why solvothermal synthesis produces superior nanocrystals. The ZnO nanoparticle system is used as the primary example throughout.</p>
+
+  <div class="flow-container">
+    <div class="flow-step">1. Precursor Selection</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">2. Dissolution &amp; Solvation</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">3. Monomers / Complexes</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">4. Autoclave Loading</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">5. Heating</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">6. Supersaturation &amp; Nucleation</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">7. Nanoparticle Growth</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">8. Capping Agent</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">9. Crystallization</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">10. Ostwald Ripening</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">11. Cooling</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">12. Collection &amp; Washing</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" style="background:var(--purple-mid);color:#fff;">⬡ Pure ZnO NPs</div>
+  </div>
+
+  <!-- STEPS 1-2 -->
+  <h3 id="s5-1">Steps 1–2: Preparation &amp; Ion Formation</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Preparation of Reaction Mixture — Metal Precursor Selection</div>
+        <p>The appropriate metal precursor is chosen based on the target nanoparticle. For ZnO: <strong>zinc acetate [Zn(CH₃COO)₂]</strong> is dissolved in the solvent (ethanol, water, or ethylene glycol). Zinc acetate readily dissociates and provides Zn²⁺ ions.</p>
+        <p>The choice of precursor matters: its solubility, its decomposition temperature, and the counter-ion (acetate, chloride, nitrate) can all influence reaction pathway and final product morphology.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Dissolution &amp; Ion Formation — Solvation</div>
+        <p>As the precursor dissolves, it <strong>dissociates into free ions</strong> — these are the starting species for nanoparticle formation. Simultaneously, <strong>solvent molecules surround each ion in a solvation shell</strong> (solvation / coordination).</p>
+        <p>The solvation shell stabilises the ions in solution and prevents premature precipitation — it essentially "buffers" the ions, keeping them in solution long enough for controlled nucleation to occur later under solvothermal conditions. Without this stabilisation, particles would crash out of solution immediately and uncontrollably.</p>
+        <div class="reaction"><span class="rxn-label">Dissociation</span>Zn(CH₃COO)₂ → Zn²⁺ + 2CH₃COO⁻</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEPS 3-4 -->
+  <h3 id="s5-2">Steps 3–4: Monomers, Complexes &amp; Autoclave Loading</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Formation of Reactive Monomers &amp; Soluble Complexes — Hydrolysis</div>
+        <p>When a base (like NaOH) is added, OH⁻ ions react with the Zn²⁺ ions in a <strong>hydrolysis reaction</strong>, forming zinc hydroxide Zn(OH)₂ — the critical <em>monomer</em>:</p>
+        <div class="reaction"><span class="rxn-label">Hydrolysis Reaction</span>Zn²⁺ + 2OH⁻ → Zn(OH)₂</div>
+        <p><strong>Monomers</strong> are small molecular/ionic building units that will later self-assemble into nanoparticles. Zn(OH)₂ acts as these small building units — key for initiating nanoparticle formation.</p>
+        <p>With excess OH⁻ ions, a second reaction can occur, forming a soluble complex:</p>
+        <div class="reaction"><span class="rxn-label">Complex Formation (excess OH⁻)</span>Zn(OH)₂ + 2OH⁻ → [Zn(OH)₄]²⁻</div>
+        <p>The <strong>ratio of Zn(OH)₂ (monomers) to [Zn(OH)₄]²⁻ (soluble complexes)</strong> is important: it controls the number of nuclei that will form, and therefore the final particle count and size. More complexes = slower monomer release = fewer, larger particles.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">Transfer into Autoclave</div>
+        <ul>
+          <li>Solution is poured into a <strong>Teflon-lined stainless steel autoclave</strong>. The Teflon (PTFE) liner is chemically inert to organic solvents and prevents contamination of the product with metal ions from the steel wall.</li>
+          <li>Fill only <strong>70–80%</strong> of the autoclave's total volume. The empty headspace allows pressure to build up and provides a buffer for thermal expansion.</li>
+          <li>The autoclave is <strong>tightly sealed</strong> — this creates the closed system essential for autogenous pressure build-up during heating.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEPS 5-6 -->
+  <h3 id="s5-3">Steps 5–6: Heating, Solvothermal Conditions &amp; Nucleation</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <div class="step-title">Heating &amp; Creation of Solvothermal Conditions</div>
+        <p>The sealed autoclave is placed in an oven and heated. Because the solvent <strong>cannot escape</strong>, as temperature rises above the normal boiling point, it enters a superheated state and pressure builds dramatically (5–100+ atm for typical organic solvents).</p>
+        <p>The combined high temperature + high pressure = <strong>solvothermal conditions</strong>. These conditions are necessary to trigger nucleation. The superheated solvent has altered properties: higher diffusivity allows faster ion transport, lower viscosity, and enhanced dissolution of precursors.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <div class="step-title">Supersaturation &amp; Nucleation — LaMer Model</div>
+        <p>The nucleation process follows this sequential pathway:</p>
+        <ol>
+          <li><strong>Solubility increases:</strong> As temperature rises, dissolved species (like Zn(OH)₂) dissolve more readily — concentration in solution increases.</li>
+          <li><strong>Supersaturation reached:</strong> Eventually the concentration exceeds the solubility limit at that temperature — the solution becomes <em>supersaturated</em> (more material dissolved than equilibrium allows).</li>
+          <li><strong>Nucleation triggered:</strong> At the supersaturation point, it becomes thermodynamically favourable to form solid crystals. Tiny atomic clusters (embryos) form spontaneously.</li>
+          <li><strong>ZnO nuclei form:</strong> Zn(OH)₂ undergoes thermal dehydration, losing water to form ZnO nuclei:</li>
+        </ol>
+        <div class="reaction"><span class="rxn-label">Dehydration Reaction</span>Zn(OH)₂ → ZnO + H₂O</div>
+        <p>These tiny ZnO clusters (just nanometres in size) become the <strong>nuclei</strong> — the seeds on which larger nanoparticles will grow.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEPS 7-9 -->
+  <h3>Steps 7–9: Growth, Capping &amp; Crystallisation</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">7</div>
+      <div class="step-body">
+        <div class="step-title">Controlled Nanoparticle Growth</div>
+        <p>Once nuclei form, the remaining monomers in solution <strong>deposit onto the nuclei surfaces</strong> and the particles grow. Growth occurs via two mechanisms:</p>
+        <ul>
+          <li><strong>Surface deposition:</strong> Monomers diffuse to the particle surface and attach directly.</li>
+          <li><strong>Diffusion:</strong> Dissolved species migrate through the solution to reach growing crystal faces.</li>
+        </ul>
+        <p>Growth continues until the system reaches thermodynamic equilibrium — when the remaining monomer concentration falls to the solubility limit and there is no longer a driving force for further deposition.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">8</div>
+      <div class="step-body">
+        <div class="step-title">Role of Surfactants / Capping Agents</div>
+        <p>Capping agents (e.g., <strong>PVP — polyvinylpyrrolidone</strong>, citric acid, oleylamine) are molecules added to the reaction that attach to nanoparticle surfaces. Their roles:</p>
+        <ul>
+          <li>Form a <strong>protective molecular shell</strong> around each nanoparticle</li>
+          <li><strong>Prevent aggregation</strong> — particles with capping agents repel each other sterically or electrostatically, keeping them separate and monodisperse</li>
+          <li>Can selectively bind to certain crystal faces, guiding <strong>anisotropic growth</strong> (e.g., preferential growth along one axis to form nanorods instead of spheres)</li>
+        </ul>
+        <div class="box note" style="margin-top:.75rem">
+          <div class="box-title">💡 Without Capping Agents?</div>
+          <p>Without capping agents, freshly formed nanoparticles would immediately aggregate into large, uncontrolled clumps — losing all their nanoscale properties. Capping agents are what keep nanoparticles as individual, separated, functional entities.</p>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">9</div>
+      <div class="step-body">
+        <div class="step-title">Crystallisation &amp; Phase Formation</div>
+        <p>Under the sustained high temperature and pressure, the initially disordered or partially ordered atomic arrangements reorganise into a <strong>perfect, long-range crystal lattice</strong>. This is the crystallisation step — where atoms snap into their thermodynamically preferred positions.</p>
+        <p>For ZnO: atoms arrange into the <strong>hexagonal wurtzite structure</strong> (space group P6₃mc) — the stable, energetically favoured phase of ZnO under these conditions. The high-P, high-T environment provides the activation energy needed for atoms to migrate to their correct lattice positions, resulting in a <strong>highly crystalline, defect-free</strong> nanoparticle.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEPS 10-12 -->
+  <h3 id="s5-4">Steps 10–12: Ostwald Ripening, Cooling &amp; Collection</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">10</div>
+      <div class="step-body">
+        <div class="step-title">Ostwald Ripening — Size Optimisation</div>
+        <p>Named after Wilhelm Ostwald (1896), this is a thermodynamic driven phenomenon where the size distribution of nanoparticles <em>self-narrows</em> over time:</p>
+        <ol>
+          <li><strong>Small particles dissolve:</strong> Smaller particles have higher surface-area-to-volume ratios, meaning more atoms are at the surface. Surface atoms are less stable (higher energy) than bulk atoms. Small particles are therefore thermodynamically less stable and slowly dissolve back into solution.</li>
+          <li><strong>Material redeposits on larger particles:</strong> The dissolved material migrates through the solution and deposits on the surface of larger, more stable particles — which grow slightly bigger.</li>
+          <li><strong>Net result:</strong> The system evolves toward fewer, larger, more uniform nanoparticles. The overall particle size increases while the size distribution <em>narrows</em> — producing monodisperse nanoparticles.</li>
+        </ol>
+        <div class="box note" style="margin-top:.75rem">
+          <div class="box-title">💡 Why Monodispersity Matters</div>
+          <p>Monodisperse nanoparticles (all the same size) are critical for applications. In drug delivery, uniform size means predictable pharmacokinetics. In quantum dots, uniform size means a single, pure emission colour. In catalysis, uniform particle size means consistent catalytic activity.</p>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">11</div>
+      <div class="step-body">
+        <div class="step-title">Slow Cooling — Defect Prevention</div>
+        <p>Heating is stopped once the reaction is complete. The autoclave is then allowed to cool <strong>slowly</strong> to room temperature — never rapidly quenched.</p>
+        <p><strong>Why slow?</strong> Rapid cooling creates sudden thermal gradients within the crystal — different parts of the crystal try to contract at different rates, generating internal mechanical stresses. These stresses create <strong>crystal lattice defects</strong> (vacancies, dislocations, cracks). Slow cooling gives atoms time to relax and reorganise gradually, preserving the perfect crystal structure built during synthesis.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">12</div>
+      <div class="step-body">
+        <div class="step-title">Collection &amp; Purification</div>
+        <p>The final purification protocol:</p>
+        <ol>
+          <li><strong>Product removal:</strong> Cooled product is taken from the autoclave (black for magnetic particles, white powder for ZnO, etc.)</li>
+          <li><strong>Centrifugation:</strong> Particles are separated from the liquid phase by spinning at high speed — particles sediment to the bottom of the tube</li>
+          <li><strong>Washing:</strong> Multiple washing cycles with water or ethanol to remove residual unreacted precursors, surfactants, solvents, and by-products</li>
+          <li><strong>Drying:</strong> Final product is dried (often in a vacuum oven at 60°C) to yield pure, dry nanoparticles ready for characterisation and use</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-summary">
+    <h4>Section 5 Summary — The 12 Steps</h4>
+    <ul>
+      <li><strong>Steps 1–2:</strong> Dissolve metal precursor → ions form + solvation shell stabilises them</li>
+      <li><strong>Step 3:</strong> Hydrolysis → monomers (Zn(OH)₂) and complexes ([Zn(OH)₄]²⁻) form</li>
+      <li><strong>Step 4:</strong> Load into Teflon-lined autoclave at 70–80% fill, seal</li>
+      <li><strong>Step 5:</strong> Heat above boiling point → autogenous pressure, superheated solvent</li>
+      <li><strong>Step 6:</strong> Supersaturation → nucleation → Zn(OH)₂ dehydrates to ZnO nuclei</li>
+      <li><strong>Step 7:</strong> Monomers deposit on nuclei → particles grow until equilibrium</li>
+      <li><strong>Step 8:</strong> Capping agents (PVP) bind to surfaces → prevent aggregation</li>
+      <li><strong>Step 9:</strong> Atoms order into crystal lattice → hexagonal wurtzite ZnO</li>
+      <li><strong>Step 10:</strong> Ostwald ripening → small particles dissolve, large ones grow → monodisperse</li>
+      <li><strong>Step 11:</strong> Slow cool → prevents lattice defects</li>
+      <li><strong>Step 12:</strong> Collect → centrifuge → wash → dry → pure nanoparticles</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 6 ══════════ -->
+<section id="s6">
+  <div class="section-number">Section 06</div>
+  <h2>Reaction Conditions — Key Parameters</h2>
+
+  <p>Every solvothermal synthesis is governed by a set of controllable parameters. Mastering these parameters means mastering the final product.</p>
+
+  <table class="compare-table">
+    <thead>
+      <tr><th>Parameter</th><th>Typical Range / Value</th><th>What it Controls</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Temperature</strong></td>
+        <td>100–250°C (ZnO) — must exceed solvent boiling point</td>
+        <td>Crystal phase (anatase vs. rutile TiO₂), nucleation rate, growth rate, final particle size</td>
+      </tr>
+      <tr>
+        <td><strong>Pressure</strong></td>
+        <td>High (autogenous) — sealed autoclave</td>
+        <td>Solvent properties (viscosity, dielectric constant), supersaturation, reaction kinetics</td>
+      </tr>
+      <tr>
+        <td><strong>Solvent</strong></td>
+        <td>Water, ethanol, ethylene glycol (common); DMF, toluene, oleylamine</td>
+        <td>Morphology, phase, surface chemistry, which material class is accessible</td>
+      </tr>
+      <tr>
+        <td><strong>Precursor Concentration</strong></td>
+        <td>0.1–1 M</td>
+        <td>Nucleation density — high concentration → more nuclei → smaller final particles</td>
+      </tr>
+      <tr>
+        <td><strong>pH</strong></td>
+        <td>8–11 (for ZnO synthesis)</td>
+        <td>Speciation of metal ions (which complexes form), charge on particle surface, morphology</td>
+      </tr>
+      <tr>
+        <td><strong>Reaction Time</strong></td>
+        <td>6–24 hours</td>
+        <td>Crystal maturity, extent of Ostwald ripening, final particle size and uniformity</td>
+      </tr>
+      <tr>
+        <td><strong>Autoclave</strong></td>
+        <td>Teflon-lined, sealed stainless steel body</td>
+        <td>Chemical inertness, pressure containment, no contamination</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Interconnections Between Parameters</h3>
+
+  <div class="grid-2">
+    <div class="card accent-purple">
+      <h4>Temperature ↔ Crystal Phase</h4>
+      <p>For TiO₂: <strong>150°C → anatase phase</strong> (best photocatalytic activity); <strong>250°C → rutile phase</strong> (thermally stable UV absorber). Same precursor, same solvent — only temperature changes → completely different product with different applications.</p>
+    </div>
+    <div class="card accent-gold">
+      <h4>Concentration ↔ Particle Size</h4>
+      <p>Higher precursor concentration → more nuclei form at once (burst nucleation) → less monomer per nucleus → <strong>smaller particles</strong>. Lower concentration → fewer nuclei → more monomer per nucleus → <strong>larger particles</strong>. A classic nucleation–growth trade-off.</p>
+    </div>
+    <div class="card accent-teal">
+      <h4>Solvent ↔ Morphology</h4>
+      <p>For ZnO: ethanol → nanospheres (~20 nm); ethanol+NH₃ → nanorods (10:1 aspect ratio); ethylene glycol → nanoflowers; DMF → ZIF-8 MOF crystals. Same Zn precursor, same temperature — only the solvent changes → entirely different material!</p>
+    </div>
+    <div class="card accent-pink">
+      <h4>Time ↔ Size Distribution</h4>
+      <p>Longer reaction times allow more Ostwald ripening → narrower size distribution (more monodisperse). But excessively long times can cause particles to aggregate or secondary nucleation events that broaden size distribution. Optimal time is a balance.</p>
+    </div>
+  </div>
+
+  <div class="section-summary">
+    <h4>Section 6 Summary</h4>
+    <ul>
+      <li>Seven key parameters: temperature, pressure, solvent, precursor concentration, pH, reaction time, autoclave design</li>
+      <li>Temperature controls crystal phase (e.g., anatase vs. rutile TiO₂)</li>
+      <li>Concentration controls nucleation density → inversely related to particle size</li>
+      <li>Solvent is the most powerful single variable — controls morphology, phase, and material class</li>
+      <li>Time controls crystal maturity and size distribution via Ostwald ripening</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 7 ══════════ -->
+<section id="s7">
+  <div class="section-number">Section 07</div>
+  <h2>Why Solvents Are Critical — The Active Design Variable</h2>
+
+  <div class="callout">
+    <strong>Core Principle:</strong> The solvent is NOT a passive medium. It actively determines crystal phase, morphology (shape), particle size, and surface chemistry. <em>The solvent is the architect of your final material.</em>
+  </div>
+
+  <h3>Proof — Same Precursor, Only Solvent Changes → Completely Different Products</h3>
+
+  <table class="compare-table">
+    <thead>
+      <tr><th>Experiment</th><th>Precursor</th><th>Solvent</th><th>Temperature</th><th>Product</th><th>Application</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Zn(NO₃)₂</td>
+        <td>Pure ethanol</td>
+        <td>180°C</td>
+        <td>Smooth spherical ZnO NPs (~20 nm)</td>
+        <td>UV-blocking sunscreen</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Zn(NO₃)₂</td>
+        <td>Ethanol + NH₃</td>
+        <td>180°C</td>
+        <td>Hexagonal ZnO nanorods (10:1 aspect ratio)</td>
+        <td>Piezoelectric sensors</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Zn(NO₃)₂</td>
+        <td>Ethylene glycol</td>
+        <td>180°C</td>
+        <td>Hierarchical ZnO nanoflowers</td>
+        <td>Gas sensing</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Zn(NO₃)₂</td>
+        <td>DMF</td>
+        <td>180°C</td>
+        <td>ZIF-8 MOF crystals</td>
+        <td>Gas storage, drug delivery</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Zn(NO₃)₂</td>
+        <td>Oleylamine</td>
+        <td>250°C</td>
+        <td>Monodisperse ZnO QDs (emit green light)</td>
+        <td>Quantum confinement applications</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Zn(NO₃)₂</td>
+        <td>Water only</td>
+        <td>180°C</td>
+        <td>Often no nanostructured product</td>
+        <td>— (demonstrates why solvent matters)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Lesson:</strong> Identical metal source + identical temperature + different solvent = six fundamentally different products with completely different applications. The solvent choice is the single most powerful design variable in solvothermal synthesis.</p>
+
+  <h3>Six Ways Solvents Control the Product</h3>
+  <div class="grid-2">
+    <div class="card accent-purple">
+      <h4>1. Crystal Phase Control</h4>
+      <p>Solvents with high coordination strength (DMF) stabilise certain crystal faces or intermediate phases. The same precursor can form anatase TiO₂ in ethanol but rutile in water — completely different electronic and optical properties.</p>
+    </div>
+    <div class="card accent-gold">
+      <h4>2. Morphology (Shape) Control</h4>
+      <p>Solvent molecules preferentially adsorb on specific crystal faces, blocking growth along certain directions. Selective face-blocking creates anisotropic growth: nanorods (one direction preferred), nanosheets (two directions), nanoflowers (complex hierarchical).</p>
+    </div>
+    <div class="card accent-teal">
+      <h4>3. Particle Size Control</h4>
+      <p>High-viscosity solvents (ethylene glycol, ε = 37) slow ion diffusion → slower growth → <strong>smaller, more uniform particles</strong>. Low-viscosity solvents allow fast diffusion → faster growth → potentially larger, more polydisperse particles.</p>
+    </div>
+    <div class="card accent-pink">
+      <h4>4. Surface Chemistry Control</h4>
+      <p>The solvent molecules that remain adsorbed on the nanoparticle surface after synthesis determine surface functional groups. This controls biological compatibility (hydroxyl groups → water dispersible) or electronic compatibility (organic ligands → dispersible in organic media).</p>
+    </div>
+    <div class="card accent-purple">
+      <h4>5. Reaction Pathway Control</h4>
+      <p>Different solvents create entirely different reaction mechanisms and intermediates from identical precursors and temperatures. DMF coordinates to metal nodes and guides MOF assembly; ethanol promotes hydroxide-mediated oxide formation; oleylamine acts as simultaneous solvent, ligand, and reducing agent.</p>
+    </div>
+    <div class="card accent-gold">
+      <h4>6. Water-Sensitive Materials</h4>
+      <p>Non-aqueous solvents enable synthesis of sulfides, nitrides, and MOFs — impossible with water as the medium because water reacts destructively with these compounds. Organic solvents are chemically inert to these functional groups.</p>
+    </div>
+  </div>
+
+  <div class="section-summary">
+    <h4>Section 7 Summary</h4>
+    <ul>
+      <li>Solvent is the active design variable — determines phase, morphology, size, and surface chemistry</li>
+      <li>Same precursor + different solvent = completely different product (demonstrated with ZnO system)</li>
+      <li>Six mechanisms: crystal phase control, morphology, particle size, surface chemistry, reaction pathway, and access to water-sensitive materials</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 8 ══════════ -->
+<section id="s8">
+  <div class="section-number">Section 08</div>
+  <h2>The Key Solvents — Properties &amp; Best Uses</h2>
+
+  <p>Each solvent has a unique "personality" defined by its boiling point, polarity (dielectric constant ε), coordinating ability, viscosity, and toxicity. Matching solvent personality to target material is the art of solvothermal synthesis.</p>
+
+  <div class="solvent-grid">
+    <div class="solvent-card" style="border-top-color: #5e35b1;">
+      <div class="s-name">Ethanol</div>
+      <div class="s-formula">C₂H₅OH · BP: 78°C · ε: 24.3</div>
+      <div class="s-tags">
+        <span class="s-tag good">Low Toxicity</span>
+        <span class="s-tag good">Cheap</span>
+        <span class="s-tag">Moderate Polar</span>
+      </div>
+      <p><strong>Default first-choice</strong> for metal oxides (ZnO, TiO₂, Fe₂O₃, CuO, SnO₂). Low toxicity, widely available, inexpensive. Its moderate polarity dissolves most ionic metal salts while remaining compatible with the organic ligands used in synthesis. Phase control achieved by adjusting temperature.</p>
+    </div>
+    <div class="solvent-card" style="border-top-color: #b71c1c;">
+      <div class="s-name">DMF (Dimethylformamide)</div>
+      <div class="s-formula">HCON(CH₃)₂ · BP: 153°C · ε: 36.7</div>
+      <div class="s-tags">
+        <span class="s-tag">Very Strong Coordinator</span>
+        <span class="s-tag warn">TOXIC ⚠</span>
+      </div>
+      <p><strong>Dominant MOF solvent.</strong> DMF's strong coordination ability (its carbonyl oxygen binds strongly to metal nodes) guides metal ions into correct 3D arrangements for MOF formation. Responsible for the synthesis of ZIF-8, MIL-101, UiO-66 — some of the most important MOFs. Surface areas up to 7,140 m²/g achieved. <em>Reproductive toxin — handle with strict PPE.</em></p>
+    </div>
+    <div class="solvent-card" style="border-top-color: #b07d2a;">
+      <div class="s-name">Ethylene Glycol (EG)</div>
+      <div class="s-formula">HOCH₂CH₂OH · BP: 197°C · ε: 37</div>
+      <div class="s-tags">
+        <span class="s-tag">⭐ Reducing Agent</span>
+        <span class="s-tag">High Viscosity</span>
+        <span class="s-tag good">Low Toxicity</span>
+      </div>
+      <p><strong>Dual role: solvent + reducing agent simultaneously.</strong> EG can directly reduce metal ions from M²⁺ to M⁰ (zero-valent metal), enabling synthesis of pure metal nanoparticles and nanowires without a separate reducing agent. Its high viscosity (16× water) slows ion diffusion → smaller, more uniform particles. Converts Cu²⁺→Cu⁰ directly. Essential for Fe₃O₄ synthesis (reduces Fe³⁺ → Fe²⁺).</p>
+    </div>
+    <div class="solvent-card" style="border-top-color: #1a6b5e;">
+      <div class="s-name">Oleylamine / Oleic Acid</div>
+      <div class="s-formula">C₁₈H₃₅NH₂ · BP: &gt;300°C</div>
+      <div class="s-tags">
+        <span class="s-tag">Triple Role</span>
+        <span class="s-tag">QD Champion</span>
+      </div>
+      <p><strong>Solvent + ligand + capping agent simultaneously</strong> — a triple-role molecule. Oleylamine's long hydrocarbon chain stabilises the nanoparticle surface while its amine head group coordinates to the nanoparticle surface. Produces highest-quality quantum dots (QDs) with &gt;90% quantum yield. <strong>QLED TV industry standard</strong> for premium quantum dot synthesis (CdSe QDs).</p>
+    </div>
+    <div class="solvent-card" style="border-top-color: #e53935;">
+      <div class="s-name">Acetone</div>
+      <div class="s-formula">(CH₃)₂CO · BP: 56°C · ε: 20.7</div>
+      <div class="s-tags">
+        <span class="s-tag good">Low Toxicity</span>
+        <span class="s-tag">Sulfide Specialist</span>
+      </div>
+      <p>Good for CdS, ZnS quantum dots. Dissolves organic sulfur precursors that water cannot. Creates sufficient autoclave pressure despite low boiling point. Selective for certain semiconductor QD compositions.</p>
+    </div>
+    <div class="solvent-card" style="border-top-color: #7c4dcc;">
+      <div class="s-name">Mixed Solvents (H₂O + Organic)</div>
+      <div class="s-formula">H₂O + EtOH or H₂O + DMF · Ratio-tunable</div>
+      <div class="s-tags">
+        <span class="s-tag">Continuously Tunable</span>
+        <span class="s-tag">Morphology Dial</span>
+      </div>
+      <p>Adjusting the water:organic ratio is a "morphology dial" — it continuously changes polarity and viscosity without changing temperature. Example: increasing EtOH fraction in H₂O/EtOH smoothly shifts ZnO morphology from spheres → rods → sheets. Allows fine continuous control between extremes.</p>
+    </div>
+  </div>
+
+  <h3>How to Choose the Right Solvent — 8 Decision Criteria</h3>
+  <div class="grid-2">
+    <div class="card">
+      <h4>1. Boiling Point</h4>
+      <p>Must remain liquid at reaction temperature with comfortable margin. Low BP → excessive pressure. High BP → stable high-temp operation.</p>
+    </div>
+    <div class="card">
+      <h4>2. Polarity / ε (Dielectric Constant)</h4>
+      <p>High ε dissolves ionic salts. Low ε for non-polar organics. Must match the chemistry of your precursors.</p>
+    </div>
+    <div class="card">
+      <h4>3. Coordinating Ability</h4>
+      <p>Strong coordinators (DMF) → fewer, larger, uniform crystals. Weak coordinators (ethanol) → many smaller particles.</p>
+    </div>
+    <div class="card">
+      <h4>4. Reducing Nature</h4>
+      <p>EG reduces M²⁺→M⁰ directly — critical for metal nanoparticle synthesis without a separate reducing agent.</p>
+    </div>
+    <div class="card">
+      <h4>5. Viscosity</h4>
+      <p>High viscosity slows diffusion → slower growth → smaller, more uniform particles. Often overlooked but critically important.</p>
+    </div>
+    <div class="card">
+      <h4>6. Toxicity</h4>
+      <p>DMF = reproductive toxin. Benzene = carcinogen. Green chemistry increasingly prefers ethanol, glycerol, water.</p>
+    </div>
+    <div class="card">
+      <h4>7. Cost &amp; Scalability</h4>
+      <p>A solvent that works in the lab may be unaffordable at industrial scale. Ethanol/water ideal for scale-up.</p>
+    </div>
+    <div class="card">
+      <h4>8. Thermal Stability</h4>
+      <p>Solvent must NOT decompose at reaction temperature. Some form toxic byproducts at high T — always verify thermal data.</p>
+    </div>
+  </div>
+
+  <div class="box warn">
+    <div class="box-title">⚠ Common Mistakes in Solvent Selection</div>
+    <ul>
+      <li><strong>Ignoring precursor solubility:</strong> If your metal salt won't dissolve in the solvent, no other property matters — the reaction can't proceed.</li>
+      <li><strong>Optimising for one criterion only:</strong> A solvent that scores perfectly on polarity may fail on toxicity or cost at scale.</li>
+      <li><strong>Not checking thermal stability:</strong> Some solvents decompose at solvothermal temperatures and their decomposition products can poison the catalyst or contaminate the product.</li>
+    </ul>
+  </div>
+
+  <div class="section-summary">
+    <h4>Section 8 Summary</h4>
+    <ul>
+      <li><strong>Ethanol:</strong> Default first-choice for metal oxides — safe, cheap, versatile</li>
+      <li><strong>DMF:</strong> Dominant MOF solvent — strong coordinator, but toxic</li>
+      <li><strong>Ethylene glycol:</strong> Dual solvent + reducing agent — ideal for metal NPs and Fe₃O₄</li>
+      <li><strong>Oleylamine:</strong> Triple role (solvent + ligand + capping) — QD champion, industry standard</li>
+      <li><strong>Acetone:</strong> Sulfide specialist (CdS, ZnS QDs)</li>
+      <li><strong>Mixed solvents:</strong> Continuously tunable morphology dial</li>
+      <li>8 criteria for solvent selection: boiling point, polarity, coordinating ability, reducing nature, viscosity, toxicity, cost, thermal stability</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 9 ══════════ -->
+<section id="s9">
+  <div class="section-number">Section 09</div>
+  <h2>Materials Synthesised by Solvothermal Routes</h2>
+
+  <p>One of solvothermal synthesis's greatest strengths is its <strong>vast material scope</strong> — virtually every class of functional nanomaterial can be produced. Here we cover the major families systematically.</p>
+
+  <!-- 9.1 Metal Oxides -->
+  <h3 id="s9-1">9.1 Metal Oxides — The Most Common Solvothermal Product</h3>
+  <p>Metal oxides are the most frequently synthesised class, ranging from photocatalysts to superparamagnetic agents. The diversity of functional properties within this single family is remarkable.</p>
+
+  <h4>TiO₂ (Titanium Dioxide) — The Phase-Control Showcase</h4>
+  <div class="comparison-vs">
+    <div class="vs-card">
+      <strong style="color:var(--purple-mid)">150°C → Anatase Phase</strong><br>
+      <ul style="margin:.5rem 0 0;padding-left:1.25rem;font-size:.88rem">
+        <li>Best photocatalytic activity</li>
+        <li>Solar cells (DSSC photoelectrode)</li>
+        <li>Water purification</li>
+        <li>Self-cleaning glass coatings</li>
+      </ul>
+    </div>
+    <div class="vs-badge">VS</div>
+    <div class="vs-card">
+      <strong style="color:var(--gold)">250°C → Rutile Phase</strong><br>
+      <ul style="margin:.5rem 0 0;padding-left:1.25rem;font-size:.88rem">
+        <li>Thermally stable form</li>
+        <li>UV absorber (sunscreen)</li>
+        <li>White pigment (paints, cosmetics)</li>
+        <li>Optical coatings</li>
+      </ul>
+    </div>
+  </div>
+  <p>Same precursor (titanium isopropoxide), same solvent — only the solvothermal temperature changes → completely different crystal phase → completely different applications.</p>
+
+  <table class="compare-table">
+    <thead><tr><th>Metal Oxide</th><th>Key Properties</th><th>Solvothermal Conditions</th><th>Major Applications</th></tr></thead>
+    <tbody>
+      <tr><td><strong>TiO₂</strong></td><td>Band gap 3.2 eV (anatase), 3.0 eV (rutile), photocatalytic</td><td>Ethanol/isopropanol, 150–250°C</td><td>Solar cells, self-cleaning glass, photocatalytic water purification</td></tr>
+      <tr><td><strong>ZnO</strong></td><td>Band gap 3.37 eV, piezoelectric, antibacterial</td><td>Ethanol, NaOH, 120–200°C</td><td>UV sensors, antibacterial coatings, piezoelectric devices, LED phosphors</td></tr>
+      <tr><td><strong>Fe₃O₄ (Magnetite)</strong></td><td>Superparamagnetic, 5–20 nm optimal</td><td>Ethylene glycol, FeCl₃, NaAc, 200°C</td><td>MRI contrast, magnetic drug delivery, cancer hyperthermia, glucose biosensing</td></tr>
+      <tr><td><strong>CuO</strong></td><td>p-type semiconductor, leaf/spindle morphology</td><td>Ethylene glycol, Cu salts</td><td>Supercapacitors, glucose biosensors, solar energy conversion</td></tr>
+      <tr><td><strong>SnO₂</strong></td><td>Band gap 3.6 eV (n-type), detects CO, alcohols, H₂S</td><td>SnCl₄, ethanol, 180°C</td><td>Gas sensors (ppm level), transparent electrodes, Li-ion anodes</td></tr>
+      <tr><td><strong>MnO₂</strong></td><td>Multiple polymorphs (α/β/δ/γ), high capacitance</td><td>KMnO₄, various solvents</td><td>Supercapacitors, lithium batteries, electrochemical sensors</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 9.2 MOFs -->
+  <h3 id="s9-2">9.2 Metal-Organic Frameworks (MOFs) — Molecular Cages</h3>
+
+  <div class="box def">
+    <div class="box-title">📘 What is a MOF?</div>
+    <p>Metal-Organic Frameworks (MOFs) are <strong>crystalline porous materials</strong> built from metal ions (<em>nodes</em>) linked by organic molecules (<em>linkers</em>) — like molecular scaffolding with tunable geometry. They have the highest surface areas ever achieved, up to <strong>7,140 m²/g</strong> — one gram of the best MOF has the surface area of approximately <strong>one football field</strong>.</p>
+    <p>Their pore sizes are precisely adjustable from 5 Å to 30 Å by choosing different linker lengths — giving exact control over which molecules they can trap or exclude based on size (molecular sieving).</p>
+  </div>
+
+  <p>Over <strong>90,000 distinct MOF structures</strong> are now documented — an entire class of materials that simply didn't exist before 1999. Solvothermal synthesis in DMF at 100–220°C provides the thermal energy needed for defect-free self-assembly, making it the only practical route to crystalline MOFs at scale.</p>
+
+  <table class="compare-table">
+    <thead><tr><th>MOF</th><th>Composition</th><th>Surface Area</th><th>Key Features</th></tr></thead>
+    <tbody>
+      <tr><td><strong>ZIF-8</strong></td><td>Zn + 2-methylimidazole in DMF</td><td>1,600 m²/g</td><td>Sodalite cage. Survives boiling water. CO₂/CH₄ separation, drug delivery</td></tr>
+      <tr><td><strong>MIL-101</strong></td><td>Cr + terephthalic acid, 220°C</td><td>~4,000 m²/g</td><td>Two cage types: 25Å &amp; 29Å. Record drug loading — 1.4 g ibuprofen per gram MOF</td></tr>
+      <tr><td><strong>UiO-66</strong></td><td>Zr + terephthalic acid in DMF, 120°C</td><td>1,187 m²/g</td><td>Most thermally stable MOF — survives 500°C. Chemical warfare agent neutralisation</td></tr>
+      <tr><td><strong>HKUST-1</strong></td><td>Cu + benzene-1,3,5-tricarboxylate</td><td>1,500 m²/g</td><td>First commercial MOF. Paddle-wheel Cu₂ nodes. CO₂ capture, methane storage</td></tr>
+      <tr><td><strong>NU-110</strong></td><td>Cu-based, complex linker</td><td><strong>7,140 m²/g</strong></td><td>All-time surface area world record. Solvothermal synthesis essential</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box highlight">
+    <div class="box-title">⭐ Why Solvothermal for MOFs?</div>
+    <p>Room-temperature MOF synthesis produces amorphous (disordered) powder — it has no crystallinity and therefore poor gas storage and separation performance. Solvothermal synthesis provides the thermal energy necessary for atoms to find their lowest-energy positions in the crystal lattice, producing perfectly ordered, highly crystalline MOF with maximum surface area and uniform pore size. <strong>MOF solvothermal synthesis achieves BEST crystallinity compared to ALL other MOF preparation methods.</strong> (ScienceDirect, 2021)</p>
+    <p>Key applications: <strong>CO₂ capture</strong> from power plants (1 kg MOF holds CO₂ equivalent to burning 3 L gasoline), <strong>hydrogen storage</strong> for fuel cells, <strong>targeted drug delivery</strong>, and <strong>water harvesting from desert air</strong>.</p>
+  </div>
+
+  <!-- 9.3 QDs -->
+  <h3 id="s9-3">9.3 Quantum Dots (QDs) — Where SIZE = COLOUR</h3>
+
+  <div class="box def">
+    <div class="box-title">📘 What are Quantum Dots?</div>
+    <p>Quantum dots are <strong>semiconductor nanocrystals</strong> so small (2–10 nm) that electrons are physically confined in all three spatial dimensions. This quantum confinement effect makes electrons behave like electrons in an atom — with discrete energy levels — earning them the nickname <em>"artificial atoms."</em></p>
+    <p>The critical property: <strong>the size of the QD determines its emission colour</strong>. Smaller QD → larger band gap → higher energy → shorter wavelength (blue). Larger QD → smaller band gap → lower energy → longer wavelength (red). The relationship follows: ΔE ∝ 1/R² (where R is the particle radius).</p>
+  </div>
+
+  <h4>CdSe Quantum Dots — Colour-Size Relationship</h4>
+  <div class="spectrum-bar"></div>
+  <table class="compare-table">
+    <thead><tr><th>QD Size</th><th>Emission Wavelength</th><th>Emission Colour</th></tr></thead>
+    <tbody>
+      <tr><td>2 nm</td><td>~450 nm</td><td>Blue</td></tr>
+      <tr><td>3 nm</td><td>~490 nm</td><td>Cyan</td></tr>
+      <tr><td>5 nm</td><td>~520 nm</td><td>Green</td></tr>
+      <tr><td>7 nm</td><td>~590 nm</td><td>Yellow</td></tr>
+      <tr><td>9 nm</td><td>~610 nm</td><td>Orange</td></tr>
+      <tr><td>10 nm</td><td>~630 nm</td><td>Red</td></tr>
+    </tbody>
+  </table>
+
+  <p>Solvothermal synthesis in high-boiling-point organic solvents (oleylamine, TOP — trioctylphosphine) gives the <strong>uniform size distribution required for sharp, pure colour emission</strong>. Samsung and LG QLED TVs use solvothermal CdSe QDs with &lt;5% size variation.</p>
+
+  <h4>Key QD Properties from Solvothermal Synthesis</h4>
+  <div class="grid-2">
+    <div class="card accent-purple"><h4>Quantum Yield &gt; 90%</h4><p>Solvothermal-grown QDs reach near-perfect photon efficiency — 9 out of 10 absorbed photons re-emitted as light.</p></div>
+    <div class="card accent-teal"><h4>Tunable Size Range: 2–10 nm</h4><p>Just 8 nm difference spans the entire visible + IR spectrum — extraordinary tunability.</p></div>
+    <div class="card accent-gold"><h4>Narrow Emission (FWHM &lt; 25 nm)</h4><p>Ultra-pure colours impossible with traditional phosphors. Essential for high-colour-gamut displays.</p></div>
+    <div class="card accent-pink"><h4>Multiple QD Types</h4><p>CdSe (visible), PbS (IR, 700–2000 nm), InP (non-toxic alternative), Carbon QDs (biocompatible, from citric acid at 160°C).</p></div>
+  </div>
+
+  <!-- 9.4 Sulfides, Nitrides, Carbon -->
+  <h3 id="s9-4">9.4 Sulfides, Nitrides, Carbon &amp; Magnetic Materials</h3>
+
+  <div class="callout">
+    <strong>Key Insight:</strong> Sulfides, selenides, and nitrides react with water → form oxides/hydroxides instead. Solvothermal with organic solvents completely solves this — it is often the <em>ONLY viable wet-chemistry route</em> to these materials.
+  </div>
+
+  <table class="compare-table">
+    <thead><tr><th>Material Family</th><th>Examples</th><th>Why Solvothermal Is Essential</th><th>Applications</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Metal Sulfides &amp; Selenides</strong></td>
+        <td>MoS₂, Bi₂S₃, CuInS₂, SnS₂, WS₂</td>
+        <td>Water-sensitive — need non-aqueous organic solvents. Solvothermal in dodecanethiol (solvent + S source simultaneously)</td>
+        <td>MoS₂: single-layer transistors, H₂ evolution catalyst; Bi₂S₃: thermoelectrics, X-ray imaging; CuInS₂: non-toxic solar cells</td>
+      </tr>
+      <tr>
+        <td><strong>Metal Nitrides</strong></td>
+        <td>GaN, TiN, h-BN, Si₃N₄</td>
+        <td>GaN: solvothermal in supercritical NH₃ for power electronics. h-BN: solvothermal → high-crystallinity nanosheets</td>
+        <td>GaN: blue LED (Nobel Prize 2014); TiN: cutting tool coatings; h-BN: "white graphene," 2D insulator</td>
+      </tr>
+      <tr>
+        <td><strong>Carbon Nanomaterials</strong></td>
+        <td>rGO, Carbon QDs, Porous carbons</td>
+        <td>Solvothermal reduction at 150–200°C produces more complete reduction, fewer defects, higher conductivity than chemical methods</td>
+        <td>rGO: conductors; Carbon QDs: non-toxic fluorescence; MOF-derived carbons: porous carbon for supercapacitors</td>
+      </tr>
+      <tr>
+        <td><strong>Magnetic &amp; Multiferroic</strong></td>
+        <td>BiFeO₃, CoFe₂O₄, MnFe₂O₄</td>
+        <td>Single-crystal NPs achievable solvothermally — superior magnetic performance vs. ball-milled alternatives</td>
+        <td>BiFeO₃: ultra-high-density data storage; CoFe₂O₄: hard magnetic data storage; MnFe₂O₄: cancer hyperthermia</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-summary">
+    <h4>Section 9 Summary — Materials at a Glance</h4>
+    <ul>
+      <li><strong>Metal Oxides:</strong> Most common — TiO₂, ZnO, Fe₃O₄, CuO, SnO₂, MnO₂. Temperature controls crystal phase.</li>
+      <li><strong>MOFs:</strong> 90,000+ structures. Solvothermal gives best crystallinity. Key solvent: DMF. Surface areas up to 7,140 m²/g.</li>
+      <li><strong>QDs:</strong> Size = colour. 2–10 nm range covers entire visible+IR spectrum. &gt;90% quantum yield. QLED industry standard.</li>
+      <li><strong>Sulfides/Nitrides:</strong> Solvothermal often the ONLY viable route — organic solvents are non-reactive with S²⁻, N³⁻.</li>
+      <li><strong>Carbon materials:</strong> rGO, carbon QDs, porous carbons — all made solvothermally with superior properties.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 10 ══════════ -->
+<section id="s10">
+  <div class="section-number">Section 10</div>
+  <h2>Case Study: Solvothermal Synthesis of Fe₃O₄ Nanoparticles</h2>
+
+  <p>The solvothermal synthesis of Fe₃O₄ (magnetite) nanoparticles is one of the most well-studied and practically important examples, showcasing every principle covered in this guide. This case study provides a complete, concrete illustration of the entire process.</p>
+
+  <div class="box def">
+    <div class="box-title">📘 What is Fe₃O₄ (Magnetite)?</div>
+    <p>Magnetite (Fe₃O₄) is a <strong>mixed-valence iron oxide</strong> containing both Fe²⁺ and Fe³⁺ ions in an <strong>inverse spinel crystal structure</strong> (space group Fd3̄m). The unit cell contains oxygen ions in a face-centred cubic arrangement, with iron ions filling tetrahedral (Fe³⁺ only) and octahedral (Fe²⁺ + Fe³⁺ equally) sites.</p>
+    <p>Nanoparticles in the <strong>1–20 nm range exhibit superparamagnetism</strong> — they become strongly magnetised in an external magnetic field but retain <em>no residual magnetism</em> when the field is removed. This is because each nanoparticle consists of a single magnetic domain, and thermal energy is sufficient to randomly flip this domain's orientation at room temperature. This makes them safe for biomedical applications — they won't permanently stick to each other or to tissue after the field is removed.</p>
+  </div>
+
+  <!-- 10.1 Materials & Setup -->
+  <h3 id="s10-1">10.1 Materials, Precursors &amp; Autoclave Setup</h3>
+
+  <div class="grid-3">
+    <div class="card accent-purple">
+      <div class="card-icon">⚗️</div>
+      <h4>Iron Precursor — FeCl₃·6H₂O</h4>
+      <p>Fe³⁺ source. Provides iron ions that will be reduced (partially) and hydrolysed to form Fe₃O₄. <strong>Concentration controls particle nucleation density</strong> — higher concentration → more nuclei → smaller final particles.</p>
+    </div>
+    <div class="card accent-teal">
+      <div class="card-icon">💧</div>
+      <h4>Solvent &amp; Reductant — Ethylene Glycol (EG)</h4>
+      <p><strong>Dual role:</strong> (1) Reaction medium — heats above boiling point in sealed autoclave. (2) <strong>Reducing agent</strong> — partially reduces Fe³⁺ → Fe²⁺, which is necessary for correct Fe₃O₄ stoichiometry (Fe₃O₄ = FeO·Fe₂O₃, requires both 2+ and 3+ iron). High viscosity slows diffusion → smaller, uniform particles.</p>
+    </div>
+    <div class="card accent-gold">
+      <div class="card-icon">🧪</div>
+      <h4>Stabilizer / Alkali — NaAc·3H₂O</h4>
+      <p><strong>Dual role:</strong> (1) <strong>Electrostatic stabilizer</strong> — acetate ions adsorb on particle surfaces, imparting a negative surface charge (~−30 mV) that prevents agglomeration via electrostatic repulsion. (2) <strong>Alkali source</strong> — NaAc hydrolyses to provide OH⁻, creating a basic environment (pH 8–11) that promotes Fe(OH)₃ formation.</p>
+    </div>
+  </div>
+
+  <h4>Optional Additives</h4>
+  <ul>
+    <li><strong>CTAB (cetyltrimethylammonium bromide):</strong> Cationic surfactant that further controls morphology and prevents aggregation during synthesis.</li>
+    <li><strong>EDA (ethylenediamine):</strong> Additional alkalinity and nitrogen-containing ligand for surface functionalisation.</li>
+    <li><strong>Sodium citrate:</strong> Alternative stabilizer; citrate-coated Fe₃O₄ NPs have excellent biocompatibility.</li>
+  </ul>
+
+  <h4>Reaction Setup — Autoclave Parameters</h4>
+  <div class="param-grid">
+    <div class="param-card">
+      <div class="param-label">Temperature</div>
+      <div class="param-value">200°C</div>
+      <div class="param-desc">Above EG boiling point (197°C)</div>
+    </div>
+    <div class="param-card">
+      <div class="param-label">Reaction Time</div>
+      <div class="param-value">10 hours</div>
+      <div class="param-desc">Ensures complete crystallisation</div>
+    </div>
+    <div class="param-card">
+      <div class="param-label">Pre-mix</div>
+      <div class="param-value">50°C, 30 min</div>
+      <div class="param-desc">Stir before autoclave loading</div>
+    </div>
+    <div class="param-card">
+      <div class="param-label">Fill Level</div>
+      <div class="param-value">~75%</div>
+      <div class="param-desc">Leaves headspace for pressure</div>
+    </div>
+    <div class="param-card">
+      <div class="param-label">Atmosphere</div>
+      <div class="param-value">Sealed/Inert</div>
+      <div class="param-desc">No oxygen to prevent over-oxidation</div>
+    </div>
+    <div class="param-card">
+      <div class="param-label">Scalability</div>
+      <div class="param-value">20–200 mL</div>
+      <div class="param-desc">Lab (~1g) to pilot (~200g)</div>
+    </div>
+  </div>
+
+  <!-- 10.2 Synthesis Protocol -->
+  <h3 id="s10-2">10.2 Step-by-Step Synthesis Protocol</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Dissolve Precursor &amp; Mix All Reagents</div>
+        <p>Dissolve FeCl₃·6H₂O in ethylene glycol. Add CTAB, CH₃COONa (NaAc), and EDA. Stir magnetically at <strong>50°C for 30 minutes</strong> to ensure homogeneous mixing and complete dissolution of all components. The solution turns deep orange/brown from Fe³⁺ ions.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Transfer to Teflon-Lined Autoclave</div>
+        <p>Pour the homogeneous solution into a Teflon-lined stainless steel autoclave. Fill to approximately <strong>75% of capacity</strong>. The Teflon liner is essential — it is chemically inert to both EG and the acidic iron chloride solution, preventing any contamination from the steel vessel wall.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Solvothermal Reaction — Autoclave Oven Heating</div>
+        <p>Seal the autoclave tightly. Place in a conventional laboratory oven. Heat to <strong>200°C</strong> and maintain for exactly <strong>10 hours</strong>. During this time, EG heats above its boiling point → autogenous pressure builds → superheated conditions drive crystallisation. The solution undergoes chemical transformations (see mechanism below) to produce Fe₃O₄ nanoparticles.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">Controlled Cooling to Room Temperature</div>
+        <p>Switch off the oven and allow the autoclave to cool <strong>naturally</strong> to room temperature over several hours. Do NOT quench (do not remove autoclave and plunge into cold water). Controlled cooling prevents thermal stress cracks in the crystal lattice — preserving the excellent crystallinity achieved during synthesis.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <div class="step-title">Magnetic Collection, Washing &amp; Purification</div>
+        <p>The product is a black powder (Fe₃O₄ is black, unlike rust which is red-brown Fe₂O₃). Because Fe₃O₄ is superparamagnetic, it can be <strong>collected magnetically</strong> by placing a strong magnet at the side of the reaction vessel — the particles are drawn to the magnet and the liquid decanted. Wash <strong>3× with ethanol</strong> then <strong>3× with deionised water</strong> to remove residual EG, sodium acetate, CTAB, EDA, and unreacted FeCl₃.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <div class="step-title">Drying &amp; Storage</div>
+        <p>Dry in a vacuum oven at <strong>60°C</strong>. No high-temperature calcination is needed — the Fe₃O₄ phase is directly obtained from solvothermal synthesis. Store under an <strong>inert atmosphere</strong> (nitrogen or argon) to prevent gradual surface oxidation to γ-Fe₂O₃ (maghemite), which would alter the magnetic properties.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10.3 Mechanism -->
+  <h3 id="s10-3">10.3 Formation Mechanism — Chemical Pathway</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num" style="background:var(--teal)">①</div>
+      <div class="step-body">
+        <div class="step-title">Step 1 — Hydrolysis (Fe³⁺ → Fe(OH)₃)</div>
+        <div class="reaction"><span class="rxn-label">Hydrolysis</span>Fe³⁺ + 3OH⁻ → Fe(OH)₃</div>
+        <p>NaAc hydrolyses in EG at elevated temperature to release OH⁻ ions (alkaline buffer). These OH⁻ ions react with Fe³⁺ ions to form iron(III) hydroxide precipitate. This is the first intermediate on the path to Fe₃O₄.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:var(--teal)">②</div>
+      <div class="step-body">
+        <div class="step-title">Step 2 — Partial Reduction (Fe³⁺ → Fe²⁺ by EG)</div>
+        <div class="reaction"><span class="rxn-label">Reduction by Ethylene Glycol</span>2Fe(OH)₃ → 2Fe(OH)₂ + H₂O + [O]</div>
+        <p>This is where ethylene glycol's reducing power becomes critical. At 200°C, EG reduces a portion of Fe³⁺ to Fe²⁺. The ratio needed for Fe₃O₄ is 1 Fe²⁺ : 2 Fe³⁺ (since Fe₃O₄ = FeO·Fe₂O₃). EG provides exactly this partial reduction in situ — no separate reducing agent needed.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:var(--teal)">③</div>
+      <div class="step-body">
+        <div class="step-title">Step 3 — Condensation &amp; Nucleation (→ Fe₃O₄)</div>
+        <div class="reaction"><span class="rxn-label">Condensation / Magnetite Formation</span>Fe(OH)₂ + 2Fe(OH)₃ → Fe₃O₄ + 4H₂O</div>
+        <p>The mixed-valence hydroxides (Fe(OH)₂ + 2Fe(OH)₃) condense — losing water molecules — to form the magnetite (Fe₃O₄) nucleus. This condensation is driven by the high temperature and pressure. The resulting nuclei have the inverse spinel crystal structure characteristic of magnetite.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:var(--teal)">④</div>
+      <div class="step-body">
+        <div class="step-title">Gram-Scale Clustering Mechanism</div>
+        <p>After nucleation, the particles evolve through a specific sequence:</p>
+        <ol>
+          <li><strong>Supersaturation:</strong> EG-Fe³⁺ complexes (solvated Fe³⁺) reach supersaturation</li>
+          <li><strong>Primary nucleation (1–2 nm, NaAc-stabilised):</strong> Tiny seed crystals form, stabilised by acetate ions on their surface</li>
+          <li><strong>Ostwald ripening → size distribution narrows:</strong> Small particles dissolve, large ones grow</li>
+          <li><strong>Cluster formation → ~13 nm nanoclusters:</strong> Primary nanocrystals self-assemble into larger clusters driven by surface tension and electrostatic interactions</li>
+        </ol>
+        <p>Final product: <strong>~13 nm spherical Fe₃O₄ nanoclusters</strong> composed of primary nanocrystals.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box highlight">
+    <div class="box-title">⭐ Overall Reaction Summary</div>
+    <div class="reaction"><span class="rxn-label">Complete Solvothermal Reaction</span>FeCl₃ —(EG, NaAc, 200°C, 10h)→ Fe₃O₄ NPs (inverse spinel, ~13 nm)</div>
+    <p>Highly crystalline inverse spinel structure formed directly — no post-annealing or calcination required.</p>
+  </div>
+
+  <h3>Properties of Synthesised Fe₃O₄ Nanoparticles</h3>
+  <div class="grid-2">
+    <div class="card accent-purple"><h4>Superparamagnetism</h4><p>Single-domain particles (5–20 nm optimal). Magnetise strongly in external field but zero residual magnetism when field removed. Essential for biomedical applications.</p></div>
+    <div class="card accent-teal"><h4>Surface Charge ζ ≈ −30 mV</h4><p>Electrostatically stabilised by acetate ions. Particles strongly repel each other — excellent colloidal stability in suspension without aggregation.</p></div>
+    <div class="card accent-gold"><h4>Biocompatibility</h4><p>Fe₃O₄ is metabolically processable (iron is a natural body element). Low cytotoxicity — safe for in vivo biomedical applications.</p></div>
+    <div class="card accent-pink"><h4>Linear Scalability</h4><p>155 mg yield (20 mL) → 1,607 mg yield (200 mL) — perfectly linear with no change in particle size or PDI (polydispersity index). Scalability proven from lab to pilot scale.</p></div>
+  </div>
+
+  <div class="section-summary">
+    <h4>Section 10 Summary — Fe₃O₄ Case Study</h4>
+    <ul>
+      <li>Fe₃O₄ = mixed-valence (Fe²⁺ + Fe³⁺) inverse spinel; 1–20 nm = superparamagnetic</li>
+      <li>FeCl₃·6H₂O + EG (solvent + reductant) + NaAc (stabilizer + alkali) → 200°C, 10h → ~13 nm spherical Fe₃O₄ nanoclusters</li>
+      <li>Mechanism: Hydrolysis → Partial reduction by EG → Condensation → Fe₃O₄</li>
+      <li>Properties: Superparamagnetic, ζ ≈ −30 mV, biocompatible, linearly scalable</li>
+      <li>No calcination needed — Fe₃O₄ phase obtained directly</li>
+      <li>Store under inert atmosphere to prevent oxidation to γ-Fe₂O₃</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 11 ══════════ -->
+<section id="s11">
+  <div class="section-number">Section 11</div>
+  <h2>Characterisation Techniques</h2>
+
+  <p>After synthesis, four complementary characterisation techniques are used to fully determine the nanoparticle's identity, crystal structure, size, morphology, and surface chemistry. Each technique answers different questions.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num" style="background:#1a6b5e">TEM</div>
+      <div class="step-body">
+        <div class="step-title">Transmission Electron Microscopy (TEM) — Visualising Individual Nanoparticles</div>
+        <p><strong>What it does:</strong> Passes a beam of electrons through an ultra-thin sample, creating a high-resolution image of individual nanoparticles.</p>
+        <p><strong>Results for Fe₃O₄:</strong> Spherical Fe₃O₄ nanoclusters; average diameter <strong>~13 nm</strong> (11.60–12.31 nm range); confirmed clustered morphology of primary nanocrystals. High-resolution TEM (HRTEM) can resolve individual atomic planes within a nanoparticle, confirming crystallinity.</p>
+        <p><strong>What it proves:</strong> Size, shape, morphology, monodispersity, and — with high resolution — crystal planes and lattice spacings.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:#b07d2a">SAED</div>
+      <div class="step-body">
+        <div class="step-title">Selected Area Electron Diffraction (SAED) — Confirming Crystal Structure</div>
+        <p><strong>What it does:</strong> In TEM, electrons can also be diffracted by crystal planes (like X-rays). SAED captures this diffraction pattern as rings or spots.</p>
+        <p><strong>Results for Fe₃O₄:</strong> Diffraction rings indexed to specific crystallographic planes: <code>(111)</code>, <code>(220)</code>, <code>(311)</code>, <code>(400)</code>, <code>(511)</code>. Measured d-spacings: 0.483 nm for (111) and 0.292 nm for (220) — <strong>perfectly matching the inverse spinel Fe₃O₄ standard</strong>.</p>
+        <p><strong>What it proves:</strong> Unambiguously confirms the crystal phase (Fe₃O₄ vs. Fe₂O₃ vs. FeOOH). Ring patterns confirm <em>polycrystalline</em> nature (many small crystals, each in a different orientation).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:#8b1a8b">FTIR</div>
+      <div class="step-body">
+        <div class="step-title">Fourier Transform Infrared Spectroscopy (FTIR) — Identifying Chemical Bonds</div>
+        <p><strong>What it does:</strong> Infrared radiation causes chemical bonds to vibrate. Different bonds absorb IR at characteristic frequencies, producing a unique "fingerprint" spectrum.</p>
+        <p><strong>Key absorption bands for Fe₃O₄:</strong></p>
+        <table class="compare-table" style="margin:.5rem 0 0">
+          <thead><tr><th>Wavenumber</th><th>Assignment</th><th>Significance</th></tr></thead>
+          <tbody>
+            <tr><td><strong>570 cm⁻¹</strong></td><td>Fe–O stretching</td><td>Strongest &amp; most diagnostic — confirms inverse spinel magnetite phase</td></tr>
+            <tr><td>460 cm⁻¹</td><td>Fe–O bending</td><td>Secondary Fe–O mode, further confirms magnetite</td></tr>
+            <tr><td>3420 cm⁻¹</td><td>O–H stretching</td><td>Broad band from adsorbed water on particle surface</td></tr>
+            <tr><td>1620 cm⁻¹</td><td>O–H bending</td><td>Scissor vibration of physisorbed H₂O</td></tr>
+            <tr><td>1384 cm⁻¹</td><td>C–O / acetate</td><td>Residual EG surface coating — enhances colloidal stability</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:.5rem"><strong>What it proves:</strong> Chemical identity of the material and surface functional groups. The residual EG surface coating is NOT a contaminant — it's beneficial, as it enhances colloidal stability in aqueous suspension.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:#3b1f6b">XRD</div>
+      <div class="step-body">
+        <div class="step-title">X-Ray Diffraction (XRD) — Bulk Crystal Structure Analysis</div>
+        <p><strong>What it does:</strong> X-rays are diffracted by the periodic atomic planes in a crystal. The angle and intensity of diffraction peaks uniquely identify the crystal structure (Bragg's Law: nλ = 2d·sinθ).</p>
+        <p><strong>Key XRD peaks for Fe₃O₄ (Cu Kα, λ = 1.5406 Å):</strong></p>
+        <table class="compare-table" style="margin:.5rem 0 0">
+          <thead><tr><th>Peak (hkl)</th><th>2θ Angle</th><th>d-spacing</th><th>Significance</th></tr></thead>
+          <tbody>
+            <tr><td><strong>(311)</strong></td><td>35.42°</td><td>2.532 Å</td><td>Strongest peak — most diagnostic for Fe₃O₄</td></tr>
+            <tr><td>(440)</td><td>62.55°</td><td>1.484 Å</td><td>Second most intense; confirms spinel structure</td></tr>
+            <tr><td>(511)</td><td>57.00°</td><td>1.614 Å</td><td>Key reflection for phase identification</td></tr>
+            <tr><td>(220)</td><td>30.09°</td><td>2.967 Å</td><td>Low-angle reflection; FCC oxygen sublattice</td></tr>
+            <tr><td>(400)</td><td>43.05°</td><td>2.099 Å</td><td>Confirms cubic unit cell symmetry</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:.5rem">All peaks indexed to cubic spinel Fe₃O₄ (Fd3̄m). <strong>No secondary phases</strong> (hematite/maghemite) detected. The Scherrer equation applied to peak broadening gives crystallite size: <strong>D ≈ 12–13 nm</strong> — perfectly matching TEM measurements.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box formula">
+    <div class="box-title">📐 Scherrer Equation — Crystallite Size from XRD</div>
+    <p><code>D = Kλ / (β·cosθ)</code></p>
+    <p>Where: <code>D</code> = crystallite size (nm), <code>K</code> = Scherrer constant (~0.9 for spheres), <code>λ</code> = X-ray wavelength (0.15406 nm for Cu Kα), <code>β</code> = FWHM of the diffraction peak (radians), <code>θ</code> = Bragg diffraction angle (radians). Broader peaks = smaller crystallites. Narrower peaks = larger, more perfect crystals.</p>
+  </div>
+
+  <div class="box formula">
+    <div class="box-title">📐 Bragg's Law — How XRD Works</div>
+    <p><code>nλ = 2d·sinθ</code></p>
+    <p>Where: <code>n</code> = order of diffraction (integer), <code>λ</code> = X-ray wavelength, <code>d</code> = interplanar spacing (Å), <code>θ</code> = angle of incidence. Constructive interference (bright peak) occurs only when the path difference between X-rays reflected from successive planes equals an integer number of wavelengths.</p>
+  </div>
+
+  <h3>Final Nanoparticle Profile — Fe₃O₄</h3>
+  <div class="grid-2">
+    <div class="card accent-purple"><h4>Crystal Structure</h4><p>Inverse spinel Fe₃O₄ (Fd3̄m, cubic). Fe³⁺ in tetrahedral (8a) sites. Fe²⁺/Fe³⁺ mixed in octahedral (16d) sites.</p></div>
+    <div class="card accent-teal"><h4>Morphology</h4><p>Spherical nanoclusters of primary nanocrystals. Clustered structure increases effective size while maintaining individual crystal superparamagnetism.</p></div>
+    <div class="card accent-gold"><h4>Average Size</h4><p>~13 nm (consistent across 20–200 mL scale). PDI remains constant → linearly scalable synthesis proven.</p></div>
+    <div class="card accent-pink"><h4>Surface Charge</h4><p>ζ ≈ −30 mV — electrostatically stabilised. Values more negative than −25 mV indicate stable colloidal suspension resistant to aggregation.</p></div>
+  </div>
+
+  <div class="section-summary">
+    <h4>Section 11 Summary — Characterisation</h4>
+    <ul>
+      <li><strong>TEM:</strong> Visualises individual nanoparticles — size (~13 nm), shape (spherical clusters), morphology</li>
+      <li><strong>SAED:</strong> Electron diffraction rings confirm inverse spinel Fe₃O₄ crystal phase (d-spacings match standard)</li>
+      <li><strong>FTIR:</strong> Fe–O stretch at 570 cm⁻¹ = magnetite fingerprint; O–H, C–O bands = residual EG surface coating</li>
+      <li><strong>XRD:</strong> (311) peak at 35.42° is most diagnostic; Scherrer equation gives D ≈ 12–13 nm = consistent with TEM</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 12 ══════════ -->
+<section id="s12">
+  <div class="section-number">Section 12</div>
+  <h2>Applications of Solvothermal Nanoparticles</h2>
+
+  <h3>Energy Applications</h3>
+  <table class="compare-table">
+    <thead><tr><th>Application</th><th>Nanoparticle Role</th><th>Mechanism / Advantage</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lithium-ion Batteries (LIBs)</strong></td><td>Anode material</td><td>Shorter ion diffusion paths, higher capacity, and cycling stability vs bulk materials</td></tr>
+      <tr><td><strong>Sodium-ion Batteries</strong></td><td>Electrode material</td><td>Improved Na⁺ insertion/extraction kinetics, reduced structural degradation over cycles</td></tr>
+      <tr><td><strong>Aluminum-ion Batteries</strong></td><td>Cathode material</td><td>Fast Al³⁺ diffusion (trivalent — harder to insert), enhanced electrochemical activity</td></tr>
+      <tr><td><strong>Rechargeable Li–O₂ Batteries</strong></td><td>Catalyst</td><td>Boosts oxygen reduction reaction (ORR) and oxygen evolution reaction (OER)</td></tr>
+      <tr><td><strong>Sodium-ion Hybrid Capacitors (SiCs)</strong></td><td>Electrode</td><td>Combines battery + capacitor behaviour → improved energy AND power density simultaneously</td></tr>
+      <tr><td><strong>Symmetric Supercapacitors (SSC)</strong></td><td>Both electrodes</td><td>Uniform charge storage, fast ion transport across identical electrodes</td></tr>
+      <tr><td><strong>V₂O₅ Microspheres (2024)</strong></td><td>Battery cathode</td><td>Retain 76.5% capacity after 3,000 battery cycles at 180°C (ScienceDirect, 2024)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Biosensor Applications</h3>
+  <p>Nanoparticles (CeO₂, Fe₃O₄, Co₃O₄) deposited on electrodes detect pollutants, glucose, and drugs with high accuracy.</p>
+
+  <div class="grid-3">
+    <div class="card accent-purple">
+      <h4>CeO₂ Nanoparticles</h4>
+      <p>Detects harmful water pollutants — heavy metals, nitrates — at ultra-low concentrations (ppb level).</p>
+    </div>
+    <div class="card accent-teal">
+      <h4>Fe₃O₄ Nanoparticles</h4>
+      <p>Glucose sensing in medical testing. Fe²⁺/Fe³⁺ redox cycling (Fenton-like) detects glucose via electrochemical signal.</p>
+    </div>
+    <div class="card accent-gold">
+      <h4>Co₃O₄ Nanoparticles</h4>
+      <p>Detects nitrite in wastewater AND drugs in bio-samples. Exceptional selectivity amid interfering chemicals.</p>
+    </div>
+  </div>
+
+  <h4>Why Nanoparticles Make Better Biosensors</h4>
+  <div class="two-col">
+    <div class="adv-col">
+      <h4>✓ Biosensor Advantages of NPs</h4>
+      <ul>
+        <li>Increased electrode surface area → more reaction sites → stronger signal</li>
+        <li>Faster signal movement → improved detection speed</li>
+        <li>Higher sensitivity — detect at ultra-low concentrations</li>
+        <li>High selectivity — works accurately amid interfering chemicals</li>
+        <li>Faster detection response</li>
+        <li>High accuracy and reliability</li>
+      </ul>
+    </div>
+    <div class="lim-col">
+      <h4>⚠ Limitations of NP Biosensors</h4>
+      <ul>
+        <li>Long-term stability of NP-modified electrodes needs improvement</li>
+        <li>Reproducibility between fabrication batches</li>
+        <li>Cost of noble metal NPs (Pt, Au) for some configurations</li>
+        <li>Need for careful surface functionalisation for selectivity</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Biomedical Applications (Fe₃O₄ Focus)</h3>
+  <div class="grid-2">
+    <div class="card accent-purple"><h4>MRI Contrast Agent</h4><p>Superparamagnetic Fe₃O₄ NPs shorten T₂ relaxation time of nearby water protons → appear dark in MRI images → enhanced contrast for tumour detection.</p></div>
+    <div class="card accent-teal"><h4>Targeted Drug Delivery</h4><p>Drug-loaded Fe₃O₄ NPs guided to tumour site by external magnetic field. Drug released at tumour (pH-responsive). Reduces systemic toxicity of chemotherapy.</p></div>
+    <div class="card accent-gold"><h4>Cancer Hyperthermia</h4><p>MnFe₂O₄ injected into tumour. Alternating magnetic field applied → particles heat to 45°C → kills cancer cells selectively without surgery. Biocompatible.</p></div>
+    <div class="card accent-pink"><h4>Bioseparation</h4><p>Magnetically separate cells, proteins, nucleic acids from complex biological mixtures in minutes. Apply magnet → pull out target-bound particles → decant rest.</p></div>
+  </div>
+
+  <div class="section-summary">
+    <h4>Section 12 Summary</h4>
+    <ul>
+      <li><strong>Energy:</strong> LIBs, Na-ion batteries, Al-ion batteries, Li–O₂, supercapacitors — NPs improve capacity, kinetics, cycle life</li>
+      <li><strong>Biosensors:</strong> CeO₂, Fe₃O₄, Co₃O₄ detect pollutants, glucose, drugs — enhanced by large NP surface area and fast kinetics</li>
+      <li><strong>Biomedical:</strong> MRI contrast, targeted drug delivery, cancer hyperthermia, bioseparation — all enabled by superparamagnetic Fe₃O₄</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 13 ══════════ -->
+<section id="s13">
+  <div class="section-number">Section 13</div>
+  <h2>Advantages &amp; Limitations — A Balanced Assessment</h2>
+
+  <div class="two-col">
+    <div class="adv-col">
+      <h4>✓ Key Advantages</h4>
+      <ul>
+        <li><strong>Low temperature operation:</strong> 100–350°C vs 1000°C+ for solid-state synthesis → 60–80% energy savings. Allows synthesis of thermally sensitive MOFs and organic-inorganic hybrids that would decompose at solid-state temperatures.</li>
+        <li><strong>High crystallinity — no annealing:</strong> Perfect crystals form directly in autoclave. Sol-gel gives amorphous powder that then needs 600°C calcination. Solvothermal skips this entirely.</li>
+        <li><strong>Morphology control:</strong> Any shape — spheres, rods, sheets, flowers, cubes — same equipment. Controlled by solvent, temperature, concentration, and time.</li>
+        <li><strong>Vast material range:</strong> Metals, semiconductors, ceramics, MOFs, COFs, graphene, QDs, sulfides, nitrides — virtually all classes accessible.</li>
+        <li><strong>Water-sensitive materials:</strong> MoS₂, CdS, MOFs CANNOT be made hydrothermally (decompose in water). Organic solvents solve this completely.</li>
+        <li><strong>Scalable production:</strong> 25 mL lab autoclave → liter-scale industrial reactor. Same chemistry, same product. Linearly scalable yield demonstrated (Fe₃O₄).</li>
+        <li><strong>Metastable phases:</strong> Can produce thermodynamically metastable states and novel polymorphs not accessible by other routes — unique for new materials discovery.</li>
+      </ul>
+    </div>
+    <div class="lim-col">
+      <h4>✗ Key Limitations</h4>
+      <ul>
+        <li><strong>"Black box" problem:</strong> The autoclave is sealed during reaction — NO real-time monitoring possible. You can only observe before and after. Like diagnosing a car without opening the hood while the engine runs.</li>
+        <li><strong>Safety risks:</strong> High pressure + high temperature + flammable organic solvents (DMF, ethanol, toluene) = explosion/fire risk if autoclave fails or is opened prematurely. Requires trained personnel and explosion-proof laboratory.</li>
+        <li><strong>Long reaction times:</strong> 6–48 hours per batch. Autoclave is "locked" during reaction. Low throughput — if synthesis fails, many hours are wasted with no way to intervene.</li>
+        <li><strong>Toxic solvents:</strong> DMF is a reproductive toxin; toluene and benzene are carcinogens. Specialised handling, PPE, fume hoods, and licensed waste disposal required.</li>
+        <li><strong>Energy intensive for long runs:</strong> Despite lower temperatures than solid-state, maintaining 200°C for 10+ hours still consumes significant energy.</li>
+        <li><strong>Residual surfactant removal:</strong> CTAB and other capping agents can be difficult to completely remove — residues may interfere with some applications (e.g., biological).</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Solutions Being Developed for Each Limitation</h3>
+  <table class="compare-table">
+    <thead><tr><th>Limitation</th><th>Current / Emerging Solution</th></tr></thead>
+    <tbody>
+      <tr><td>Black box problem — no real-time monitoring</td><td>Synchrotron X-ray diffraction through autoclave windows monitors crystal phase formation second-by-second. In-situ Raman spectroscopy tracks chemical transformations in real time.</td></tr>
+      <tr><td>Safety risks</td><td>Modern autoclaves with automatic pressure-relief valves, explosion-proof designs, digital T/P monitors with automatic emergency shutoffs.</td></tr>
+      <tr><td>Long reaction times</td><td>Microwave-assisted solvothermal: 12–48 hours → 5–30 minutes (ZIF-8 MOF: 24 hours → 15 minutes). Continuous flow reactors: kg/hour instead of g/batch.</td></tr>
+      <tr><td>Toxic solvents</td><td>Green chemistry alternatives: glycerol (food-safe!), deep eutectic solvents (choline chloride + urea — non-toxic, biodegradable), lactic acid, bio-ethanol replacing toxic DMF and toluene.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-summary">
+    <h4>Section 13 Summary</h4>
+    <ul>
+      <li><strong>Advantages:</strong> Low energy, high crystallinity, morphology control, vast materials range, water-sensitive materials accessible, scalable, metastable phases</li>
+      <li><strong>Limitations:</strong> Black box problem, safety risks, long reaction times, toxic solvents, residual surfactant removal</li>
+      <li><strong>Solutions:</strong> In-situ X-ray/Raman, safer autoclave designs, microwave/flow reactors, green solvents</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 14 ══════════ -->
+<section id="s14">
+  <div class="section-number">Section 14</div>
+  <h2>Recent Advancements &amp; Future Prospects</h2>
+
+  <h3>Recent Advancements</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">⚡</div>
+      <div class="step-body">
+        <div class="step-title">Microwave-Assisted Solvothermal — The Speed Revolution</div>
+        <p>Conventional ovens heat by conduction/convection (slow, uneven). Microwaves heat the reaction mixture <strong>directly and volumetrically</strong> — every part of the solution heats simultaneously and uniformly. This transforms reaction times:</p>
+        <ul>
+          <li><strong>12–48 hours → 5–30 minutes</strong> (up to 96× faster for ZIF-8 MOF)</li>
+          <li>Better temperature uniformity → <strong>narrower particle size distribution</strong></li>
+          <li>More reproducible results between batches</li>
+        </ul>
+        <p>This is a paradigm shift, not an incremental improvement. Microwave solvothermal is now widely used in academic research and is entering commercial production.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">🏭</div>
+      <div class="step-body">
+        <div class="step-title">Continuous Flow Reactors — Industrial Scale</div>
+        <p>In batch solvothermal (conventional autoclave), you load → heat → cool → collect → repeat. In <strong>continuous flow</strong>, reactants pump continuously through a heated tube, react in seconds-to-minutes as they pass through, then cool rapidly at the exit — product continuously collected.</p>
+        <ul>
+          <li><strong>kg/hour throughput</strong> vs g/batch in conventional</li>
+          <li>Commercial quantum dot manufacturers (Samsung QLED displays) <strong>already use this</strong></li>
+          <li>Precisely controlled residence time = narrow size distribution at industrial scale</li>
+        </ul>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">🔬</div>
+      <div class="step-body">
+        <div class="step-title">In-Situ Characterisation — Opening the Black Box</div>
+        <p>The longstanding "black box" limitation is finally being solved:</p>
+        <ul>
+          <li><strong>Synchrotron X-ray diffraction</strong> through specially designed autoclave windows monitors crystal phase formation <em>second-by-second in real time</em> during synthesis</li>
+          <li><strong>In-situ Raman spectroscopy</strong> tracks chemical transformations — identifies intermediate species forming during reaction</li>
+          <li>We can finally watch nucleation and growth happen in real time, enabling true mechanistic understanding and rational optimisation</li>
+        </ul>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">🌿</div>
+      <div class="step-body">
+        <div class="step-title">Green Solvothermal — Sustainable Chemistry</div>
+        <p>Replacing toxic solvents with environmentally benign alternatives:</p>
+        <ul>
+          <li><strong>Glycerol:</strong> Food-safe byproduct of biodiesel production, non-toxic, biodegradable, high boiling point (290°C)</li>
+          <li><strong>Deep Eutectic Solvents (DES):</strong> Mixtures of choline chloride + urea (or similar) — non-toxic, biodegradable, some are cheaper than DMF, can replace it for MOF synthesis</li>
+          <li><strong>Lactic acid, bio-ethanol:</strong> Renewable, low-toxicity alternatives</li>
+          <li>Same quality products, <strong>dramatically reduced environmental impact and safety risk</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">🤖</div>
+      <div class="step-body">
+        <div class="step-title">AI &amp; Machine Learning — Smart Synthesis</div>
+        <p>Traditional optimisation of solvothermal conditions involves thousands of trial-and-error experiments. AI is transforming this:</p>
+        <ul>
+          <li>AI algorithms predict optimal conditions (temperature, solvent, concentration, time) from databases of previous experimental results</li>
+          <li>MIT group found optimal MOF synthesis conditions in <strong>10 experiments</strong> — the same optimisation would have required 500+ by traditional trial-and-error</li>
+          <li>Autonomous robotic platforms run solvothermal synthesis 24/7 without human intervention, testing hundreds of conditions per week</li>
+          <li>AI-optimised flow reactor variants represent the current frontier of the field</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>Future Prospects — The 2030 Vision</h3>
+
+  <div class="grid-3">
+    <div class="card accent-purple">
+      <div class="card-icon">🔋</div>
+      <h4>Energy Future</h4>
+      <p>Solid-state batteries for EVs of the 2030s need nanostructured electrolytes with precise grain sizes — exactly what solvothermal provides. Direct air CO₂ capture: 1 kg of MOF holds CO₂ equivalent to burning 3 L of gasoline.</p>
+    </div>
+    <div class="card accent-teal">
+      <div class="card-icon">🏥</div>
+      <h4>Medicine Future</h4>
+      <p><strong>Theranostics:</strong> single nanoparticle that simultaneously diagnoses (MRI imaging via Fe₃O₄) AND treats (drug release only at tumour pH via MOF shell). Solvothermal makes these complex multi-component structures in one pot.</p>
+    </div>
+    <div class="card accent-gold">
+      <div class="card-icon">💻</div>
+      <h4>Electronics Future</h4>
+      <p>MXenes, WSe₂, novel 2D materials beyond graphene — better conductivity than graphene for some applications. Flexible wearable electronics, quantum computing components, next-gen transistors at 0.6 nm thickness.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>The Grand Vision by 2030:</strong> Green solvents + microwave energy + continuous flow reactors + AI optimisation = one of the most <em>sustainable, intelligent, industrial-scale</em> nanomaterial production methods — delivering advanced materials for clean energy, precision medicine, and environmental remediation.
+  </div>
+
+  <div class="section-summary">
+    <h4>Section 14 Summary</h4>
+    <ul>
+      <li><strong>Microwave-assisted:</strong> 96× faster (12–48h → 5–30min), better size uniformity</li>
+      <li><strong>Continuous flow:</strong> kg/hour production, already used in Samsung QLED manufacturing</li>
+      <li><strong>In-situ characterisation:</strong> Synchrotron XRD and Raman now allow real-time reaction monitoring</li>
+      <li><strong>Green solvents:</strong> Glycerol, DES replacing toxic DMF and toluene</li>
+      <li><strong>AI optimisation:</strong> Reduces optimisation experiments from 500+ to ~10</li>
+      <li><strong>Future:</strong> Solid-state batteries, theranostics, 2D materials, quantum computing</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 15 ══════════ -->
+<section id="s15">
+  <div class="section-number">Section 15</div>
+  <h2>Comparison with Other Synthesis Methods</h2>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Solvothermal Advantage</th>
+        <th>Comparison Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>vs. Solid-State Synthesis</strong></td>
+        <td class="check">✓ Vast advantages</td>
+        <td>10× lower temperature, better morphology control, no grinding needed, narrower size distribution. TiO₂: solid-state needs 1000°C + 12h ball milling vs solvothermal 180°C directly.</td>
+      </tr>
+      <tr>
+        <td><strong>vs. Sol-Gel</strong></td>
+        <td class="check">✓ Superior</td>
+        <td>Better crystallinity (sol-gel gives amorphous product requiring 600°C calcination), better shape control, more phase options, no calcination step required.</td>
+      </tr>
+      <tr>
+        <td><strong>vs. Co-precipitation</strong></td>
+        <td class="check">✓ Superior</td>
+        <td>Better crystallinity, better morphology control, narrower size distribution. Co-precipitation is fast but gives poorly crystalline, polydisperse nanoparticles.</td>
+      </tr>
+      <tr>
+        <td><strong>vs. CVD/PVD (vapour deposition)</strong></td>
+        <td class="check">✓ Multiple advantages</td>
+        <td>No toxic gas precursors, lower equipment cost, easier scale-up, can make 3D nanostructures (not just thin films). CVD requires complex vacuum equipment and toxic metal-organic vapour precursors.</td>
+      </tr>
+      <tr>
+        <td><strong>vs. Hydrothermal</strong></td>
+        <td class="check">✓ More versatile</td>
+        <td>Can make water-sensitive materials (MOFs, sulfides, nitrides), broader material range, more solvent flexibility, higher maximum temperature not limited by water critical point.</td>
+      </tr>
+      <tr>
+        <td><strong>vs. Ball Milling (top-down)</strong></td>
+        <td class="check">✓ Fundamentally superior</td>
+        <td>Bottom-up precision control vs. random fracture. Solvothermal gives uniform size/shape; ball milling gives broad size distribution, introduces contamination, amorphous surfaces.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box highlight">
+    <div class="box-title">⭐ The Grand Conclusion</div>
+    <p><strong>No other single synthesis technique</strong> produces all the material families covered in this guide — metal oxides, MOFs, quantum dots, sulfides, nitrides, carbon nanomaterials, magnetic materials — with this level of size, morphology, phase, and surface chemistry control, from the same basic equipment (autoclave + oven), just by changing the precursor and solvent. This unmatched versatility is the defining advantage of solvothermal synthesis.</p>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 16 — MASTER SUMMARY ══════════ -->
+<section id="s16">
+  <div class="master-summary">
+    <div class="section-number" style="color:rgba(255,255,255,.5)">Section 16 — Final</div>
+    <h2>Master Summary &amp; Revision Sheet</h2>
+    <p style="color:rgba(255,255,255,.7);margin-bottom:1.5rem">Everything you need to know — condensed for rapid revision.</p>
+
+    <h3>🔑 The Five Pillars of Solvothermal Synthesis</h3>
+    <ol>
+      <li><strong>Sealed autoclave</strong> → autogenous pressure (self-generated by heating a closed volume)</li>
+      <li><strong>Organic solvent</strong> (not water) → access to water-sensitive materials; solvent IS the design variable</li>
+      <li><strong>Temperature above boiling point</strong> → superheated fluid with unique properties</li>
+      <li><strong>Nucleation → Growth → Ostwald ripening</strong> → monodisperse nanocrystals</li>
+      <li><strong>Bottom-up method</strong> → atom-by-atom precision control of size, shape, phase, surface</li>
+    </ol>
+
+    <h3>📋 Critical Numbers to Memorise</h3>
+    <ul>
+      <li>Pressure range: <strong>1 – 10,000 atm</strong></li>
+      <li>Temperature range: <strong>100 – 1000°C</strong></li>
+      <li>Autoclave fill level: <strong>60–80%</strong> (never 100%)</li>
+      <li>Fe₃O₄ synthesis conditions: <strong>200°C, 10 hours</strong></li>
+      <li>Fe₃O₄ average particle size: <strong>~13 nm</strong></li>
+      <li>Fe₃O₄ surface charge: <strong>ζ ≈ −30 mV</strong> (electrostatically stable)</li>
+      <li>FTIR peak for magnetite: <strong>570 cm⁻¹</strong> (Fe–O stretch)</li>
+      <li>XRD diagnostic peak for Fe₃O₄: <strong>(311) at 35.42°</strong></li>
+      <li>MOF record surface area: <strong>7,140 m²/g</strong> (NU-110)</li>
+      <li>Microwave speedup: <strong>24h → 15 min</strong> for ZIF-8</li>
+      <li>AI optimisation: <strong>10 experiments</strong> vs 500+ by trial-and-error</li>
+    </ul>
+
+    <h3>🧪 The 12-Step Mechanism at a Glance</h3>
+    <ol>
+      <li>Dissolve metal precursor in solvent</li>
+      <li>Ions form + solvation shell stabilises them</li>
+      <li>Hydrolysis → monomers (Zn(OH)₂) + complexes ([Zn(OH)₄]²⁻)</li>
+      <li>Load autoclave (70–80% fill), seal</li>
+      <li>Heat above boiling point → autogenous pressure → superheated solvent</li>
+      <li>Supersaturation → nucleation → dehydration (Zn(OH)₂ → ZnO + H₂O)</li>
+      <li>Monomers deposit on nuclei → controlled growth until equilibrium</li>
+      <li>Capping agents bind to surfaces → prevent aggregation</li>
+      <li>Atoms order into crystal lattice → hexagonal wurtzite ZnO</li>
+      <li>Ostwald ripening → small particles dissolve → large ones grow → monodisperse</li>
+      <li>Slow cool → prevents lattice defects</li>
+      <li>Collect → centrifuge → wash → dry → pure nanoparticles</li>
+    </ol>
+
+    <h3>⚗️ Fe₃O₄ Synthesis Reactions</h3>
+    <p><strong>Step 1 — Hydrolysis:</strong> Fe³⁺ + 3OH⁻ → Fe(OH)₃</p>
+    <p><strong>Step 2 — Reduction by EG:</strong> 2Fe(OH)₃ → 2Fe(OH)₂ + H₂O + [O]</p>
+    <p><strong>Step 3 — Condensation:</strong> Fe(OH)₂ + 2Fe(OH)₃ → Fe₃O₄ + 4H₂O</p>
+    <p><strong>Overall:</strong> FeCl₃ —(EG, NaAc, 200°C, 10h)→ Fe₃O₄ NPs (~13 nm, inverse spinel)</p>
+
+    <h3>🏆 Key Advantages (5 most important)</h3>
+    <ol>
+      <li>Low temperature (100–350°C vs 1000°C+ for solid-state) → 60–80% energy saving</li>
+      <li>High crystallinity directly — no post-annealing or calcination</li>
+      <li>Complete morphology control — any shape from same autoclave</li>
+      <li>Access to water-sensitive materials (MOFs, sulfides, nitrides) impossible hydrothermally</li>
+      <li>Scalable from 25 mL lab to industrial litre reactors</li>
+    </ol>
+
+    <h3>⚠️ Key Limitations (4 most important)</h3>
+    <ol>
+      <li>Black box — no real-time monitoring during sealed reaction</li>
+      <li>Safety — high P + high T + flammable solvents = explosion risk</li>
+      <li>Long reaction times — 6–48 hours per batch</li>
+      <li>Toxic solvents — DMF (reproductive toxin), toluene/benzene (carcinogens)</li>
+    </ol>
+
+    <h3>🔮 Solutions &amp; Future Trends</h3>
+    <ul>
+      <li><strong>Microwave:</strong> 96× faster synthesis</li>
+      <li><strong>Continuous flow:</strong> Industrial kg/hour scale (Samsung QLED already)</li>
+      <li><strong>In-situ XRD/Raman:</strong> Real-time monitoring through autoclave windows</li>
+      <li><strong>Green solvents:</strong> Glycerol, deep eutectic solvents replacing toxic DMF/toluene</li>
+      <li><strong>AI optimisation:</strong> 10 experiments instead of 500+</li>
+      <li><strong>2030 vision:</strong> Green + microwave + flow + AI = sustainable industrial nanomaterial production</li>
+    </ul>
+
+    <h3>📊 Characterisation Fingerprints for Fe₃O₄</h3>
+    <ul>
+      <li><strong>TEM:</strong> ~13 nm spherical nanoclusters</li>
+      <li><strong>SAED:</strong> Rings at (111), (220), (311), (400), (511) → inverse spinel confirmed</li>
+      <li><strong>FTIR:</strong> 570 cm⁻¹ (Fe–O) = magnetite fingerprint</li>
+      <li><strong>XRD:</strong> (311) peak at 35.42° = most diagnostic; Scherrer → D ≈ 12–13 nm</li>
+    </ul>
+  </div>
+</section>
+
+</div><!-- /.content -->
+</main>
+</div><!-- /.wrapper -->
+
+<script>
+  // Highlight active TOC link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('nav#toc a[href^="#"]');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`nav#toc a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

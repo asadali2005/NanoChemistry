@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NanoChemistry Study Hub | Semester 6</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Nunito:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:            #eef4fb;
+  --emerald:       #059669;
+  --emerald-deep:  #065f46;
+  --emerald-soft:  rgba(5,150,105,0.10);
+  --emerald-mid:   rgba(5,150,105,0.18);
+  --emerald-border:rgba(5,150,105,0.28);
+  --cobalt:        #2563eb;
+  --cobalt-deep:   #1e3a8a;
+  --cobalt-soft:   rgba(37,99,235,0.09);
+  --cobalt-mid:    rgba(37,99,235,0.16);
+  --cobalt-border: rgba(37,99,235,0.26);
+  --violet:        #7c3aed;
+  --violet-deep:   #4c1d95;
+  --violet-soft:   rgba(124,58,237,0.09);
+  --violet-mid:    rgba(124,58,237,0.15);
+  --violet-border: rgba(124,58,237,0.26);
+  --rose:          #e11d48;
+  --rose-soft:     rgba(225,29,72,0.08);
+  --rose-mid:      rgba(225,29,72,0.14);
+  --rose-border:   rgba(225,29,72,0.24);
+  --amber:         #d97706;
+  --amber-soft:    rgba(217,119,6,0.10);
+  --amber-mid:     rgba(217,119,6,0.18);
+  --amber-border:  rgba(217,119,6,0.28);
+  --sky:           #0284c7;
+  --sky-soft:      rgba(2,132,199,0.09);
+  --sky-mid:       rgba(2,132,199,0.16);
+  --sky-border:    rgba(2,132,199,0.26);
+  --text-head:     #0a1628;
+  --text-body:     #1e3448;
+  --text-mid:      #3d5a76;
+  --text-muted:    #7a9ab8;
+  --text-faint:    #b8d0e8;
+  --glass-1:       rgba(255,255,255,0.55);
+  --glass-2:       rgba(255,255,255,0.72);
+  --glass-3:       rgba(255,255,255,0.88);
+  --glass-white:   rgba(255,255,255,0.95);
+  --glass-border:  rgba(255,255,255,0.80);
+  --glass-stroke:  rgba(190,220,255,0.50);
+  --sidebar-w:     275px;
+  --sidebar-bg:    rgba(255,255,255,0.68);
+  --shadow-sm:     0 2px 12px rgba(30,60,120,0.08);
+  --shadow-md:     0 6px 28px rgba(30,60,120,0.11);
+  --shadow-lg:     0 14px 50px rgba(30,60,120,0.14);
+  --shadow-xl:     0 24px 72px rgba(30,60,120,0.17);
+  --shadow-green:  0 8px 30px rgba(5,150,105,0.18);
+  --shadow-blue:   0 8px 30px rgba(37,99,235,0.16);
+  --grad-primary:  linear-gradient(135deg, var(--emerald), var(--cobalt));
+  --grad-warm:     linear-gradient(135deg, var(--amber), var(--rose));
+  --grad-cool:     linear-gradient(135deg, var(--cobalt), var(--violet));
+  --grad-all:      linear-gradient(90deg, var(--emerald), var(--sky), var(--cobalt), var(--violet), var(--rose));
+  --grad-title:    linear-gradient(135deg, var(--emerald-deep) 0%, var(--cobalt) 55%, var(--violet) 100%);
+  --r-xs: 8px;
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 24px;
+  --r-xl: 36px;
+  --t:      0.22s cubic-bezier(0.4,0,0.2,1);
+  --t-slow: 0.42s cubic-bezier(0.4,0,0.2,1);
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  font-size: 15.5px;
+  line-height: 1.80;
+  color: var(--text-body);
+  background-color: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+}
+
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background:
+    radial-gradient(ellipse 800px 700px at -10% 10%,  rgba(52,211,153,0.22)  0%, transparent 65%),
+    radial-gradient(ellipse 700px 600px at 110% 20%,  rgba(167,139,250,0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 600px 600px at 50%  105%, rgba(56,189,248,0.18)  0%, transparent 65%),
+    radial-gradient(ellipse 500px 500px at 90%  70%,  rgba(251,146,60,0.12)  0%, transparent 60%),
+    radial-gradient(ellipse 400px 400px at 20%  80%,  rgba(232,121,249,0.11) 0%, transparent 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── SIDEBAR TOGGLE BUTTON ── */
+#sidebar-toggle {
+  position: fixed;
+  top: 1.2rem; left: 1.2rem;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-stroke);
+  background: var(--glass-3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: var(--cobalt);
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--t);
+}
+#sidebar-toggle:hover {
+  border-color: var(--cobalt);
+  box-shadow: var(--shadow-blue);
+}
+
+/* ── SIDEBAR ── */
+#sidebar {
+  width: var(--sidebar-w);
+  min-width: var(--sidebar-w);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  background: var(--sidebar-bg);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-right: 1px solid var(--glass-stroke);
+  box-shadow: 2px 0 24px rgba(30,60,120,0.07);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(37,99,235,0.20) transparent;
+  transition: margin-left 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease;
+}
+#sidebar::-webkit-scrollbar { width:3px; }
+#sidebar::-webkit-scrollbar-thumb { background:rgba(37,99,235,0.25); border-radius:99px; }
+
+#sidebar.collapsed {
+  margin-left: calc(-1 * var(--sidebar-w));
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Back to Topics button — at VERY top */
+.sb-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  text-decoration: none;
+  color: var(--cobalt);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: var(--cobalt-soft);
+  border-bottom: 1px solid var(--cobalt-border);
+  transition: var(--t);
+  cursor: pointer;
+}
+.sb-back:hover {
+  background: var(--cobalt-mid);
+  color: var(--cobalt-deep);
+}
+.sb-back-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Sidebar collapse button inside */
+.sb-collapse-btn {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-faint);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--t);
+  z-index: 10;
+}
+.sb-collapse-btn:hover {
+  background: var(--cobalt-soft);
+  color: var(--cobalt);
+  border-color: var(--cobalt-border);
+}
+
+.sb-header {
+  padding: 28px 22px 24px;
+  border-bottom: 1px solid rgba(190,220,255,0.45);
+  position: relative;
+  overflow: hidden;
+}
+.sb-header::before {
+  content:'';
+  position:absolute; top:0; left:0;
+  width:100%; height:3px;
+  background: var(--grad-all);
+}
+.sb-header::after {
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse at top left, rgba(52,211,153,0.10), transparent 70%);
+  pointer-events:none;
+}
+.sb-course-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight:600;
+  letter-spacing: 2.5px; text-transform:uppercase;
+  color: var(--emerald);
+  margin-bottom: 9px;
+  display:flex; align-items:center; gap:7px;
+}
+.sb-course-tag::before {
+  content:'';
+  width:7px; height:7px; border-radius:50%;
+  background:var(--emerald);
+  box-shadow:0 0 8px rgba(5,150,105,0.55);
+  animation: blink 2.2s ease-in-out infinite;
+}
+@keyframes blink {
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%    { opacity:0.45; transform:scale(0.75); }
+}
+.sb-title {
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:15px; font-weight:700;
+  color:var(--text-head); line-height:1.4; margin-bottom:14px;
+}
+.sb-badges { display:flex; gap:7px; flex-wrap:wrap; }
+.sb-badge {
+  font-family:'JetBrains Mono',monospace;
+  font-size:9.5px; font-weight:600;
+  padding:3px 11px; border-radius:99px;
+  background:var(--emerald-soft); color:var(--emerald-deep);
+  border:1px solid var(--emerald-border);
+}
+.sb-badge.blue   { background:var(--cobalt-soft);  color:var(--cobalt-deep);  border-color:var(--cobalt-border); }
+.sb-badge.purple { background:var(--violet-soft);  color:var(--violet-deep);  border-color:var(--violet-border); }
+
+.sb-label {
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px; font-weight:700;
+  letter-spacing:2.5px; text-transform:uppercase;
+  color:var(--text-faint);
+  padding:20px 22px 6px;
+}
+
+.sb-link {
+  display:flex; align-items:center; gap:11px;
+  padding:9px 22px;
+  text-decoration:none;
+  color:var(--text-muted);
+  font-size:13px; font-weight:500;
+  transition:var(--t);
+  border-left:2px solid transparent;
+}
+.sb-link:hover {
+  color:var(--text-body);
+  background:rgba(37,99,235,0.06);
+  border-left-color:rgba(37,99,235,0.35);
+}
+.sb-link.active {
+  color:var(--cobalt);
+  background:var(--cobalt-soft);
+  border-left-color:var(--cobalt);
+  font-weight:700;
+}
+.sb-num {
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px; color:var(--text-faint);
+  min-width:20px; transition:color var(--t);
+}
+.sb-link.active .sb-num,
+.sb-link:hover  .sb-num { color:var(--cobalt); }
+
+/* ── MAIN ── */
+#main {
+  flex:1; min-width:0;
+  padding:56px 64px 120px;
+  max-width:920px;
+  position:relative; z-index:1;
+}
+
+.page-header {
+  margin-bottom:56px;
+  padding-bottom:44px;
+  border-bottom:1px solid rgba(190,220,255,0.50);
+  position:relative;
+}
+.page-header::after {
+  content:'';
+  position:absolute; bottom:-1px; left:0;
+  width:100px; height:1px;
+  background:var(--grad-primary);
+  box-shadow:0 0 12px rgba(5,150,105,0.40);
+}
+.course-chip {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 16px; border-radius:99px;
+  background:var(--glass-3);
+  border:1px solid var(--glass-stroke);
+  backdrop-filter:blur(16px);
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px; font-weight:600;
+  letter-spacing:1.5px; text-transform:uppercase;
+  color:var(--cobalt-deep);
+  margin-bottom:22px;
+  box-shadow:var(--shadow-sm);
+}
+.course-chip::before {
+  content:'';
+  width:7px; height:7px; border-radius:50%;
+  background:var(--grad-primary);
+  box-shadow:var(--shadow-green);
+}
+.page-header h1 {
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:54px; font-weight:800;
+  line-height:1.04; letter-spacing:-2px;
+  background:var(--grad-title);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:18px;
+}
+.page-header .subtitle {
+  font-size:16px; color:var(--text-mid);
+  max-width:580px; line-height:1.7; margin-bottom:26px;
+}
+.meta-chips { display:flex; gap:8px; flex-wrap:wrap; }
+
+.chip {
+  display:inline-block; padding:5px 14px;
+  border-radius:99px; font-size:11.5px;
+  font-weight:700; font-family:'JetBrains Mono',monospace;
+}
+.chip-green  { background:var(--emerald-soft); color:var(--emerald-deep); border:1px solid var(--emerald-border); }
+.chip-blue   { background:var(--cobalt-soft);  color:var(--cobalt-deep);  border:1px solid var(--cobalt-border); }
+.chip-purple { background:var(--violet-soft);  color:var(--violet-deep);  border:1px solid var(--violet-border); }
+.chip-amber  { background:var(--amber-soft);   color:#92400e;             border:1px solid var(--amber-border); }
+.chip-rose   { background:var(--rose-soft);    color:#9f1239;             border:1px solid var(--rose-border); }
+.chip-sky    { background:var(--sky-soft);     color:#075985;             border:1px solid var(--sky-border); }
+
+/* ── SECTION ── */
+.section { margin-bottom:80px; }
+.section-header {
+  display:flex; align-items:center; gap:16px;
+  margin-bottom:36px; padding-bottom:18px;
+  border-bottom:1px solid rgba(190,220,255,0.50);
+  position:relative;
+}
+.section-header::after {
+  content:'';
+  position:absolute; bottom:-1px; left:0;
+  width:50px; height:1px;
+  background:var(--grad-primary);
+}
+.sec-num {
+  font-family:'JetBrains Mono',monospace;
+  font-size:10.5px; font-weight:600;
+  padding:4px 11px; border-radius:var(--r-xs);
+  background:var(--emerald-soft); color:var(--emerald-deep);
+  border:1px solid var(--emerald-border);
+  letter-spacing:1px; white-space:nowrap;
+}
+.sec-title {
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:27px; font-weight:700;
+  color:var(--text-head); letter-spacing:-0.5px;
+}
+
+/* ── SEARCH ── */
+.search-wrap {
+  position: relative;
+  margin-bottom: 2rem;
+}
+.search-wrap input {
+  width: 100%;
+  padding: 15px 20px 15px 50px;
+  border-radius: 100px;
+  border: 1px solid var(--glass-stroke);
+  background: var(--glass-2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: var(--text-body);
+  font-size: 0.95rem;
+  font-family: 'Nunito', sans-serif;
+  outline: none;
+  transition: all var(--t);
+  box-shadow: var(--shadow-sm);
+}
+.search-wrap input:focus {
+  border-color: var(--cobalt);
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.10);
+}
+.search-wrap .search-icon {
+  position: absolute;
+  left: 18px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  pointer-events: none;
+  transition: color var(--t);
+}
+.search-wrap input:focus ~ .search-icon { color: var(--cobalt); }
+
+/* ── TABS ── */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.tab {
+  padding: 8px 20px;
+  border-radius: 100px;
+  border: 1px solid var(--glass-stroke);
+  background: var(--glass-1);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--t);
+  font-family: 'Nunito', sans-serif;
+  backdrop-filter: blur(10px);
+}
+.tab:hover { border-color: var(--cobalt); color: var(--text-body); }
+.tab.active {
+  background: var(--cobalt);
+  border-color: var(--cobalt);
+  color: #fff;
+  box-shadow: var(--shadow-blue);
+}
+
+/* ── GUIDE CARDS ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+}
+.guide-card {
+  background: var(--glass-2);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-lg);
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--text-body);
+  transition: var(--t-slow);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.guide-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.90), transparent);
+}
+.guide-card:hover {
+  transform: translateY(-6px);
+  background: var(--glass-3);
+  box-shadow: var(--shadow-lg), var(--shadow-blue);
+  border-color: rgba(37,99,235,0.25);
+}
+.guide-card .card-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.guide-card h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-head);
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+}
+.guide-card .card-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.guide-card .card-tags {
+  display: flex; flex-wrap: wrap;
+  gap: 5px;
+  margin-top: auto;
+}
+.guide-card .card-tag {
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  background: var(--cobalt-soft);
+  color: var(--cobalt-deep);
+  border: 1px solid var(--cobalt-border);
+}
+
+.no-results {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-muted);
+  display: none;
+}
+.no-results.show { display: block; }
+.no-results .no-emoji { font-size: 3rem; display: block; margin-bottom: 1rem; }
+
+.footer {
+  text-align: center;
+  padding-top: 3rem;
+  color: var(--text-faint);
+  font-size: 0.8rem;
+}
+
+::selection { background:rgba(37,99,235,0.20); color:var(--cobalt-deep); }
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--grad-primary); border-radius:99px; }
+
+@media (max-width:900px) {
+  #sidebar { position: fixed; left: 0; z-index: 150; box-shadow: 8px 0 40px rgba(0,0,0,0.15); }
+  #sidebar.collapsed { margin-left: calc(-1 * var(--sidebar-w)); }
+  #sidebar-toggle { display: flex; }
+  #main { padding: 48px 28px 80px; }
+  .page-header h1 { font-size: 36px; }
+  .card-grid { grid-template-columns: 1fr; }
+}
+@media (min-width:901px) {
+  #sidebar-toggle { display: none; }
+}
+</style>
+</head>
+<body>
+
+<button id="sidebar-toggle" title="Toggle Sidebar">☰</button>
+
+<nav id="sidebar">
+  <a href="index.html" class="sb-back">
+    <span class="sb-back-icon">←</span>
+    <span>Back to Topics</span>
+  </a>
+  <div class="sb-header">
+    <button class="sb-collapse-btn" id="sbCollapseBtn" title="Hide Sidebar">✕</button>
+    <div class="sb-course-tag">CHM-303 · 721</div>
+    <div class="sb-title">Nanochemistry<br>Study Hub</div>
+    <div class="sb-badges">
+      <span class="sb-badge">10 Guides</span>
+      <span class="sb-badge blue">Semester 6</span>
+      <span class="sb-badge purple">Finals 2026</span>
+    </div>
+  </div>
+
+  <div class="sb-label">Study Guides</div>
+
+  <a href="electrospinning_study_guide.html" class="sb-link"><span class="sb-num">01</span> Electrospinning</a>
+  <a href="nanochemistry-study-guide.html" class="sb-link"><span class="sb-num">02</span> Nanochemistry</a>
+  <a href="fsp_study_guide.html" class="sb-link"><span class="sb-num">03</span> Flame Spray Pyrolysis</a>
+  <a href="hydrothermal_study_guide.html" class="sb-link"><span class="sb-num">04</span> Hydrothermal</a>
+  <a href="hydrothermal_synthesis_study_guide.html" class="sb-link"><span class="sb-num">05</span> Hydrothermal Synthesis</a>
+  <a href="Solvothermal_Synthesis_Study_Guide.html" class="sb-link"><span class="sb-num">06</span> Solvothermal Synthesis</a>
+  <a href="Characterization of Metal Oxide Nanoparticles.html" class="sb-link"><span class="sb-num">07</span> Metal Oxide NPs</a>
+  <a href="Co_gCN_Study_Guide.html" class="sb-link"><span class="sb-num">08</span> Co/gCN Composite</a>
+  <a href="UV_Vis_Nanoparticles_Study_Guide.html" class="sb-link"><span class="sb-num">09</span> UV-Vis Nanoparticles</a>
+  <a href="UV_Visible_Spectroscopy_Study_Guide.html" class="sb-link"><span class="sb-num">10</span> UV-Vis Spectroscopy</a>
+</nav>
+
+<main id="main">
+
+  <header class="page-header">
+    <div class="course-chip">CHM-303/721 · Nanochemistry</div>
+    <h1>Study Hub</h1>
+    <p class="subtitle">Curated study guides covering synthesis, characterization, and applications of nanomaterials for Semester 6 finals.</p>
+    <div class="meta-chips">
+      <span class="chip chip-green">10 Guides</span>
+      <span class="chip chip-blue">Synthesis Methods</span>
+      <span class="chip chip-purple">Characterization</span>
+      <span class="chip chip-sky">Spectroscopy</span>
+      <span class="chip chip-amber">Finals Prep</span>
+    </div>
+  </header>
+
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Search study guides...">
+    <span class="search-icon">🔍</span>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-category="all">All</button>
+    <button class="tab" data-category="synthesis">Synthesis</button>
+    <button class="tab" data-category="characterization">Characterization</button>
+    <button class="tab" data-category="composite">Composites</button>
+    <button class="tab" data-category="spectroscopy">Spectroscopy</button>
+  </div>
+
+  <div class="card-grid" id="cardGrid"></div>
+
+  <div class="no-results" id="noResults">
+    <span class="no-emoji">🔬</span>
+    <p>No matching guides found. Try a different search or category.</p>
+  </div>
+
+  <div class="footer">NanoChemistry Finals &copy; 2026 · Made with 🧪</div>
+</main>
+
+<script>
+const guides = [
+  { name: "Electrospinning Study Guide", href: "electrospinning_study_guide.html",
+    icon: "⚡", iconBg: "rgba(250,204,21,0.15)",
+    desc: "Principle, parameters, Taylor cone, NFES, EHD jet printing, and nanofiber morphology control.",
+    tags: ["Nanofibers","Taylor Cone","NFES","EHD"], category: "synthesis" },
+  { name: "Nanochemistry Study Guide", href: "nanochemistry-study-guide.html",
+    icon: "🧪", iconBg: "rgba(124,92,252,0.15)",
+    desc: "Complete overview: quantum confinement, classification, XRD, SEM, TEM, EDX, green synthesis, nanocomposites.",
+    tags: ["Quantum Dots","XRD","SEM","TEM"], category: "characterization" },
+  { name: "Flame Spray Pyrolysis", href: "fsp_study_guide.html",
+    icon: "🔥", iconBg: "rgba(251,146,60,0.15)",
+    desc: "FSP reactor design, precursor chemistry, droplet-to-particle conversion, scalable nanopowder production.",
+    tags: ["FSP","Aerosol","Scalable","Oxides"], category: "synthesis" },
+  { name: "Hydrothermal Study Guide", href: "hydrothermal_study_guide.html",
+    icon: "💧", iconBg: "rgba(56,189,248,0.15)",
+    desc: "High-temperature aqueous synthesis in autoclaves: nucleation, growth kinetics, and morphology tuning.",
+    tags: ["Autoclave","Nucleation","Aqueous"], category: "synthesis" },
+  { name: "Hydrothermal Synthesis", href: "hydrothermal_synthesis_study_guide.html",
+    icon: "🌡️", iconBg: "rgba(239,68,68,0.15)",
+    desc: "Deep dive: temperature, pressure, pH, precursors, capping agents, and parameter optimization.",
+    tags: ["Pressure","pH","Capping Agent"], category: "synthesis" },
+  { name: "Solvothermal Synthesis", href: "Solvothermal_Synthesis_Study_Guide.html",
+    icon: "🔄", iconBg: "rgba(168,85,247,0.15)",
+    desc: "Non-aqueous solvothermal routes, organic solvents, supercritical conditions, and nanocrystal engineering.",
+    tags: ["Non-Aqueous","Supercritical","Solvents"], category: "synthesis" },
+  { name: "Characterization of Metal Oxide NPs", href: "Characterization of Metal Oxide Nanoparticles.html",
+    icon: "⚛️", iconBg: "rgba(56,189,248,0.15)",
+    desc: "XRD, TEM, SEM, BET, DLS, XPS for analyzing morphology, phase, size, and surface chemistry of metal oxide NPs.",
+    tags: ["XRD","TEM","SEM","XPS","BET"], category: "characterization" },
+  { name: "Co/gCN Study Guide", href: "Co_gCN_Study_Guide.html",
+    icon: "🧬", iconBg: "rgba(244,114,182,0.15)",
+    desc: "Cobalt-doped graphitic carbon nitride (g-C₃N₄): synthesis, band-gap tuning, and photocatalytic applications.",
+    tags: ["g-C₃N₄","Doping","Photocatalysis"], category: "composite" },
+  { name: "UV-Vis Nanoparticles", href: "UV_Vis_Nanoparticles_Study_Guide.html",
+    icon: "🌈", iconBg: "rgba(52,211,153,0.15)",
+    desc: "Surface plasmon resonance, LSPR, AuNPs & AuNRs, charge polarization, and optical characterization.",
+    tags: ["SPR","LSPR","AuNPs","AuNRs"], category: "spectroscopy" },
+  { name: "UV-Visible Spectroscopy", href: "UV_Visible_Spectroscopy_Study_Guide.html",
+    icon: "📊", iconBg: "rgba(45,212,191,0.15)",
+    desc: "Beer-Lambert law, instrumentation, absorbance interpretation, and quantitative analysis techniques.",
+    tags: ["Beer-Lambert","Absorbance","Instrumentation"], category: "spectroscopy" },
+];
+
+const grid = document.getElementById('cardGrid');
+function renderCards(data) {
+  grid.innerHTML = '';
+  data.forEach((g, i) => {
+    const card = document.createElement('a');
+    card.className = 'guide-card';
+    card.href = g.href;
+    card.setAttribute('data-category', g.category);
+    card.style.animationDelay = (i * 0.05) + 's';
+    card.innerHTML = `
+      <span class="card-icon" style="background:${g.iconBg}">${g.icon}</span>
+      <h3>${g.name}</h3>
+      <p class="card-desc">${g.desc}</p>
+      <div class="card-tags">${g.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+renderCards(guides);
+
+// Search
+document.getElementById('searchInput').addEventListener('input', function() {
+  const q = this.value.toLowerCase();
+  const cat = document.querySelector('.tab.active').dataset.category;
+  filterCards(q, cat);
+});
+
+// Tabs
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    document.getElementById('searchInput').value = '';
+    filterCards('', this.dataset.category);
+  });
+});
+
+function filterCards(q, cat) {
+  let any = false;
+  document.querySelectorAll('.guide-card').forEach(card => {
+    const text = card.textContent.toLowerCase();
+    const c = card.dataset.category;
+    const ok = text.includes(q) && (cat === 'all' || c === cat);
+    card.style.display = ok ? '' : 'none';
+    if (ok) any = true;
+  });
+  document.getElementById('noResults').classList.toggle('show', !any);
+}
+
+// Sidebar collapse
+const sidebar = document.getElementById('sidebar');
+const toggleBtn = document.getElementById('sidebar-toggle');
+const collapseBtn = document.getElementById('sbCollapseBtn');
+
+function toggleSidebar() {
+  sidebar.classList.toggle('collapsed');
+  if (sidebar.classList.contains('collapsed')) {
+    toggleBtn.style.display = 'flex';
+  } else {
+    if (window.innerWidth > 900) toggleBtn.style.display = 'none';
+  }
+}
+
+toggleBtn.addEventListener('click', toggleSidebar);
+collapseBtn.addEventListener('click', toggleSidebar);
+
+// On mobile, start collapsed
+function handleResize() {
+  if (window.innerWidth <= 900) {
+    toggleBtn.style.display = 'flex';
+    if (!sidebar.classList.contains('collapsed') && !sessionStorage.getItem('sb-open')) {
+      sidebar.classList.add('collapsed');
+    }
+  } else {
+    toggleBtn.style.display = 'none';
+    sidebar.classList.remove('collapsed');
+  }
+}
+window.addEventListener('resize', handleResize);
+handleResize();
+
+// Store sidebar state
+sidebar.addEventListener('transitionend', function() {
+  if (sidebar.classList.contains('collapsed')) {
+    sessionStorage.removeItem('sb-open');
+  } else {
+    sessionStorage.setItem('sb-open', '1');
+  }
+});
+</script>
+</body>
+</html>

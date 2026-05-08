@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UV-Visible Spectroscopy — Complete Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple-950: #1a0533;
+    --purple-900: #2d0a5e;
+    --purple-800: #4a1080;
+    --purple-700: #6b21a8;
+    --purple-600: #7c3aed;
+    --purple-500: #8b5cf6;
+    --purple-400: #a78bfa;
+    --purple-300: #c4b5fd;
+    --purple-200: #ddd6fe;
+    --purple-100: #ede9fe;
+    --purple-50:  #f5f3ff;
+    --accent:     #d946ef;
+    --accent-light: #fae8ff;
+    --gold:       #f59e0b;
+    --teal:       #0d9488;
+    --teal-light: #ccfbf1;
+    --rose:       #e11d48;
+    --rose-light: #ffe4e6;
+    --sky:        #0284c7;
+    --sky-light:  #e0f2fe;
+    --slate-900:  #0f172a;
+    --slate-800:  #1e293b;
+    --slate-700:  #334155;
+    --slate-600:  #475569;
+    --slate-400:  #94a3b8;
+    --slate-200:  #e2e8f0;
+    --slate-100:  #f1f5f9;
+    --slate-50:   #f8fafc;
+    --body-bg:    #faf9ff;
+    --text-main:  #1e1030;
+    --text-soft:  #4a3868;
+    --radius-sm:  6px;
+    --radius-md:  12px;
+    --radius-lg:  20px;
+    --shadow-sm:  0 2px 8px rgba(109,40,168,0.08);
+    --shadow-md:  0 6px 24px rgba(109,40,168,0.12);
+    --shadow-lg:  0 16px 48px rgba(109,40,168,0.16);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--body-bg);
+    color: var(--text-main);
+    line-height: 1.75;
+    font-size: 16px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--purple-950) 0%, var(--purple-800) 50%, #3b0764 100%);
+    color: #fff;
+    padding: 80px 40px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(168,85,247,0.25) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(217,70,239,0.15) 0%, transparent 50%);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--purple-200);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--purple-300); }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.72);
+    max-width: 560px;
+    margin: 0 auto 32px;
+  }
+  .hero-pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .pill {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: var(--purple-200);
+    font-size: 13px;
+    padding: 5px 14px;
+    border-radius: 100px;
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .layout { display: grid; grid-template-columns: 260px 1fr; gap: 40px; align-items: start; padding: 48px 24px; max-width: 1200px; margin: 0 auto; }
+
+  /* ── SIDEBAR (TOC) ── */
+  .toc-sidebar {
+    position: sticky;
+    top: 24px;
+    background: #fff;
+    border: 1.5px solid var(--purple-200);
+    border-radius: var(--radius-lg);
+    padding: 28px 20px;
+    box-shadow: var(--shadow-sm);
+  }
+  .toc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--purple-800);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .toc-title::before {
+    content: '◈';
+    color: var(--purple-500);
+  }
+  .toc-list { list-style: none; }
+  .toc-list li { margin-bottom: 2px; }
+  .toc-list a {
+    display: block;
+    font-size: 13px;
+    color: var(--text-soft);
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    font-weight: 400;
+  }
+  .toc-list a:hover { background: var(--purple-50); color: var(--purple-700); font-weight: 500; }
+  .toc-list .toc-h2 { font-weight: 600; font-size: 13px; color: var(--purple-800); margin-top: 10px; }
+  .toc-list .toc-h3 { padding-left: 20px; }
+
+  /* ── MAIN CONTENT ── */
+  .main-content {}
+
+  /* ── SECTIONS ── */
+  section {
+    margin-bottom: 60px;
+    animation: fadeUp 0.5s ease both;
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--purple-100);
+  }
+  .section-number {
+    display: flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(109,33,168,0.3);
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--purple-900);
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--purple-800);
+    margin: 28px 0 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  h3::before { content: '▸'; color: var(--purple-400); font-size: 0.85rem; }
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--purple-700);
+    margin: 20px 0 8px;
+  }
+
+  p { margin-bottom: 14px; color: var(--text-main); }
+  ul, ol { padding-left: 20px; margin-bottom: 14px; }
+  li { margin-bottom: 6px; }
+  strong { font-weight: 600; color: var(--purple-900); }
+
+  /* ── SPECIAL BOXES ── */
+  .box {
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    margin: 20px 0;
+    position: relative;
+  }
+  .box-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .box-definition {
+    background: linear-gradient(135deg, var(--purple-50), #f0ebff);
+    border: 1.5px solid var(--purple-200);
+    border-left: 4px solid var(--purple-500);
+  }
+  .box-definition .box-title { color: var(--purple-600); }
+
+  .box-formula {
+    background: linear-gradient(135deg, #fdf4ff, var(--accent-light));
+    border: 1.5px solid #f0abfc;
+    border-left: 4px solid var(--accent);
+  }
+  .box-formula .box-title { color: var(--accent); }
+
+  .box-key {
+    background: linear-gradient(135deg, #fffbeb, #fef3c7);
+    border: 1.5px solid #fde68a;
+    border-left: 4px solid var(--gold);
+  }
+  .box-key .box-title { color: #b45309; }
+
+  .box-warning {
+    background: var(--rose-light);
+    border: 1.5px solid #fecdd3;
+    border-left: 4px solid var(--rose);
+  }
+  .box-warning .box-title { color: var(--rose); }
+
+  .box-example {
+    background: var(--teal-light);
+    border: 1.5px solid #99f6e4;
+    border-left: 4px solid var(--teal);
+  }
+  .box-example .box-title { color: #0f766e; }
+
+  .box-note {
+    background: var(--sky-light);
+    border: 1.5px solid #bae6fd;
+    border-left: 4px solid var(--sky);
+  }
+  .box-note .box-title { color: #0369a1; }
+
+  /* ── FORMULA DISPLAY ── */
+  .formula {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--purple-950);
+    color: var(--purple-200);
+    padding: 16px 24px;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    text-align: center;
+    margin: 16px 0;
+    letter-spacing: 0.5px;
+  }
+  .formula .comment {
+    color: var(--purple-400);
+    font-size: 0.82rem;
+    display: block;
+    margin-top: 6px;
+  }
+
+  /* ── TABLES ── */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: #fff;
+  }
+  thead {
+    background: linear-gradient(135deg, var(--purple-800), var(--purple-600));
+    color: #fff;
+  }
+  thead th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+  }
+  tbody tr { border-bottom: 1px solid var(--purple-100); transition: background 0.15s; }
+  tbody tr:hover { background: var(--purple-50); }
+  tbody tr:last-child { border-bottom: none; }
+  td { padding: 11px 16px; color: var(--text-main); vertical-align: top; }
+  td:first-child { font-weight: 500; color: var(--purple-800); }
+
+  /* ── TRANSITION ENERGY DIAGRAM ── */
+  .energy-diagram {
+    background: #fff;
+    border: 1.5px solid var(--purple-200);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    margin: 24px 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .energy-diagram svg { display: block; margin: 0 auto; }
+
+  /* ── GRID CARDS ── */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 20px 0; }
+  .card {
+    background: #fff;
+    border: 1.5px solid var(--purple-200);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .card-icon { font-size: 1.6rem; margin-bottom: 10px; }
+  .card h4 { font-size: 0.95rem; margin: 0 0 8px; color: var(--purple-800); }
+  .card p { font-size: 13px; color: var(--text-soft); margin: 0; }
+
+  /* ── STEPS ── */
+  .steps { margin: 16px 0; }
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    background: var(--purple-600);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+  }
+  .step-body { flex: 1; padding-top: 4px; }
+  .step-body strong { display: block; margin-bottom: 4px; font-size: 0.95rem; }
+  .step-body p { font-size: 14px; margin: 0; }
+
+  /* ── NOMENCLATURE VISUAL ── */
+  .nom-visual {
+    background: #fff;
+    border: 1.5px solid var(--purple-200);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin: 20px 0;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .nom-arrow-row {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; width: 100%; max-width: 480px;
+    margin: 16px 0;
+  }
+  .nom-label { font-size: 13px; font-weight: 600; color: var(--purple-700); text-align: center; width: 120px; }
+  .nom-center { text-align: center; flex: 1; }
+  .nom-peak { width: 120px; height: 80px; position: relative; margin: 0 auto; }
+
+  /* ── SUMMARY BOX ── */
+  .summary {
+    background: linear-gradient(135deg, var(--purple-900), var(--purple-700));
+    color: #fff;
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+    margin: 36px 0 0;
+    box-shadow: var(--shadow-md);
+  }
+  .summary h3 { color: var(--purple-200); font-family: 'Playfair Display', serif; margin: 0 0 16px; }
+  .summary h3::before { display: none; }
+  .summary ul { padding-left: 20px; }
+  .summary li { color: rgba(255,255,255,0.85); font-size: 14px; margin-bottom: 6px; }
+  .summary li strong { color: #fff; }
+
+  /* ── HIGHLIGHT TEXT ── */
+  mark { background: linear-gradient(120deg, #fde68a 0%, #fbbf24 100%); padding: 1px 4px; border-radius: 3px; color: #78350f; font-weight: 500; }
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--purple-100);
+    color: var(--purple-800);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 0.88em;
+  }
+
+  /* ── MASTER REVISION ── */
+  .revision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .rev-card {
+    background: #fff;
+    border-radius: var(--radius-md);
+    padding: 20px;
+    border: 1.5px solid var(--purple-200);
+    box-shadow: var(--shadow-sm);
+  }
+  .rev-card h4 {
+    color: var(--purple-700);
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid var(--purple-100);
+  }
+  .rev-card ul { padding-left: 16px; margin: 0; }
+  .rev-card li { font-size: 13px; color: var(--text-soft); margin-bottom: 5px; }
+
+  /* ── WAVE DIVIDER ── */
+  .divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--purple-200), transparent);
+    margin: 48px 0;
+  }
+
+  /* ── ORBITAL VISUAL ── */
+  .orbital-row { display: flex; gap: 20px; margin: 20px 0; flex-wrap: wrap; }
+  .orbital-box {
+    flex: 1; min-width: 180px;
+    background: #fff;
+    border: 1.5px solid var(--purple-200);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .orbital-box .label { font-size: 12px; color: var(--text-soft); margin-top: 8px; }
+  .orbital-box .type { font-weight: 700; font-size: 1rem; color: var(--purple-700); }
+  .orbital-box .energy { font-size: 12px; color: var(--teal); font-weight: 500; }
+
+  /* ── BEER'S LAW ── */
+  .beers-visual {
+    background: var(--purple-950);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    color: #fff;
+    margin: 24px 0;
+  }
+  .beers-eq {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    text-align: center;
+    color: var(--purple-200);
+    margin: 20px 0;
+    letter-spacing: 4px;
+  }
+  .beers-terms { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .beers-term {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-sm);
+    padding: 10px 16px;
+    text-align: center;
+    min-width: 130px;
+  }
+  .beers-term .sym { font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; color: var(--purple-300); display: block; }
+  .beers-term .meaning { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px; }
+
+  /* ── SPECTRUM MINI-VIZ ── */
+  .spectrum-bar {
+    height: 48px;
+    width: 100%;
+    border-radius: 8px;
+    background: linear-gradient(
+      to right,
+      #8b008b 0%,
+      #4b0082 5%,
+      #0000ff 10%,
+      #0080ff 20%,
+      #00ffff 35%,
+      #00ff00 50%,
+      #ffff00 65%,
+      #ff8000 80%,
+      #ff0000 90%,
+      #800000 100%
+    );
+    margin: 16px 0;
+    position: relative;
+  }
+  .spectrum-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-soft);
+    margin-top: 4px;
+  }
+  .spectrum-range {
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+    padding: 2px 0;
+    height: 100%;
+    border-radius: 6px;
+  }
+  .uv-region, .vis-region {
+    position: absolute;
+    top: 0; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.9);
+    letter-spacing: 1px;
+  }
+  .uv-region { left: 0; width: 25%; background: rgba(80,0,130,0.5); border-radius: 8px 0 0 8px; }
+  .vis-region { left: 25%; width: 75%; background: rgba(0,0,0,0.15); border-radius: 0 8px 8px 0; }
+
+  @media (max-width: 768px) {
+    .layout { grid-template-columns: 1fr; }
+    .toc-sidebar { position: static; }
+    .hero { padding: 48px 20px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Complete Study Guide</div>
+    <h1>UV-Visible <span>Spectroscopy</span></h1>
+    <p class="hero-sub">A comprehensive, deeply explained guide covering every principle — from electron transitions to Beer's Law and qualitative analysis.</p>
+    <div class="hero-pills">
+      <span class="pill">160–780 nm</span>
+      <span class="pill">Electronic Transitions</span>
+      <span class="pill">Beer's Law</span>
+      <span class="pill">Chromophores</span>
+      <span class="pill">Qualitative Analysis</span>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════ LAYOUT ══════════════════ -->
+<div class="layout">
+
+  <!-- SIDEBAR TOC -->
+  <aside class="toc-sidebar">
+    <div class="toc-title">Table of Contents</div>
+    <ul class="toc-list">
+      <li><a href="#s1" class="toc-h2">1. Introduction</a></li>
+      <li><a href="#s1a" class="toc-h3">What is UV-Vis?</a></li>
+      <li><a href="#s1b" class="toc-h3">The EM Spectrum</a></li>
+      <li><a href="#s2" class="toc-h2">2. Bonding Electrons</a></li>
+      <li><a href="#s2a" class="toc-h3">Why Bonding Electrons?</a></li>
+      <li><a href="#s2b" class="toc-h3">Complexity of Organic Spectra</a></li>
+      <li><a href="#s3" class="toc-h2">3. Electron Types</a></li>
+      <li><a href="#s3a" class="toc-h3">σ, π, n Electrons</a></li>
+      <li><a href="#s3b" class="toc-h3">Orbital Diagrams</a></li>
+      <li><a href="#s4" class="toc-h2">4. Transition Types</a></li>
+      <li><a href="#s4a" class="toc-h3">σ→σ* Transition</a></li>
+      <li><a href="#s4b" class="toc-h3">n→σ* Transition</a></li>
+      <li><a href="#s4c" class="toc-h3">π→π* & n→π* Transitions</a></li>
+      <li><a href="#s4d" class="toc-h3">Energy Level Diagram</a></li>
+      <li><a href="#s5" class="toc-h2">5. Qualitative Analysis</a></li>
+      <li><a href="#s5a" class="toc-h3">Limitations</a></li>
+      <li><a href="#s5b" class="toc-h3">Solvent Effects</a></li>
+      <li><a href="#s5c" class="toc-h3">Functional Group Hints</a></li>
+      <li><a href="#s6" class="toc-h2">6. UV Spectral Nomenclature</a></li>
+      <li><a href="#s7" class="toc-h2">7. Beer's Law</a></li>
+      <li><a href="#s7a" class="toc-h3">The Law Explained</a></li>
+      <li><a href="#s7b" class="toc-h3">Chromophore Table</a></li>
+      <li><a href="#s7c" class="toc-h3">Limitations of Beer's Law</a></li>
+      <li><a href="#s8" class="toc-h2">8. Master Revision</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- ═══ SECTION 1: INTRODUCTION ═══ -->
+    <section id="s1">
+      <div class="section-header">
+        <div class="section-number">1</div>
+        <h2>Introduction to UV-Visible Spectroscopy</h2>
+      </div>
+
+      <div id="s1a">
+        <div class="box box-definition">
+          <div class="box-title">📖 Definition</div>
+          <p><strong>UV-Visible Spectroscopy</strong> is an analytical technique that measures how much ultraviolet (UV) and visible light is <strong>absorbed or transmitted</strong> by a substance. The absorbed radiation stimulates <mark>molecular vibrations and electronic transitions</mark> within the molecule.</p>
+        </div>
+
+        <h3 id="s1b">The Electromagnetic Spectrum — UV-Vis Region</h3>
+
+        <p>UV-Vis spectroscopy operates across a wavelength range of <strong>160 nm to 780 nm</strong>, which spans from the far-UV into the visible region. Understanding where this fits in the electromagnetic spectrum is essential:</p>
+
+        <div style="background:#fff; border:1.5px solid var(--purple-200); border-radius:var(--radius-md); padding:24px; margin:16px 0;">
+          <div style="position:relative; height:48px; border-radius:8px; overflow:hidden; margin-bottom:8px;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to right, #8b008b 0%, #4b0082 6%, #0000ff 12%, #00bfff 28%, #00ff80 42%, #ffff00 58%, #ff8000 72%, #ff2200 85%, #800000 100%); border-radius:8px;"></div>
+            <div style="position:absolute; top:0; left:0; height:100%; width:14%; background:rgba(60,0,80,0.55); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#fff; letter-spacing:0.5px;">UV (160–400 nm)</div>
+            <div style="position:absolute; top:0; left:14%; height:100%; width:50%; background:rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#fff; letter-spacing:0.5px;">VISIBLE (400–780 nm)</div>
+          </div>
+          <div class="spectrum-labels">
+            <span>160 nm</span><span>300 nm</span><span>400 nm</span><span>500 nm</span><span>600 nm</span><span>700 nm</span><span>780 nm</span>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-icon">🔬</div>
+            <h4>Measurement Parameter</h4>
+            <p>Measures <strong>absorbance (A)</strong> or <strong>transmittance (T)</strong> of light passing through a sample.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">⚗️</div>
+            <h4>What it identifies</h4>
+            <p>Used to identify both <strong>inorganic and organic species</strong> — from transition metal complexes to cocaine and aspirin.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🌊</div>
+            <h4>Energy Interaction</h4>
+            <p>UV/Vis photons have enough energy to excite <strong>valence (bonding) electrons</strong> to higher energy states.</p>
+          </div>
+        </div>
+
+        <div class="box box-note">
+          <div class="box-title">💡 Why does cocaine absorb UV light?</div>
+          <p>Cocaine has two absorption maxima — one at approximately <strong>λ<sub>max1</sub> ≈ 225 nm</strong> and a weaker one near <strong>λ<sub>max2</sub> ≈ 270 nm</strong>. These arise from the π→π* transition (aromatic/ester groups) and n→π* transition (ester carbonyl C=O), respectively. This UV fingerprint is used in forensic drug analysis.</p>
+        </div>
+      </div>
+
+      <div class="summary">
+        <h3>§1 Summary</h3>
+        <ul>
+          <li><strong>Range:</strong> 160–780 nm (UV + visible light)</li>
+          <li>Measures <strong>absorbance or transmittance</strong></li>
+          <li>Stimulates <strong>electronic and vibrational transitions</strong></li>
+          <li>Identifies both <strong>organic and inorganic compounds</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ SECTION 2: BONDING ELECTRONS ═══ -->
+    <section id="s2">
+      <div class="section-header">
+        <div class="section-number">2</div>
+        <h2>Absorption & Bonding Electrons</h2>
+      </div>
+
+      <div id="s2a">
+        <h3>Why Does Absorption Occur With Bonding Electrons?</h3>
+        <p>When a photon of UV or visible light strikes a molecule, its energy can be <strong>absorbed by electrons in chemical bonds</strong>. The electron uses this energy to jump from a lower-energy orbital (bonding or non-bonding) to a higher-energy orbital (anti-bonding).</p>
+
+        <div class="box box-key">
+          <div class="box-title">⚡ Core Principle</div>
+          <p>The energy <strong>E(λ)</strong> required for a transition differs depending on the <strong>type of bonding electron</strong> involved. Different bond types (σ, π, n) require different wavelengths of light to excite their electrons.</p>
+          <p style="margin-top:8px;">This means UV-Vis absorption gives us <strong>functional group information</strong> — the absorption pattern reveals what types of bonds are present in the molecule.</p>
+        </div>
+      </div>
+
+      <div id="s2b">
+        <h3>Why Are Most Organic Spectra Complex?</h3>
+        <p>Unlike atomic spectra with sharp lines, molecular UV-Vis spectra are broad and complex. Here's why:</p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <strong>Electronic + Vibrational Transitions Are Superimposed</strong>
+              <p>Each electronic transition is accompanied by many vibrational sub-levels. Instead of a sharp line, you get a <em>broad band</em> that is the envelope of many overlapping transitions.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <strong>Absorption Bands Are Broad</strong>
+              <p>Due to this superimposition, peaks spread over tens of nanometers, making it hard to resolve individual transitions.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <strong>Detailed Theoretical Analysis Not Possible</strong>
+              <p>Full quantum mechanical analysis of all transitions is impractical. However, <em>semi-quantitative or qualitative analysis</em> of bond types is achievable.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <strong>Solvent & Molecular Effects Complicate Comparison</strong>
+              <p>The choice of solvent can shift peak positions and broaden bands, making direct comparison between samples difficult unless conditions are identical.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="box box-warning">
+          <div class="box-title">⚠️ Common Mistake</div>
+          <p>UV-Vis spectra of organic molecules cannot unambiguously identify a compound by themselves. They must be used alongside other spectroscopic techniques (IR, NMR, MS). UV-Vis is most powerful for <em>quantitative analysis</em> and detection of specific functional groups.</p>
+        </div>
+      </div>
+
+      <div class="summary">
+        <h3>§2 Summary</h3>
+        <ul>
+          <li>UV-Vis absorption involves <strong>bonding electrons jumping to anti-bonding orbitals</strong></li>
+          <li>Different electron types (σ, π, n) need <strong>different energies (wavelengths)</strong></li>
+          <li>Organic spectra are complex due to <strong>superimposed electronic + vibrational transitions</strong></li>
+          <li><strong>Semi-quantitative and qualitative</strong> bond-type analysis is possible</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ SECTION 3: ELECTRON TYPES ═══ -->
+    <section id="s3">
+      <div class="section-header">
+        <div class="section-number">3</div>
+        <h2>Types of Electrons: σ, π, and n</h2>
+      </div>
+
+      <div id="s3a">
+        <p>Three categories of electrons participate in UV-Vis transitions. Understanding each type is fundamental:</p>
+
+        <h3>① Sigma (σ) Electrons — Single Bond Electrons</h3>
+        <div class="box box-definition">
+          <div class="box-title">📖 Definition</div>
+          <p><strong>Sigma (σ) electrons</strong> are the electrons that form <strong>single bonds</strong> between atoms. They occupy a σ bonding orbital — a low-energy, cylindrically symmetric orbital formed by direct (head-on) overlap of atomic orbitals.</p>
+        </div>
+
+        <div class="orbital-row">
+          <div class="orbital-box">
+            <svg width="80" height="60" viewBox="0 0 80 60">
+              <ellipse cx="40" cy="30" rx="35" ry="22" fill="#c4b5fd" opacity="0.7" stroke="#7c3aed" stroke-width="1.5"/>
+              <circle cx="25" cy="30" r="4" fill="#7c3aed"/>
+              <circle cx="55" cy="30" r="4" fill="#7c3aed"/>
+            </svg>
+            <div class="type">σ orbital</div>
+            <div class="energy">Low Energy · Bonding</div>
+            <div class="label">Symmetric, continuous e⁻ density between nuclei</div>
+          </div>
+          <div class="orbital-box" style="background:linear-gradient(135deg,#fff,#fff7f7);">
+            <svg width="80" height="60" viewBox="0 0 80 60">
+              <ellipse cx="18" cy="30" rx="14" ry="20" fill="#fca5a5" opacity="0.7" stroke="#e11d48" stroke-width="1.5"/>
+              <ellipse cx="62" cy="30" rx="14" ry="20" fill="#fca5a5" opacity="0.7" stroke="#e11d48" stroke-width="1.5"/>
+              <circle cx="25" cy="30" r="3" fill="#e11d48"/>
+              <circle cx="55" cy="30" r="3" fill="#e11d48"/>
+            </svg>
+            <div class="type">σ* orbital</div>
+            <div class="energy">High Energy · Anti-bonding</div>
+            <div class="label">Node between nuclei; occupying this weakens the bond</div>
+          </div>
+        </div>
+
+        <h3>② Pi (π) Electrons — Double Bond Electrons</h3>
+        <div class="box box-definition">
+          <div class="box-title">📖 Definition</div>
+          <p><strong>Pi (π) electrons</strong> are the electrons that form the second bond in <strong>double bonds</strong> (and third bond in triple bonds). They occupy π bonding orbitals formed by side-on (lateral) overlap of p-orbitals. There are two lobes — one above and one below the σ-bond axis.</p>
+        </div>
+
+        <div class="orbital-row">
+          <div class="orbital-box">
+            <svg width="80" height="60" viewBox="0 0 80 60">
+              <ellipse cx="40" cy="15" rx="30" ry="12" fill="#a5f3fc" opacity="0.7" stroke="#0891b2" stroke-width="1.5"/>
+              <ellipse cx="40" cy="45" rx="30" ry="12" fill="#a5f3fc" opacity="0.7" stroke="#0891b2" stroke-width="1.5"/>
+              <circle cx="25" cy="30" r="3" fill="#0891b2"/>
+              <circle cx="55" cy="30" r="3" fill="#0891b2"/>
+            </svg>
+            <div class="type">π orbital</div>
+            <div class="energy">Low-Mid Energy · Bonding</div>
+            <div class="label">Two lobes; above and below the molecular plane</div>
+          </div>
+          <div class="orbital-box" style="background:linear-gradient(135deg,#fff,#f0fff4);">
+            <svg width="80" height="60" viewBox="0 0 80 60">
+              <ellipse cx="20" cy="15" rx="16" ry="11" fill="#86efac" opacity="0.7" stroke="#16a34a" stroke-width="1.5"/>
+              <ellipse cx="60" cy="45" rx="16" ry="11" fill="#86efac" opacity="0.7" stroke="#16a34a" stroke-width="1.5"/>
+              <circle cx="25" cy="30" r="3" fill="#16a34a"/>
+              <circle cx="55" cy="30" r="3" fill="#16a34a"/>
+            </svg>
+            <div class="type">π* orbital</div>
+            <div class="energy">High Energy · Anti-bonding</div>
+            <div class="label">Nodal plane through bond axis; lobes are offset</div>
+          </div>
+        </div>
+
+        <h3>③ Non-bonding (n) Electrons — Lone Pairs</h3>
+        <div class="box box-definition">
+          <div class="box-title">📖 Definition</div>
+          <p><strong>Non-bonding (n) electrons</strong> are lone pairs that exist on heteroatoms (O, N, S, halogens). They do <strong>not participate in any chemical bond</strong> and exist at a <strong>neutral, intermediate energy level</strong> — between bonding and anti-bonding orbitals.</p>
+        </div>
+
+        <div class="box box-example">
+          <div class="box-title">🧪 Example: Formaldehyde (H₂C=O)</div>
+          <p>Formaldehyde has all three types of electrons:</p>
+          <ul>
+            <li><strong>σ electrons (•)</strong> — in the C–H and C=O single bond component</li>
+            <li><strong>π electrons (×)</strong> — in the C=O double bond π component</li>
+            <li><strong>n electrons (○)</strong> — lone pairs on the oxygen atom</li>
+          </ul>
+          <p style="margin-top:10px;">This is why formaldehyde shows n→π* absorption — the lone pair on O can be promoted to the π* anti-bonding orbital of C=O.</p>
+        </div>
+
+        <div id="s3b">
+          <h3>Energy Level Summary of All Orbital Types</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Orbital</th><th>Type</th><th>Bond Involvement</th><th>Relative Energy</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>σ</td><td>Bonding</td><td>Single bonds (all)</td><td>Lowest (most stable)</td></tr>
+                <tr><td>π</td><td>Bonding</td><td>Double/triple bonds</td><td>Low-medium</td></tr>
+                <tr><td>n</td><td>Non-bonding</td><td>None (lone pairs)</td><td>Medium (intermediate)</td></tr>
+                <tr><td>π*</td><td>Anti-bonding</td><td>Double/triple bonds</td><td>Medium-high</td></tr>
+                <tr><td>σ*</td><td>Anti-bonding</td><td>Single bonds</td><td>Highest (least stable)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary">
+        <h3>§3 Summary</h3>
+        <ul>
+          <li><strong>σ electrons:</strong> single-bond electrons; σ orbital (bonding) → σ* (anti-bonding)</li>
+          <li><strong>π electrons:</strong> double-bond electrons; π orbital (bonding) → π* (anti-bonding)</li>
+          <li><strong>n electrons:</strong> lone pairs on heteroatoms; neutral energy, can transition to σ* or π*</li>
+          <li>Energy order: σ &lt; π &lt; n &lt; π* &lt; σ*</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ SECTION 4: TRANSITIONS ═══ -->
+    <section id="s4">
+      <div class="section-header">
+        <div class="section-number">4</div>
+        <h2>Types of Electronic Transitions</h2>
+      </div>
+
+      <p>Four possible transitions occur in UV-Vis spectroscopy, listed here from <strong>highest energy (shortest λ) to lowest energy (longest λ)</strong>:</p>
+
+      <!-- ENERGY DIAGRAM -->
+      <div id="s4d" class="energy-diagram">
+        <h4 style="text-align:center; color:var(--purple-700); margin-bottom:16px;">Electronic Transition Energy Diagram</h4>
+        <svg viewBox="0 0 560 380" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, sans-serif">
+          <!-- Energy axis -->
+          <line x1="50" y1="20" x2="50" y2="360" stroke="#7c3aed" stroke-width="2"/>
+          <text x="20" y="200" fill="#7c3aed" font-size="13" transform="rotate(-90,20,200)" text-anchor="middle">Energy</text>
+          <polygon points="50,15 45,28 55,28" fill="#7c3aed"/>
+
+          <!-- Orbital levels -->
+          <!-- σ* -->
+          <line x1="70" y1="40"  x2="490" y2="40"  stroke="#e11d48" stroke-width="2.5" stroke-dasharray="6,3"/>
+          <text x="500" y="44" font-size="12" fill="#e11d48" font-weight="600">σ* (Anti-bonding)</text>
+          <!-- π* -->
+          <line x1="70" y1="110" x2="490" y2="110" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="6,3"/>
+          <text x="500" y="114" font-size="12" fill="#f59e0b" font-weight="600">π* (Anti-bonding)</text>
+          <!-- n -->
+          <line x1="70" y1="200" x2="490" y2="200" stroke="#0891b2" stroke-width="2.5"/>
+          <text x="500" y="204" font-size="12" fill="#0891b2" font-weight="600">n (Non-bonding)</text>
+          <!-- π -->
+          <line x1="70" y1="290" x2="490" y2="290" stroke="#16a34a" stroke-width="2.5"/>
+          <text x="500" y="294" font-size="12" fill="#16a34a" font-weight="600">π (Bonding)</text>
+          <!-- σ -->
+          <line x1="70" y1="355" x2="490" y2="355" stroke="#6b21a8" stroke-width="2.5"/>
+          <text x="500" y="359" font-size="12" fill="#6b21a8" font-weight="600">σ (Bonding)</text>
+
+          <!-- Transition arrows -->
+          <!-- σ→σ* -->
+          <line x1="130" y1="348" x2="130" y2="47" stroke="#6b21a8" stroke-width="2"/>
+          <polygon points="130,40 125,52 135,52" fill="#6b21a8"/>
+          <text x="100" y="200" font-size="10" fill="#6b21a8" text-anchor="middle" transform="rotate(-90,100,200)">σ→σ*</text>
+
+          <!-- π→π* -->
+          <line x1="200" y1="283" x2="200" y2="117" stroke="#16a34a" stroke-width="2"/>
+          <polygon points="200,110 195,122 205,122" fill="#16a34a"/>
+          <text x="170" y="200" font-size="10" fill="#16a34a" text-anchor="middle" transform="rotate(-90,170,200)">π→π*</text>
+
+          <!-- n→σ* -->
+          <line x1="280" y1="193" x2="280" y2="47" stroke="#0891b2" stroke-width="2"/>
+          <polygon points="280,40 275,52 285,52" fill="#0891b2"/>
+          <text x="250" y="125" font-size="10" fill="#0891b2" text-anchor="middle" transform="rotate(-90,250,125)">n→σ*</text>
+
+          <!-- n→π* -->
+          <line x1="360" y1="193" x2="360" y2="117" stroke="#f59e0b" stroke-width="2"/>
+          <polygon points="360,110 355,122 365,122" fill="#f59e0b"/>
+          <text x="330" y="160" font-size="10" fill="#f59e0b" text-anchor="middle" transform="rotate(-90,330,160)">n→π*</text>
+        </svg>
+        <p style="text-align:center; font-size:12px; color:var(--text-soft); margin-top:8px;">The higher the energy gap, the shorter the wavelength (λ) needed</p>
+      </div>
+
+      <div id="s4a">
+        <h3>① σ → σ* Transition (Vacuum UV)</h3>
+        <div class="box box-warning">
+          <div class="box-title">⚠️ Vacuum UV — Practical Problem</div>
+          <p>The σ→σ* transition requires the <strong>highest energy</strong> (shortest wavelength, ≤185 nm) of all UV-Vis transitions. This falls in the <strong>"vacuum UV"</strong> region. It's called that because:</p>
+          <ul>
+            <li>Oxygen, nitrogen, and water vapor in air all <strong>absorb strongly</strong> at these wavelengths</li>
+            <li>Instruments must be purged with nitrogen or work in vacuum — <strong>very impractical</strong></li>
+            <li>As a result, σ→σ* transitions are <strong>rarely used</strong> for analytical purposes</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="s4b">
+        <h3>② n → σ* Transition</h3>
+        <div class="box box-definition">
+          <div class="box-title">📖 Description</div>
+          <p>A lone pair (n) electron on a heteroatom is promoted to the σ* anti-bonding orbital. This requires less energy than σ→σ* but more than transitions involving π systems.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Wavelength (λ)</td><td>~150–250 nm</td><td>Near/far UV region</td></tr>
+              <tr><td>Molar absorptivity (ε)</td><td>100–3,000</td><td><strong>Weak to moderate</strong> absorption</td></tr>
+              <tr><td>Compounds involved</td><td>Saturated compounds with heteroatoms</td><td>e.g., alcohols, ethers, amines, halides</td></tr>
+              <tr><td>Analytical utility</td><td>Moderate</td><td>Partially accessible to standard instruments</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="s4c">
+        <h3>③ π → π* and n → π* Transitions (Most Important!)</h3>
+        <div class="box box-key">
+          <div class="box-title">⭐ Most Analytically Useful Transitions</div>
+          <p>These transitions are the <strong>workhorses of UV-Vis spectroscopy</strong>. They require <em>unsaturated functional groups</em> (compounds containing double bonds: C=C, C=O, C=N, aromatic rings, etc.) and fall in the <strong>ideal wavelength range</strong> of standard UV-Vis instruments.</p>
+        </div>
+
+        <h4>n → π* Transition</h4>
+        <ul>
+          <li>A lone pair (n) electron is promoted to the π* anti-bonding orbital</li>
+          <li>Requires a heteroatom <em>and</em> an adjacent π system (e.g., C=O, C=N)</li>
+          <li><strong>λ ≈ 200–700 nm</strong>, <strong>ε ≈ 10–100</strong> (weak absorption)</li>
+          <li>Example: carbonyl groups (C=O) show n→π* around 270–300 nm</li>
+        </ul>
+
+        <h4>π → π* Transition</h4>
+        <ul>
+          <li>A bonding π electron is promoted to the π* anti-bonding orbital</li>
+          <li>Requires any π system (alkenes, aromatics, conjugated systems)</li>
+          <li><strong>λ ≈ 200–700 nm</strong>, <strong>ε ≈ 1,000–10,000</strong> (strong absorption)</li>
+          <li>Example: aromatic rings, conjugated dienes absorb strongly via π→π*</li>
+        </ul>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Transition</th><th>λ Range</th><th>ε (Intensity)</th><th>Requirement</th><th>Relative Strength</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>σ → σ*</td><td>≤185 nm</td><td>Very high</td><td>Any single bond</td><td>Impractical (vacuum UV)</td></tr>
+              <tr><td>n → σ*</td><td>150–250 nm</td><td>100–3,000</td><td>Heteroatom lone pair</td><td>Weak–moderate</td></tr>
+              <tr><td>n → π*</td><td>200–700 nm</td><td>10–100</td><td>C=O, C=N + lone pair</td><td>Weak</td></tr>
+              <tr><td>π → π*</td><td>200–700 nm</td><td>1,000–10,000</td><td>Double bonds / aromatic</td><td><strong>Strong</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="box box-note">
+          <div class="box-title">💡 Intuition: Why is π→π* stronger than n→π*?</div>
+          <p>Molar absorptivity (ε) reflects the <strong>probability of the transition</strong>. A π→π* transition involves electrons that are <em>delocalized in the π system</em> — they have large spatial overlap with the π* orbital, making the transition highly probable (high ε). The n→π* transition involves a localized lone pair that has <em>poor spatial overlap</em> with the π* orbital — it's a "forbidden" (low probability) transition, giving weak absorption (low ε).</p>
+        </div>
+      </div>
+
+      <div class="summary">
+        <h3>§4 Summary</h3>
+        <ul>
+          <li><strong>σ→σ*:</strong> Vacuum UV (≤185 nm) — impractical</li>
+          <li><strong>n→σ*:</strong> 150–250 nm; weak; saturated heteroatom compounds</li>
+          <li><strong>n→π*:</strong> 200–700 nm; very weak (ε 10–100); needs C=O or similar</li>
+          <li><strong>π→π*:</strong> 200–700 nm; strong (ε 1,000–10,000); needs unsaturation</li>
+          <li>n→π* and π→π* are most analytically useful (right wavelength range, accessible)</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ SECTION 5: QUALITATIVE ANALYSIS ═══ -->
+    <section id="s5">
+      <div class="section-header">
+        <div class="section-number">5</div>
+        <h2>Qualitative Analysis</h2>
+      </div>
+
+      <div id="s5a">
+        <h3>Limitation 1 — Few Resolved Peaks</h3>
+        <div class="box box-warning">
+          <div class="box-title">⚠️ Key Limitation</div>
+          <p>Because UV-Vis spectra are broad (electronic + vibrational transitions superimposed), there are <strong>very few resolved (distinct) peaks</strong>. This means <strong>unambiguous identification of an unknown compound is not usually possible</strong> from UV-Vis alone. It should be combined with IR, NMR, or MS for definitive identification.</p>
+        </div>
+      </div>
+
+      <div id="s5b">
+        <h3>Limitation 2 — Solvent Effects on Peak Position & Shape</h3>
+        <p>The choice of solvent profoundly affects a UV-Vis spectrum in two ways:</p>
+
+        <h4>A) Peak Broadening by Polar Solvents</h4>
+        <p>Polar solvents (like water and alcohols) interact with solute molecules through hydrogen bonding and dipole interactions. This <strong>blurs out fine vibrational structure</strong>, causing peaks to become broader and less distinct.</p>
+
+        <div class="box box-example">
+          <div class="box-title">🧪 Example: Acetaldehyde Spectrum</div>
+          <p>In the <strong>gas phase</strong>, acetaldehyde shows a spectrum with distinct <em>vibrational fine structure</em> — multiple small peaks are visible. When dissolved in a <strong>polar solvent</strong> (water or alcohol), these fine peaks merge into one broad, smooth absorption band. This is called <em>loss of fine structure</em>.</p>
+        </div>
+
+        <div class="box box-example">
+          <div class="box-title">🧪 Example: 1,2,4,5-Tetrazine</div>
+          <ul>
+            <li><strong>(a) Vapor phase:</strong> Highly resolved, many sharp vibrational peaks</li>
+            <li><strong>(b) Hexane solution:</strong> Some broadening — moderate fine structure remains</li>
+            <li><strong>(c) Aqueous solution:</strong> Completely smoothed out — single broad hump</li>
+          </ul>
+          <p style="margin-top:8px;">This demonstrates that <strong>increasing solvent polarity → more broadening → loss of fine structure</strong>.</p>
+        </div>
+
+        <h4>B) Peak Position Shift Due to Solvent Polarity</h4>
+        <p>Solvent polarity alters the <strong>energy gap</strong> between ground and excited states by <em>stabilizing or destabilizing</em> one or both states through solvation interactions.</p>
+
+        <div class="box box-key">
+          <div class="box-title">⭐ Key Concept: Why Does Solvent Shift Peaks?</div>
+          <p>Most electronic transitions produce an <strong>excited state that is more polar</strong> than the ground state (due to charge redistribution upon excitation). Polar solvents stabilize the excited state more than the ground state, which <strong>lowers the energy gap → red shift (bathochromic shift)</strong>.</p>
+          <p style="margin-top:10px;">However, for the n→π* transition, the lone pair in the ground state interacts with polar solvent (H-bonding). This <em>stabilizes the ground state more</em> than the excited state, which <strong>increases the energy gap → blue shift (hypsochromic shift)</strong>.</p>
+        </div>
+
+        <div class="box box-example">
+          <div class="box-title">🧪 Example: Acetone n→π* Transition</div>
+          <ul>
+            <li>In <strong>hexane</strong> (nonpolar): λ<sub>max</sub> = <strong>279 nm</strong> (ε = 15)</li>
+            <li>In <strong>water</strong> (polar): λ<sub>max</sub> = <strong>264.5 nm</strong></li>
+          </ul>
+          <p style="margin-top:8px;">The <strong>blue shift of ~14.5 nm</strong> in water occurs because water hydrogen-bonds to the carbonyl oxygen's lone pair in the ground state, stabilizing it more than the excited π* state — this increases ΔE, requiring shorter λ to absorb.</p>
+        </div>
+      </div>
+
+      <div>
+        <h3>Limitation 3 — Solvent Itself May Absorb UV-Vis Light</h3>
+        <p>Every solvent has its own UV absorption, which creates a <strong>background signal</strong> that can mask analyte peaks below the solvent's cutoff wavelength.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Solvent</th><th>Lower Wavelength Limit (nm)</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Water</td><td>180</td><td>Excellent — transparent through most of UV-Vis</td></tr>
+              <tr><td>Hexane</td><td>200</td><td>Good for low-UV work</td></tr>
+              <tr><td>Cyclohexane</td><td>200</td><td>Common choice for UV studies</td></tr>
+              <tr><td>Ethanol</td><td>220</td><td>Acceptable for wavelengths >220 nm</td></tr>
+              <tr><td>Diethyl ether</td><td>210</td><td>Good UV transparency</td></tr>
+              <tr><td>Carbon tetrachloride</td><td>260</td><td>Limited — only useful above 260 nm</td></tr>
+              <tr><td>Acetone</td><td>330</td><td>Poor — blocks most of UV range</td></tr>
+              <tr><td>Dioxane</td><td>320</td><td>Poor UV transparency</td></tr>
+              <tr><td>Cellosolve</td><td>320</td><td>Poor UV transparency</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="box box-warning">
+          <div class="box-title">⚠️ Practical Warning</div>
+          <p>If your analyte absorbs at, say, 250 nm, you <strong>cannot</strong> use acetone (cutoff 330 nm) or carbon tetrachloride (cutoff 260 nm) as solvent — they will completely absorb the light at that wavelength, giving a useless spectrum. Choose a solvent with a cutoff <strong>well below</strong> your absorption wavelength of interest. <strong>Water</strong> or <strong>hexane/cyclohexane</strong> are usually the safest first choices.</p>
+        </div>
+      </div>
+
+      <div id="s5c">
+        <h3>Useful Functional Group Clues from UV-Vis</h3>
+        <p>Despite limitations, certain spectral features do provide valuable functional group information:</p>
+
+        <div class="card-grid">
+          <div class="card" style="border-color:#fde68a;">
+            <div class="card-icon">🔵</div>
+            <h4>Carbonyl Group (C=O)</h4>
+            <p>A <strong>weak band at 280–290 nm</strong> that <em>blue-shifts (moves to shorter λ)</em> as solvent polarity increases = strong indicator of a carbonyl group.</p>
+          </div>
+          <div class="card" style="border-color:#a5f3fc;">
+            <div class="card-icon">🔵</div>
+            <h4>Aromatic Ring</h4>
+            <p>Absorption near <strong>260 nm with fine structure</strong> (multiple small peaks) = indicates an aromatic (benzene-type) ring.</p>
+          </div>
+          <div class="card" style="border-color:#bbf7d0;">
+            <div class="card-icon">🔴</div>
+            <h4>Conjugated / Fused Ring Systems</h4>
+            <p>More complex aromatic systems (naphthalene, anthracene) and conjugated alkenes show <strong>red-shifted (higher λ) absorption</strong> compared to simple benzene.</p>
+          </div>
+        </div>
+
+        <div class="box box-note">
+          <div class="box-title">💡 Why do fused rings / conjugated systems red-shift?</div>
+          <p>In conjugated and fused-ring systems, π electrons are delocalized over a <strong>larger molecular area</strong>. This delocalization <em>lowers the energy</em> of the π* orbital (stabilizes it), which <strong>reduces the π→π* energy gap</strong>. A smaller energy gap = longer wavelength (red shift = bathochromic shift) needed for absorption.</p>
+          <p style="margin-top:8px;">Rule of thumb: <strong>More conjugation → longer λ<sub>max</sub></strong>. This is why β-carotene (11 conjugated double bonds) absorbs in the visible range (~450 nm) and appears orange.</p>
+        </div>
+      </div>
+
+      <div class="summary">
+        <h3>§5 Summary</h3>
+        <ul>
+          <li>Few resolved peaks → <strong>unambiguous ID not usually possible</strong></li>
+          <li>Polar solvents <strong>broaden peaks and eliminate fine structure</strong></li>
+          <li>Solvent polarity can <strong>shift peak positions</strong> (usually blue-shifts n→π*, red-shifts π→π*)</li>
+          <li>Solvent itself may absorb — <strong>choose solvent with cutoff well below analyte λ</strong></li>
+          <li><strong>C=O:</strong> weak band at 280–290 nm, blue-shifts in polar solvent</li>
+          <li><strong>Aromatic ring:</strong> ~260 nm with fine structure</li>
+          <li><strong>More conjugation → red shift</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ SECTION 6: NOMENCLATURE ═══ -->
+    <section id="s6">
+      <div class="section-header">
+        <div class="section-number">6</div>
+        <h2>UV Spectral Nomenclature</h2>
+      </div>
+
+      <p>When a spectral peak shifts or changes intensity, specific terms describe these changes. These four terms are fundamental to reading and discussing UV-Vis spectra:</p>
+
+      <!-- NOMENCLATURE VISUAL -->
+      <div class="energy-diagram">
+        <svg viewBox="0 0 500 300" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, sans-serif">
+          <!-- Axes -->
+          <line x1="60" y1="240" x2="460" y2="240" stroke="#7c3aed" stroke-width="1.5"/>
+          <line x1="60" y1="20"  x2="60"  y2="240" stroke="#7c3aed" stroke-width="1.5"/>
+          <text x="260" y="268" fill="#7c3aed" font-size="13" text-anchor="middle">Wavelength λ (nm)</text>
+          <text x="25" y="140" fill="#7c3aed" font-size="13" text-anchor="middle" transform="rotate(-90,25,140)">ε (Molar Absorptivity)</text>
+          <text x="60" y="260" font-size="10" fill="#94a3b8">400</text>
+          <text x="440" y="260" font-size="10" fill="#94a3b8">800</text>
+          <text x="250" y="260" font-size="10" fill="#94a3b8">blue ←→ red</text>
+
+          <!-- Original peak (solid) -->
+          <path d="M 110,230 Q 200,50 290,230" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+          <!-- Shifted right (bathochromic - dashed) -->
+          <path d="M 150,230 Q 250,50 340,230" fill="none" stroke="#e11d48" stroke-width="2" stroke-dasharray="6,3"/>
+          <!-- Shifted left (hypsochromic - dotted) -->
+          <path d="M 70,230 Q 155,55 245,230" fill="none" stroke="#0891b2" stroke-width="2" stroke-dasharray="3,3"/>
+          <!-- Higher peak (hyperchromic) -->
+          <path d="M 110,230 Q 200,20 290,230" fill="none" stroke="#16a34a" stroke-width="2" stroke-dasharray="8,4"/>
+
+          <!-- Labels -->
+          <!-- Bathochromic arrow -->
+          <line x1="200" y1="130" x2="250" y2="130" stroke="#e11d48" stroke-width="1.5" marker-end="url(#arrowR)"/>
+          <defs>
+            <marker id="arrowR" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#e11d48"/></marker>
+            <marker id="arrowL" markerWidth="8" markerHeight="8" refX="2" refY="3" orient="auto"><polygon points="8,0 0,3 8,6" fill="#0891b2"/></marker>
+            <marker id="arrowU" markerWidth="8" markerHeight="8" refX="3" refY="0" orient="auto"><polygon points="0,8 3,0 6,8" fill="#16a34a"/></marker>
+            <marker id="arrowD" markerWidth="8" markerHeight="8" refX="3" refY="8" orient="auto"><polygon points="0,0 3,8 6,0" fill="#8b5cf6"/></marker>
+          </defs>
+          <text x="260" y="125" fill="#e11d48" font-size="12" font-weight="600">bathochromic (red shift)</text>
+
+          <!-- Hypsochromic arrow -->
+          <line x1="165" y1="155" x2="115" y2="155" stroke="#0891b2" stroke-width="1.5" marker-end="url(#arrowL)"/>
+          <text x="50" y="150" fill="#0891b2" font-size="12" font-weight="600">hypsochromic</text>
+          <text x="53" y="163" fill="#0891b2" font-size="12" font-weight="600">(blue shift)</text>
+
+          <!-- Hyperchromic arrow -->
+          <line x1="200" y1="95" x2="200" y2="58" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrowU)"/>
+          <text x="210" y="52" fill="#16a34a" font-size="12" font-weight="600">hyperchromic (↑ intensity)</text>
+
+          <!-- Hypochromic arrow -->
+          <line x1="200" y1="95" x2="200" y2="130" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrowD)"/>
+          <text x="210" y="145" fill="#8b5cf6" font-size="12" font-weight="600">hypochromic (↓ intensity)</text>
+
+          <!-- Original peak label -->
+          <circle cx="200" cy="95" r="4" fill="#7c3aed"/>
+          <text x="185" y="88" fill="#7c3aed" font-size="11">Original peak</text>
+        </svg>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Term</th><th>Direction</th><th>What Changes</th><th>Example Cause</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Bathochromic shift</td>
+              <td>→ Red shift (longer λ)</td>
+              <td>Peak position moves to longer wavelength</td>
+              <td>Increased conjugation; less polar solvent for π→π*</td>
+            </tr>
+            <tr>
+              <td>Hypsochromic shift</td>
+              <td>← Blue shift (shorter λ)</td>
+              <td>Peak position moves to shorter wavelength</td>
+              <td>More polar solvent for n→π*; loss of conjugation</td>
+            </tr>
+            <tr>
+              <td>Hyperchromic shift</td>
+              <td>↑ Increased intensity</td>
+              <td>Peak height (ε) increases</td>
+              <td>More extended conjugation; stacking effects</td>
+            </tr>
+            <tr>
+              <td>Hypochromic shift</td>
+              <td>↓ Decreased intensity</td>
+              <td>Peak height (ε) decreases</td>
+              <td>Steric hindrance disrupting planarity; hypochromism in DNA</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box box-key">
+        <div class="box-title">⭐ Memory Aid</div>
+        <p><strong>Batho</strong>chromic = "Goes Down the Bath" → deeper into red (longer λ)<br>
+        <strong>Hypso</strong>chromic = "Goes Higher" in energy → blue (shorter λ)<br>
+        <strong>Hyper</strong>chromic = "Hyper" = more intense → taller peak<br>
+        <strong>Hypo</strong>chromic = "Hypo" = less intense → shorter peak</p>
+      </div>
+
+      <div class="summary">
+        <h3>§6 Summary</h3>
+        <ul>
+          <li><strong>Bathochromic:</strong> red shift (longer λ)</li>
+          <li><strong>Hypsochromic:</strong> blue shift (shorter λ)</li>
+          <li><strong>Hyperchromic:</strong> increase in peak intensity (ε)</li>
+          <li><strong>Hypochromic:</strong> decrease in peak intensity (ε)</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ SECTION 7: BEER'S LAW ═══ -->
+    <section id="s7">
+      <div class="section-header">
+        <div class="section-number">7</div>
+        <h2>Quantitative Analysis — Beer's Law</h2>
+      </div>
+
+      <div id="s7a">
+        <h3>The Beer-Lambert Law</h3>
+        <div class="box box-definition">
+          <div class="box-title">📖 Beer-Lambert Law</div>
+          <p>The Beer-Lambert Law states that the <strong>absorbance</strong> of a solution is directly proportional to the <strong>concentration</strong> of the absorbing species and the <strong>path length</strong> through which light travels.</p>
+        </div>
+
+        <div class="beers-visual">
+          <p style="text-align:center; font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:4px;">The Law</p>
+          <div class="beers-eq">A = ε · b · c</div>
+          <div class="beers-terms">
+            <div class="beers-term">
+              <span class="sym">A</span>
+              <div class="meaning">Absorbance<br>(dimensionless)</div>
+            </div>
+            <div class="beers-term">
+              <span class="sym">ε</span>
+              <div class="meaning">Molar absorptivity<br>(L mol⁻¹ cm⁻¹)</div>
+            </div>
+            <div class="beers-term">
+              <span class="sym">b</span>
+              <div class="meaning">Path length<br>(cm)</div>
+            </div>
+            <div class="beers-term">
+              <span class="sym">c</span>
+              <div class="meaning">Concentration<br>(mol L⁻¹)</div>
+            </div>
+          </div>
+          <p style="text-align:center; font-size:12px; color:rgba(255,255,255,0.5); margin-top:16px;">Also written as: A = log(I₀/I) = log(1/T) where T = Transmittance = I/I₀</p>
+        </div>
+
+        <div class="box box-note">
+          <div class="box-title">💡 Absorbance vs Transmittance</div>
+          <p><strong>Transmittance (T)</strong> = fraction of light that passes through: T = I/I₀</p>
+          <p><strong>Absorbance (A)</strong> = A = –log T = log(I₀/I)</p>
+          <p>When A = 0, T = 1 (100%) — no light absorbed. When A = 1, T = 0.1 (10%) — 90% absorbed. A is preferred over T for quantitative work because it is <em>linearly</em> proportional to concentration.</p>
+        </div>
+
+        <h3>Why UV-Vis is Widely Used for Quantitative Analysis</h3>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-icon">🎯</div>
+            <h4>Wide Range of Applications</h4>
+            <p>Both <strong>organic and inorganic</strong> species can be analyzed — from metal ions to pharmaceuticals.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔍</div>
+            <h4>Detection Limit</h4>
+            <p>Classical: <strong>10⁻⁴ to 10⁻⁵ M</strong>. Modern instruments: <strong>10⁻⁶ to 10⁻⁷ M</strong> — very sensitive.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🎛️</div>
+            <h4>Selectivity</h4>
+            <p><strong>Moderate to high selectivity</strong> — by choosing the right wavelength, you can measure one analyte in the presence of others.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📊</div>
+            <h4>Accuracy</h4>
+            <p>Typical accuracy of <strong>1–3%</strong>, with optimized methods reaching <strong>~0.1%</strong>.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">💰</div>
+            <h4>Cost & Ease</h4>
+            <p><strong>Easy to perform and cheap</strong> — UV-Vis spectrophotometers are among the most common instruments in analytical labs.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="s7b">
+        <h3>Chromophores and Their Absorption Characteristics</h3>
+        <div class="box box-definition">
+          <div class="box-title">📖 Chromophore</div>
+          <p>A <strong>chromophore</strong> is a functional group (or structural unit) within a molecule that is responsible for UV-Vis absorption. Common chromophores include alkenes (C=C), alkynes (C≡C), carbonyls (C=O), aromatic rings, and nitrogen/oxygen-containing groups.</p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Chromophore</th><th>Example</th><th>Solvent</th><th>λ<sub>max</sub> (nm)</th><th>ε<sub>max</sub></th><th>Transition</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Alkene</td><td>C₆H₁₃CH=CH₂</td><td>n-Heptane</td><td>177</td><td>13,000</td><td>π → π*</td></tr>
+              <tr><td>Alkyne</td><td>C₅H₁₁C≡C–CH₃</td><td>n-Heptane</td><td>178</td><td>10,000</td><td>π → π*</td></tr>
+              <tr><td></td><td></td><td></td><td>196</td><td>2,000</td><td>—</td></tr>
+              <tr><td></td><td></td><td></td><td>225</td><td>160</td><td>—</td></tr>
+              <tr><td>Carbonyl</td><td>CH₃CCH₃=O</td><td>n-Hexane</td><td>186</td><td>1,000</td><td>n → σ*</td></tr>
+              <tr><td></td><td>(acetone)</td><td></td><td>280</td><td>16</td><td>n → π*</td></tr>
+              <tr><td>Carbonyl</td><td>CH₃CH=O</td><td>n-Hexane</td><td>180</td><td>large</td><td>n → σ*</td></tr>
+              <tr><td></td><td>(acetaldehyde)</td><td></td><td>293</td><td>12</td><td>n → π*</td></tr>
+              <tr><td>Carboxyl</td><td>CH₃COOH</td><td>Ethanol</td><td>204</td><td>41</td><td>n → π*</td></tr>
+              <tr><td>Amido</td><td>CH₃CNH₂=O</td><td>Water</td><td>214</td><td>60</td><td>n → π*</td></tr>
+              <tr><td>Azo</td><td>CH₃N=NCH₃</td><td>Ethanol</td><td>339</td><td>5</td><td>n → π*</td></tr>
+              <tr><td>Nitro</td><td>CH₃NO₂</td><td>Isooctane</td><td>280</td><td>22</td><td>n → π*</td></tr>
+              <tr><td>Nitroso</td><td>C₄H₉NO</td><td>Ethyl ether</td><td>300</td><td>100</td><td>—</td></tr>
+              <tr><td></td><td></td><td></td><td>665</td><td>20</td><td>n → π*</td></tr>
+              <tr><td>Nitrate</td><td>C₂H₅ONO₂</td><td>Dioxane</td><td>270</td><td>12</td><td>n → π*</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="box box-note">
+          <div class="box-title">💡 Reading the Table: Key Observations</div>
+          <ul>
+            <li><strong>Alkenes and alkynes</strong> absorb at very short wavelengths (177–178 nm) via π→π* — this is near the edge of most instruments, with very high ε values.</li>
+            <li><strong>Carbonyl groups (C=O)</strong> show two absorptions: a strong one (n→σ*) at ~180–186 nm and a weak one (n→π*) at ~280–293 nm. The weak ~280 nm band is often used diagnostically.</li>
+            <li><strong>Most lone-pair chromophores</strong> (azo, nitro, nitroso, nitrate) show n→π* transitions with very small ε values (5–100), confirming that n→π* is a "forbidden" (weak) transition.</li>
+            <li><strong>Nitroso</strong> is unusual — it absorbs in the visible range at 665 nm (blue-green light), which means it may appear colored.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="s7c">
+        <h3>Limitations of Beer's Law</h3>
+        <p>Beer's Law holds only under specific conditions. Deviations arise due to:</p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <strong>High Concentrations</strong>
+              <p>At high concentrations, analyte molecules interact with each other (solute-solute interactions), altering ε. Beer's Law is only strictly valid at <em>dilute concentrations</em> (typically &lt;0.01 M).</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <strong>Non-Monochromatic Light</strong>
+              <p>Beer's Law requires a single wavelength (monochromatic light). If the beam contains multiple wavelengths and ε varies across them, apparent deviations appear.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <strong>Chemical Equilibria</strong>
+              <p>If the analyte undergoes pH-dependent dissociation or other equilibria in solution, the absorbing species may change with concentration, violating the linear A vs c relationship.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <strong>Stray Light</strong>
+              <p>Light that bypasses the sample or reaches the detector without passing through the sample causes errors, especially at high absorbances.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary">
+        <h3>§7 Summary</h3>
+        <ul>
+          <li><strong>Beer-Lambert Law: A = εbc</strong> — linear relationship between absorbance, concentration, and path length</li>
+          <li>Detection limits: <strong>10⁻⁴–10⁻⁵ M</strong> (classical), <strong>10⁻⁶–10⁻⁷ M</strong> (modern)</li>
+          <li>Accuracy: <strong>1–3%</strong> typical, ~0.1% with optimization</li>
+          <li><strong>Easy, cheap, widely applicable</strong> — most common quantitative spectroscopic method</li>
+          <li>Chromophores contain the functional groups responsible for absorption</li>
+          <li>Beer's Law deviates at <strong>high concentrations</strong>, non-monochromatic light, or chemical equilibria</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══ SECTION 8: MASTER REVISION ═══ -->
+    <section id="s8">
+      <div class="section-header">
+        <div class="section-number">8</div>
+        <h2>Master Revision Sheet</h2>
+      </div>
+
+      <p style="margin-bottom:24px;">Everything you need to know at a glance — the complete conceptual map of UV-Visible Spectroscopy.</p>
+
+      <div class="revision-grid">
+        <div class="rev-card">
+          <h4>🌐 Overview</h4>
+          <ul>
+            <li>Range: 160–780 nm (UV + Visible)</li>
+            <li>Measures absorbance or transmittance</li>
+            <li>Stimulates electronic + vibrational transitions</li>
+            <li>Identifies organic & inorganic compounds</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>⚛️ Electron Types</h4>
+          <ul>
+            <li>σ — single bonds (lowest energy orbital)</li>
+            <li>π — double bonds (medium energy)</li>
+            <li>n — lone pairs on heteroatoms (intermediate)</li>
+            <li>σ*, π* — anti-bonding orbitals (high energy)</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>⚡ Transition Types (Energy Order)</h4>
+          <ul>
+            <li>σ→σ*: ≤185 nm; vacuum UV; impractical</li>
+            <li>n→σ*: 150–250 nm; ε 100–3,000; weak</li>
+            <li>π→π*: 200–700 nm; ε 1,000–10,000; strong</li>
+            <li>n→π*: 200–700 nm; ε 10–100; weak</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>🧪 Qualitative Analysis</h4>
+          <ul>
+            <li>Few resolved peaks → ID not unambiguous</li>
+            <li>C=O: weak ~280–290 nm; blue-shifts in polar solvent</li>
+            <li>Aromatic ring: ~260 nm + fine structure</li>
+            <li>More conjugation → red shift</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>🧫 Solvent Effects</h4>
+          <ul>
+            <li>Polar solvents broaden peaks (lose fine structure)</li>
+            <li>n→π* blue-shifts in polar solvent</li>
+            <li>π→π* usually red-shifts in polar solvent</li>
+            <li>Use solvent with cutoff well below analyte λ</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>🔤 Nomenclature</h4>
+          <ul>
+            <li>Bathochromic: red shift (longer λ)</li>
+            <li>Hypsochromic: blue shift (shorter λ)</li>
+            <li>Hyperchromic: higher intensity (ε ↑)</li>
+            <li>Hypochromic: lower intensity (ε ↓)</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>📐 Beer-Lambert Law</h4>
+          <ul>
+            <li>A = εbc (A = absorbance, ε = molar absorptivity, b = path length, c = concentration)</li>
+            <li>A = log(I₀/I) = –log T</li>
+            <li>Linear relationship at dilute concentrations</li>
+            <li>Deviates at high [c], non-monochromatic light</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>📊 Key Numbers to Remember</h4>
+          <ul>
+            <li>σ→σ*: ≤185 nm</li>
+            <li>n→σ*: 150–250 nm; ε 100–3,000</li>
+            <li>π→π*: ε 1,000–10,000</li>
+            <li>n→π*: ε 10–100</li>
+            <li>Detection limit (modern): 10⁻⁶–10⁻⁷ M</li>
+            <li>Accuracy: 1–3% typical</li>
+            <li>Water cutoff: 180 nm (best solvent)</li>
+            <li>Acetone cutoff: 330 nm (poor UV solvent)</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>🏅 Chromophore Highlights</h4>
+          <ul>
+            <li>Alkene π→π*: λ=177 nm, ε=13,000</li>
+            <li>Acetone n→π*: λ=280 nm (hexane), 264.5 nm (water)</li>
+            <li>Azo (N=N) n→π*: λ=339 nm, ε=5 (very weak)</li>
+            <li>Nitroso: visible at 665 nm</li>
+            <li>β-carotene: ~450 nm (high conjugation → visible)</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>⚠️ Common Exam Traps</h4>
+          <ul>
+            <li>σ→σ* is NOT analytically useful (vacuum UV)</li>
+            <li>n→π* is WEAK (forbidden), not strong</li>
+            <li>More conjugation = red shift (longer λ, lower E)</li>
+            <li>Polar solvent on n→π* = blue shift (not red)</li>
+            <li>Solvent cutoff must be BELOW analyte λ</li>
+            <li>UV-Vis alone cannot unambiguously ID a molecule</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FINAL CONCEPT MAP -->
+      <div style="background: linear-gradient(135deg, var(--purple-950), #1e0845); border-radius: var(--radius-lg); padding: 36px; margin-top: 32px; color: #fff;">
+        <h3 style="color: var(--purple-200); font-family: 'Playfair Display', serif; font-size:1.4rem; margin-bottom: 20px; display:block;">
+          The Complete UV-Vis Logic Chain
+        </h3>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:center; font-size:13px;">
+          <div style="background:rgba(139,92,246,0.3); border:1px solid rgba(139,92,246,0.5); padding:10px 16px; border-radius:8px; text-align:center;">
+            <div style="font-weight:700; color:var(--purple-300);">UV/Vis Photon</div>
+            <div style="color:rgba(255,255,255,0.6); font-size:11px;">160–780 nm</div>
+          </div>
+          <div style="color:var(--purple-400); font-size:1.2rem;">→</div>
+          <div style="background:rgba(217,70,239,0.2); border:1px solid rgba(217,70,239,0.4); padding:10px 16px; border-radius:8px; text-align:center;">
+            <div style="font-weight:700; color:#f0abfc;">Absorbed by</div>
+            <div style="color:rgba(255,255,255,0.6); font-size:11px;">Bonding electrons (σ, π, n)</div>
+          </div>
+          <div style="color:var(--purple-400); font-size:1.2rem;">→</div>
+          <div style="background:rgba(13,148,136,0.2); border:1px solid rgba(13,148,136,0.4); padding:10px 16px; border-radius:8px; text-align:center;">
+            <div style="font-weight:700; color:#5eead4;">Electronic Transition</div>
+            <div style="color:rgba(255,255,255,0.6); font-size:11px;">Ground → Excited State</div>
+          </div>
+          <div style="color:var(--purple-400); font-size:1.2rem;">→</div>
+          <div style="background:rgba(245,158,11,0.2); border:1px solid rgba(245,158,11,0.4); padding:10px 16px; border-radius:8px; text-align:center;">
+            <div style="font-weight:700; color:#fcd34d;">Spectrum Produced</div>
+            <div style="color:rgba(255,255,255,0.6); font-size:11px;">A vs λ plot</div>
+          </div>
+          <div style="color:var(--purple-400); font-size:1.2rem;">→</div>
+          <div style="background:rgba(22,163,74,0.2); border:1px solid rgba(22,163,74,0.4); padding:10px 16px; border-radius:8px; text-align:center;">
+            <div style="font-weight:700; color:#86efac;">Analysis</div>
+            <div style="color:rgba(255,255,255,0.6); font-size:11px;">Beer's Law: A = εbc</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer style="background: var(--purple-950); color: rgba(255,255,255,0.5); text-align:center; padding: 24px; font-size: 13px; margin-top: 40px;">
+  <p>UV-Visible Spectroscopy — Complete Study Guide &nbsp;|&nbsp; Based on lecture notes &nbsp;|&nbsp; Generated for academic use</p>
+</footer>
+
+<script>
+  // Smooth scroll enhancement + active TOC highlighting
+  document.querySelectorAll('.toc-list a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      document.querySelectorAll('.toc-list a').forEach(l => l.style.background = '');
+      this.style.background = 'var(--purple-100)';
+      this.style.color = 'var(--purple-700)';
+    });
+  });
+
+  // Animate sections on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('section').forEach(s => {
+    s.style.opacity = '0';
+    s.style.transform = 'translateY(20px)';
+    s.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(s);
+  });
+</script>
+</body>
+</html>

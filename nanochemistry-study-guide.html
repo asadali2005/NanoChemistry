@@ -1,0 +1,2749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nanochemistry — Complete Study Guide | CHM-303</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple-950: #1a0a2e;
+    --purple-900: #2d1057;
+    --purple-800: #3d1a7a;
+    --purple-700: #5b2d9e;
+    --purple-600: #7c3aed;
+    --purple-500: #8b5cf6;
+    --purple-400: #a78bfa;
+    --purple-300: #c4b5fd;
+    --purple-200: #ddd6fe;
+    --purple-100: #ede9fe;
+    --purple-50:  #f5f3ff;
+    --accent: #e11d92;
+    --accent-light: #fbcfe8;
+    --gold: #d97706;
+    --gold-light: #fef3c7;
+    --teal: #0891b2;
+    --teal-light: #cffafe;
+    --green: #16a34a;
+    --green-light: #dcfce7;
+    --red: #dc2626;
+    --red-light: #fee2e2;
+    --text-primary: #1e1b4b;
+    --text-secondary: #4c1d95;
+    --text-body: #2e2e4e;
+    --text-muted: #6b7280;
+    --bg: #fafafa;
+    --bg-card: #ffffff;
+    --border: #e5e7eb;
+    --border-purple: #c4b5fd;
+    --sidebar-w: 290px;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 24px rgba(109,40,217,0.08);
+    --shadow-lg: 0 8px 40px rgba(109,40,217,0.14);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text-body);
+    background: var(--bg);
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ─────────────────────────────────────────── */
+  #sidebar {
+    width: var(--sidebar-w);
+    min-width: var(--sidebar-w);
+    background: var(--purple-950);
+    color: #e0d7ff;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    scrollbar-width: thin;
+    scrollbar-color: var(--purple-700) transparent;
+  }
+  #sidebar::-webkit-scrollbar { width: 4px; }
+  #sidebar::-webkit-scrollbar-thumb { background: var(--purple-700); border-radius: 4px; }
+
+  .sidebar-header {
+    padding: 28px 22px 22px;
+    border-bottom: 1px solid rgba(167,139,250,0.2);
+    background: linear-gradient(135deg, var(--purple-900), var(--purple-950));
+  }
+  .sidebar-header .course-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--purple-400);
+    margin-bottom: 6px;
+  }
+  .sidebar-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .sidebar-header p {
+    font-size: 11px;
+    color: var(--purple-300);
+    line-height: 1.4;
+  }
+
+  .toc-nav { padding: 16px 0 40px; }
+  .toc-section-label {
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--purple-500);
+    padding: 14px 22px 4px;
+  }
+  .toc-nav a {
+    display: block;
+    padding: 7px 22px;
+    font-size: 12.5px;
+    color: #c4b5fd;
+    text-decoration: none;
+    transition: all 0.15s;
+    border-left: 3px solid transparent;
+    line-height: 1.4;
+  }
+  .toc-nav a:hover, .toc-nav a.active {
+    background: rgba(124,58,237,0.2);
+    color: #fff;
+    border-left-color: var(--purple-400);
+  }
+  .toc-nav a.sub {
+    padding-left: 36px;
+    font-size: 11.5px;
+    color: #a78bfa;
+  }
+  .toc-nav a.sub:hover { color: #e0d7ff; }
+
+  /* ── MAIN CONTENT ─────────────────────────────────────── */
+  #main {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+  }
+
+  .page-hero {
+    background: linear-gradient(135deg, var(--purple-900) 0%, var(--purple-700) 50%, #7c3aed 100%);
+    padding: 60px 64px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 40%;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .page-hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 4px 14px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #e0d7ff;
+    margin-bottom: 18px;
+  }
+  .page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 46px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    max-width: 700px;
+  }
+  .page-hero p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.75);
+    max-width: 580px;
+    margin-bottom: 28px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    text-align: center;
+  }
+  .hero-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    display: block;
+  }
+  .hero-stat .lbl {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .content-wrap {
+    padding: 48px 64px;
+    max-width: 960px;
+  }
+
+  /* ── SECTION HEADERS ──────────────────────────────────── */
+  .section {
+    margin-bottom: 72px;
+  }
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--purple-100);
+  }
+  .section-number {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(124,58,237,0.3);
+  }
+  .section-title-wrap h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--purple-900);
+    line-height: 1.2;
+  }
+  .section-title-wrap .subtitle {
+    font-size: 13px;
+    color: var(--purple-500);
+    font-weight: 500;
+    margin-top: 3px;
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--purple-800);
+    margin: 32px 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h3::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(to bottom, var(--purple-500), var(--purple-300));
+    border-radius: 2px;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--purple-700);
+    margin: 20px 0 8px;
+  }
+
+  p { margin-bottom: 14px; color: var(--text-body); }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── SPECIAL BOXES ────────────────────────────────────── */
+  .box {
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .box-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .box-label::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    display: inline-block;
+  }
+
+  .def-box {
+    background: var(--purple-50);
+    border-left: 4px solid var(--purple-500);
+    border: 1px solid var(--purple-200);
+    border-left: 4px solid var(--purple-500);
+  }
+  .def-box .box-label { color: var(--purple-600); }
+  .def-box p { color: var(--text-primary); font-weight: 500; margin: 0; }
+
+  .formula-box {
+    background: linear-gradient(135deg, #1e1b4b 0%, #2d1057 100%);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin: 24px 0;
+    color: #fff;
+  }
+  .formula-box .box-label { color: var(--purple-300); }
+  .formula-box .formula-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 17px;
+    color: #e0d7ff;
+    line-height: 1.8;
+  }
+  .formula-box .formula-note {
+    font-size: 12px;
+    color: var(--purple-300);
+    margin-top: 10px;
+  }
+
+  .note-box {
+    background: var(--gold-light);
+    border: 1px solid #fcd34d;
+    border-left: 4px solid var(--gold);
+  }
+  .note-box .box-label { color: var(--gold); }
+  .note-box p { color: #78350f; margin: 0; }
+
+  .warning-box {
+    background: var(--red-light);
+    border: 1px solid #fca5a5;
+    border-left: 4px solid var(--red);
+  }
+  .warning-box .box-label { color: var(--red); }
+  .warning-box p { color: #7f1d1d; margin: 0; }
+
+  .success-box {
+    background: var(--green-light);
+    border: 1px solid #86efac;
+    border-left: 4px solid var(--green);
+  }
+  .success-box .box-label { color: var(--green); }
+  .success-box p { color: #14532d; margin: 0; }
+
+  .info-box {
+    background: var(--teal-light);
+    border: 1px solid #67e8f9;
+    border-left: 4px solid var(--teal);
+  }
+  .info-box .box-label { color: var(--teal); }
+  .info-box p { color: #164e63; margin: 0; }
+
+  .example-box {
+    background: var(--accent-light);
+    border: 1px solid #f9a8d4;
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .example-box .box-label { color: var(--accent); }
+  .example-box p { color: #831843; margin: 0; }
+
+  /* ── SUMMARY BOX ──────────────────────────────────────── */
+  .summary-box {
+    background: linear-gradient(135deg, var(--purple-900), var(--purple-800));
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin: 32px 0;
+    color: #fff;
+  }
+  .summary-box h4 {
+    color: var(--purple-300);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .summary-box ul { list-style: none; padding: 0; }
+  .summary-box ul li {
+    padding: 5px 0;
+    color: #e0d7ff;
+    font-size: 14px;
+    display: flex;
+    gap: 10px;
+  }
+  .summary-box ul li::before {
+    content: '→';
+    color: var(--purple-400);
+    flex-shrink: 0;
+    font-weight: 600;
+  }
+
+  /* ── LISTS ────────────────────────────────────────────── */
+  ul, ol {
+    padding-left: 22px;
+    margin-bottom: 14px;
+    color: var(--text-body);
+  }
+  li {
+    margin-bottom: 7px;
+    line-height: 1.65;
+  }
+  li strong { color: var(--purple-800); }
+
+  /* ── TABLES ───────────────────────────────────────────── */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 24px 0;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: var(--bg-card);
+  }
+  thead {
+    background: linear-gradient(90deg, var(--purple-800), var(--purple-600));
+    color: #fff;
+  }
+  thead th {
+    padding: 14px 18px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:nth-child(even) { background: var(--purple-50); }
+  tbody td {
+    padding: 12px 18px;
+    vertical-align: top;
+    line-height: 1.55;
+    color: var(--text-body);
+  }
+  tbody td:first-child { font-weight: 600; color: var(--purple-800); }
+
+  /* ── PROPERTY CARDS ───────────────────────────────────── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+    margin: 24px 0;
+  }
+  .prop-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-purple);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .prop-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+  .prop-card .icon {
+    width: 38px; height: 38px;
+    border-radius: var(--radius-sm);
+    background: var(--purple-100);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .prop-card h4 { margin-top: 0; font-size: 14px; }
+  .prop-card p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.5; }
+
+  /* ── COMPARE BOXES ────────────────────────────────────── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 24px 0;
+  }
+  .compare-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .compare-card-head {
+    padding: 12px 18px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #fff;
+  }
+  .compare-card-head.purple { background: var(--purple-700); }
+  .compare-card-head.teal { background: var(--teal); }
+  .compare-card-head.green { background: var(--green); }
+  .compare-card-head.gold { background: var(--gold); }
+  .compare-card ul { padding: 16px 18px 16px 32px; }
+  .compare-card li { font-size: 13.5px; margin-bottom: 5px; }
+
+  /* ── TECHNIQUE CARDS ──────────────────────────────────── */
+  .technique-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 26px 28px;
+    margin: 22px 0;
+    position: relative;
+    box-shadow: var(--shadow);
+    border-top: 3px solid var(--purple-500);
+  }
+  .technique-card .tech-badge {
+    display: inline-block;
+    background: var(--purple-100);
+    color: var(--purple-700);
+    padding: 3px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .technique-card h3 {
+    margin-top: 0;
+    font-size: 21px;
+    color: var(--purple-900);
+  }
+  .technique-card h3::before { display: none; }
+
+  /* ── NANO DIMENSION CARDS ─────────────────────────────── */
+  .dim-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .dim-card {
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .dim-card .dim-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .dim-card h4 { margin: 0 0 8px; font-size: 14px; }
+  .dim-card p { font-size: 12.5px; color: var(--text-muted); margin: 0; }
+  .dim-card.d0 { background: #fdf4ff; border-color: #e9d5ff; }
+  .dim-card.d0 .dim-label { color: #9333ea; }
+  .dim-card.d1 { background: #eff6ff; border-color: #bfdbfe; }
+  .dim-card.d1 .dim-label { color: #2563eb; }
+  .dim-card.d2 { background: #f0fdf4; border-color: #bbf7d0; }
+  .dim-card.d2 .dim-label { color: #16a34a; }
+  .dim-card.d3 { background: #fff7ed; border-color: #fed7aa; }
+  .dim-card.d3 .dim-label { color: #ea580c; }
+
+  /* ── FLOW DIAGRAM ─────────────────────────────────────── */
+  .flow-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+  .flow-step {
+    background: var(--purple-100);
+    border: 1px solid var(--purple-300);
+    border-radius: var(--radius-sm);
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--purple-800);
+    text-align: center;
+    flex: 1;
+    min-width: 120px;
+  }
+  .flow-arrow {
+    font-size: 18px;
+    color: var(--purple-400);
+    flex-shrink: 0;
+  }
+
+  /* ── REVISION SHEET ───────────────────────────────────── */
+  .revision-sheet {
+    background: linear-gradient(135deg, #1e1b4b 0%, #2d1057 50%, #3d1a7a 100%);
+    border-radius: 16px;
+    padding: 40px 44px;
+    margin-top: 32px;
+    color: #fff;
+  }
+  .revision-sheet h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .revision-sheet .rs-subtitle {
+    color: var(--purple-300);
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+  .rs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .rs-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(167,139,250,0.25);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+  }
+  .rs-card h4 {
+    color: var(--purple-300);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .rs-card ul { list-style: none; padding: 0; }
+  .rs-card li {
+    color: #c4b5fd;
+    font-size: 13px;
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(167,139,250,0.1);
+    display: flex;
+    gap: 8px;
+  }
+  .rs-card li:last-child { border-bottom: none; }
+  .rs-card li::before { content: '◆'; color: var(--purple-500); font-size: 8px; margin-top: 5px; flex-shrink: 0; }
+
+  /* ── DIVIDER ──────────────────────────────────────────── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, var(--purple-200), transparent);
+    margin: 16px 0;
+  }
+
+  /* ── INLINE CODE ──────────────────────────────────────── */
+  code {
+    background: var(--purple-100);
+    color: var(--purple-800);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+
+  /* ── BACK TO TOP ──────────────────────────────────────── */
+  #back-top {
+    position: fixed;
+    bottom: 28px;
+    right: 32px;
+    width: 44px; height: 44px;
+    background: var(--purple-700);
+    border-radius: 50%;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(109,40,217,0.35);
+    transition: background 0.2s, transform 0.2s;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999;
+  }
+  #back-top.visible { opacity: 1; pointer-events: all; }
+  #back-top:hover { background: var(--purple-600); transform: translateY(-2px); }
+
+  /* ── SCROLL PROGRESS ──────────────────────────────────── */
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple-500), var(--accent));
+    z-index: 9999;
+    width: 0%;
+    transition: width 0.1s;
+  }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    .content-wrap { padding: 32px 24px; }
+    .page-hero { padding: 40px 24px; }
+    .page-hero h1 { font-size: 30px; }
+    .compare-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <div class="course-tag">CHM-303</div>
+    <h2>Nanochemistry Complete Study Guide</h2>
+    <p>Govt. Graduate College Shorkot · Prepared by Ali Abbas</p>
+  </div>
+  <div class="toc-nav">
+    <div class="toc-section-label">Foundations</div>
+    <a href="#intro">1. Introduction to Nanochemistry</a>
+    <a href="#classification">2. Classification of Nanomaterials</a>
+    <a href="#properties">3. Physical &amp; Chemical Properties</a>
+
+    <div class="toc-section-label">Characterization Techniques</div>
+    <a href="#xrd">4. XRD — X-Ray Diffraction</a>
+    <a href="#sem">5. SEM — Scanning Electron Microscopy</a>
+    <a href="#tem">6. TEM — Transmission Electron Microscopy</a>
+    <a href="#edx">7. EDX — Energy Dispersive X-Ray</a>
+    <a href="#electro-optical">8. Electro-optical Characterization</a>
+    <a href="#trends">9. Current Trends in Nanoscale Analysis</a>
+
+    <div class="toc-section-label">Synthesis &amp; Fabrication</div>
+    <a href="#green">10. Green Nanomaterials &amp; Nanotechnology</a>
+    <a href="#fabrication">11. Fabrication of Nanomaterials</a>
+
+    <div class="toc-section-label">Specialized Topics</div>
+    <a href="#nanocomposites">12. Nanocomposites</a>
+    <a href="#separation">13. Separation Science</a>
+    <a href="#catalysis">14. Catalysis in Nanochemistry</a>
+    <a href="#nano-optics">15. Nano Optics (Nanophotonics)</a>
+    <a href="#nanoelectronics">16. Nano Electronics</a>
+    <a href="#drug">17. Drug Discovery &amp; Delivery</a>
+    <a href="#applications">18. Applications of Nanomaterials</a>
+
+    <div class="toc-section-label">Revision</div>
+    <a href="#revision">📋 Master Revision Sheet</a>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div id="main">
+  <div class="page-hero">
+    <div class="badge">Complete Study Resource</div>
+    <h1>Nanochemistry<br>Study Guide</h1>
+    <p>A comprehensive, exam-ready guide covering every topic from Introduction to Nanochemistry (CHM-303) — with deep explanations, examples, diagrams, and a master revision sheet.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">17</span><span class="lbl">Major Topics</span></div>
+      <div class="hero-stat"><span class="num">34</span><span class="lbl">Pages of Notes</span></div>
+      <div class="hero-stat"><span class="num">100%</span><span class="lbl">Coverage</span></div>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 1: INTRODUCTION -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="intro">
+      <div class="section-header">
+        <div class="section-number">1</div>
+        <div class="section-title-wrap">
+          <h2>Introduction to Nanochemistry</h2>
+          <div class="subtitle">Definition · Scale · Why nanoscale is special · Examples</div>
+        </div>
+      </div>
+
+      <div class="box def-box">
+        <div class="box-label">Definition</div>
+        <p>Nanochemistry is the branch of chemistry that deals with the <strong>design, synthesis, characterization, and application of materials at the nanoscale</strong> — typically between 1 and 100 nanometers (nm).</p>
+      </div>
+
+      <div class="formula-box">
+        <div class="box-label">Scale Reference</div>
+        <div class="formula-text">
+          1 nm = 10⁻⁹ meters = 1 billionth of a meter<br>
+          Nanoscale range: 1 nm – 100 nm<br><br>
+          Comparison: A human hair ≈ 80,000 nm wide<br>
+          A DNA strand ≈ 2 nm wide<br>
+          An atom ≈ 0.1 – 0.5 nm
+        </div>
+      </div>
+
+      <h3>Why is the Nanoscale Special?</h3>
+      <p>At the nanoscale, matter behaves <strong>fundamentally differently</strong> from bulk matter. Three key reasons explain this:</p>
+
+      <div class="card-grid">
+        <div class="prop-card">
+          <div class="icon">⚖️</div>
+          <h4>High Surface Area-to-Volume Ratio</h4>
+          <p>As particle size shrinks, proportionally more atoms sit on the surface. A 1 nm gold particle has ~100% of atoms on its surface. Surface atoms are more reactive — this dramatically changes chemical and physical behavior.</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">⚛️</div>
+          <h4>Quantum Effects</h4>
+          <p>Below ~10 nm, electrons are confined in tiny spaces. This <strong>quantum confinement</strong> changes optical, magnetic, and electronic properties. Energy levels become discrete (like atoms) rather than continuous bands.</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🔬</div>
+          <h4>Surface-Dominated Behavior</h4>
+          <p>With most atoms on the surface, surface forces (van der Waals, electrostatic) dominate over gravity and inertia. Surface chemistry controls nearly all macroscopic behavior.</p>
+        </div>
+      </div>
+
+      <h3>Striking Examples of Nanoscale Behavior</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Material</th><th>Bulk Behavior</th><th>Nanoscale Behavior</th><th>Reason</th></tr></thead>
+          <tbody>
+            <tr><td>Gold (Au)</td><td>Metallic yellow, chemically inert</td><td>Appears red or purple; catalytically active below 5 nm</td><td>Quantum confinement changes plasmon resonance</td></tr>
+            <tr><td>Carbon</td><td>Soft (graphite) or hard (diamond)</td><td>Carbon nanotubes: ~100× stronger than steel</td><td>Perfect sp² bonding network; no grain boundaries</td></tr>
+            <tr><td>Titanium dioxide</td><td>White powder, stable</td><td>Highly photocatalytic, breaks down organic pollutants</td><td>Increased surface area; bandgap shift</td></tr>
+            <tr><td>Iron (Fe)</td><td>Ferromagnetic, silver-grey</td><td>Superparamagnetic (no permanent magnet)</td><td>Single-domain magnetic behavior below critical size</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Examples of Nanomaterial Morphologies (Shapes)</h3>
+      <p>Nanomaterials come in a remarkable variety of shapes, each with distinct properties:</p>
+      <ul>
+        <li><strong>Nanoparticles (Au, Ag):</strong> Roughly spherical, 1–100 nm diameter</li>
+        <li><strong>Buckminsterfullerne (C₆₀):</strong> Soccer-ball shaped carbon cage; 0.7 nm diameter</li>
+        <li><strong>FePt Nanospheres:</strong> Core-shell magnetic structures</li>
+        <li><strong>Titanium Nanoflowers:</strong> Branched, high-surface-area structures for catalysis</li>
+        <li><strong>Silver Nanocubes:</strong> Cubic geometry with sharp edges; strong plasmonic effects</li>
+        <li><strong>SnO₂ Nanoflowers:</strong> Hierarchical structures for gas sensing</li>
+      </ul>
+
+      <div class="box note-box">
+        <div class="box-label">Key Insight</div>
+        <p>Shape matters as much as size. Nanoparticles of the same material but different shapes can have completely different optical, catalytic, and biological properties. This is why morphology control during synthesis is critically important.</p>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>Nanochemistry covers 1–100 nm scale materials</li>
+          <li>Nanomaterials differ from bulk due to: high surface-to-volume ratio, quantum effects, surface-dominated behavior</li>
+          <li>Gold turns red/purple at nanoscale; carbon nanotubes are 100× stronger than steel</li>
+          <li>Morphology (shape) of nanomaterials critically affects their properties</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 2: CLASSIFICATION -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="classification">
+      <div class="section-header">
+        <div class="section-number">2</div>
+        <div class="section-title-wrap">
+          <h2>Classification of Nanomaterials</h2>
+          <div class="subtitle">By Dimension · Origin · Composition · Application</div>
+        </div>
+      </div>
+
+      <p>Nanomaterials can be classified in <strong>four major ways</strong>. Understanding each classification helps predict properties and select the right material for a given application.</p>
+
+      <!-- BY DIMENSION -->
+      <h3>Classification 1: Based on Dimensions</h3>
+      <p>This is the most common classification — based on how many dimensions are in the nanoscale range (1–100 nm).</p>
+
+      <div class="dim-grid">
+        <div class="dim-card d0">
+          <div class="dim-label">0D</div>
+          <h4>Zero-Dimensional</h4>
+          <p>All 3 dimensions ≤ 100 nm. Acts like a point or atom. Examples: <strong>Quantum dots, fullerenes, nanoparticles</strong></p>
+        </div>
+        <div class="dim-card d1">
+          <div class="dim-label">1D</div>
+          <h4>One-Dimensional</h4>
+          <p>Two dimensions ≤ 100 nm; one is large. Long and thin. Examples: <strong>Nanowires, nanorods, nanotubes</strong></p>
+        </div>
+        <div class="dim-card d2">
+          <div class="dim-label">2D</div>
+          <h4>Two-Dimensional</h4>
+          <p>One dimension ≤ 100 nm; forms flat sheets. Examples: <strong>Graphene, nanosheets, nanofilms</strong></p>
+        </div>
+        <div class="dim-card d3">
+          <div class="dim-label">3D</div>
+          <h4>Three-Dimensional</h4>
+          <p>Bulk structure with nanoscale internal features. Examples: <strong>Nanocomposites, nanocrystalline materials</strong></p>
+        </div>
+      </div>
+
+      <div class="box note-box">
+        <div class="box-label">Memory Tip</div>
+        <p>Think of dimensions as the number of dimensions that are LARGE (above nanoscale): 0D = all nano; 1D = one large dimension; 2D = two large dimensions; 3D = all three large but with nano features inside.</p>
+      </div>
+
+      <!-- BY ORIGIN -->
+      <h3>Classification 2: Based on Origin</h3>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <div class="compare-card-head purple">🌿 Natural Nanomaterials</div>
+          <ul>
+            <li>Formed by natural processes (volcanic eruptions, forest fires, biological reactions)</li>
+            <li>Not engineered or designed</li>
+            <li>Examples: volcanic ash, milk proteins (casein micelles ~200 nm), sea spray, viruses</li>
+          </ul>
+        </div>
+        <div class="compare-card">
+          <div class="compare-card-head teal">🔬 Engineered (Synthetic) Nanomaterials</div>
+          <ul>
+            <li>Intentionally manufactured with controlled size, shape, and surface</li>
+            <li>Designed for specific applications</li>
+            <li>Examples: carbon nanotubes, silver nanoparticles, graphene oxide, quantum dots</li>
+          </ul>
+        </div>
+      </div>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <div class="compare-card-head gold">⚠️ Incidental Nanomaterials</div>
+          <ul>
+            <li>Produced unintentionally as byproducts of human activity</li>
+            <li>Examples: diesel exhaust particles, welding fumes, tobacco smoke particles</li>
+            <li>Often considered environmental/health hazards</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- BY COMPOSITION -->
+      <h3>Classification 3: Based on Composition</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>Definition</th><th>Key Properties</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td>Carbon-Based</td><td>Composed entirely of carbon atoms</td><td>Extreme strength, high conductivity, unique geometry</td><td>Fullerenes (C₆₀), graphene, CNTs</td></tr>
+            <tr><td>Metal-Based</td><td>Pure metals or metal oxides at nanoscale</td><td>Electrical, catalytic, antimicrobial, optical</td><td>Au, Ag, ZnO, TiO₂</td></tr>
+            <tr><td>Polymeric</td><td>Nanostructures from organic polymers</td><td>Biodegradable, tailorable for drug release</td><td>Dendrimers, micelles, nanogels</td></tr>
+            <tr><td>Ceramic-Based</td><td>Inorganic, non-metallic nanomaterials</td><td>High thermal/chemical stability</td><td>Silica (SiO₂), alumina (Al₂O₃)</td></tr>
+            <tr><td>Composite</td><td>Combination of two or more types</td><td>Synergistic properties</td><td>Clay-polymer nanocomposites</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- BY APPLICATION -->
+      <h3>Classification 4: Based on Application</h3>
+      <div class="card-grid">
+        <div class="prop-card">
+          <div class="icon">💡</div>
+          <h4>Electronics-Grade</h4>
+          <p>Graphene, silver nanowires, CNTs — designed for conductivity, magnetic properties, miniaturization</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">💊</div>
+          <h4>Biomedical</h4>
+          <p>Liposomes, gold nanoshells, dendrimers — for diagnostics, therapy, drug delivery</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🌿</div>
+          <h4>Environmental</h4>
+          <p>Iron oxide NPs, TiO₂ photocatalysts — for cleanup, pollution control, water treatment</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">✨</div>
+          <h4>Cosmetic &amp; Textile</h4>
+          <p>Nano-zinc oxide (sunscreens), nano-silver (antibacterial fabrics)</p>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>Nanomaterials classified by: Dimension (0D/1D/2D/3D), Origin (natural/engineered/incidental), Composition (carbon/metal/polymer/ceramic), Application</li>
+          <li>0D = quantum dots, fullerenes | 1D = nanowires, CNTs | 2D = graphene | 3D = nanocomposites</li>
+          <li>Carbon-based NMs: extreme strength + conductivity; Metal-based: catalytic + optical</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 3: PROPERTIES -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="properties">
+      <div class="section-header">
+        <div class="section-number">3</div>
+        <div class="section-title-wrap">
+          <h2>Physical &amp; Chemical Properties of Nanomaterials</h2>
+          <div class="subtitle">Why nanomaterials are so uniquely powerful</div>
+        </div>
+      </div>
+
+      <p>Nanomaterials exhibit fundamentally different properties from their bulk counterparts due to <strong>small size (1–100 nm), high surface area-to-volume ratio, and quantum confinement effects</strong>.</p>
+
+      <h3>Chemical Properties</h3>
+
+      <h4>1. High Reactivity</h4>
+      <p>Due to the large surface area-to-volume ratio, more atoms are exposed on the surface and available for reactions. In bulk materials, most atoms are buried inside and contribute nothing to chemical reactions.</p>
+      <div class="box example-box">
+        <div class="box-label">Example</div>
+        <p>Nano-TiO₂ (titanium dioxide) is far more chemically active than bulk TiO₂. A 1 g sample of 5 nm TiO₂ nanoparticles has roughly 600× more surface area than the same mass of 3 µm TiO₂ powder — hence 600× more reactive surface.</p>
+      </div>
+
+      <h4>2. Surface Functionalization</h4>
+      <p>The surface of nanomaterials can be chemically modified ("functionalized") by attaching molecules or functional groups. This allows tuning of:</p>
+      <ul>
+        <li>Solubility (making hydrophobic nanoparticles water-soluble)</li>
+        <li>Biocompatibility (for medical use)</li>
+        <li>Targeting ability (attaching antibodies to find cancer cells)</li>
+        <li>Charge and stability in solution</li>
+      </ul>
+
+      <h4>3. Catalytic Properties</h4>
+      <p>Nanoparticles like gold (Au) and platinum (Pt) act as excellent catalysts. Increased surface atom density reduces activation energy. A startling fact:</p>
+      <div class="box note-box">
+        <div class="box-label">Key Fact</div>
+        <p>In bulk, gold is chemically inert — it doesn't react. But gold nanoparticles below 5 nm diameter become a powerful catalyst for CO oxidation at room temperature. This is purely a nanoscale effect.</p>
+      </div>
+
+      <h4>4. Chemical Stability (Variable)</h4>
+      <ul>
+        <li><strong>Stable:</strong> Carbon nanotubes are extremely chemically stable</li>
+        <li><strong>Unstable:</strong> Iron nanoparticles oxidize/corrode rapidly in air</li>
+        <li>Stability depends on composition and surface chemistry</li>
+      </ul>
+
+      <h3>Physical Properties</h3>
+
+      <h4>1. Large Surface Area-to-Volume Ratio</h4>
+      <div class="formula-box">
+        <div class="box-label">Mathematical Concept</div>
+        <div class="formula-text">
+          For a sphere: Surface Area = 4πr²   |   Volume = (4/3)πr³<br>
+          SA/V ratio = 3/r<br><br>
+          As radius r decreases → SA/V increases sharply<br>
+          10 nm sphere: SA/V = 3/5 × 10⁶ m⁻¹ = 600,000 m⁻¹<br>
+          1 cm sphere: SA/V = 3/0.005 = 600 m⁻¹
+        </div>
+        <div class="formula-note">This exponential increase in surface area at the nanoscale is the foundation of most unique nano properties</div>
+      </div>
+
+      <h4>2. Quantum Effects (Quantum Confinement)</h4>
+      <p>When a particle's size approaches the de Broglie wavelength of electrons (~1–10 nm), electrons are <strong>quantum confined</strong>. This means:</p>
+      <ul>
+        <li>Energy levels become discrete (like atoms) instead of continuous bands</li>
+        <li>The bandgap becomes <strong>size-dependent</strong></li>
+        <li>Optical, electronic, and magnetic properties change with size</li>
+      </ul>
+      <div class="box example-box">
+        <div class="box-label">Best Example: Quantum Dots</div>
+        <p>Quantum dots (QDs) are semiconductor nanoparticles. A 2 nm CdSe QD emits blue light; a 6 nm CdSe QD emits red light — same material, different color purely because of size! This is quantum confinement.</p>
+      </div>
+
+      <h4>3. Mechanical Strength</h4>
+      <ul>
+        <li>Many nanomaterials are far stronger than their bulk counterparts</li>
+        <li>Carbon nanotubes: ~100× stronger than steel at a fraction of the weight</li>
+        <li>Nanocrystalline metals are harder than coarse-grained metals (Hall-Petch relationship: smaller grains → harder material)</li>
+      </ul>
+
+      <h4>4. Optical Properties</h4>
+      <p>Size-dependent optical behavior is one of the most dramatic nanoscale phenomena:</p>
+      <ul>
+        <li>Gold nanoparticles absorb specific wavelengths due to <strong>surface plasmon resonance (SPR)</strong></li>
+        <li>5–20 nm Au NPs appear red; 40+ nm appear blue/grey</li>
+        <li>Quantum dots fluoresce in size-tunable colors</li>
+      </ul>
+
+      <h4>5. Electrical Conductivity</h4>
+      <ul>
+        <li>Graphene: highest known electrical conductivity (electron mobility ~200,000 cm²/V·s)</li>
+        <li>CNTs: metallic or semiconducting depending on chirality (how they're rolled)</li>
+        <li>Metal nanoparticles: conductivity altered by electron confinement and surface scattering</li>
+      </ul>
+
+      <h4>6. Thermal Conductivity</h4>
+      <ul>
+        <li>Graphene: ~5000 W/m·K (among highest known for any material)</li>
+        <li>CNTs: ~3000 W/m·K along tube axis</li>
+        <li>Critical for heat management in nanoelectronics</li>
+      </ul>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Property</th><th>Bulk Behavior</th><th>Nanoscale Behavior</th><th>Application</th></tr></thead>
+          <tbody>
+            <tr><td>Optical</td><td>Fixed color based on electronic structure</td><td>Size-tunable color (quantum dots, plasmon resonance)</td><td>Displays, bioimaging, sensors</td></tr>
+            <tr><td>Mechanical</td><td>Standard strength</td><td>100× stronger (CNTs)</td><td>Aerospace composites, armor</td></tr>
+            <tr><td>Electrical</td><td>Fixed conductivity</td><td>Can be metallic or semiconductor (CNTs)</td><td>Nanoelectronics, transistors</td></tr>
+            <tr><td>Magnetic</td><td>Ferromagnetic with domains</td><td>Superparamagnetic (single-domain)</td><td>MRI contrast agents, data storage</td></tr>
+            <tr><td>Thermal</td><td>Standard conductivity</td><td>Ultra-high (graphene)</td><td>Thermal management in chips</td></tr>
+            <tr><td>Reactivity</td><td>Limited surface available</td><td>Extremely high surface reactivity</td><td>Catalysis, drug delivery</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>High SA/V ratio → more reactive surface atoms → higher reactivity and catalytic activity</li>
+          <li>Quantum confinement → size-dependent optical/electronic/magnetic properties</li>
+          <li>CNTs: 100× stronger than steel; graphene: highest thermal &amp; electrical conductivity</li>
+          <li>Gold NPs = red/purple (not yellow) due to surface plasmon resonance</li>
+          <li>Surface functionalization allows tuning of solubility, biocompatibility, and targeting</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 4: XRD -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="xrd">
+      <div class="section-header">
+        <div class="section-number">4</div>
+        <div class="section-title-wrap">
+          <h2>XRD — X-Ray Diffraction</h2>
+          <div class="subtitle">Structure · Crystallinity · Crystallite size · Lattice parameters</div>
+        </div>
+      </div>
+
+      <div class="technique-card">
+        <div class="tech-badge">Characterization Technique</div>
+        <h3>X-Ray Diffraction (XRD)</h3>
+        <p>XRD is a powerful, <strong>non-destructive</strong> analytical technique used in nanochemistry to analyze the <strong>structure and crystallinity of nanomaterials</strong>. It provides information about atomic arrangement, lattice parameters, phase composition, and crystallite size.</p>
+      </div>
+
+      <h3>How XRD Works — Step by Step</h3>
+      <div class="flow-wrap">
+        <div class="flow-step">X-ray beam generated</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Beam directed at crystalline sample</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">X-rays scatter at atomic planes</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Constructive interference at specific angles</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Diffraction pattern recorded</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Analysis yields structure info</div>
+      </div>
+
+      <div class="box info-box">
+        <div class="box-label">The Core Principle: Bragg's Law</div>
+        <p>When X-rays hit a crystal, they reflect off parallel atomic planes. Constructive interference occurs only when the path difference equals a whole number of wavelengths.</p>
+      </div>
+      <div class="formula-box">
+        <div class="box-label">Bragg's Law (Critical Formula)</div>
+        <div class="formula-text">
+          nλ = 2d·sinθ<br><br>
+          n = order of reflection (integer: 1, 2, 3...)<br>
+          λ = wavelength of X-rays (~0.154 nm for Cu Kα)<br>
+          d = interplanar spacing (distance between atomic planes)<br>
+          θ = angle of incidence/diffraction
+        </div>
+        <div class="formula-note">By measuring diffraction angles (2θ), we calculate d-spacing and identify crystal structure</div>
+      </div>
+
+      <h3>Key Applications of XRD in Nanochemistry</h3>
+
+      <h4>1. Phase Identification</h4>
+      <p>Every crystalline material produces a unique XRD pattern (like a fingerprint). By comparing with standard databases (JCPDS/ICDD), researchers identify which crystalline phases are present — whether a single phase or a mixture.</p>
+
+      <h4>2. Crystallinity Assessment</h4>
+      <p>XRD distinguishes between crystalline (sharp peaks), amorphous (broad humps), and mixed materials. High crystallinity = better structural order = often better electrical properties.</p>
+
+      <h4>3. Crystallite Size Determination — Scherrer Equation</h4>
+      <div class="formula-box">
+        <div class="box-label">Scherrer Equation (Critical for Nanochemistry)</div>
+        <div class="formula-text">
+          D = Kλ / (β·cosθ)<br><br>
+          D = average crystallite size (nm)<br>
+          K = Scherrer constant (~0.9 for spherical particles)<br>
+          λ = X-ray wavelength<br>
+          β = full width at half maximum (FWHM) of peak (in radians)<br>
+          θ = Bragg angle
+        </div>
+        <div class="formula-note">Broader diffraction peaks = smaller crystallites. This is the most common method to estimate nanoparticle size from XRD data.</div>
+      </div>
+
+      <h4>4. Lattice Parameter Measurements</h4>
+      <p>XRD precisely measures lattice parameters (a, b, c, α, β, γ) — the dimensions of the unit cell. Changes in lattice parameters reveal doping, strain, or defects in nanomaterials.</p>
+
+      <h4>5. Strain and Defect Analysis</h4>
+      <p>Peak broadening in XRD has two contributions: crystallite size (Scherrer) AND lattice strain. The Williamson-Hall plot separates these contributions, giving strain information.</p>
+
+      <h4>6. Interface Characterization</h4>
+      <p>In nanocomposites, XRD reveals atomic arrangements at interfaces between different materials — critical for understanding composite properties.</p>
+
+      <div class="box note-box">
+        <div class="box-label">XRD Limitation</div>
+        <p>XRD gives <em>average</em> crystallite size over millions of particles — it cannot reveal individual particle morphology or surface features. It must be combined with SEM/TEM for complete characterization.</p>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>XRD = non-destructive technique using X-ray diffraction patterns to study crystal structure</li>
+          <li>Bragg's law: nλ = 2d·sinθ — relates diffraction angle to atomic plane spacing</li>
+          <li>Scherrer equation: D = Kλ/(β·cosθ) — wider peaks → smaller crystallites</li>
+          <li>Applications: phase ID, crystallinity, crystallite size, lattice parameters, strain/defects, interface characterization</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 5: SEM -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="sem">
+      <div class="section-header">
+        <div class="section-number">5</div>
+        <div class="section-title-wrap">
+          <h2>SEM — Scanning Electron Microscopy</h2>
+          <div class="subtitle">Surface morphology · Chemical analysis · High-resolution imaging</div>
+        </div>
+      </div>
+
+      <div class="technique-card">
+        <div class="tech-badge">Characterization Technique</div>
+        <h3>Scanning Electron Microscopy (SEM)</h3>
+        <p>SEM provides <strong>high-resolution surface images</strong> of nanomaterials using a focused electron beam. It reveals surface morphology, size, and shape at the nanoscale, and can be coupled with EDX for chemical analysis.</p>
+      </div>
+
+      <h3>How SEM Works</h3>
+      <div class="flow-wrap">
+        <div class="flow-step">Electron gun generates focused beam</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Condenser &amp; objective lenses focus beam to &lt;5 nm spot</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Beam scans across sample surface (raster scan)</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Electrons interact with sample → secondary and backscattered electrons emitted</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Detectors collect signals → computer builds 3D-looking image</div>
+      </div>
+
+      <h3>Types of Signals Detected in SEM</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Signal Type</th><th>Origin</th><th>Information Provided</th></tr></thead>
+          <tbody>
+            <tr><td>Secondary Electrons (SE)</td><td>Outer 1–10 nm of sample</td><td>Surface topography, morphology (most common mode)</td></tr>
+            <tr><td>Backscattered Electrons (BSE)</td><td>Deeper sample regions</td><td>Atomic number contrast — heavier elements appear brighter</td></tr>
+            <tr><td>X-rays (EDX)</td><td>Sample atoms excited by beam</td><td>Elemental composition — what elements are present</td></tr>
+            <tr><td>Auger Electrons</td><td>Near-surface (&lt;3 nm)</td><td>Surface elemental composition (Auger spectroscopy)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Key Roles of SEM in Nanochemistry</h3>
+
+      <h4>1. Imaging Nanomaterials</h4>
+      <p>SEM provides high-resolution images revealing size, shape, and surface features of nanoparticles, nanowires, nanotubes, and other nanostructures. Resolution: typically 1–20 nm depending on instrument.</p>
+
+      <h4>2. Chemical Analysis (SEM-EDX)</h4>
+      <p>Coupling SEM with Energy Dispersive X-ray Spectroscopy (EDS/EDX) enables elemental analysis of the nanomaterial. This combination is extremely powerful: see morphology AND know what it's made of simultaneously.</p>
+
+      <h4>3. Studying Nanomaterial Interactions</h4>
+      <p>SEM can image nanomaterials interacting with cells or tissues in the biomedical field — crucial for understanding biocompatibility, cellular uptake, and potential toxicity.</p>
+
+      <h4>4. Material Science Applications</h4>
+      <p>SEM is used to characterize polymers, metals, ceramics, composites — understanding structure-property relationships across all nanomaterial categories.</p>
+
+      <h3>Advantages &amp; Limitations of SEM</h3>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <div class="compare-card-head green">✅ Advantages</div>
+          <ul>
+            <li>High resolution surface imaging (down to ~1 nm)</li>
+            <li>3D-like appearance of samples</li>
+            <li>Large depth of field</li>
+            <li>Combined elemental analysis (with EDX)</li>
+            <li>Applicable to wide range of materials</li>
+          </ul>
+        </div>
+        <div class="compare-card">
+          <div class="compare-card-head gold">⚠️ Limitations</div>
+          <ul>
+            <li>Requires vacuum environment</li>
+            <li>Non-conductive samples need coating (gold/platinum)</li>
+            <li>Surface-only information (no internal structure)</li>
+            <li>Sample preparation can alter morphology</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="box note-box">
+        <div class="box-label">SEM vs TEM Key Difference</div>
+        <p>SEM gives surface images by scanning the electron beam over the sample. TEM transmits electrons through the sample to give internal structure information. SEM = surface; TEM = inside.</p>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>SEM uses focused electron beam scanning to create high-resolution surface images</li>
+          <li>Secondary electrons → surface morphology; Backscattered electrons → atomic number contrast</li>
+          <li>SEM-EDX combination = morphology + elemental composition simultaneously</li>
+          <li>Used for imaging NMs, studying biomedical interactions, material characterization</li>
+          <li>Limitation: surface only; non-conductors need conductive coating</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 6: TEM -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="tem">
+      <div class="section-header">
+        <div class="section-number">6</div>
+        <div class="section-title-wrap">
+          <h2>TEM — Transmission Electron Microscopy</h2>
+          <div class="subtitle">Atomic-level imaging · Internal structure · Lattice fringes</div>
+        </div>
+      </div>
+
+      <div class="technique-card">
+        <div class="tech-badge">Characterization Technique</div>
+        <h3>Transmission Electron Microscopy (TEM)</h3>
+        <p>TEM is a <strong>high-resolution technique</strong> that transmits electrons through an ultra-thin sample to produce images at <strong>atomic resolution</strong>. It reveals internal structure, crystal lattice, and composition of nanomaterials at the sub-nanometer scale.</p>
+      </div>
+
+      <h3>How TEM Works</h3>
+      <div class="flow-wrap">
+        <div class="flow-step">Electron gun produces high-energy electron beam (60–300 keV)</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Condenser lenses focus beam onto thin sample (&lt;100 nm thick)</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Electrons transmit through sample (hence "transmission")</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Objective lens forms intermediate image; projector lens magnifies</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Image recorded on CCD camera or fluorescent screen</div>
+      </div>
+
+      <h3>Key Capabilities of TEM</h3>
+
+      <h4>1. High-Resolution Imaging (HRTEM)</h4>
+      <p>High-Resolution TEM resolves individual atom columns. <strong>Lattice fringes</strong> (parallel lines visible at high magnification) correspond to rows of atoms in the crystal. Spacing between fringes = interplanar d-spacing. Crystal defects (dislocations, vacancies) are directly visible.</p>
+
+      <h4>2. Structural and Chemical Information</h4>
+      <ul>
+        <li>Crystal structure identification via Selected Area Electron Diffraction (SAED)</li>
+        <li>Lattice parameters, crystallographic orientation</li>
+        <li>Phase boundaries and interfaces at atomic scale</li>
+      </ul>
+
+      <h4>3. Morphological Studies</h4>
+      <p>TEM precisely determines size, shape, and size distribution of nanoparticles. More accurate than SEM for particles below 20 nm.</p>
+
+      <h4>4. Analytical TEM (combined techniques)</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Technique Coupled with TEM</th><th>Information Obtained</th></tr></thead>
+          <tbody>
+            <tr><td>EDX (Energy Dispersive X-ray)</td><td>Elemental composition with nanometer spatial resolution</td></tr>
+            <tr><td>EELS (Electron Energy Loss Spectroscopy)</td><td>Electronic structure, bonding, light element detection (C, N, O)</td></tr>
+            <tr><td>SAED (Selected Area Electron Diffraction)</td><td>Crystal structure, orientation, polycrystallinity</td></tr>
+            <tr><td>STEM (Scanning TEM)</td><td>Atomic-column imaging; HAADF contrast for heavy atoms</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>5. In-situ TEM</h4>
+      <p>Advanced TEM allows <strong>real-time observation</strong> of nanomaterials during synthesis, heating, cooling, or under applied fields. This reveals dynamic processes like crystal growth, phase transitions, and nanoparticle coalescence as they happen.</p>
+
+      <h3>TEM Applications in Nanochemistry</h3>
+      <div class="card-grid">
+        <div class="prop-card">
+          <div class="icon">💊</div>
+          <h4>Drug Delivery</h4>
+          <p>Characterize liposomes, dendrimers, and polymeric NPs — size, shape, and drug encapsulation</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">⚗️</div>
+          <h4>Catalysis</h4>
+          <p>Image catalyst nanoparticles on supports; see active surface sites at atomic level</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🔬</div>
+          <h4>Materials Science</h4>
+          <p>Study thin films, nanowires, nanotubes — internal defects and grain boundaries</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🧬</div>
+          <h4>Biological Systems</h4>
+          <p>Analyze NM-cell interactions; Cryo-TEM for biological macromolecules</p>
+        </div>
+      </div>
+
+      <h3>Sample Preparation for TEM</h3>
+      <p>TEM requires ultra-thin samples (&lt;100 nm). Preparation methods include:</p>
+      <ul>
+        <li><strong>Ultramicrotomy:</strong> Sectioning embedded samples with diamond knife</li>
+        <li><strong>Focused Ion Beam (FIB):</strong> Ion beam milling to precise thickness</li>
+        <li><strong>Dropcast:</strong> For nanoparticle suspensions — drop on carbon-coated TEM grid and dry</li>
+      </ul>
+
+      <div class="box warning-box">
+        <div class="box-label">TEM Limitations</div>
+        <p>TEM requires high vacuum and ultra-thin samples. Beam damage is possible for sensitive materials. Sample preparation is time-consuming and can alter the material being studied. Not suitable for thick, wet, or beam-sensitive samples in conventional mode.</p>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>TEM transmits electrons through ultra-thin samples → atomic-level internal structure</li>
+          <li>HRTEM reveals lattice fringes and crystal defects directly</li>
+          <li>Combined with EDX (elemental), EELS (bonding), SAED (crystal structure)</li>
+          <li>In-situ TEM = real-time observation of nanomaterial dynamics</li>
+          <li>Limitations: requires high vacuum, ultra-thin samples, complex preparation</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 7: EDX -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="edx">
+      <div class="section-header">
+        <div class="section-number">7</div>
+        <div class="section-title-wrap">
+          <h2>EDX — Energy Dispersive X-Ray Spectroscopy</h2>
+          <div class="subtitle">Elemental identification · Quantification · Mapping</div>
+        </div>
+      </div>
+
+      <div class="technique-card">
+        <div class="tech-badge">Characterization Technique</div>
+        <h3>Energy Dispersive X-Ray Spectroscopy (EDX / EDS / EDXA)</h3>
+        <p>EDX identifies and quantifies the <strong>elemental composition</strong> of nanomaterials by detecting characteristic X-rays emitted when the sample is bombarded with an electron beam. It is almost always paired with SEM or TEM.</p>
+      </div>
+
+      <h3>Physical Principle of EDX</h3>
+      <div class="flow-wrap">
+        <div class="flow-step">High-energy electrons from SEM/TEM hit sample</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Inner-shell electrons in atoms are ejected</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Outer-shell electrons fill the vacancy</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Energy difference emitted as characteristic X-rays</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Each element emits unique X-ray energy → element identified</div>
+      </div>
+
+      <div class="box def-box">
+        <div class="box-label">Key Concept</div>
+        <p>Every element emits X-rays at unique, characteristic energies (like an elemental fingerprint). The intensity of these X-rays tells you <strong>how much</strong> of each element is present (quantitative analysis).</p>
+      </div>
+
+      <h3>EDX in Combination with SEM and TEM</h3>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <div class="compare-card-head purple">SEM-EDX</div>
+          <ul>
+            <li>Most common combination</li>
+            <li>SEM provides surface morphology image</li>
+            <li>EDX gives elemental composition of surface regions</li>
+            <li>Can map element distribution across surface area</li>
+            <li>Spatial resolution: ~1 µm (limited by beam-sample interaction volume)</li>
+          </ul>
+        </div>
+        <div class="compare-card">
+          <div class="compare-card-head teal">TEM-EDX</div>
+          <ul>
+            <li>Higher resolution elemental mapping</li>
+            <li>Probes internal nanostructure composition</li>
+            <li>Spatial resolution: &lt;1 nm (sub-nanometer)</li>
+            <li>Can map individual atomic columns in STEM mode</li>
+            <li>Essential for core-shell nanoparticle characterization</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Applications of EDX in Nanochemistry</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Application Area</th><th>How EDX Helps</th></tr></thead>
+          <tbody>
+            <tr><td>Composite Nanoparticles</td><td>Characterizes composition and distribution of elements in hybrid nanostructures</td></tr>
+            <tr><td>Nanoparticle Synthesis</td><td>Confirms successful formation and desired elemental presence in product</td></tr>
+            <tr><td>Material Science</td><td>Links composition to mechanical, electrical, or optical behavior</td></tr>
+            <tr><td>Drug Delivery</td><td>Tracks distribution of nanoparticles within cells or tissues</td></tr>
+            <tr><td>Environmental Studies</td><td>Detects and quantifies heavy metals in environmental nanomaterials</td></tr>
+            <tr><td>Medical Devices</td><td>Investigates elemental composition of corrosion products (metallosis)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Advantages &amp; Limitations</h3>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <div class="compare-card-head green">✅ Advantages</div>
+          <ul>
+            <li>Fast and relatively easy to perform</li>
+            <li>Works for metals, ceramics, polymers</li>
+            <li>Provides both qualitative (identification) and quantitative (concentration) data</li>
+            <li>Can create element distribution maps (EDX mapping)</li>
+          </ul>
+        </div>
+        <div class="compare-card">
+          <div class="compare-card-head gold">⚠️ Limitations</div>
+          <ul>
+            <li>Limited spatial resolution in SEM-EDX (~1 µm)</li>
+            <li>Non-conductors need conductive coating (may introduce artifacts)</li>
+            <li>Poor detection of very light elements (H, He, Li)</li>
+            <li>Overlapping X-ray peaks for some elements can cause confusion</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>EDX detects characteristic X-rays → identifies and quantifies elements in nanomaterials</li>
+          <li>Always paired with SEM (surface analysis) or TEM (internal analysis)</li>
+          <li>SEM-EDX: spatial resolution ~1 µm; TEM-EDX: sub-nanometer resolution</li>
+          <li>Applications: nanoparticle synthesis confirmation, drug delivery tracking, environmental heavy metal detection</li>
+          <li>Limitation: poor for light elements (H, He, Li); non-conductors need coating</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 8: ELECTRO-OPTICAL -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="electro-optical">
+      <div class="section-header">
+        <div class="section-number">8</div>
+        <div class="section-title-wrap">
+          <h2>Electro-Optical Characterization</h2>
+          <div class="subtitle">How electric fields change optical properties · Techniques · Applications</div>
+        </div>
+      </div>
+
+      <div class="box def-box">
+        <div class="box-label">Definition</div>
+        <p>Electro-optical characterization in nanochemistry studies how nanomaterials interact with electric and magnetic fields, and how these interactions affect their optical properties (absorption, emission, scattering, refractive index).</p>
+      </div>
+
+      <h3>Spectroscopic Techniques</h3>
+
+      <h4>1. UV-Vis Spectroscopy</h4>
+      <p>Measures absorption and transmission of UV and visible light by nanomaterials. Provides information about:</p>
+      <ul>
+        <li>Electronic structure and bandgap</li>
+        <li>Particle size (via plasmon resonance peak position for metal NPs)</li>
+        <li>Concentration of nanomaterial in solution (Beer-Lambert law)</li>
+      </ul>
+      <div class="formula-box">
+        <div class="box-label">Beer-Lambert Law (UV-Vis)</div>
+        <div class="formula-text">A = εcl<br><br>A = absorbance | ε = molar extinction coefficient | c = concentration | l = path length</div>
+        <div class="formula-note">Used to determine nanoparticle concentration in solution</div>
+      </div>
+
+      <h4>2. Photoluminescence (PL) Spectroscopy</h4>
+      <p>Measures light emitted by nanomaterials after absorbing photons. Especially important for:</p>
+      <ul>
+        <li>Quantum dots: PL reveals exact bandgap and size distribution</li>
+        <li>Detecting defects (trap states cause broader emission)</li>
+        <li>Energy level analysis</li>
+      </ul>
+
+      <h4>3. Raman Spectroscopy</h4>
+      <p>Analyzes scattered light from nanomaterials. When monochromatic laser light hits the material, most photons scatter elastically (Rayleigh) but a tiny fraction scatter inelastically (Raman). Raman shift reveals vibrational modes and molecular structure.</p>
+      <ul>
+        <li>Graphene: characteristic G band (~1580 cm⁻¹) and 2D band (~2700 cm⁻¹)</li>
+        <li>CNTs: radial breathing mode (RBM) identifies nanotube diameter</li>
+        <li>Identifies crystalline vs. amorphous phases</li>
+      </ul>
+
+      <h3>Electro-Optical Measurement Methods</h3>
+
+      <h4>Electro-optic Modulation</h4>
+      <p>Using applied electric fields to change optical properties of nanomaterials. The refractive index or birefringence changes with field — used in optical switches and modulators.</p>
+
+      <h4>Electro-optic Kerr Effect</h4>
+      <p>The change in refractive index of a material proportional to the square of the electric field (E²). Important for nanomaterial-based optical devices.</p>
+      <div class="formula-box">
+        <div class="box-label">Kerr Effect</div>
+        <div class="formula-text">Δn = λ·K·E²<br><br>Δn = change in refractive index | λ = wavelength | K = Kerr constant | E = electric field</div>
+      </div>
+
+      <h4>Dielectric Spectroscopy</h4>
+      <p>Measures how nanomaterials polarize in response to oscillating electric fields across a wide range of frequencies. Reveals polarization mechanisms, charge transport, and interfacial effects.</p>
+
+      <h3>Near-field Scanning Optical Microscopy (NSOM/SNOM)</h3>
+      <p>Uses a nanoscale optical probe (aperture &lt;100 nm) to image optical properties at spatial resolutions beyond the diffraction limit. Enables nanoscale optical imaging — impossible with conventional optics.</p>
+
+      <h3>Applications of Electro-optical Characterization</h3>
+      <div class="card-grid">
+        <div class="prop-card">
+          <div class="icon">💡</div>
+          <h4>Nanophotonics</h4>
+          <p>Design materials for optical sensors, switches, data storage</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🧫</div>
+          <h4>Biosensors</h4>
+          <p>Optical response linked to electrical changes when biomolecules bind</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">📺</div>
+          <h4>Displays &amp; Lighting</h4>
+          <p>Tunable optical properties for advanced display tech and efficient LEDs</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">☀️</div>
+          <h4>Photovoltaics</h4>
+          <p>Light-nanomaterial interaction for enhanced solar energy conversion</p>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>Electro-optical characterization = studying how electric/magnetic fields affect optical properties of NMs</li>
+          <li>UV-Vis: bandgap, concentration; PL: energy levels, defects; Raman: vibrational modes, crystal structure</li>
+          <li>Kerr effect: electric field changes refractive index (Δn = λKE²)</li>
+          <li>Dielectric spectroscopy: polarization and charge behavior vs frequency</li>
+          <li>Applications: nanophotonics, biosensors, displays, solar cells, catalysis, drug delivery</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 9: CURRENT TRENDS -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="trends">
+      <div class="section-header">
+        <div class="section-number">9</div>
+        <div class="section-title-wrap">
+          <h2>Current Trends in Micro to Nanoscale Analysis</h2>
+          <div class="subtitle">Advanced imaging · AI in nano analysis · Emerging methods</div>
+        </div>
+      </div>
+
+      <p>Modern nanoscale analysis is rapidly evolving. Key trends focus on <strong>higher resolution, multimodal approaches</strong> (combining multiple techniques), and <strong>AI-assisted analysis</strong>.</p>
+
+      <h3>Advanced Imaging Techniques (Ultra-Resolution Visualization)</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Technique</th><th>How it Works</th><th>What it Reveals</th><th>Special Feature</th></tr></thead>
+          <tbody>
+            <tr><td><strong>AFM</strong> (Atomic Force Microscopy)</td><td>Sharp probe tip physically "feels" the surface; measures force between tip and sample</td><td>3D surface topography, roughness, mechanical properties, particle size</td><td>Works in air, vacuum, or liquid; no vacuum needed</td></tr>
+            <tr><td><strong>STM</strong> (Scanning Tunneling Microscopy)</td><td>Measures quantum tunneling current between conducting tip and sample</td><td>Electronic properties, individual atom positions, local density of states</td><td>Can image and move individual atoms; only for conductors</td></tr>
+            <tr><td><strong>Cryo-EM</strong> (Cryo-Electron Microscopy)</td><td>Samples flash-frozen in vitreous ice; TEM used to image</td><td>3D structure of biological macromolecules (proteins, viruses) in near-native state</td><td>No staining needed; preserves biological structure; won Nobel Prize 2017</td></tr>
+            <tr><td><strong>HRTEM</strong> (High-Resolution TEM)</td><td>Phase-contrast imaging of transmitted electrons</td><td>Internal structure, lattice fringes, crystal defects at atomic scale</td><td>Sub-Ångström resolution; visualizes individual atomic columns</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>AI &amp; Machine Learning in Nano Analysis</h3>
+      <p>The massive datasets generated by modern nano instruments are increasingly analyzed by artificial intelligence:</p>
+      <ul>
+        <li><strong>Automatic defect detection:</strong> AI identifies defects in TEM/SEM images faster and more accurately than humans</li>
+        <li><strong>Property prediction:</strong> Machine learning predicts material properties from composition/structure data</li>
+        <li><strong>Image analysis:</strong> Deep learning segments nanoparticles, measures size distributions automatically</li>
+        <li><strong>Spectroscopy:</strong> AI identifies phases and impurities in XRD/Raman patterns</li>
+        <li><strong>Autonomous synthesis:</strong> AI-controlled robotic synthesis for nanoparticle optimization</li>
+      </ul>
+
+      <div class="box info-box">
+        <div class="box-label">Trend: Multimodal Analysis</div>
+        <p>Modern nanochemistry increasingly combines multiple techniques on the same sample — e.g., XRD for phase + TEM for morphology + EDX for composition + Raman for bonding — giving a complete, multi-dimensional picture of the nanomaterial.</p>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>AFM: physical surface probing → 3D topography and mechanical properties (works in liquid)</li>
+          <li>STM: quantum tunneling → atomic-scale electronic mapping (conductors only)</li>
+          <li>Cryo-EM: flash-frozen biological samples → 3D protein/virus structure (Nobel Prize 2017)</li>
+          <li>HRTEM: sub-Ångström lattice fringe imaging → crystal defects at atomic scale</li>
+          <li>AI: automated defect detection, pattern recognition, property prediction in nano datasets</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 10: GREEN NANO -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="green">
+      <div class="section-header">
+        <div class="section-number">10</div>
+        <div class="section-title-wrap">
+          <h2>Green Nanomaterials &amp; Nanotechnology</h2>
+          <div class="subtitle">Eco-conscious synthesis · Biosynthesis · Sustainable applications</div>
+        </div>
+      </div>
+
+      <div class="box def-box">
+        <div class="box-label">Definition</div>
+        <p>Green Nanotechnology merges <strong>green chemistry principles</strong> with nanoscience to create sustainable, non-toxic, and environmentally friendly nanomaterials using renewable resources, non-toxic chemicals, and energy-efficient processes.</p>
+      </div>
+
+      <h3>Key Principles of Green Nanomaterials</h3>
+      <div class="card-grid">
+        <div class="prop-card">
+          <div class="icon">☘️</div>
+          <h4>Low/No Toxicity</h4>
+          <p>Non-toxic to humans and ecosystems throughout life cycle</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">♻️</div>
+          <h4>Biodegradable/Recyclable</h4>
+          <p>Breaks down naturally or can be reclaimed after use</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🌱</div>
+          <h4>Sustainable Raw Materials</h4>
+          <p>Plant extracts, biopolymers, and renewable biological sources</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">⚡</div>
+          <h4>Energy-Efficient Synthesis</h4>
+          <p>Minimal energy input; avoids harsh conditions (high temp/pressure)</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🗑️</div>
+          <h4>Minimal Waste</h4>
+          <p>Atom-efficient reactions; avoids hazardous byproducts</p>
+        </div>
+      </div>
+
+      <h3>Green Synthesis Methods</h3>
+
+      <h4>1. Biological Methods (Biosynthesis) — Most Important</h4>
+      <p>Using living organisms or their extracts to reduce metal ions into nanoparticles. This is called "green synthesis" or "biogenic synthesis".</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Biological Source</th><th>Mechanism</th><th>Example NM Produced</th></tr></thead>
+          <tbody>
+            <tr><td>Plant extracts (neem, aloe vera, tulsi, green tea)</td><td>Phytochemicals (flavonoids, terpenoids) act as reducing and capping agents</td><td>Ag NPs, Au NPs, ZnO NPs</td></tr>
+            <tr><td>Bacteria (e.g., Pseudomonas, Bacillus)</td><td>Enzymatic reduction of metal ions</td><td>Ag NPs, Fe₃O₄ NPs</td></tr>
+            <tr><td>Fungi (e.g., Aspergillus)</td><td>Extracellular enzyme secretion reduces metal ions</td><td>Ag NPs, Au NPs</td></tr>
+            <tr><td>Algae</td><td>Photosynthetic pigments act as reductants</td><td>Au NPs, Ag NPs</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>2. Microwave-Assisted Synthesis</h4>
+      <p>Microwave irradiation provides uniform, rapid heating throughout the reaction mixture. Benefits: fast reaction times (minutes vs hours), uniform particle size, reduced energy consumption, and less solvent needed.</p>
+
+      <h4>3. Ultrasound (Sonochemistry)</h4>
+      <p>High-frequency ultrasound creates cavitation — tiny bubbles that collapse violently, generating intense local pressure (>1000 atm) and temperature (>5000°C) for microseconds. This drives nanoparticle formation without bulk heating.</p>
+
+      <h4>4. Supercritical Fluids</h4>
+      <p>CO₂ above its critical point (31°C, 73 atm) behaves as both liquid (good solvent) and gas (easy removal). Replaces harmful organic solvents. Produces pure nanoparticles with no solvent residue.</p>
+
+      <h3>Examples of Green Nanomaterials</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nanomaterial</th><th>Green Source</th><th>Application</th></tr></thead>
+          <tbody>
+            <tr><td>Silver NPs</td><td>Neem, Aloe vera extract</td><td>Antibacterial coatings, wound dressings</td></tr>
+            <tr><td>Gold NPs</td><td>Cinnamon, Turmeric extract</td><td>Cancer therapy (photothermal)</td></tr>
+            <tr><td>Zinc Oxide NPs</td><td>Green tea extract</td><td>Sunscreens, antimicrobial agents</td></tr>
+            <tr><td>Iron Oxide NPs</td><td>Bacteria/fungi biosynthesis</td><td>Environmental remediation, MRI contrast</td></tr>
+            <tr><td>Cellulose nanofibers</td><td>Plant cell wall fibers</td><td>Biodegradable packaging, composites</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Applications of Green Nanotechnology</h3>
+      <div class="card-grid">
+        <div class="prop-card">
+          <div class="icon">💧</div>
+          <h4>Environmental</h4>
+          <p>Water purification nanofilters, air pollution control, oil spill cleanup using magnetic NMs</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">💊</div>
+          <h4>Medical</h4>
+          <p>Drug delivery with biodegradable nanoparticles, antimicrobial coatings</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🌾</div>
+          <h4>Agriculture</h4>
+          <p>Nano-fertilizers and nano-pesticides with slow-release delivery, reducing overuse</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🔋</div>
+          <h4>Energy</h4>
+          <p>Improved solar cells, fuel cells, and batteries using green nanomaterials</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🧴</div>
+          <h4>Cosmetics</h4>
+          <p>Natural nanoparticles in sunscreens, skincare, and beauty products</p>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>Green nano = eco-friendly synthesis using renewable, non-toxic resources</li>
+          <li>Biosynthesis uses plant extracts/bacteria/fungi to reduce metal ions into NPs</li>
+          <li>Microwave synthesis = fast, uniform heating; Sonochemistry = cavitation energy; Supercritical CO₂ = solvent-free</li>
+          <li>Examples: neem → Ag NPs (antibacterial); turmeric → Au NPs (cancer therapy)</li>
+          <li>Applications: water purification, drug delivery, nano-fertilizers, solar cells</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 11: FABRICATION -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="fabrication">
+      <div class="section-header">
+        <div class="section-number">11</div>
+        <div class="section-title-wrap">
+          <h2>Fabrication of Nanomaterials</h2>
+          <div class="subtitle">Top-down vs Bottom-up approaches · Techniques · Comparison</div>
+        </div>
+      </div>
+
+      <p>Fabrication means creating nanomaterials with structures between 1–100 nm. There are two fundamentally opposite philosophies:</p>
+
+      <div class="compare-grid">
+        <div class="compare-card">
+          <div class="compare-card-head purple">⬇️ Top-Down Approach</div>
+          <ul>
+            <li>"Cutting from big to small"</li>
+            <li>Bulk material is physically or chemically broken down into nanoscale structures</li>
+            <li>Like sculpting — removing material to reveal the nanostructure</li>
+            <li>Useful for large-area nanostructures (semiconductors, chips)</li>
+          </ul>
+        </div>
+        <div class="compare-card">
+          <div class="compare-card-head teal">⬆️ Bottom-Up Approach</div>
+          <ul>
+            <li>"Building from atoms to nano"</li>
+            <li>Nanoparticles assembled from individual atoms or molecules</li>
+            <li>Like building a brick wall — atomic precision</li>
+            <li>High purity, precise size control, uniform products</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Top-Down Techniques</h3>
+
+      <h4>1. Mechanical Milling (Ball Milling)</h4>
+      <p>High-energy balls grind bulk material into nanoparticles inside a rotating drum. The repeated fracturing, cold-welding, and re-fracturing reduces particle size to the nanoscale.</p>
+      <ul>
+        <li><strong>Product:</strong> Metallic and ceramic nanoparticles</li>
+        <li><strong>Advantage:</strong> Simple, scalable, no chemicals needed</li>
+        <li><strong>Limitation:</strong> Wide size distribution, possible contamination from mill</li>
+      </ul>
+
+      <h4>2. Lithography</h4>
+      <p>Used primarily in semiconductor manufacturing to create nanocircuits and nanopatterns on substrates.</p>
+      <ul>
+        <li><strong>Photolithography:</strong> UV light through patterned mask exposes photoresist → etched to create patterns (resolution ~100 nm)</li>
+        <li><strong>Electron-Beam Lithography (EBL):</strong> Focused electron beam writes patterns directly → resolution down to ~2 nm</li>
+        <li><strong>Nanoimprint Lithography:</strong> Hard mold pressed into polymer → transfers nanopattern</li>
+      </ul>
+
+      <h4>3. Chemical/Plasma Etching</h4>
+      <p>Removing layers of material using reactive chemicals or plasma. Allows precise depth control. Used in semiconductor fabrication to create nanoscale trenches, pillars, and features.</p>
+
+      <h3>Bottom-Up Techniques</h3>
+
+      <h4>1. Sol-Gel Process</h4>
+      <div class="flow-wrap">
+        <div class="flow-step">Metal alkoxide precursor in solution</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Hydrolysis &amp; condensation</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Sol (colloidal solution)</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Gel formation</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Drying/Calcination</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Nanoparticles/nanoporous materials</div>
+      </div>
+      <p>Produces silica, titania, alumina nanomaterials. Excellent for controlling composition and pore structure.</p>
+
+      <h4>2. Chemical Vapor Deposition (CVD)</h4>
+      <p>Gaseous precursor molecules flow into a reactor, react at the hot substrate surface, and deposit as a solid thin film or nanostructure.</p>
+      <ul>
+        <li>Used to grow carbon nanotubes, graphene, and semiconductor nanostructures</li>
+        <li>Extremely precise thickness control (monolayer precision)</li>
+        <li>Used in electronics industry for chip manufacturing</li>
+      </ul>
+
+      <h4>3. Self-Assembly</h4>
+      <p>Molecules spontaneously organize themselves into ordered nanostructures driven by non-covalent forces (hydrogen bonding, van der Waals, electrostatic). No external direction needed — the molecular structure programs the assembly.</p>
+      <ul>
+        <li>Examples: DNA origami, lipid bilayers, block copolymer nanostructures</li>
+        <li>Used to create complex 3D nanoarchitectures</li>
+      </ul>
+
+      <h4>4. Precipitation (Chemical Reduction)</h4>
+      <p>Metal ions in solution are chemically reduced to form zero-valent metal nanoparticles. A capping agent (stabilizer) is added to prevent agglomeration and control size.</p>
+      <div class="formula-box">
+        <div class="box-label">Example Reaction: Silver NPs</div>
+        <div class="formula-text">AgNO₃ + NaBH₄ → Ag⁰ (nanoparticles) + NaNO₃ + B compounds<br><br>Ag⁺ ions + reducing agent → Ag⁰ atoms → nucleation → growth → Ag NPs</div>
+      </div>
+
+      <h3>Top-Down vs Bottom-Up: Comprehensive Comparison</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Parameter</th><th>Top-Down</th><th>Bottom-Up</th></tr></thead>
+          <tbody>
+            <tr><td>Starting Material</td><td>Bulk material</td><td>Atoms or molecules</td></tr>
+            <tr><td>Size Control</td><td>Moderate</td><td>Excellent (atomic precision)</td></tr>
+            <tr><td>Purity</td><td>Lower (contamination possible)</td><td>Higher</td></tr>
+            <tr><td>Scalability</td><td>Good for large areas</td><td>Challenging at large scale</td></tr>
+            <tr><td>Cost</td><td>Generally higher equipment cost</td><td>Variable; often lower</td></tr>
+            <tr><td>Examples</td><td>Ball milling, lithography, etching</td><td>Sol-gel, CVD, self-assembly, precipitation</td></tr>
+            <tr><td>Best for</td><td>Semiconductor patterns, large quantity NPs</td><td>Precise nanostructures, quantum dots, thin films</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>Top-down: bulk → nano (ball milling, lithography, etching) — good for large-area patterns</li>
+          <li>Bottom-up: atoms → nano (sol-gel, CVD, self-assembly, precipitation) — better size control and purity</li>
+          <li>Sol-gel: metal alkoxide → hydrolysis → gel → nanoparticles</li>
+          <li>CVD: gaseous precursors deposit as solid nanostructures; used for CNTs and graphene</li>
+          <li>Self-assembly: molecules spontaneously organize via non-covalent forces</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 12: NANOCOMPOSITES -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="nanocomposites">
+      <div class="section-header">
+        <div class="section-number">12</div>
+        <div class="section-title-wrap">
+          <h2>Nanocomposites</h2>
+          <div class="subtitle">Matrix + Nanofiller · Types · Properties · Applications</div>
+        </div>
+      </div>
+
+      <div class="box def-box">
+        <div class="box-label">Definition</div>
+        <p>Nanocomposites are materials made by combining <strong>nanoparticles (nanofiller)</strong> with <strong>bulk materials (matrix)</strong> — such as polymers, metals, or ceramics — to create a material with improved or entirely new properties that neither component possesses alone.</p>
+      </div>
+
+      <h3>Basic Structure</h3>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <div class="compare-card-head purple">Matrix (Base Material)</div>
+          <ul>
+            <li>Provides the bulk structure and holds everything together</li>
+            <li>Can be: Polymer (plastic), Metal, or Ceramic</li>
+            <li>Properties: lightweight (polymer), strong (metal), heat-resistant (ceramic)</li>
+          </ul>
+        </div>
+        <div class="compare-card">
+          <div class="compare-card-head teal">Nanofiller (Reinforcement)</div>
+          <ul>
+            <li>Nanoparticles dispersed throughout matrix</li>
+            <li>Can be: CNTs, graphene, nanoclay, nano-silica, quantum dots</li>
+            <li>Very small amounts (1–5 wt%) create dramatic property improvements</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Types of Nanocomposites</h3>
+
+      <h4>1. Polymer Matrix Nanocomposites (PMNCs)</h4>
+      <p>Most widely studied and commercially used. A polymer matrix reinforced with nanofillers.</p>
+      <ul>
+        <li>Matrix: plastics (nylon, epoxy, polyethylene)</li>
+        <li>Fillers: nanoclay, carbon nanotubes, graphene, nano-silica</li>
+        <li>Uses: packaging, automotive parts, flexible electronics, aerospace</li>
+        <li>Even 1–3 wt% nanoclay dramatically improves gas barrier properties</li>
+      </ul>
+
+      <h4>2. Metal Matrix Nanocomposites (MMNCs)</h4>
+      <p>Metal matrix with ceramic or carbon nanoparticle reinforcement.</p>
+      <ul>
+        <li>Matrix: aluminum, titanium, copper</li>
+        <li>Fillers: SiC NPs, CNTs, Al₂O₃ NPs</li>
+        <li>Uses: aerospace, automotive, defense (high strength, wear resistance)</li>
+      </ul>
+
+      <h4>3. Ceramic Matrix Nanocomposites (CMNCs)</h4>
+      <p>Ceramic matrix with nano-reinforcements to overcome brittleness.</p>
+      <ul>
+        <li>Matrix: Al₂O₃, Si₃N₄, ZrO₂</li>
+        <li>Fillers: CNTs, SiC whiskers, ZrO₂ NPs</li>
+        <li>Uses: cutting tools, thermal barrier coatings, biomedical implants</li>
+      </ul>
+
+      <h4>4. Carbon-Based Nanocomposites</h4>
+      <p>Graphene, CNTs, or fullerenes as fillers in any matrix type.</p>
+      <ul>
+        <li>Exceptional electrical and thermal conductivity enhancement</li>
+        <li>Uses: sensors, flexible electronics, EMI shielding, batteries</li>
+      </ul>
+
+      <h4>5. Hybrid Nanocomposites</h4>
+      <p>Two or more different types of nanofillers in one matrix.</p>
+      <ul>
+        <li>Example: CNTs + nanoclay in polymer → combines electrical conductivity with gas barrier</li>
+        <li>Uses: advanced aerospace, biomedical tools</li>
+      </ul>
+
+      <h3>Properties of Nanocomposites</h3>
+      <div class="card-grid">
+        <div class="prop-card">
+          <div class="icon">💪</div>
+          <h4>High Strength-to-Weight</h4>
+          <p>CNT-reinforced composites can be stronger than steel at a fraction of the weight</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🌡️</div>
+          <h4>Thermal Conductivity</h4>
+          <p>Graphene fillers dramatically improve heat dissipation in polymer matrices</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">⚡</div>
+          <h4>Electrical Properties</h4>
+          <p>Carbon-based fillers create conductive pathways in insulating polymers (percolation threshold)</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🛡️</div>
+          <h4>Barrier Properties</h4>
+          <p>Nanoclay platelets create tortuous path for gases → dramatically reduced permeability</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🦠</div>
+          <h4>Antibacterial</h4>
+          <p>Ag NP-loaded composites inhibit bacterial growth on surfaces</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🔄</div>
+          <h4>Chemical Resistance</h4>
+          <p>Nano-silica reinforcement improves resistance to solvents and corrosion</p>
+        </div>
+      </div>
+
+      <h3>Major Applications of Nanocomposites</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Field</th><th>Application</th><th>Nanofiller Used</th></tr></thead>
+          <tbody>
+            <tr><td>Automotive</td><td>Lightweight body parts, bumpers, fuel systems → better fuel efficiency</td><td>Nanoclay, CNTs in polymer matrix</td></tr>
+            <tr><td>Aerospace</td><td>Heat-resistant panels, high-strength components, lightweight frames</td><td>CNTs, graphene in carbon fiber composites</td></tr>
+            <tr><td>Electronics</td><td>Flexible displays, batteries, electromagnetic (EMI) shielding, conductive films</td><td>Graphene, CNTs, Ag NPs</td></tr>
+            <tr><td>Biomedical</td><td>Bone implants, dental fillers, drug delivery, wound dressings</td><td>Hydroxyapatite NPs, Ag NPs, CNTs</td></tr>
+            <tr><td>Packaging</td><td>Food packaging with improved barrier (moisture, oxygen, bacteria)</td><td>Nanoclay, ZnO NPs, Ag NPs</td></tr>
+            <tr><td>Construction</td><td>High-strength concrete, anti-corrosion coatings</td><td>Nano-SiO₂, nano-TiO₂</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box note-box">
+        <div class="box-label">Why Such Small Amounts Work So Well</div>
+        <p>At 1–5 wt% filler, nanoparticles create enormous interfacial area between filler and matrix. This large interface is where all the property enhancement happens. With nano-sized fillers, you get orders of magnitude more interface than with micro-sized fillers at the same weight fraction.</p>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>Nanocomposite = matrix (polymer/metal/ceramic) + nanofiller (CNTs/graphene/nanoclay)</li>
+          <li>Types: Polymer (PMNCs), Metal (MMNCs), Ceramic (CMNCs), Carbon-based, Hybrid</li>
+          <li>Even 1–5 wt% nanofiller creates dramatic improvements due to enormous interfacial area</li>
+          <li>Properties improved: strength, thermal conductivity, electrical conductivity, gas barrier, antibacterial</li>
+          <li>Applications: automotive, aerospace, electronics, biomedical, food packaging</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 13: SEPARATION SCIENCE -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="separation">
+      <div class="section-header">
+        <div class="section-number">13</div>
+        <div class="section-title-wrap">
+          <h2>Separation Science in Nanochemistry</h2>
+          <div class="subtitle">Isolating and purifying nanomaterials from complex mixtures</div>
+        </div>
+      </div>
+
+      <div class="box def-box">
+        <div class="box-label">Definition</div>
+        <p>Separation Science involves techniques and strategies to <strong>separate, isolate, purify, or characterize nanomaterials</strong> — like nanoparticles, nanotubes, quantum dots, and nanoclusters — from mixtures, unreacted precursors, or unwanted byproducts.</p>
+      </div>
+
+      <h3>Why Separation is Critical in Nanochemistry</h3>
+      <p>Nanomaterials often exist in complex mixtures after synthesis. Size, shape, surface properties, and composition critically affect their performance. Without precise separation:</p>
+      <ul>
+        <li>Products may be impure or inconsistent in properties</li>
+        <li>Toxic or unstable byproducts might remain</li>
+        <li>Applications in medicine, electronics, or catalysis may fail due to heterogeneity</li>
+        <li>Biological studies require mono-disperse (uniform size) nanoparticles</li>
+      </ul>
+
+      <h3>Separation Techniques in Nanochemistry</h3>
+
+      <h4>1. Centrifugation</h4>
+      <p>Exploits differences in density and size. Sample placed in centrifuge tube and spun at high speed. Larger/denser particles sediment faster.</p>
+      <ul>
+        <li><strong>Standard centrifugation:</strong> separates large aggregates and unbound reagents</li>
+        <li><strong>Ultracentrifugation (100,000–500,000 × g):</strong> separates particles differing by just a few nm</li>
+        <li><strong>Density gradient centrifugation:</strong> particles band at their isopycnic point in a sucrose/CsCl gradient — separates by size AND density simultaneously</li>
+      </ul>
+
+      <h4>2. Membrane Filtration / Ultrafiltration</h4>
+      <p>Semipermeable membranes with defined pore sizes allow selective passage of molecules based on size exclusion.</p>
+      <ul>
+        <li>Nanoporous membranes (0.1–100 nm pores) enable size-selective separation</li>
+        <li>Removes small molecules, free ligands, ions from nanoparticle suspensions</li>
+        <li>Dialysis bags use this principle for gentle, prolonged purification</li>
+      </ul>
+
+      <h4>3. Chromatography</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>Separation Principle</th><th>Application</th></tr></thead>
+          <tbody>
+            <tr><td>Size Exclusion Chromatography (SEC)</td><td>Separates by hydrodynamic volume — larger particles elute first</td><td>Size-sorting nanoparticles, polymer-NP conjugates</td></tr>
+            <tr><td>Affinity Chromatography</td><td>Separates based on specific surface ligand-receptor interactions</td><td>Antibody-functionalized NPs, targeted drug carriers</td></tr>
+            <tr><td>Thin Layer Chromatography (TLC)</td><td>Surface-bound molecules travel different distances on plate</td><td>Quality control of surface-modified NPs</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>4. Electrophoresis</h4>
+      <p>Uses electric field to separate charged particles. Charged nanoparticles move toward oppositely charged electrode at rates depending on charge-to-size ratio.</p>
+      <ul>
+        <li><strong>Gel electrophoresis (agarose/polyacrylamide):</strong> separates nanoparticles and nanoclusters by size and charge — like DNA electrophoresis</li>
+        <li>Can resolve gold nanoclusters differing by just one atom!</li>
+      </ul>
+
+      <h4>5. Dialysis</h4>
+      <p>Sample placed inside semipermeable membrane tube, submerged in large volume of buffer. Small molecules (free ligands, ions, solvents) diffuse out while nanoparticles (too large to pass membrane) remain inside. Slow but gentle — preserves nanoparticle stability.</p>
+
+      <div class="box example-box">
+        <div class="box-label">Real Example: Gold Nanoparticle Purification</div>
+        <p>After synthesis of Au NPs: (1) Centrifugation removes large aggregates and precipitates them. (2) Dialysis removes free citrate ligands and unreacted HAuCl₄. (3) Size-exclusion chromatography refines into narrow size fractions. Result: pure, mono-disperse Au NPs ready for application.</p>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>Separation science purifies and isolates NMs from complex post-synthesis mixtures</li>
+          <li>Centrifugation: size/density-based sedimentation; ultracentrifugation resolves nm differences</li>
+          <li>Membrane filtration/dialysis: size exclusion removes small molecules from NP suspensions</li>
+          <li>SEC chromatography: separates by hydrodynamic volume (size); affinity chromatography: by surface chemistry</li>
+          <li>Gel electrophoresis: separates charged NPs by size/charge — can resolve single-atom differences in nanoclusters</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 14: CATALYSIS -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="catalysis">
+      <div class="section-header">
+        <div class="section-number">14</div>
+        <div class="section-title-wrap">
+          <h2>Catalysis in Nanochemistry</h2>
+          <div class="subtitle">Nanocatalysts · Efficiency · Types · Examples</div>
+        </div>
+      </div>
+
+      <div class="box def-box">
+        <div class="box-label">Definition</div>
+        <p>Catalysis in nanochemistry refers to the use of <strong>nanomaterials (nanoparticles) to accelerate chemical reactions</strong>, often with greater efficiency, selectivity, and reusability than traditional bulk catalysts.</p>
+      </div>
+
+      <h3>Why Nanoparticles are Such Excellent Catalysts</h3>
+      <p>Three nanoscale properties make nanoparticles exceptional catalysts:</p>
+      <ul>
+        <li><strong>High surface area-to-volume ratio:</strong> More active surface sites per gram than bulk material</li>
+        <li><strong>Tunable surface chemistry:</strong> Surface can be modified to be selective for specific reactions</li>
+        <li><strong>Quantum size effects:</strong> Electronic structure of NPs differs from bulk — different (often better) catalytic activity</li>
+      </ul>
+
+      <div class="box note-box">
+        <div class="box-label">The Gold Paradox — Most Stunning Nano Example</div>
+        <p>Bulk gold is completely inert — that's why gold jewelry doesn't tarnish. But gold nanoparticles below 5 nm become extremely powerful catalysts for CO oxidation even at room temperature (bulk gold requires 600°C+). This dramatic property change is purely a nanoscale phenomenon.</p>
+      </div>
+
+      <h3>Types of Nanocatalysis</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>Description</th><th>Example</th><th>Advantage</th></tr></thead>
+          <tbody>
+            <tr><td>Homogeneous</td><td>Nanocatalyst in same phase as reactants (usually solution)</td><td>Colloidal gold NPs in solution for oxidation reactions</td><td>Better contact between catalyst and reactants; easy to control</td></tr>
+            <tr><td>Heterogeneous</td><td>Nanocatalyst in different phase from reactants (solid catalyst + liquid/gas reactants)</td><td>Pt NPs on carbon for hydrogenation; TiO₂ NPs for photocatalysis</td><td>Easy catalyst separation and reuse; industrially practical</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Important Nanocatalysts and Their Reactions</h3>
+
+      <h4>Gold Nanoparticles (Au NPs)</h4>
+      <ul>
+        <li>CO oxidation at room temperature (critical for car catalytic converters)</li>
+        <li>Selective hydrogenation of unsaturated compounds</li>
+        <li>Must be below 5 nm and supported on metal oxide (TiO₂, Fe₂O₃)</li>
+      </ul>
+
+      <h4>Titanium Dioxide Nanoparticles (TiO₂)</h4>
+      <ul>
+        <li><strong>Photocatalysis:</strong> Absorbs UV light → generates electron-hole pairs → degrade organic pollutants</li>
+        <li>Used for dye degradation in wastewater treatment</li>
+        <li>Self-cleaning surfaces and glass coatings</li>
+        <li>Water splitting for hydrogen production (future clean energy)</li>
+      </ul>
+      <div class="formula-box">
+        <div class="box-label">TiO₂ Photocatalysis Mechanism</div>
+        <div class="formula-text">
+          TiO₂ + hν (UV) → e⁻ (conduction band) + h⁺ (valence band)<br>
+          h⁺ + H₂O → •OH (hydroxyl radical) — powerful oxidant<br>
+          e⁻ + O₂ → •O₂⁻ (superoxide) — another oxidant<br>
+          •OH + organic pollutant → CO₂ + H₂O (degradation)
+        </div>
+      </div>
+
+      <h4>Platinum Nanoparticles (Pt NPs)</h4>
+      <ul>
+        <li>Hydrogen evolution reaction (HER) in water electrolysis</li>
+        <li>Oxygen reduction reaction (ORR) in fuel cells</li>
+        <li>Hydrogenation of alkenes and alkynes</li>
+      </ul>
+
+      <h3>Applications of Nanocatalysis</h3>
+      <div class="card-grid">
+        <div class="prop-card">
+          <div class="icon">🏭</div>
+          <h4>Industrial</h4>
+          <p>Chemical synthesis, petroleum refining, ammonia production (Haber process improvements)</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🌍</div>
+          <h4>Environmental</h4>
+          <p>TiO₂ photocatalysis for wastewater treatment and air purification</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🔋</div>
+          <h4>Energy</h4>
+          <p>Pt NPs in fuel cells; photocatalytic water splitting for H₂ generation</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">💊</div>
+          <h4>Pharmaceutical</h4>
+          <p>Selective synthesis of drug molecules with high enantiomeric purity</p>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>Nanocatalysts: high SA/V ratio + tunable surface + quantum effects = superior catalytic activity</li>
+          <li>Homogeneous catalysis: same phase; Heterogeneous: different phase (solid NP + liquid/gas reactants)</li>
+          <li>Au NPs &lt;5 nm: catalyze CO oxidation at room temp (inert in bulk)</li>
+          <li>TiO₂ NPs: UV light → •OH radical → destroys organic pollutants (photocatalysis)</li>
+          <li>Pt NPs: hydrogen evolution, oxygen reduction in fuel cells</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 15: NANO OPTICS -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="nano-optics">
+      <div class="section-header">
+        <div class="section-number">15</div>
+        <div class="section-title-wrap">
+          <h2>Nano Optics (Nanophotonics)</h2>
+          <div class="subtitle">Light-matter interaction at the nanoscale · Surface plasmons · Applications</div>
+        </div>
+      </div>
+
+      <div class="box def-box">
+        <div class="box-label">Definition</div>
+        <p>Nano optics (nanophotonics) deals with how <strong>light interacts with matter at the nanometer scale</strong>. At this level, light behaves differently due to quantum effects, confinement, and surface plasmon resonance.</p>
+      </div>
+
+      <h3>Key Phenomena in Nano Optics</h3>
+
+      <h4>1. Surface Plasmon Resonance (SPR)</h4>
+      <p>When light hits metal nanoparticles, it excites collective oscillations of free electrons called <strong>plasmons</strong>. The resonance condition depends on particle size, shape, and surrounding medium.</p>
+      <ul>
+        <li>Gold NPs (~20 nm): absorb at ~520 nm → appear red in solution</li>
+        <li>Silver NPs: absorb at ~400 nm → appear yellow</li>
+        <li>Shape change shifts resonance: nanorods have two resonance peaks (transverse and longitudinal)</li>
+      </ul>
+
+      <h4>2. Quantum Confinement Effects</h4>
+      <p>In quantum dots, electrons are confined in all three dimensions. Energy levels are discrete — photons absorbed/emitted at specific, size-dependent wavelengths. Quantum dots have near-perfect, tunable fluorescence.</p>
+
+      <h4>3. Near-Field Enhancement</h4>
+      <p>Metal nanoparticles concentrate electromagnetic field intensity in tiny "hot spots" at their surface. This enhances spectroscopy signals by 10⁶–10¹⁴× in techniques like Surface-Enhanced Raman Spectroscopy (SERS).</p>
+
+      <h3>Applications of Nano Optics</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Application</th><th>Mechanism</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>High-res biomedical imaging</td><td>QD fluorescence, plasmonic enhancement</td><td>Quantum dot-labeled cells and tissues</td></tr>
+            <tr><td>Quantum communication</td><td>Single-photon emission from QDs</td><td>Quantum cryptography devices</td></tr>
+            <tr><td>Energy-efficient LEDs</td><td>QD narrow emission band</td><td>QLED displays (Samsung, LG)</td></tr>
+            <tr><td>Data storage using light</td><td>Near-field optical writing below diffraction limit</td><td>Nano-optical data storage</td></tr>
+            <tr><td>Optical computers</td><td>Light (photons) replace electrons for signal processing</td><td>Future optical computing chips</td></tr>
+            <tr><td>SERS sensing</td><td>Near-field electromagnetic enhancement</td><td>Single-molecule detection</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>Nano optics = light-matter interaction at the nanoscale; phenomena include SPR, quantum confinement, near-field enhancement</li>
+          <li>SPR: electron oscillations in metal NPs → size/shape-dependent color (Au NPs = red)</li>
+          <li>Quantum dots: size-tunable fluorescence → QLED displays, bioimaging</li>
+          <li>SERS: plasmonic near-field enhancement → single-molecule Raman detection</li>
+          <li>Applications: bioimaging, LEDs, quantum communication, optical computing</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 16: NANO ELECTRONICS -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="nanoelectronics">
+      <div class="section-header">
+        <div class="section-number">16</div>
+        <div class="section-title-wrap">
+          <h2>Nano Electronics</h2>
+          <div class="subtitle">Nanoscale devices · Faster computing · Next-gen technology</div>
+        </div>
+      </div>
+
+      <div class="box def-box">
+        <div class="box-label">Definition</div>
+        <p>Nanoelectronics focuses on using <strong>nanomaterials and nanoscale components</strong> to build smaller, faster, and smarter electronic devices that overcome the limits of conventional silicon technology.</p>
+      </div>
+
+      <h3>Why Nanoelectronics?</h3>
+      <p>Moore's Law (transistors double every 2 years) is hitting physical limits with silicon. Below 5 nm silicon transistors, quantum tunneling causes uncontrollable current leakage. Nanomaterials offer solutions:</p>
+      <ul>
+        <li>CNT transistors: can be scaled below 1 nm gate length</li>
+        <li>Graphene: electron mobility 200× higher than silicon</li>
+        <li>Quantum dots: for quantum computing qubits</li>
+      </ul>
+
+      <h3>Key Nanomaterials in Electronics</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nanomaterial</th><th>Key Electronic Property</th><th>Application</th></tr></thead>
+          <tbody>
+            <tr><td>Carbon Nanotubes (CNTs)</td><td>Metallic or semiconducting (chirality-dependent); ballistic electron transport</td><td>Nanotransistors, interconnects, flexible electronics</td></tr>
+            <tr><td>Graphene</td><td>Highest room-temperature electron mobility; zero bandgap (semi-metal)</td><td>Flexible displays, high-freq transistors, sensors</td></tr>
+            <tr><td>Quantum Dots</td><td>Size-tunable electronic/optical properties; single-electron effects</td><td>QLED displays, quantum computing, single-photon emitters</td></tr>
+            <tr><td>Silver Nanowires</td><td>High conductivity, transparent, flexible</td><td>Transparent electrodes for touchscreens, solar cells</td></tr>
+            <tr><td>Molybdenum disulfide (MoS₂)</td><td>Natural bandgap (unlike graphene); monolayer semiconductor</td><td>Ultra-thin transistors, photodetectors</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Applications of Nanoelectronics</h3>
+      <div class="card-grid">
+        <div class="prop-card">
+          <div class="icon">💻</div>
+          <h4>Next-Gen Processors</h4>
+          <p>CNT and graphene transistors smaller and faster than silicon; IBM demonstrated CNT chips at 1 nm scale</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">📱</div>
+          <h4>Flexible Screens &amp; Wearables</h4>
+          <p>Graphene and CNT-based flexible electronics for rollable displays and smart textiles</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🔬</div>
+          <h4>Nano Sensors</h4>
+          <p>Graphene nanoribbons for ultrasensitive gas, biosensor, and environmental monitoring</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🔋</div>
+          <h4>Low-Power Devices</h4>
+          <p>Quantum tunneling transistors (TFETs) that switch with minimal energy</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">⚛️</div>
+          <h4>Quantum Computers</h4>
+          <p>Quantum dot qubits and spin-based quantum computing using nanoscale devices</p>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>Nanoelectronics overcomes silicon scaling limits using CNTs, graphene, QDs</li>
+          <li>CNTs: metallic or semiconducting; ballistic transport → nanotransistors</li>
+          <li>Graphene: zero bandgap + ultrahigh electron mobility → transparent electrodes, high-freq devices</li>
+          <li>QDs: size-tunable electronic/optical properties → QLED displays, quantum computing</li>
+          <li>Applications: next-gen CPUs, flexible displays, nanosensors, quantum computers</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 17: DRUG DISCOVERY -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="drug">
+      <div class="section-header">
+        <div class="section-number">17</div>
+        <div class="section-title-wrap">
+          <h2>Drug Discovery &amp; Delivery in Nanochemistry</h2>
+          <div class="subtitle">Nanosensors · Targeted delivery · Nanocarriers · Real examples</div>
+        </div>
+      </div>
+
+      <p>Nanochemistry is transforming medicine by enabling smarter, safer, and more effective medications through nanoscale design.</p>
+
+      <h3>Part 1: Drug Discovery via Nanochemistry</h3>
+      <p>In drug discovery, nanochemistry helps scientists design, identify, and test new drug candidates more efficiently at the molecular level.</p>
+
+      <h4>Nanosensors for Drug Screening</h4>
+      <p>Detect biomolecules and screen thousands of drug candidates rapidly. Nanowire biosensors can detect single molecules of disease biomarkers, enabling ultra-early diagnosis.</p>
+
+      <h4>Nanoparticles as Probes</h4>
+      <p>Quantum dots and fluorescent NPs used to study drug-target interactions in real time inside living cells. Track where a drug goes inside the body, how it binds to its target, and what causes side effects.</p>
+
+      <h4>Nanostructured Drug Platforms</h4>
+      <p>Aid in understanding how drugs behave inside cells — membrane penetration, intracellular distribution, degradation pathways.</p>
+
+      <h4>Lab-on-a-Chip Systems</h4>
+      <p>Miniature nanotech devices that perform hundreds of drug tests simultaneously on tiny samples (~nanoliters). Dramatically accelerates drug screening — from years to weeks.</p>
+
+      <h3>Part 2: Drug Delivery via Nanochemistry</h3>
+      <p>Nanochemistry enables <strong>targeted and controlled delivery</strong> of drugs to specific tissues or cells, dramatically improving treatment and reducing side effects.</p>
+
+      <h3>Key Advantages of Nanoscale Drug Delivery</h3>
+      <div class="card-grid">
+        <div class="prop-card">
+          <div class="icon">🎯</div>
+          <h4>Targeted Delivery</h4>
+          <p>Nanoparticles functionalized with antibodies, peptides, or aptamers that recognize and bind only diseased cells (e.g., cancer cells), sparing healthy tissue</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">⏱️</div>
+          <h4>Controlled Release</h4>
+          <p>Drug released slowly over hours/days/weeks. Reduces dosing frequency. Can be triggered by pH, temperature, or light</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">💧</div>
+          <h4>Improved Solubility</h4>
+          <p>~40% of new drugs are poorly water-soluble. Nanocarriers encapsulate and deliver them effectively</p>
+        </div>
+        <div class="prop-card">
+          <div class="icon">🛡️</div>
+          <h4>Reduced Toxicity</h4>
+          <p>Less drug reaches healthy tissues → dramatically reduced side effects (critical for chemotherapy)</p>
+        </div>
+      </div>
+
+      <h3>Types of Drug Nanocarriers</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nanocarrier</th><th>Structure</th><th>Drug Type</th><th>Advantage</th></tr></thead>
+          <tbody>
+            <tr><td>Liposomes</td><td>Lipid bilayer vesicle; aqueous core</td><td>Hydrophilic (inside) or hydrophobic (in membrane)</td><td>Biodegradable; resembles cell membrane; long circulation</td></tr>
+            <tr><td>Polymeric NPs (PLGA, PEG)</td><td>Polymer matrix with drug encapsulated</td><td>Wide range; hydrophobic &amp; hydrophilic</td><td>Controlled release; biodegradable; tunable</td></tr>
+            <tr><td>Dendrimers</td><td>Tree-like branched polymer; many surface functional groups</td><td>Surface-attached or encapsulated</td><td>Precise molecular weight; multifunctionality</td></tr>
+            <tr><td>Gold Nanoshells/Nanorods</td><td>Metal nanostructures with tunable plasmon resonance</td><td>Photothermal agents (no drug needed)</td><td>NIR light → heat → kills cancer cells (photothermal therapy)</td></tr>
+            <tr><td>Lipid Nanoparticles (LNPs)</td><td>Lipid-based particle; encapsulates nucleic acids</td><td>mRNA, siRNA, DNA</td><td>Protects fragile nucleic acids; efficient cellular uptake</td></tr>
+            <tr><td>Mesoporous Silica NPs</td><td>Porous silica with channels for drug loading</td><td>Small molecules</td><td>High drug loading capacity; pH-responsive release</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Real-World Examples</h3>
+      <div class="box example-box">
+        <div class="box-label">Real Examples — Products on Market</div>
+        <p><strong>Doxil (1995):</strong> Liposome-encapsulated doxorubicin for cancer treatment. The PEGylated liposomes avoid immune clearance (stealth liposomes) and accumulate in tumors via EPR (Enhanced Permeability and Retention) effect. <br><br><strong>Abraxane:</strong> Albumin-bound paclitaxel nanoparticles (~130 nm). Albumin naturally concentrates in tumors. Better than conventional Taxol (toxic solvent eliminated). <br><br><strong>Pfizer &amp; Moderna COVID-19 Vaccines:</strong> Use lipid nanoparticles (LNPs) to deliver mRNA encoding the spike protein. LNPs protect mRNA from degradation, enable cellular uptake, and release mRNA inside cells. Revolutionary platform technology.</p>
+      </div>
+
+      <h3>The EPR Effect — Why Nanoparticles Accumulate in Tumors</h3>
+      <div class="box info-box">
+        <div class="box-label">Enhanced Permeability and Retention (EPR) Effect</div>
+        <p>Tumor blood vessels are abnormally leaky (large pores, 100–800 nm) compared to normal blood vessels (&lt;10 nm pores). Nanoparticles (20–200 nm) selectively leak into tumors through these large pores. Once inside, poor lymphatic drainage in tumors causes NPs to be retained. This passive targeting is the foundation of most cancer nanomedicine.</p>
+      </div>
+
+      <div class="summary-box">
+        <h4>Section Summary</h4>
+        <ul>
+          <li>Drug discovery: nanosensors screen candidates; QD probes study drug-target binding; lab-on-chip accelerates testing</li>
+          <li>Drug delivery advantages: targeted (antibody-functionalized NPs), controlled release, improved solubility, reduced toxicity</li>
+          <li>Nanocarriers: liposomes, polymeric NPs, dendrimers, gold nanoshells, LNPs, mesoporous silica</li>
+          <li>Real examples: Doxil (liposome cancer drug), Abraxane (albumin NP), Pfizer/Moderna COVID vaccines (LNP-mRNA)</li>
+          <li>EPR effect: tumor leaky vessels (100–800 nm pores) allow selective NP accumulation</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 18: APPLICATIONS -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="section" id="applications">
+      <div class="section-header">
+        <div class="section-number">18</div>
+        <div class="section-title-wrap">
+          <h2>Applications of Nanomaterials</h2>
+          <div class="subtitle">Electronics · Medicine · Energy · Environment · Agriculture</div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Field</th><th>Application</th><th>Nanomaterial Used</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="3"><strong>A) Electronics &amp; Computing</strong></td><td>Nanotransistors &amp; Flexible Electronics</td><td>CNTs, graphene → faster, smaller chips</td></tr>
+            <tr><td>Quantum Dot Displays (QLED)</td><td>QDs → high-efficiency color-pure displays</td></tr>
+            <tr><td>Nano Memory Devices (RRAM)</td><td>Resistive switching NMs → faster data storage</td></tr>
+            <tr><td rowspan="3"><strong>B) Medicine &amp; Healthcare</strong></td><td>Targeted Drug Delivery</td><td>Liposomes, polymeric NPs for site-specific therapy</td></tr>
+            <tr><td>Cancer Treatment (Photothermal)</td><td>Gold nanoparticles absorb NIR → heat kills tumor</td></tr>
+            <tr><td>Biosensors for Early Diagnosis</td><td>Nanowires detect disease biomarkers at femtomolar concentrations</td></tr>
+            <tr><td rowspan="3"><strong>C) Energy</strong></td><td>Solar Cells</td><td>Perovskite NMs for high-efficiency photovoltaics (&gt;25%)</td></tr>
+            <tr><td>Li-ion Batteries</td><td>Silicon nanowires → 10× higher capacity anode</td></tr>
+            <tr><td>Hydrogen Storage</td><td>CNTs adsorb H₂ for fuel cell vehicles</td></tr>
+            <tr><td rowspan="3"><strong>D) Environmental Remediation</strong></td><td>Water Purification</td><td>Graphene oxide membranes (desalination); TiO₂ NPs (photocatalytic degradation)</td></tr>
+            <tr><td>Air Filtration</td><td>Nanofibers capture PM2.5 and PM10 particles</td></tr>
+            <tr><td>Heavy Metal Removal</td><td>Fe₃O₄ NPs magnetically remove heavy metals from water</td></tr>
+            <tr><td rowspan="2"><strong>E) Agriculture &amp; Food</strong></td><td>Nanofertilizers &amp; Nanopesticides</td><td>Encapsulated nutrients/pesticides with slow-release → less waste</td></tr>
+            <tr><td>Antimicrobial Food Packaging</td><td>Ag NPs inhibit bacterial growth on food surfaces</td></tr>
+            <tr><td rowspan="2"><strong>F) Industrial &amp; Consumer</strong></td><td>Self-Cleaning Surfaces</td><td>TiO₂-coated glass → photocatalytically breaks down dirt</td></tr>
+            <tr><td>Wear-Resistant Coatings</td><td>Nanodiamond coatings for cutting tools → 10× longer life</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- MASTER REVISION SHEET -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div id="revision" class="revision-sheet">
+      <h2>📋 Master Revision Sheet</h2>
+      <p class="rs-subtitle">Final consolidated quick-reference for all CHM-303 topics</p>
+
+      <div class="rs-grid">
+        <div class="rs-card">
+          <h4>📐 Nanoscale Basics</h4>
+          <ul>
+            <li>1 nm = 10⁻⁹ m; Range = 1–100 nm</li>
+            <li>3 reasons nano is special: SA/V ratio, quantum effects, surface-dominated</li>
+            <li>Gold = red/purple at nanoscale (SPR effect)</li>
+            <li>CNTs = 100× stronger than steel</li>
+            <li>Quantum dots: size-tunable color</li>
+          </ul>
+        </div>
+
+        <div class="rs-card">
+          <h4>🗂️ Classification</h4>
+          <ul>
+            <li>0D: QDs, fullerenes, NPs (all 3D nano)</li>
+            <li>1D: nanowires, nanorods (1 large dim)</li>
+            <li>2D: graphene, nanosheets (1 nano dim)</li>
+            <li>3D: nanocomposites (nano features inside)</li>
+            <li>Origin: natural / engineered / incidental</li>
+            <li>Composition: carbon / metal / polymer / ceramic</li>
+          </ul>
+        </div>
+
+        <div class="rs-card">
+          <h4>⚗️ XRD Key Points</h4>
+          <ul>
+            <li>Non-destructive; analyzes crystal structure</li>
+            <li>Bragg's law: nλ = 2d·sinθ</li>
+            <li>Scherrer: D = Kλ/(β·cosθ) → size from peak width</li>
+            <li>Wider peaks = smaller crystallites</li>
+            <li>Applications: phase ID, crystallinity, lattice parameters, strain</li>
+          </ul>
+        </div>
+
+        <div class="rs-card">
+          <h4>🔬 SEM vs TEM</h4>
+          <ul>
+            <li>SEM: surface morphology; scans electron beam over surface</li>
+            <li>TEM: internal structure; transmits beam through thin sample</li>
+            <li>HRTEM: atomic-level lattice fringes</li>
+            <li>Both coupled with EDX for elemental analysis</li>
+            <li>TEM needs ultra-thin samples (&lt;100 nm); high vacuum</li>
+          </ul>
+        </div>
+
+        <div class="rs-card">
+          <h4>🧪 EDX</h4>
+          <ul>
+            <li>Detects characteristic X-rays → element ID + quantification</li>
+            <li>SEM-EDX: surface elemental mapping (~1 µm resolution)</li>
+            <li>TEM-EDX: internal elemental mapping (&lt;1 nm resolution)</li>
+            <li>Poor at light elements (H, He, Li)</li>
+            <li>Applications: synthesis confirmation, drug tracking, corrosion</li>
+          </ul>
+        </div>
+
+        <div class="rs-card">
+          <h4>💡 Electro-Optical</h4>
+          <ul>
+            <li>UV-Vis: bandgap, concentration (Beer-Lambert: A = εcl)</li>
+            <li>PL: energy levels, defects in QDs</li>
+            <li>Raman: vibrational modes, crystal structure</li>
+            <li>Kerr effect: Δn = λKE² (field changes refractive index)</li>
+            <li>NSOM: nano-scale optical imaging beyond diffraction limit</li>
+          </ul>
+        </div>
+
+        <div class="rs-card">
+          <h4>🌿 Green Nanochemistry</h4>
+          <ul>
+            <li>Biosynthesis: plant/bacteria/fungi reduce metal ions → NPs</li>
+            <li>Neem → Ag NPs (antibacterial); Turmeric → Au NPs (cancer)</li>
+            <li>Microwave = fast, uniform; Sonochemistry = cavitation</li>
+            <li>Supercritical CO₂ = solvent-free synthesis</li>
+            <li>Applications: water purification, agriculture, cosmetics</li>
+          </ul>
+        </div>
+
+        <div class="rs-card">
+          <h4>🏗️ Fabrication</h4>
+          <ul>
+            <li>Top-down: bulk→nano (milling, lithography, etching)</li>
+            <li>Bottom-up: atoms→nano (sol-gel, CVD, self-assembly, precipitation)</li>
+            <li>Sol-gel: alkoxide → hydrolysis → gel → NPs</li>
+            <li>CVD: gas → solid film/nanostructure on substrate</li>
+            <li>Self-assembly: spontaneous organization via non-covalent forces</li>
+          </ul>
+        </div>
+
+        <div class="rs-card">
+          <h4>🧱 Nanocomposites</h4>
+          <ul>
+            <li>Matrix (polymer/metal/ceramic) + nanofiller (CNTs/graphene/nanoclay)</li>
+            <li>Types: PMNCs, MMNCs, CMNCs, carbon-based, hybrid</li>
+            <li>1–5 wt% filler → dramatic property enhancement</li>
+            <li>Applications: automotive, aerospace, electronics, biomedical, packaging</li>
+            <li>Key property improved: strength, conductivity, barrier properties</li>
+          </ul>
+        </div>
+
+        <div class="rs-card">
+          <h4>🔄 Separation Science</h4>
+          <ul>
+            <li>Centrifugation: size/density; ultracentrifugation for nm differences</li>
+            <li>Membrane filtration/dialysis: size-exclusion removes small molecules</li>
+            <li>SEC: separates by hydrodynamic volume (size)</li>
+            <li>Gel electrophoresis: separates by charge/size (can resolve 1 atom)</li>
+            <li>Gold NP purification: centrifuge → dialysis → chromatography</li>
+          </ul>
+        </div>
+
+        <div class="rs-card">
+          <h4>⚡ Catalysis</h4>
+          <ul>
+            <li>High SA/V + quantum effects = superior catalytic activity</li>
+            <li>Au NPs &lt;5 nm: catalyze CO oxidation at room temp</li>
+            <li>TiO₂ photocatalysis: UV→•OH radical→degrades organics</li>
+            <li>Homogeneous (same phase) vs. Heterogeneous (different phase)</li>
+            <li>Pt NPs: HER + ORR in fuel cells</li>
+          </ul>
+        </div>
+
+        <div class="rs-card">
+          <h4>💊 Drug Delivery</h4>
+          <ul>
+            <li>EPR effect: leaky tumor vessels (100–800 nm) → NP accumulation</li>
+            <li>Nanocarriers: liposomes, PLGA NPs, dendrimers, LNPs, gold nanoshells</li>
+            <li>Advantages: targeted, controlled release, better solubility, less toxicity</li>
+            <li>Doxil = liposome-doxorubicin; Abraxane = albumin-paclitaxel</li>
+            <li>COVID vaccines = LNPs deliver mRNA (Pfizer/Moderna)</li>
+          </ul>
+        </div>
+
+        <div class="rs-card">
+          <h4>📡 Advanced Imaging Trends</h4>
+          <ul>
+            <li>AFM: tip feels surface → 3D topography + mechanical properties</li>
+            <li>STM: quantum tunneling → individual atoms (conductors only)</li>
+            <li>Cryo-EM: flash-frozen bio samples → 3D protein structures (Nobel 2017)</li>
+            <li>HRTEM: atomic-column imaging, lattice fringes, crystal defects</li>
+            <li>AI: automated defect detection + property prediction from nano data</li>
+          </ul>
+        </div>
+
+        <div class="rs-card">
+          <h4>🔑 Key Formulas to Remember</h4>
+          <ul>
+            <li>Bragg's law: nλ = 2d·sinθ</li>
+            <li>Scherrer: D = Kλ/(β·cosθ)</li>
+            <li>SA/V for sphere: 3/r</li>
+            <li>Beer-Lambert: A = εcl</li>
+            <li>Kerr effect: Δn = λKE²</li>
+            <li>TiO₂ photocatalysis: TiO₂ + hν → e⁻ + h⁺ → •OH</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="height: 60px;"></div>
+
+  </div><!-- end content-wrap -->
+</div><!-- end main -->
+
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+
+<script>
+  // Progress bar
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const el = document.documentElement;
+    const scrolled = el.scrollTop / (el.scrollHeight - el.clientHeight) * 100;
+    bar.style.width = scrolled + '%';
+    document.getElementById('back-top').classList.toggle('visible', el.scrollTop > 400);
+  }, {passive: true});
+
+  // Active sidebar links
+  const sections = document.querySelectorAll('.section, #revision');
+  const navLinks = document.querySelectorAll('.toc-nav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc-nav a[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

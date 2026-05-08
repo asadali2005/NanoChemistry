@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydrothermal & Spray Pyrolysis Synthesis – Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple-950: #1a0533;
+    --purple-900: #2d0a52;
+    --purple-800: #4a1277;
+    --purple-700: #6b21a8;
+    --purple-600: #7c3aed;
+    --purple-500: #8b5cf6;
+    --purple-400: #a78bfa;
+    --purple-300: #c4b5fd;
+    --purple-200: #ddd6fe;
+    --purple-100: #ede9fe;
+    --purple-50:  #f5f3ff;
+    --gold:       #c9a84c;
+    --gold-light: #f0d98a;
+    --text-dark:  #1e1333;
+    --text-mid:   #3d2b6b;
+    --text-body:  #2d1f4a;
+    --bg:         #faf9ff;
+    --bg-card:    #ffffff;
+    --border:     #e2d9f3;
+    --shadow:     0 4px 24px rgba(107,33,168,0.10);
+    --shadow-lg:  0 8px 48px rgba(107,33,168,0.16);
+    --radius:     14px;
+    --radius-sm:  8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text-body);
+    line-height: 1.8;
+    font-size: 17px;
+  }
+
+  /* ── HERO ──────────────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, var(--purple-950) 0%, var(--purple-800) 55%, var(--purple-600) 100%);
+    color: #fff;
+    padding: 70px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(167,139,250,0.22) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.13);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--purple-200);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 100px;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 900;
+    line-height: 1.18;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  .hero h1 span { color: var(--gold-light); }
+  .hero-sub {
+    color: var(--purple-200);
+    font-size: 1.05rem;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+  .hero-meta {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .hero-meta span {
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 6px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--purple-100);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── LAYOUT ─────────────────────────────────────────────── */
+  .wrapper {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 0;
+    max-width: 1280px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  /* ── SIDEBAR / TOC ───────────────────────────────────────── */
+  .toc-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background: #fff;
+    border-right: 1px solid var(--border);
+    padding: 32px 20px 40px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--purple-300) transparent;
+  }
+  .toc-sidebar::-webkit-scrollbar { width: 4px; }
+  .toc-sidebar::-webkit-scrollbar-thumb { background: var(--purple-300); border-radius: 4px; }
+
+  .toc-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--purple-500);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--purple-100);
+  }
+  .toc-list { list-style: none; }
+  .toc-list li { margin-bottom: 2px; }
+  .toc-list a {
+    display: block;
+    padding: 6px 10px;
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 13.5px;
+    border-radius: 6px;
+    transition: all 0.18s;
+    line-height: 1.4;
+  }
+  .toc-list a:hover { background: var(--purple-50); color: var(--purple-700); }
+  .toc-list .toc-h2 { font-weight: 600; color: var(--purple-800); margin-top: 12px; }
+  .toc-list .toc-h3 { padding-left: 22px; font-size: 12.5px; color: #5a4580; }
+
+  /* ── MAIN CONTENT ────────────────────────────────────────── */
+  .main-content {
+    padding: 50px 56px 80px 50px;
+    max-width: 900px;
+  }
+
+  /* ── SECTION ─────────────────────────────────────────────── */
+  .section { margin-bottom: 70px; }
+  .section:last-child { margin-bottom: 0; }
+
+  /* ── HEADINGS ─────────────────────────────────────────────── */
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--purple-900);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--purple-200);
+    position: relative;
+  }
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 70px; height: 2px;
+    background: var(--purple-600);
+  }
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--purple-800);
+    margin: 32px 0 14px;
+  }
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--purple-700);
+    margin: 22px 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+  }
+
+  p { margin-bottom: 16px; }
+
+  /* ── BOXES ────────────────────────────────────────────────── */
+  .box {
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    margin: 24px 0;
+    border-left: 5px solid;
+    position: relative;
+  }
+  .box-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    opacity: 0.85;
+  }
+  .box-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  /* Definition */
+  .def {
+    background: var(--purple-50);
+    border-color: var(--purple-600);
+  }
+  .def .box-label { color: var(--purple-600); }
+  .def .box-title { color: var(--purple-900); }
+
+  /* Formula */
+  .formula {
+    background: linear-gradient(135deg, #1a0533 0%, #2d0a52 100%);
+    border-color: var(--gold);
+    color: #e8d8ff;
+  }
+  .formula .box-label { color: var(--gold); }
+  .formula .box-title { color: var(--gold-light); }
+  .formula code { color: var(--gold-light); font-size: 1.1rem; }
+
+  /* Key Note */
+  .note {
+    background: #f0fdf4;
+    border-color: #16a34a;
+  }
+  .note .box-label { color: #15803d; }
+  .note .box-title { color: #14532d; }
+
+  /* Warning */
+  .warn {
+    background: #fff7ed;
+    border-color: #ea580c;
+  }
+  .warn .box-label { color: #c2410c; }
+  .warn .box-title { color: #7c2d12; }
+
+  /* Insight */
+  .insight {
+    background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+    border-color: var(--purple-500);
+  }
+  .insight .box-label { color: var(--purple-600); }
+  .insight .box-title { color: var(--purple-900); }
+
+  /* ── COMPARISON TABLE ─────────────────────────────────────── */
+  .table-wrap { overflow-x: auto; margin: 24px 0; border-radius: var(--radius); box-shadow: var(--shadow); }
+  table { width: 100%; border-collapse: collapse; background: #fff; }
+  thead { background: linear-gradient(135deg, var(--purple-800), var(--purple-600)); color: #fff; }
+  thead th {
+    padding: 14px 18px;
+    text-align: left;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+  tbody tr:nth-child(even) { background: var(--purple-50); }
+  tbody td {
+    padding: 12px 18px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-body);
+    vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #f3effb; }
+  .td-label { font-weight: 600; color: var(--purple-800); }
+
+  /* ── STEPS ───────────────────────────────────────────────── */
+  .steps { list-style: none; margin: 16px 0; }
+  .steps li {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(107,33,168,0.28);
+    margin-top: 2px;
+  }
+  .step-body strong { color: var(--purple-800); display: block; margin-bottom: 4px; }
+
+  /* ── BULLET LIST ──────────────────────────────────────────── */
+  .bullet-list { list-style: none; margin: 12px 0 12px 4px; }
+  .bullet-list li {
+    padding: 5px 0 5px 26px;
+    position: relative;
+    font-size: 0.97rem;
+  }
+  .bullet-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--purple-400);
+    font-size: 0.6rem;
+    top: 9px;
+  }
+
+  /* ── PROCESS FLOW ─────────────────────────────────────────── */
+  .flow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 22px 0;
+  }
+  .flow-step {
+    background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'Source Serif 4', serif;
+    box-shadow: 0 2px 8px rgba(107,33,168,0.22);
+    text-align: center;
+  }
+  .flow-arrow {
+    color: var(--purple-400);
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  /* ── SUMMARY BOX ──────────────────────────────────────────── */
+  .summary-card {
+    background: linear-gradient(135deg, var(--purple-900), var(--purple-700));
+    color: #ede9fe;
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-top: 32px;
+    box-shadow: var(--shadow-lg);
+  }
+  .summary-card h4 {
+    color: var(--gold-light);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: 14px;
+  }
+  .summary-card ul { list-style: none; }
+  .summary-card li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 0.92rem;
+    color: var(--purple-200);
+    line-height: 1.6;
+  }
+  .summary-card li::before { content: '→'; position: absolute; left: 0; color: var(--gold); }
+
+  /* ── MASTER REVISION ──────────────────────────────────────── */
+  .revision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 24px;
+  }
+  .rev-card {
+    background: #fff;
+    border: 1.5px solid var(--purple-200);
+    border-radius: var(--radius-sm);
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(107,33,168,0.07);
+  }
+  .rev-card h4 {
+    color: var(--purple-700);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--purple-100);
+  }
+  .rev-card p, .rev-card li { font-size: 0.88rem; color: #3d2b6b; }
+  .rev-card ul { list-style: none; }
+  .rev-card li { padding: 2px 0 2px 16px; position: relative; }
+  .rev-card li::before { content: '•'; position: absolute; left: 2px; color: var(--purple-400); }
+
+  /* ── HIGHLIGHT SPAN ───────────────────────────────────────── */
+  .hl { background: var(--purple-100); color: var(--purple-800); padding: 1px 6px; border-radius: 4px; font-weight: 600; }
+  .hl-gold { background: #fef9c3; color: #713f12; padding: 1px 6px; border-radius: 4px; font-weight: 600; }
+
+  /* ── DIAGRAM ──────────────────────────────────────────────── */
+  .diagram-container {
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 30px 20px;
+    margin: 24px 0;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  .diagram-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--purple-500);
+    margin-bottom: 22px;
+  }
+
+  /* crystal growth diagram */
+  .cgd { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .cgd-stage { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .cgd-label { font-size: 11px; color: var(--purple-700); font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+  .molecules { display: flex; flex-wrap: wrap; gap: 3px; width: 60px; justify-content: center; }
+  .mol { width: 8px; height: 8px; background: var(--purple-300); border-radius: 50%; }
+  .mol.cluster { background: var(--purple-600); width: 10px; height: 10px; }
+  .mol.unit { background: var(--purple-500); border-radius: 3px; width: 10px; height: 10px; }
+  .crystal-block { width: 56px; height: 48px; background: linear-gradient(135deg, var(--purple-500), var(--purple-700)); border-radius: 4px; box-shadow: 4px 4px 0 var(--purple-900); }
+  .cgd-arrow { font-size: 20px; color: var(--gold); font-weight: 700; }
+
+  /* FSP diagram */
+  .fsp-diagram { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .fsp-stage {
+    padding: 8px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    width: 220px;
+    text-align: center;
+    margin: 1px 0;
+  }
+  .fsp-arrow-v { font-size: 18px; color: var(--gold); line-height: 1; }
+
+  /* ── SECTION DIVIDER ──────────────────────────────────────── */
+  .sec-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--purple-200), transparent);
+    margin: 60px 0;
+  }
+
+  /* ── CALLOUT INLINE ───────────────────────────────────────── */
+  .callout-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--purple-100);
+    color: var(--purple-800);
+    padding: 3px 12px;
+    border-radius: 100px;
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .wrapper { grid-template-columns: 1fr; }
+    .toc-sidebar { display: none; }
+    .main-content { padding: 30px 22px 60px; }
+    .revision-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── PRINT ────────────────────────────────────────────────── */
+  @media print {
+    .toc-sidebar { display: none; }
+    .main-content { padding: 20px; }
+    .hero { background: var(--purple-900) !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">CHM721 — Dr. Lubna Sherin</div>
+  <h1>Hydrothermal & Solvothermal Synthesis<br><span>+ Spray Pyrolysis</span> of Metal Oxide Nanoparticles</h1>
+  <p class="hero-sub">Complete Study Guide · Crystal-clear Explanations · Exam Ready</p>
+  <div class="hero-meta">
+    <span>📘 8 Major Topics</span>
+    <span>⚗️ Mechanisms Explained</span>
+    <span>📊 Tables & Diagrams</span>
+    <span>✅ Revision Sheet Included</span>
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <!-- SIDEBAR TOC -->
+  <aside class="toc-sidebar">
+    <div class="toc-title">Table of Contents</div>
+    <ul class="toc-list">
+      <li><a class="toc-h2" href="#s1">1. Introduction</a></li>
+      <li><a class="toc-h3" href="#s1-def">Definition</a></li>
+      <li><a class="toc-h3" href="#s1-terms">Key Terminology</a></li>
+      <li><a class="toc-h2" href="#s2">2. Equipment — The Autoclave</a></li>
+      <li><a class="toc-h3" href="#s2-types">Reactor Types & Ranges</a></li>
+      <li><a class="toc-h2" href="#s3">3. Nanostructured Metal Oxides</a></li>
+      <li><a class="toc-h3" href="#s3-hydro-vs-solvo">Hydrothermal vs Solvothermal</a></li>
+      <li><a class="toc-h2" href="#s4">4. Mechanisms of Crystal Growth</a></li>
+      <li><a class="toc-h3" href="#s4-super">Supersaturation</a></li>
+      <li><a class="toc-h3" href="#s4-nuc">Nucleation</a></li>
+      <li><a class="toc-h3" href="#s4-grow">Crystal Growth Steps</a></li>
+      <li><a class="toc-h2" href="#s5">5. Role of Solvents</a></li>
+      <li><a class="toc-h3" href="#s5-water">Water as Solvent</a></li>
+      <li><a class="toc-h3" href="#s5-nonaq">Non-Aqueous Solvents</a></li>
+      <li><a class="toc-h2" href="#s6">6. Flame Spray Pyrolysis</a></li>
+      <li><a class="toc-h3" href="#s6-proc">Process & Stages</a></li>
+      <li><a class="toc-h3" href="#s6-adv">Advantages & Limitations</a></li>
+      <li><a class="toc-h2" href="#s7">7. Comparison: All Methods</a></li>
+      <li><a class="toc-h2" href="#s8">8. Master Revision Sheet</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 1 — INTRODUCTION
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="s1">
+      <h2>1. Introduction to Hydrothermal / Solvothermal Synthesis</h2>
+
+      <h3 id="s1-def">1.1 Core Definition</h3>
+
+      <div class="box def">
+        <div class="box-label">📖 Definition</div>
+        <div class="box-title">Hydrothermal / Solvothermal Process</div>
+        <p>Chemical reactions performed in solvents contained in <strong>sealed vessels (autoclaves)</strong> in which the temperature of solvents is raised to around or above their <strong>critical points</strong> via external heating, simultaneously generating <strong>autogenous (self-generated) pressure</strong>.</p>
+      </div>
+
+      <p>The distinction between the two terms lies solely in the <strong>choice of solvent</strong>:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Term</th><th>Solvent Used</th><th>Key Characteristic</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-label">Hydrothermal</td>
+              <td>Water (H₂O)</td>
+              <td>Widely studied; critical point 374°C / 22.1 MPa</td>
+            </tr>
+            <tr>
+              <td class="td-label">Solvothermal</td>
+              <td>Organic solvents (methanol, butanediol, toluene, amines)</td>
+              <td>Lower T&P possible; handles water-sensitive precursors</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box insight">
+        <div class="box-label">💡 Conceptual Insight</div>
+        <div class="box-title">Why sealed vessels?</div>
+        <p>Sealing the reactor prevents the solvent from boiling off. As temperature rises above the normal boiling point, pressure builds inside — this is called <strong>autogenous pressure</strong>. This elevated pressure keeps the solvent in its liquid (or supercritical) phase, enabling reactions that are impossible under ambient conditions.</p>
+      </div>
+
+      <h3 id="s1-terms">1.2 Key Terminology You Must Know</h3>
+
+      <p>Three types of substances are added to the reactor, each with a distinct role:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Term</th><th>What it is</th><th>Purpose</th><th>Examples</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-label">Precursors</td>
+              <td>Reactants providing the metal/oxide source</td>
+              <td>Supply the material to be crystallised</td>
+              <td>Metal salt solutions, gels, suspensions</td>
+            </tr>
+            <tr>
+              <td class="td-label">Mineralizers</td>
+              <td>Inorganic/organic additives at <em>high</em> concentration (~10 M)</td>
+              <td>Control pH of the solution, enhancing solubility & reactivity</td>
+              <td>NaOH, KOH, HCl, organic acids</td>
+            </tr>
+            <tr>
+              <td class="td-label">Additives</td>
+              <td>Organic/inorganic substances at <em>low</em> concentration</td>
+              <td>Promote particle dispersion; control crystal morphology &amp; size</td>
+              <td>Surfactants, CTAB, PVP, citric acid</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box note">
+        <div class="box-label">✅ Key Note</div>
+        <p><strong>Mineralizers vs Additives — Remember the concentration difference!</strong> Mineralizers work at very high concentrations (e.g., 10 M) to drastically shift pH. Additives are used at much lower concentrations as fine-tuners for shape and size.</p>
+      </div>
+
+      <div class="summary-card">
+        <h4>📌 Section 1 Summary</h4>
+        <ul>
+          <li>Hydrothermal = water solvent; Solvothermal = organic solvent — both use sealed autoclaves with high T and autogenous P</li>
+          <li>Three key reagent classes: Precursors (reactants), Mineralizers (pH control, high conc.), Additives (morphology control, low conc.)</li>
+          <li>Critical point of water: 374°C and 22.1 MPa</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="sec-divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 2 — EQUIPMENT
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="s2">
+      <h2>2. Equipment — The Hydrothermal Autoclave</h2>
+
+      <h3>2.1 What is an Autoclave?</h3>
+      <p>An autoclave (also called a <strong>pressure vessel</strong> or <strong>high-pressure bomb</strong>) is a sealed metallic reactor used to carry out hydrothermal/solvothermal reactions. It is the central piece of equipment in this technique.</p>
+
+      <div class="box def">
+        <div class="box-label">🔩 Equipment Detail</div>
+        <div class="box-title">Autoclave Structure</div>
+        <p>Most autoclaves consist of:</p>
+        <ul class="bullet-list" style="margin-top:8px;">
+          <li>An outer <strong>metal vessel body</strong> (steel or Inconel alloy) — provides structural strength to withstand high pressures</li>
+          <li>An inner <strong>Teflon (PTFE) liner / lining</strong> (or alternatively platinum, gold, or silver) — chemically inert, protects the metal body from highly corrosive hot solvents</li>
+          <li>A <strong>Teflon lid</strong> and sealing mechanism (screw cap, pressure plates, spring)</li>
+          <li>A <strong>bottom disc</strong> for structural integrity</li>
+        </ul>
+      </div>
+
+      <div class="box insight">
+        <div class="box-label">💡 Why Teflon?</div>
+        <p>Teflon (polytetrafluoroethylene, PTFE) is chemically resistant to almost all acids, bases, and organic solvents even at elevated temperatures. Without this lining, corrosive mineralizers (e.g., concentrated NaOH) would dissolve or contaminate the metal vessel — ruining both the product and the equipment.</p>
+      </div>
+
+      <!-- Visual Autoclave Diagram -->
+      <div class="diagram-container">
+        <div class="diagram-title">Autoclave Cross-Section — Component Anatomy</div>
+        <svg width="320" height="340" viewBox="0 0 320 340" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;">
+          <defs>
+            <linearGradient id="metal" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#6b21a8;stop-opacity:1"/>
+              <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:1"/>
+            </linearGradient>
+            <linearGradient id="teflon" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#c4b5fd;stop-opacity:1"/>
+              <stop offset="100%" style="stop-color:#ddd6fe;stop-opacity:1"/>
+            </linearGradient>
+          </defs>
+          <!-- Screw Cap -->
+          <rect x="90" y="10" width="140" height="22" rx="5" fill="url(#metal)" stroke="#4a1277" stroke-width="1.5"/>
+          <text x="160" y="26" text-anchor="middle" fill="white" font-size="11" font-family="JetBrains Mono, monospace">Screw Cap</text>
+          <!-- Spring -->
+          <rect x="130" y="32" width="60" height="12" rx="3" fill="#8b5cf6" stroke="#4a1277" stroke-width="1"/>
+          <text x="160" y="43" text-anchor="middle" fill="white" font-size="9" font-family="JetBrains Mono, monospace">Spring</text>
+          <!-- Pressure Plates -->
+          <rect x="100" y="44" width="120" height="16" rx="3" fill="url(#metal)" stroke="#4a1277" stroke-width="1.2"/>
+          <text x="160" y="57" text-anchor="middle" fill="white" font-size="10" font-family="JetBrains Mono, monospace">Pressure Plates</text>
+          <!-- Vessel Body Outer -->
+          <rect x="80" y="60" width="160" height="220" rx="8" fill="url(#metal)" stroke="#2d0a52" stroke-width="2"/>
+          <!-- Teflon liner -->
+          <rect x="100" y="74" width="120" height="192" rx="5" fill="url(#teflon)" stroke="#7c3aed" stroke-width="1.5"/>
+          <!-- Teflon Lid label -->
+          <rect x="100" y="74" width="120" height="22" rx="5" fill="#a78bfa"/>
+          <text x="160" y="90" text-anchor="middle" fill="white" font-size="10" font-family="JetBrains Mono, monospace">Teflon Lid</text>
+          <!-- Inside Teflon -->
+          <text x="160" y="152" text-anchor="middle" fill="#4a1277" font-size="11" font-weight="bold" font-family="JetBrains Mono, monospace">Teflon</text>
+          <text x="160" y="168" text-anchor="middle" fill="#4a1277" font-size="11" font-weight="bold" font-family="JetBrains Mono, monospace">Liner</text>
+          <text x="160" y="190" text-anchor="middle" fill="#6b21a8" font-size="10" font-family="JetBrains Mono, monospace">(Reaction zone)</text>
+          <!-- Bottom Disc -->
+          <rect x="100" y="252" width="120" height="14" rx="3" fill="#7c3aed"/>
+          <text x="160" y="264" text-anchor="middle" fill="white" font-size="10" font-family="JetBrains Mono, monospace">Bottom Disc</text>
+          <!-- Vessel body label -->
+          <text x="160" y="300" text-anchor="middle" fill="#ddd6fe" font-size="10" font-family="JetBrains Mono, monospace">Vessel Body (Metal)</text>
+          <!-- Arrow left -->
+          <line x1="45" y1="165" x2="98" y2="165" stroke="#c9a84c" stroke-width="1.5" marker-end="url(#arr)"/>
+          <text x="10" y="168" fill="#713f12" font-size="9.5" font-family="JetBrains Mono, monospace">Inner</text>
+          <text x="8" y="180" fill="#713f12" font-size="9.5" font-family="JetBrains Mono, monospace">Teflon</text>
+          <defs>
+            <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L6,3 z" fill="#c9a84c"/>
+            </marker>
+          </defs>
+        </svg>
+        <p style="font-size:12px;color:#666;margin-top:12px;">Teflon liner protects the metal vessel from corrosive reaction media</p>
+      </div>
+
+      <h3 id="s2-types">2.2 Types of Reactors — Temperature & Pressure Ranges</h3>
+      <p>Different experimental needs demand different reactor designs. The table below shows the most commonly used reactor types and their operating windows:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Reactor Type</th><th>Max Temp (°C)</th><th>Max Pressure (bar)</th><th>Typical Use</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-label">Quartz Tube</td><td>250</td><td>6</td>
+              <td>Low-pressure, simple lab synthesis</td>
+            </tr>
+            <tr>
+              <td class="td-label">Welded Closure</td><td>400</td><td>3,000</td>
+              <td>Mid-pressure experiments; sealed by welding</td>
+            </tr>
+            <tr>
+              <td class="td-label">Modified Bridgman Autoclave</td><td>500</td><td>3,700</td>
+              <td>Standard research autoclave, versatile</td>
+            </tr>
+            <tr>
+              <td class="td-label">Cone Closure</td><td>750–1,150</td><td>4,000–13,000</td>
+              <td>High-temperature mineral synthesis</td>
+            </tr>
+            <tr>
+              <td class="td-label">Piston Cylinder</td><td>1,000</td><td>40,000</td>
+              <td>Ultra-high pressure synthesis</td>
+            </tr>
+            <tr>
+              <td class="td-label">Opposed Diamond Anvil</td><td>&gt;2,000</td><td>500,000</td>
+              <td>Extreme conditions research; tiny sample volume</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box warn">
+        <div class="box-label">⚠️ Common Exam Mistake</div>
+        <div class="box-title">Pressure is autogenous, not externally applied</div>
+        <p>The pressure inside the autoclave is <strong>NOT set by the experimenter directly</strong>. It builds up automatically as the solvent heats up in the sealed vessel — hence the term <em>autogenous pressure</em>. The researcher controls temperature and fill volume; pressure is a consequence of these.</p>
+      </div>
+
+      <div class="summary-card">
+        <h4>📌 Section 2 Summary</h4>
+        <ul>
+          <li>Autoclave = sealed metal vessel with Teflon/Pt/Au inner lining</li>
+          <li>Teflon lining protects against corrosive solvents at high T &amp; P</li>
+          <li>Pressure inside is autogenous (self-generated by heating)</li>
+          <li>Six main reactor types ranging from 250°C/6 bar (quartz tube) to >2000°C/500,000 bar (diamond anvil)</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="sec-divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 3 — NANOSTRUCTURED METAL OXIDES
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="s3">
+      <h2>3. Synthesis of Nanostructured Metal Oxides</h2>
+
+      <h3>3.1 Why Nanostructured Metal Oxides?</h3>
+      <p>Nanostructured metal oxides exhibit <strong>unique properties</strong> — electrical, optical, magnetic, catalytic — that bulk materials simply cannot match. These properties arise from:</p>
+      <ul class="bullet-list">
+        <li><strong>Quantum confinement effects</strong> — when particle size approaches the de Broglie wavelength of electrons</li>
+        <li><strong>Extremely high surface-area-to-volume ratio</strong> — more active sites for reactions</li>
+        <li><strong>Modified band gaps</strong> — tunable optical and electronic behaviour</li>
+        <li><strong>Enhanced reactivity</strong> — more atoms at surfaces and grain boundaries</li>
+      </ul>
+
+      <p>These unique properties directly determine their practical applications — from photocatalysis to gas sensing, energy storage, biomedical imaging, and more.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Metal Oxide</th><th>Key Application</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="td-label">TiO₂</td><td>Photocatalysis, solar cells, sunscreens</td></tr>
+            <tr><td class="td-label">Fe₂O₃</td><td>Magnetic materials, gas sensors, Li-ion batteries</td></tr>
+            <tr><td class="td-label">ZrO₂</td><td>Thermal barrier coatings, solid oxide fuel cells</td></tr>
+            <tr><td class="td-label">Al₂O₃</td><td>Catalysis support, abrasives</td></tr>
+            <tr><td class="td-label">CuO</td><td>Superconductors, catalysts, antibacterial</td></tr>
+            <tr><td class="td-label">NiO</td><td>Electrochromic devices, fuel cells</td></tr>
+            <tr><td class="td-label">BaTiO₃</td><td>Piezoelectrics, capacitors, ferroelectrics</td></tr>
+            <tr><td class="td-label">SrTiO₃</td><td>Photocatalysis, dielectrics, substrates</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s3-hydro-vs-solvo">3.2 Hydrothermal vs Solvothermal — A Critical Comparison</h3>
+
+      <div class="box insight">
+        <div class="box-label">⚖️ Key Comparison</div>
+        <div class="box-title">Solvothermal advantages over Hydrothermal</div>
+        <p>The solvothermal process can produce metal oxides that are:</p>
+        <ul class="bullet-list" style="margin-top:8px;">
+          <li><strong>Smaller</strong> in particle size</li>
+          <li><strong>Narrower</strong> in size distribution (more monodisperse)</li>
+          <li>Synthesised at <strong>lower temperatures</strong></li>
+          <li>Capable of handling <strong>water-sensitive precursors</strong> (precursors that hydrolyse or decompose in water)</li>
+        </ul>
+      </div>
+
+      <div class="summary-card">
+        <h4>📌 Section 3 Summary</h4>
+        <ul>
+          <li>Nanostructured metal oxides are valuable because nano-scale properties differ fundamentally from bulk</li>
+          <li>Both hydrothermal and solvothermal methods produce many important oxides: Al₂O₃, CuO, Fe₂O₃, NiO, ZrO₂, TiO₂, BaTiO₃, SrTiO₃</li>
+          <li>Solvothermal → smaller particles, narrower size distribution, lower synthesis temperature, handles water-sensitive precursors</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="sec-divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 4 — CRYSTAL GROWTH MECHANISM
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="s4">
+      <h2>4. Mechanisms of Crystal Growth</h2>
+
+      <p>Understanding <em>how</em> crystals form and grow under hydrothermal/solvothermal conditions is essential for controlling the <strong>size</strong>, <strong>morphology</strong>, and <strong>phase</strong> of the final nanoparticles.</p>
+
+      <p>Material synthesis through the hydrothermal method is fundamentally a <strong>crystallisation process</strong> from solution, proceeding in two sequential (and sometimes concurrent) stages:</p>
+
+      <div class="flow">
+        <div class="flow-step">Solution with<br>Dissolved Species</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">1. Crystal<br>Nucleation</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">2. Crystal<br>Growth</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Final<br>Nanoparticles</div>
+      </div>
+
+      <h3 id="s4-super">4.1 Supersaturation — The Driving Force</h3>
+
+      <div class="box def">
+        <div class="box-label">📖 Definition</div>
+        <div class="box-title">Supersaturation (S)</div>
+        <p>Supersaturation is defined as the <strong>ratio of the actual (real) concentration of a species in solution to its saturation (equilibrium) concentration</strong>:</p>
+      </div>
+
+      <div class="box formula">
+        <div class="box-label">📐 Formula</div>
+        <div class="box-title">Supersaturation Ratio</div>
+        <code>S = C<sub>actual</sub> / C<sub>saturation</sub></code>
+        <p style="margin-top:10px;font-size:0.9rem;color:#c4b5fd;">
+          • S &gt; 1 → solution is supersaturated → driving force for nucleation and growth exists<br>
+          • S = 1 → equilibrium, no net crystallisation<br>
+          • S &lt; 1 → undersaturated → crystals may dissolve
+        </p>
+      </div>
+
+      <div class="box insight">
+        <div class="box-label">💡 Why does supersaturation occur in hydrothermal synthesis?</div>
+        <p>In hydrothermal reactions, the <strong>dielectric constant of water drops dramatically</strong> as temperature rises near the critical point. This dramatically <em>reduces the solubility</em> of ionic solute species, pushing the system into a supersaturated state — which triggers nucleation and crystal growth. The experimenter can control supersaturation by adjusting temperature, pressure, pH, and reactant concentration.</p>
+      </div>
+
+      <div class="box note">
+        <div class="box-label">✅ Key Principle</div>
+        <p>Both the <strong>nucleation rate</strong> and the <strong>growth rate</strong> depend on the degree of supersaturation. By controlling processing variables such as <span class="hl">temperature</span>, <span class="hl">pH</span>, <span class="hl">reactant concentrations</span>, and <span class="hl">additives</span>, the final products can be tailored to have desired particle sizes and morphologies.</p>
+      </div>
+
+      <h3 id="s4-nuc">4.2 Stage 1 — Nucleation</h3>
+
+      <p>Nucleation is the <strong>birth of the first crystalline clusters</strong> from the supersaturated solution. It is the initial, critical step.</p>
+
+      <div class="box def">
+        <div class="box-label">📖 How Nucleation Works</div>
+        <p>When the concentration of solute exceeds its solubility limit (i.e., the solution becomes supersaturated), the reaction becomes <strong>irreversible</strong> — the solute precipitates into clusters of atoms/ions called <strong>nuclei</strong>. These nuclei are the embryos from which crystals will eventually grow to macroscopic size.</p>
+      </div>
+
+      <ul class="bullet-list">
+        <li><strong>Homogeneous nucleation</strong>: occurs uniformly throughout the bulk solution</li>
+        <li><strong>Heterogeneous nucleation</strong>: occurs preferentially at surfaces, impurities, or container walls (requires less activation energy)</li>
+        <li>A <strong>critical nucleus size</strong> exists — nuclei smaller than this dissolve back; nuclei larger than this are stable and continue to grow</li>
+      </ul>
+
+      <div class="box warn">
+        <div class="box-label">⚠️ Important</div>
+        <p>High supersaturation → <strong>rapid, numerous nucleation events</strong> → many small particles (small final size).<br>
+        Low supersaturation → <strong>few nuclei</strong> → each nucleus grows larger → fewer but bigger particles.<br>
+        This is why controlling supersaturation is the master lever for size control.</p>
+      </div>
+
+      <h3 id="s4-grow">4.3 Stage 2 — Crystal Growth (4 Sequential Steps)</h3>
+
+      <p>After nucleation, crystals grow by incorporating <strong>growth units</strong> from the bulk solution onto the existing crystal surface. Growth units have the same composition as the crystal but may have the same or different structures. This process involves <strong>four steps</strong>:</p>
+
+      <ul class="steps">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Transport through solution</strong>
+            Growth units (atoms, ions, or molecular clusters) diffuse through the bulk solution toward the crystal surface. This step is governed by <em>diffusion</em>. In viscous or highly concentrated solutions, this step can be rate-limiting.
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Attachment to the surface</strong>
+            Growth units adsorb onto the crystal surface at any accessible position. This is an <em>adsorption</em> step. Not all attachment sites are equally energetically favourable.
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Surface diffusion / Movement on the surface</strong>
+            Adsorbed units migrate across the crystal surface until they find energetically favourable positions. This is called <em>surface diffusion</em> or surface migration. Additives and surfactants can block certain faces, directing growth in specific directions.
+          </div>
+        </li>
+        <li>
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <strong>Incorporation at growth sites</strong>
+            The unit finally locks into a permanent <em>growth site</em> — usually a step, edge, or kink on the crystal surface — becoming part of the crystal lattice. This step determines crystal morphology.
+          </div>
+        </li>
+      </ul>
+
+      <!-- Crystal Growth Diagram -->
+      <div class="diagram-container">
+        <div class="diagram-title">Crystal Growth Mechanism — Visual Overview</div>
+        <div class="cgd">
+          <div class="cgd-stage">
+            <div class="molecules">
+              <div class="mol"></div><div class="mol"></div><div class="mol"></div>
+              <div class="mol"></div><div class="mol"></div><div class="mol"></div>
+              <div class="mol"></div><div class="mol"></div><div class="mol"></div>
+            </div>
+            <div class="cgd-label">Solute<br>Molecules</div>
+          </div>
+          <div class="cgd-arrow">→</div>
+          <div class="cgd-stage">
+            <div class="molecules">
+              <div class="mol cluster"></div><div class="mol cluster"></div>
+              <div class="mol cluster"></div><div class="mol cluster"></div>
+              <div class="mol"></div><div class="mol"></div>
+            </div>
+            <div class="cgd-label">Nucleation<br>→ Nuclei</div>
+          </div>
+          <div class="cgd-arrow">→</div>
+          <div class="cgd-stage">
+            <div class="molecules">
+              <div class="mol unit"></div><div class="mol unit"></div>
+              <div class="mol unit"></div><div class="mol unit"></div>
+              <div class="mol unit"></div><div class="mol unit"></div>
+            </div>
+            <div class="cgd-label">Growth<br>Units Form</div>
+          </div>
+          <div class="cgd-arrow">→</div>
+          <div class="cgd-stage">
+            <div class="crystal-block"></div>
+            <div class="cgd-label">Crystal<br>Growth</div>
+          </div>
+        </div>
+        <p style="font-size:11.5px;color:#888;margin-top:16px;">Solute → Nuclei → Growth Units attach (transport → adsorb → migrate → incorporate) → Crystal</p>
+      </div>
+
+      <div class="box note">
+        <div class="box-label">✅ Morphology Control</div>
+        <p>The shape (morphology) of the final nanoparticle is determined primarily in <strong>Step 4</strong>. By adding specific capping agents or surfactants that selectively adsorb onto certain crystal faces, growth along those faces is suppressed — resulting in anisotropic shapes like rods, wires, plates, or cubes instead of isotropic spheres.</p>
+      </div>
+
+      <div class="summary-card">
+        <h4>📌 Section 4 Summary</h4>
+        <ul>
+          <li>Crystallisation = Nucleation + Growth; both depend on supersaturation (S = C_actual / C_saturation)</li>
+          <li>Nucleation starts when solution becomes supersaturated; the reaction is irreversible — nuclei form</li>
+          <li>Crystal growth occurs in 4 steps: transport → attachment → surface migration → incorporation at growth sites</li>
+          <li>Variables to tune: temperature, pH, reactant concentration, additives → control particle size and morphology</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="sec-divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 5 — ROLE OF SOLVENTS
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="s5">
+      <h2>5. Role of Solvents in Hydrothermal / Solvothermal Synthesis</h2>
+
+      <h3 id="s5-water">5.1 Water as Solvent — Hydrothermal Chemistry</h3>
+
+      <p>Water is the most widely used solvent in this field, owing to its abundance, low toxicity, high dielectric constant at room temperature, and remarkable property changes near its critical point.</p>
+
+      <div class="box def">
+        <div class="box-label">📖 Critical Point of Water</div>
+        <p><strong>Critical Temperature:</strong> 374°C &nbsp;|&nbsp; <strong>Critical Pressure:</strong> 22.1 MPa (≈ 218 atm)</p>
+        <p style="margin-top:6px;">Beyond the critical point, water exists as a <strong>supercritical fluid</strong> — simultaneously exhibiting liquid-like density and gas-like diffusivity. Properties change dramatically around this point.</p>
+      </div>
+
+      <h4>The Dielectric Constant — Central to Everything</h4>
+
+      <p>The dielectric constant (ε) of a solvent measures its ability to <strong>reduce the force between charged ions</strong> — essentially, its ability to dissolve ionic species. Water's dielectric constant changes drastically with temperature:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Condition</th><th>Dielectric Constant (ε)</th><th>Effect on Solubility</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-label">Room temperature water</td>
+              <td>~78</td>
+              <td>High — polar ionic salts dissolve readily (solution not supersaturated)</td>
+            </tr>
+            <tr>
+              <td class="td-label">Near critical region</td>
+              <td>~10</td>
+              <td>Low — ionic species much less soluble → supersaturation begins</td>
+            </tr>
+            <tr>
+              <td class="td-label">Above critical point (supercritical)</td>
+              <td>2–10</td>
+              <td>Very low — ionic species almost insoluble → high supersaturation → rapid nucleation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box insight">
+        <div class="box-label">💡 Two Consequences of Low Dielectric Constant</div>
+        <p><strong>Consequence 1 (for ionic species):</strong> The dramatically reduced solubility of ionic salts creates high supersaturation → drives nucleation and crystal growth. This is the primary mechanism of hydrothermal crystal formation.</p>
+        <p style="margin-top:10px;"><strong>Consequence 2 (for organic additives):</strong> The low dielectric constant near/above the critical point allows <em>organic species</em> — which normally do not dissolve in water — to dissolve in the supercritical water. These organics can then act as <strong>additives</strong> to control crystal nucleation and growth morphology in situ.</p>
+      </div>
+
+      <div class="box note">
+        <div class="box-label">✅ The Chain of Events in Hydrothermal Synthesis</div>
+        <ol style="margin-top:8px;margin-left:18px;font-size:0.95rem;line-height:1.9;">
+          <li>Precursor dissolved in water at room temperature (ε ≈ 78) → solution not saturated</li>
+          <li>Autoclave sealed, heated to T &gt; 100°C → pressure builds (autogenous)</li>
+          <li>As T rises near critical point → ε drops to ~10</li>
+          <li>Reduced ε → reduced ion solubility → <strong>supersaturation</strong> reached</li>
+          <li>Supersaturation triggers → <strong>nucleation</strong> of crystal embryos</li>
+          <li>Nuclei grow → <strong>crystal growth</strong> until equilibrium is re-established</li>
+          <li>Reactor cools → nanoparticles collected</li>
+        </ol>
+      </div>
+
+      <h3 id="s5-nonaq">5.2 Non-Aqueous (Organic) Solvents — Solvothermal Synthesis</h3>
+
+      <p>Organic solvents are used as alternatives to water in solvothermal synthesis. The chemistry is analogous but with distinct advantages.</p>
+
+      <h4>Common Organic Solvents Used</h4>
+      <ul class="bullet-list">
+        <li><strong>Methanol (CH₃OH)</strong> — protic, polar, low boiling point (64.7°C), often used for low-temperature synthesis</li>
+        <li><strong>1,4-Butanediol (HO–(CH₂)₄–OH)</strong> — high boiling point (~230°C), acts both as solvent and mild reducing agent</li>
+        <li><strong>Toluene (C₆H₅–CH₃)</strong> — aromatic, non-polar, good for organic-capped nanoparticles</li>
+        <li><strong>Amines (e.g., oleylamine)</strong> — act simultaneously as solvent, surfactant/capping agent, and sometimes reducing agent</li>
+      </ul>
+
+      <div class="box def">
+        <div class="box-label">🔑 Key Advantages of Solvothermal over Hydrothermal</div>
+        <ul class="bullet-list" style="margin-top:8px;">
+          <li>Reactions can occur at <strong>relatively lower temperatures and pressures</strong> — safer and less energy intensive</li>
+          <li>Can handle <strong>water-sensitive precursors</strong> — precursors that hydrolyse (break down with water) or are incompatible with aqueous media</li>
+          <li>Produces smaller particles with <strong>narrower size distribution</strong> (more uniform)</li>
+          <li>Greater control over surface chemistry of nanoparticles (organic capping during synthesis)</li>
+          <li>Organic solvents can simultaneously function as <strong>capping agents</strong>, preventing agglomeration</li>
+        </ul>
+      </div>
+
+      <div class="box warn">
+        <div class="box-label">⚠️ Limitation of Organic Solvents</div>
+        <p>Organic solvents are generally <strong>flammable and toxic</strong> — handling requires proper safety measures. They are also more expensive than water. Removing organic residues from the final nanoparticle product sometimes requires additional post-synthesis calcination steps.</p>
+      </div>
+
+      <div class="summary-card">
+        <h4>📌 Section 5 Summary</h4>
+        <ul>
+          <li>Water's dielectric constant: ~78 at room T → drops to 2–10 above critical point (374°C, 22.1 MPa)</li>
+          <li>Dropping ε → drops solubility of ionic species → supersaturation → nucleation/growth</li>
+          <li>Supercritical water can dissolve organic additives to control crystal morphology</li>
+          <li>Organic solvents (methanol, 1,4-butanediol, toluene, amines): lower T&P, handle water-sensitive precursors, smaller/more uniform particles</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="sec-divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 6 — FLAME SPRAY PYROLYSIS
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="s6">
+      <h2>6. Flame Spray Pyrolysis (FSP)</h2>
+
+      <p>Flame Spray Pyrolysis (FSP) is a fundamentally different approach to nanoparticle synthesis compared to hydrothermal methods. Instead of using hot pressurised liquids, it uses a <strong>high-temperature flame</strong> to convert a sprayed precursor solution directly into nanoparticles in the gas phase.</p>
+
+      <h3 id="s6-proc">6.1 The FSP Process — Step by Step</h3>
+
+      <div class="box def">
+        <div class="box-label">📖 Core Description</div>
+        <div class="box-title">Flame Spray Pyrolysis</div>
+        <p>An aqueous metal salt solution is sprayed as a <strong>fine mist</strong> through a capillary and into a <strong>flame</strong>. Small droplets form while the solvent combusts inside the flame. The heat causes the metal salt to undergo <strong>pyrolysis</strong> (thermal decomposition) and convert to metal oxide. The resulting metal oxide atoms aggregate into nanoparticles, which are then <strong>collected on a substrate</strong>.</p>
+      </div>
+
+      <p>The complete process involves the following sequential stages:</p>
+
+      <ul class="steps">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Precursor Dispersion</strong>
+            The metal salt precursor solution is fed through a capillary nozzle and broken into a fine aerosol mist by dispersion gas (typically O₂ or N₂). A supporting flame (e.g., CH₄/O₂) ignites the spray.
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Droplet Formation</strong>
+            The aerosol breaks into fine individual droplets in the spray zone. Droplet size directly influences particle size — smaller droplets → smaller particles.
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Droplet Evaporation &amp; Combustion</strong>
+            Droplets enter the flame. The solvent evaporates rapidly. The precursor salt undergoes <strong>pyrolysis</strong> — thermally decomposing at high temperature into metal oxide vapour/atoms. This is the chemical conversion step.
+          </div>
+        </li>
+        <li>
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <strong>Nucleation</strong>
+            Metal oxide vapour becomes supersaturated in the gas phase. Homogeneous nucleation occurs — tiny embryonic nanoparticles form in the hot gas stream.
+          </div>
+        </li>
+        <li>
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <strong>Aglomeration &amp; Particle Growth</strong>
+            As particles cool, they may collide and fuse (sintering) or simply aggregate. This stage determines the final particle size distribution. Controlling residence time and temperature near the flame controls this stage.
+          </div>
+        </li>
+        <li>
+          <div class="step-num">6</div>
+          <div class="step-body">
+            <strong>Film Self-Assembly &amp; Collection on Substrate</strong>
+            Nanoparticles settle and are collected on a filter, substrate, or membrane downstream of the flame. The collected nanoparticles can form films or powders.
+          </div>
+        </li>
+      </ul>
+
+      <!-- FSP Diagram -->
+      <div class="diagram-container">
+        <div class="diagram-title">FSP — Process Flow Diagram (Bottom to Top)</div>
+        <div class="fsp-diagram">
+          <div class="fsp-stage" style="background:linear-gradient(90deg,#7c3aed,#a78bfa);">📋 Film Self-Assembly / Collection</div>
+          <div class="fsp-arrow-v">↑</div>
+          <div class="fsp-stage" style="background:linear-gradient(90deg,#6b21a8,#7c3aed);">🔵 Aglomeration of Nanoparticles</div>
+          <div class="fsp-arrow-v">↑</div>
+          <div class="fsp-stage" style="background:linear-gradient(90deg,#4a1277,#6b21a8);">⚡ Nucleation in Gas Phase</div>
+          <div class="fsp-arrow-v">↑</div>
+          <div class="fsp-stage" style="background:linear-gradient(90deg,#c9a84c,#e9c46a);">🔥 Droplet Evaporation &amp; Combustion (Pyrolysis)</div>
+          <div class="fsp-arrow-v">↑</div>
+          <div class="fsp-stage" style="background:linear-gradient(90deg,#d97706,#f59e0b);">💧 Droplet Formation</div>
+          <div class="fsp-arrow-v">↑</div>
+          <div class="fsp-stage" style="background:linear-gradient(90deg,#059669,#10b981);">💨 Precursor Dispersion (Capillary + Dispersion Gas)</div>
+          <div class="fsp-arrow-v">↑</div>
+          <div class="fsp-stage" style="background:linear-gradient(90deg,#1d4ed8,#3b82f6);">🧪 Precursor Solution (Metal Salt in Solvent)</div>
+        </div>
+        <p style="font-size:11.5px;color:#888;margin-top:16px;">Flow direction: Solution enters at bottom → nanoparticles collected at top</p>
+      </div>
+
+      <h3 id="s6-adv">6.2 Advantages of Flame Spray Pyrolysis</h3>
+
+      <div class="box note">
+        <div class="box-label">✅ Advantage 1 — Atomic-Level Homogeneity</div>
+        <div class="box-title">Materials mixed in solution → homogeneous at atomic level from the start</div>
+        <p>Because multiple metal salt precursors are dissolved together in the same solution before spraying, every droplet contains all components in the correct stoichiometric ratio. This ensures <strong>perfect atomic-level mixing</strong> — impossible to achieve by blending powders together after synthesis. This is especially powerful for making multi-component or doped oxides.</p>
+      </div>
+
+      <div class="box note">
+        <div class="box-label">✅ Advantage 2 — No Calcination Needed</div>
+        <div class="box-title">Only sub-sintering temperatures required to form crystallised particles</div>
+        <p>Traditional powder synthesis methods produce amorphous material that must be separately heated (calcined) at high temperatures to crystallise. In FSP, crystallisation happens <em>in-flight</em> in the flame — no separate calcination step required, saving time and energy.</p>
+      </div>
+
+      <div class="box note">
+        <div class="box-label">✅ Advantage 3 — Nano-Scale Particle Size</div>
+        <p>FSP produces particle sizes typically in the range of <span class="hl">5–500 nm</span>. The exact size is controlled by adjusting: precursor concentration, dispersion gas flow rate, flame temperature, and residence time.</p>
+      </div>
+
+      <div class="box note">
+        <div class="box-label">✅ Advantage 4 — High Specific Surface Area</div>
+        <p>The nanoparticles produced have a <strong>high specific surface area</strong> — critical for catalysis applications. Achieved at relatively low production costs.</p>
+      </div>
+
+      <div class="box note">
+        <div class="box-label">✅ Advantage 5 — Unlimited Compositional Combinations</div>
+        <div class="box-title">Low-cost metal precursors; unlimited combinations</div>
+        <p>FSP allows the use of <strong>low-cost metal precursors</strong> that can be freely combined during synthesis. This results in essentially <strong>unlimited combinations of metal ions and stoichiometric ratios</strong>, enabling the production of complex mixed oxides (e.g., doped TiO₂, multicomponent perovskites) that are difficult to achieve by other methods.</p>
+      </div>
+
+      <h3>6.3 Limitations of Flame Spray Pyrolysis</h3>
+
+      <div class="box warn">
+        <div class="box-label">⚠️ Key Limitation</div>
+        <div class="box-title">Poor Mechanical Stability of Nanostructured Films</div>
+        <p>A major drawback of FSP-produced nanoparticles is the <strong>poor mechanical stability</strong> of the nanostructured films they form on substrates. The loosely packed, high-surface-area films are fragile and may not be suitable for applications requiring robust mechanical properties.</p>
+      </div>
+
+      <h3>6.4 Key Process Control Parameters</h3>
+      <p>To control morphology (shape, size, crystallinity) in FSP, the following must be precisely controlled:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Parameter</th><th>Effect on Particles</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-label">Precursor concentration</td>
+              <td>Higher concentration → more material per droplet → larger particles or more aggregation</td>
+            </tr>
+            <tr>
+              <td class="td-label">Residence time in flame</td>
+              <td>Longer time → more growth, sintering → larger particles; shorter → smaller, less crystalline</td>
+            </tr>
+            <tr>
+              <td class="td-label">Temperature near flame</td>
+              <td>Higher T → faster pyrolysis, more crystalline; too high → particle coarsening</td>
+            </tr>
+            <tr>
+              <td class="td-label">Dispersion gas flow rate</td>
+              <td>Higher flow → smaller droplets → smaller particles; affects combustion completeness</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="summary-card">
+        <h4>📌 Section 6 Summary</h4>
+        <ul>
+          <li>FSP: metal salt solution → sprayed through capillary → flame → pyrolysis → nanoparticles collected on substrate</li>
+          <li>6 stages: Precursor dispersion → Droplet formation → Evaporation/combustion → Nucleation → Aglomeration → Collection</li>
+          <li>Advantages: atomic homogeneity from solution; no separate calcination; 5–500 nm particles; high surface area; unlimited compositions with low-cost precursors</li>
+          <li>Limitation: poor mechanical stability of nanostructured films</li>
+          <li>Control parameters: precursor concentration, residence time, flame temperature, dispersion gas flow</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="sec-divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 7 — MASTER COMPARISON
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="s7">
+      <h2>7. Comprehensive Comparison — All Three Methods</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Hydrothermal</th>
+              <th>Solvothermal</th>
+              <th>Flame Spray Pyrolysis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-label">Medium / Phase</td>
+              <td>Aqueous liquid (water)</td>
+              <td>Organic liquid solvent</td>
+              <td>Gas phase (flame)</td>
+            </tr>
+            <tr>
+              <td class="td-label">Reactor</td>
+              <td>Sealed autoclave</td>
+              <td>Sealed autoclave</td>
+              <td>Open flame reactor</td>
+            </tr>
+            <tr>
+              <td class="td-label">Temperature range</td>
+              <td>100–374°C (sub- to supercritical)</td>
+              <td>Often lower than hydrothermal</td>
+              <td>Very high (flame, >1000°C)</td>
+            </tr>
+            <tr>
+              <td class="td-label">Pressure</td>
+              <td>Autogenous (high)</td>
+              <td>Autogenous (moderate)</td>
+              <td>Atmospheric</td>
+            </tr>
+            <tr>
+              <td class="td-label">Particle size</td>
+              <td>nm to µm range, controllable</td>
+              <td>Smaller than hydrothermal; narrower distribution</td>
+              <td>5–500 nm</td>
+            </tr>
+            <tr>
+              <td class="td-label">Size distribution</td>
+              <td>Moderate</td>
+              <td>Narrow (better uniformity)</td>
+              <td>Variable (depends on conditions)</td>
+            </tr>
+            <tr>
+              <td class="td-label">Water-sensitive precursors</td>
+              <td>❌ Cannot handle</td>
+              <td>✅ Can handle</td>
+              <td>✅ Can handle</td>
+            </tr>
+            <tr>
+              <td class="td-label">Compositional control</td>
+              <td>Good</td>
+              <td>Good</td>
+              <td>Excellent (atomic-level mixing from solution)</td>
+            </tr>
+            <tr>
+              <td class="td-label">Crystallinity</td>
+              <td>Good (direct crystallisation)</td>
+              <td>Good</td>
+              <td>Good (no separate calcination needed)</td>
+            </tr>
+            <tr>
+              <td class="td-label">Scalability / Cost</td>
+              <td>Moderate; batch process</td>
+              <td>Moderate; more expensive solvent</td>
+              <td>Continuous; scalable; low-cost precursors</td>
+            </tr>
+            <tr>
+              <td class="td-label">Key limitation</td>
+              <td>High pressure; only water-stable precursors</td>
+              <td>Flammable/toxic solvents; organic residues</td>
+              <td>Poor mechanical stability of films</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="sec-divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 8 — MASTER REVISION SHEET
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="s8">
+      <h2>8. Master Revision Sheet</h2>
+      <p>Use this as a quick-reference before your exam. Every critical point from the lecture notes is distilled here.</p>
+
+      <div class="revision-grid">
+
+        <div class="rev-card">
+          <h4>🔬 Definitions</h4>
+          <ul>
+            <li><strong>Hydrothermal:</strong> Chemical reactions in sealed vessels with water at/above critical T&P</li>
+            <li><strong>Solvothermal:</strong> Same but with organic solvent</li>
+            <li><strong>Autogenous pressure:</strong> Self-generated pressure from sealing & heating</li>
+            <li><strong>Supersaturation:</strong> S = C_actual / C_sat > 1 → driving force for crystallisation</li>
+            <li><strong>Nucleation:</strong> Formation of first crystalline clusters from supersaturated solution</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>🧪 Key Terms (Precursors/Mineralizers/Additives)</h4>
+          <ul>
+            <li><strong>Precursors:</strong> Reactants (solutions, gels, suspensions)</li>
+            <li><strong>Mineralizers:</strong> High conc. (~10 M) pH controllers</li>
+            <li><strong>Additives:</strong> Low conc. — control morphology &amp; dispersion</li>
+            <li>Mineralizer concentration >> Additive concentration</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>💧 Water Properties</h4>
+          <ul>
+            <li>Critical point: <strong>374°C, 22.1 MPa</strong></li>
+            <li>ε at room T: ~78 (high — dissolves ionic salts)</li>
+            <li>ε near critical: ~10 (drops dramatically)</li>
+            <li>ε supercritical: 2–10 (very low → supersaturation)</li>
+            <li>Supercritical water dissolves organics (good for additive control)</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>⚙️ Autoclave Facts</h4>
+          <ul>
+            <li>Metal body + Teflon/Pt/Au liner (protects from corrosion)</li>
+            <li>6 types: quartz tube (250°C/6 bar) → diamond anvil (>2000°C/500,000 bar)</li>
+            <li>Pressure is autogenous (self-generated), not set directly</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>🌱 Crystal Growth — 4 Steps</h4>
+          <ul>
+            <li>1. Transport through solution (diffusion)</li>
+            <li>2. Attachment to crystal surface (adsorption)</li>
+            <li>3. Surface migration to optimal site</li>
+            <li>4. Incorporation at growth site (determines morphology)</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>🔵 Solvothermal vs Hydrothermal</h4>
+          <ul>
+            <li>Solvothermal → smaller particles</li>
+            <li>Solvothermal → narrower size distribution</li>
+            <li>Solvothermal → lower temperature</li>
+            <li>Solvothermal → handles water-sensitive precursors</li>
+            <li>Common solvents: methanol, 1,4-butanediol, toluene, amines</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>🔥 Flame Spray Pyrolysis (FSP)</h4>
+          <ul>
+            <li>Process: spray solution → flame → pyrolysis → nano collection</li>
+            <li>Particle size: 5–500 nm</li>
+            <li>Advantage: atomic-level mixing; no calcination; high surface area; unlimited combinations</li>
+            <li>Limitation: poor mechanical stability of films</li>
+            <li>Control: precursor conc., residence time, flame T, gas flow</li>
+          </ul>
+        </div>
+
+        <div class="rev-card">
+          <h4>⚗️ Metal Oxides Made by Hydro/Solvothermal</h4>
+          <ul>
+            <li>Simple: Al₂O₃, CuO, Fe₂O₃, NiO, ZrO₂, TiO₂</li>
+            <li>Complex (multi-component): BaTiO₃, SrTiO₃</li>
+            <li>Unique nano properties → practical applications</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Final quick-check formulas -->
+      <div class="box formula" style="margin-top:28px;">
+        <div class="box-label">📐 All Formulas to Remember</div>
+        <div class="box-title">Supersaturation</div>
+        <code>S = C<sub>actual</sub> / C<sub>saturation</sub></code>
+        <p style="margin-top:14px;font-size:0.88rem;color:#c4b5fd;">
+          S &gt; 1 → Supersaturated → Nucleation &amp; Growth occur<br>
+          S = 1 → Equilibrium → No net change<br>
+          S &lt; 1 → Undersaturated → Dissolution
+        </p>
+        <hr style="border-color:rgba(255,255,255,0.15);margin:14px 0;">
+        <div class="box-title">Critical Point (Water)</div>
+        <code>T<sub>c</sub> = 374°C &nbsp;&nbsp; P<sub>c</sub> = 22.1 MPa</code>
+        <hr style="border-color:rgba(255,255,255,0.15);margin:14px 0;">
+        <div class="box-title">FSP Particle Size Range</div>
+        <code>d<sub>particle</sub> ≈ 5 – 500 nm</code>
+      </div>
+
+      <div class="box warn" style="margin-top:24px;">
+        <div class="box-label">⚠️ Common Exam Mistakes — Don't Fall For These</div>
+        <ul class="bullet-list" style="margin-top:8px;">
+          <li>Confusing <strong>mineralizers</strong> (high conc., pH control) with <strong>additives</strong> (low conc., morphology control)</li>
+          <li>Saying pressure in autoclaves is "set" by the experimenter — it is <strong>autogenous</strong> (self-generated)</li>
+          <li>Forgetting that in FSP, <strong>no separate calcination</strong> step is needed (crystallisation happens in-flight)</li>
+          <li>Thinking solvothermal always uses water — it uses <strong>organic solvents</strong></li>
+          <li>Mixing up the direction of dielectric constant change: as T increases, ε <strong>decreases</strong> for water</li>
+          <li>Neglecting that <strong>crystal morphology</strong> is determined at step 4 (incorporation at growth sites)</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <div class="sec-divider"></div>
+
+    <!-- Footer -->
+    <div style="text-align:center;padding:20px 0 10px;color:#9575cd;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;">
+      CHM721 · Dr. Lubna Sherin · Hydrothermal &amp; Spray Pyrolysis Synthesis · Complete Study Guide
+    </div>
+
+  </main>
+</div>
+
+<script>
+  // Highlight active TOC link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+    });
+    tocLinks.forEach(link => {
+      link.style.background = '';
+      link.style.color = '';
+      if (link.getAttribute('href') === '#' + current) {
+        link.style.background = 'var(--purple-100)';
+        link.style.color = 'var(--purple-700)';
+        link.style.fontWeight = '600';
+      }
+    });
+  });
+</script>
+</body>
+</html>

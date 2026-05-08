@@ -1,0 +1,2410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flame Spray Pyrolysis — Complete Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple-50: #faf5ff;
+    --purple-100: #f3e8ff;
+    --purple-200: #e9d5ff;
+    --purple-300: #d8b4fe;
+    --purple-400: #c084fc;
+    --purple-500: #a855f7;
+    --purple-600: #9333ea;
+    --purple-700: #7e22ce;
+    --purple-800: #6b21a8;
+    --purple-900: #581c87;
+    --violet-600: #7c3aed;
+    --indigo-600: #4f46e5;
+    --amber-500: #f59e0b;
+    --amber-100: #fef3c7;
+    --red-600: #dc2626;
+    --red-100: #fee2e2;
+    --green-600: #16a34a;
+    --green-100: #dcfce7;
+    --blue-600: #2563eb;
+    --blue-100: #dbeafe;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --bg: #fdfbff;
+    --surface: #ffffff;
+    --border: #e9d5ff;
+    --text: #1e1025;
+    --text-muted: #6b5a7a;
+    --shadow-sm: 0 1px 3px rgba(88,28,135,0.08);
+    --shadow: 0 4px 16px rgba(88,28,135,0.10);
+    --shadow-lg: 0 8px 32px rgba(88,28,135,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #2d0a5e 0%, #5b21b6 45%, #7c3aed 75%, #a855f7 100%);
+    color: white;
+    padding: 72px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 60%, rgba(168,85,247,0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 20%, rgba(124,58,237,0.4) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-label {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .hero h1 span { color: #f0abfc; }
+  .hero p {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    max-width: 620px;
+    margin: 0 auto 28px;
+    font-weight: 300;
+  }
+  .hero-meta {
+    display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+    font-size: 13px; opacity: 0.75;
+  }
+  .hero-meta span::before { content: '◆ '; font-size: 8px; vertical-align: middle; }
+
+  /* ── LAYOUT ── */
+  .page-wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--surface);
+    border: 2px solid var(--purple-200);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin: 48px 0;
+    box-shadow: var(--shadow);
+  }
+  .toc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--purple-800);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .toc-title::before { content: '📖'; font-size: 1.2rem; }
+  .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 32px; }
+  .toc a {
+    color: var(--purple-700);
+    text-decoration: none;
+    font-size: 0.93rem;
+    font-weight: 500;
+    padding: 5px 8px;
+    border-radius: 6px;
+    display: flex; align-items: center; gap: 8px;
+    transition: background 0.15s;
+  }
+  .toc a:hover { background: var(--purple-100); }
+  .toc-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 20px; height: 20px; min-width: 20px;
+    background: var(--purple-600);
+    color: white; border-radius: 50%;
+    font-size: 10px; font-weight: 700;
+  }
+  @media(max-width: 600px) { .toc-grid { grid-template-columns: 1fr; } }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-bottom: 72px;
+    animation: fadeUp 0.4s ease both;
+  }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+
+  .section-header {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid var(--purple-200);
+  }
+  .section-num {
+    display: flex; align-items: center; justify-content: center;
+    width: 48px; height: 48px; min-width: 48px;
+    background: linear-gradient(135deg, var(--purple-600), var(--violet-600));
+    color: white; border-radius: 12px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 900;
+    box-shadow: 0 4px 12px rgba(124,58,237,0.3);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--purple-900);
+  }
+  .section-sub {
+    font-size: 0.875rem; color: var(--text-muted);
+    font-style: italic; margin-top: 2px;
+  }
+
+  h2 { /* subsection */
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--purple-800);
+    margin: 40px 0 16px;
+    padding-left: 14px;
+    border-left: 4px solid var(--purple-500);
+  }
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--purple-700);
+    margin: 28px 0 10px;
+  }
+
+  p { margin-bottom: 14px; color: var(--gray-800); }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--purple-800); }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--purple-200);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 20px 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .card-title {
+    font-weight: 700; font-size: 0.95rem;
+    color: var(--purple-700);
+    text-transform: uppercase; letter-spacing: 0.8px;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  /* ── SPECIAL BOXES ── */
+  .box {
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    border-left: 5px solid;
+  }
+  .box.definition {
+    background: var(--purple-50);
+    border-color: var(--purple-600);
+  }
+  .box.definition .box-label { color: var(--purple-700); }
+  .box.formula {
+    background: #f0f9ff;
+    border-color: var(--blue-600);
+  }
+  .box.formula .box-label { color: var(--blue-600); }
+  .box.note {
+    background: var(--amber-100);
+    border-color: var(--amber-500);
+  }
+  .box.note .box-label { color: #92400e; }
+  .box.warning {
+    background: var(--red-100);
+    border-color: var(--red-600);
+  }
+  .box.warning .box-label { color: var(--red-600); }
+  .box.success {
+    background: var(--green-100);
+    border-color: var(--green-600);
+  }
+  .box.success .box-label { color: var(--green-600); }
+  .box.analogy {
+    background: #fff7ed;
+    border-color: #f97316;
+  }
+  .box.analogy .box-label { color: #c2410c; }
+  .box-label {
+    font-weight: 700; font-size: 0.8rem;
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .box p { color: inherit; }
+
+  /* ── FORMULA DISPLAY ── */
+  .math {
+    font-family: 'JetBrains Mono', monospace;
+    background: #1e1b4b;
+    color: #e0e7ff;
+    padding: 18px 24px;
+    border-radius: 10px;
+    margin: 16px 0;
+    font-size: 1rem;
+    overflow-x: auto;
+    line-height: 1.6;
+    border: 1px solid #3730a3;
+  }
+  .math .comment { color: #818cf8; font-style: italic; }
+  .math .highlight { color: #f0abfc; font-weight: 500; }
+  .math .value { color: #6ee7b7; }
+
+  /* ── GRID LAYOUTS ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 20px 0; }
+  @media(max-width:700px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  }
+
+  /* ── STEP SEQUENCE ── */
+  .steps { margin: 20px 0; }
+  .step {
+    display: flex; gap: 16px; margin-bottom: 20px;
+    align-items: flex-start;
+  }
+  .step-num {
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; min-width: 36px;
+    border-radius: 50%;
+    font-weight: 700; font-size: 0.9rem;
+    color: white;
+  }
+  .step-body { flex: 1; }
+  .step-title { font-weight: 600; color: var(--purple-800); margin-bottom: 4px; }
+  .step-desc { font-size: 0.93rem; color: var(--gray-700); }
+  .step-connector {
+    width: 2px; background: var(--purple-200);
+    height: 16px; margin: 0 0 0 17px;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline { margin: 24px 0; }
+  .timeline-item {
+    display: flex; gap: 20px; margin-bottom: 24px;
+  }
+  .timeline-dot {
+    display: flex; flex-direction: column; align-items: center;
+    min-width: 48px;
+  }
+  .timeline-circle {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.75rem;
+    color: white; text-align: center; line-height: 1.2;
+  }
+  .timeline-line {
+    flex: 1; width: 2px; background: var(--purple-200); margin-top: 4px;
+  }
+  .timeline-content { flex: 1; padding-top: 8px; }
+  .timeline-era { font-weight: 700; color: var(--purple-800); margin-bottom: 6px; font-size: 1rem; }
+  .timeline-text { font-size: 0.92rem; color: var(--gray-700); }
+
+  /* ── TABLE ── */
+  table {
+    width: 100%; border-collapse: collapse;
+    margin: 20px 0; font-size: 0.9rem;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--purple-200);
+  }
+  th {
+    background: linear-gradient(135deg, var(--purple-700), var(--purple-800));
+    color: white; font-weight: 600;
+    padding: 12px 16px; text-align: left;
+    font-size: 0.85rem; letter-spacing: 0.5px;
+  }
+  td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--purple-100);
+    color: var(--gray-700);
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--purple-50); }
+  td strong { color: var(--purple-700); }
+
+  /* ── PILL BADGES ── */
+  .badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .badge-purple { background: var(--purple-100); color: var(--purple-700); }
+  .badge-green { background: var(--green-100); color: var(--green-600); }
+  .badge-red { background: var(--red-100); color: var(--red-600); }
+  .badge-amber { background: var(--amber-100); color: #92400e; }
+
+  /* ── FEATURE GRID (zones etc) ── */
+  .zone-card {
+    background: white;
+    border: 1px solid var(--purple-200);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    position: relative;
+    border-left: 5px solid;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .zone-card:hover { transform: translateX(4px); box-shadow: var(--shadow); }
+  .zone-label {
+    font-weight: 700; font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 0.8px;
+    margin-bottom: 4px;
+  }
+  .zone-temp { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; }
+  .zone-desc { font-size: 0.9rem; color: var(--gray-700); margin-top: 6px; }
+
+  /* ── COMPARISON ── */
+  .compare-row {
+    display: flex; gap: 12px; margin-bottom: 8px;
+  }
+  .compare-item {
+    flex: 1; padding: 14px 18px;
+    border-radius: 10px; font-size: 0.9rem;
+  }
+
+  /* ── SUMMARY BOX ── */
+  .summary-block {
+    background: linear-gradient(135deg, var(--purple-900), var(--violet-600));
+    color: white;
+    border-radius: 16px;
+    padding: 32px 36px;
+    margin: 40px 0 0;
+  }
+  .summary-block h3 {
+    color: #f0abfc; font-size: 1.1rem;
+    margin-bottom: 16px;
+    font-family: 'Playfair Display', serif;
+  }
+  .summary-block ul { padding-left: 0; list-style: none; }
+  .summary-block li {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.92rem;
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  .summary-block li::before {
+    content: '▸'; position: absolute; left: 0;
+    color: #f0abfc;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--purple-300), transparent);
+    margin: 60px 0;
+  }
+
+  /* ── MASTER SUMMARY ── */
+  .master-summary {
+    background: linear-gradient(135deg, #0f0825, #2d0a5e, #4c1d95);
+    color: white;
+    padding: 60px 40px;
+    border-radius: 20px;
+    margin: 40px 0 80px;
+  }
+  .master-summary h2 {
+    font-family: 'Playfair Display', serif;
+    color: #f0abfc;
+    border: none;
+    padding: 0;
+    font-size: 1.8rem;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .master-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .master-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(240,171,252,0.25);
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .master-card-title {
+    font-weight: 700; color: #f0abfc;
+    font-size: 0.9rem; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .master-card li {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.85);
+    padding: 3px 0 3px 16px;
+    position: relative;
+  }
+  .master-card li::before {
+    content: '·'; position: absolute; left: 4px;
+    color: #c084fc;
+  }
+  .master-card ul { list-style: none; padding: 0; }
+  @media(max-width:600px) { .master-grid { grid-template-columns: 1fr; } }
+
+  /* ── STICKY TOC ── */
+  .back-top {
+    position: fixed; bottom: 28px; right: 28px;
+    width: 44px; height: 44px;
+    background: var(--purple-600);
+    color: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 1.1rem;
+    box-shadow: 0 4px 16px rgba(124,58,237,0.4);
+    transition: transform 0.15s;
+    border: none; text-decoration: none;
+  }
+  .back-top:hover { transform: scale(1.1); }
+
+  /* ── PRINT ── */
+  @media print {
+    .hero { background: var(--purple-800) !important; }
+    .back-top { display: none; }
+  }
+
+  /* inline code */
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--purple-100);
+    color: var(--purple-800);
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 0.875em;
+  }
+
+  /* ── CHECKPOINT ── */
+  .checkpoint {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: var(--purple-50);
+    border: 1px solid var(--purple-200);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 8px 0;
+    font-size: 0.9rem;
+    color: var(--gray-700);
+  }
+  .checkpoint::before { content: '✓'; color: var(--purple-600); font-weight: 700; margin-top: 1px; }
+
+  ul.styled, ol.styled {
+    padding-left: 0; list-style: none;
+  }
+  ul.styled li, ol.styled li {
+    padding: 5px 0 5px 24px;
+    position: relative;
+    color: var(--gray-700);
+    font-size: 0.95rem;
+  }
+  ul.styled li::before {
+    content: '◆'; position: absolute; left: 0;
+    color: var(--purple-400); font-size: 0.6rem; top: 9px;
+  }
+  ol.styled { counter-reset: steps; }
+  ol.styled li { counter-increment: steps; }
+  ol.styled li::before {
+    content: counter(steps)'.';
+    position: absolute; left: 0;
+    color: var(--purple-600); font-weight: 700; font-size: 0.85rem;
+  }
+
+  /* equation label */
+  .eq-label {
+    font-size: 0.78rem; color: #818cf8;
+    font-style: italic; margin-top: -8px; margin-bottom: 12px;
+  }
+
+  .phi-row {
+    display: flex; gap: 12px; margin: 10px 0;
+  }
+  .phi-card {
+    flex: 1; padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+  }
+  .phi-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700; font-size: 1rem;
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<div class="hero" id="top">
+  <div class="hero-label">Complete Study Guide</div>
+  <h1>Flame Spray <span>Pyrolysis</span></h1>
+  <p>A fully comprehensive, exam-ready guide covering all fundamentals, mechanisms, parameters, applications, and limitations of FSP nanoparticle synthesis.</p>
+  <div class="hero-meta">
+    <span>Amir Aziz · Introduction & Fundamentals</span>
+    <span>Muhammad Zahid · Setup & Components</span>
+    <span>Laraiba Khan · Process Parameters</span>
+    <span>Ahmad Saeed · Particle Formation</span>
+    <span>Atia · Applications & Challenges</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ WRAP ═══════════════════════════════ -->
+<div class="page-wrap">
+
+  <!-- ── TOC ── -->
+  <nav class="toc" id="toc">
+    <div class="toc-title">Table of Contents</div>
+    <div class="toc-grid">
+      <a href="#s1"><span class="toc-num">1</span>What is Flame Spray Pyrolysis?</a>
+      <a href="#s2"><span class="toc-num">2</span>Historical Development</a>
+      <a href="#s3"><span class="toc-num">3</span>Core Chemistry</a>
+      <a href="#s4"><span class="toc-num">4</span>Thermodynamics of Combustion</a>
+      <a href="#s5"><span class="toc-num">5</span>FSP Setup & Components</a>
+      <a href="#s6"><span class="toc-num">6</span>Nozzle & Atomization</a>
+      <a href="#s7"><span class="toc-num">7</span>Flame Structure & Zones</a>
+      <a href="#s8"><span class="toc-num">8</span>Particle Collection Systems</a>
+      <a href="#s9"><span class="toc-num">9</span>Process Parameters Overview</a>
+      <a href="#s10"><span class="toc-num">10</span>Particle Formation Mechanisms</a>
+      <a href="#s11"><span class="toc-num">11</span>Sintering & Agglomeration</a>
+      <a href="#s12"><span class="toc-num">12</span>FSP vs Other Methods</a>
+      <a href="#s13"><span class="toc-num">13</span>Applications</a>
+      <a href="#s14"><span class="toc-num">14</span>Challenges & Limitations</a>
+      <a href="#master"><span class="toc-num">★</span>Master Revision Sheet</a>
+    </div>
+  </nav>
+
+  <!-- ═══ SECTION 1 ═══ -->
+  <div class="section" id="s1">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div>
+        <div class="section-title">What is Flame Spray Pyrolysis?</div>
+        <div class="section-sub">Definition · Core concept · Why it matters</div>
+      </div>
+    </div>
+
+    <div class="box definition">
+      <div class="box-label">🔬 Core Definition</div>
+      <p><strong>Flame Spray Pyrolysis (FSP)</strong> is a <strong>one-step, continuous, scalable gas-phase synthesis technique</strong> for producing nanoparticles. A liquid precursor solution is atomized into fine droplets, dispersed into a self-sustaining flame, and combusted at high temperatures (1000–3000 °C). Metal species undergo pyrolysis, nucleation, growth, and condensation to form ultra-fine nanoparticles (2–100 nm) that are collected on a downstream filter.</p>
+    </div>
+
+    <h2>Breaking Down the Name</h2>
+    <p>The term "Flame Spray Pyrolysis" is itself a description of the three key elements of the process:</p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">🔥 FLAME</div>
+        <p>A <strong>self-sustaining, high-temperature</strong> oxidizing or reducing atmosphere, reaching 1000–3000 °C. This is NOT a furnace — the flame is generated by the combustion of the precursor solution's solvent itself, enabling unique and controllable flame chemistry.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">💧 SPRAY</div>
+        <p>The liquid precursor solution is <strong>atomized into a fine mist</strong> of small droplets. This aerosol generation enables <em>precise control</em> of the metal delivery rate to the flame and ensures a uniform feed of reactants.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">💥 PYROLYSIS</div>
+        <p>From Greek: <em>pyr</em> (fire) + <em>lysis</em> (decompose). <strong>Fire-driven breakdown</strong> of the metal precursor compounds → metal oxide vapour → nanocrystals. The heat of the flame decomposes organometallic ligands.</p>
+      </div>
+    </div>
+
+    <h2>The Complete FSP Process — Step by Step</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num" style="background:#7c3aed">1</div>
+        <div class="step-body">
+          <div class="step-title">Precursor Preparation</div>
+          <div class="step-desc">A metal salt or organometallic compound is dissolved in an organic solvent (e.g., ethanol, xylene). This creates a homogeneous liquid precursor solution at the desired molarity.</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num" style="background:#6d28d9">2</div>
+        <div class="step-body">
+          <div class="step-title">Atomization (Spray)</div>
+          <div class="step-desc">A syringe pump feeds the solution to a nozzle where a dispersion gas (O₂) breaks the liquid jet into fine droplets (20–100 µm) via Kelvin-Helmholtz instability.</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num" style="background:#5b21b6">3</div>
+        <div class="step-body">
+          <div class="step-title">Ignition & Combustion (Flame)</div>
+          <div class="step-desc">A pilot flame ring ignites the spray. The solvent combusts exothermically, creating a self-sustaining flame at 1000–3000 °C. The solvent acts as both carrier and fuel.</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num" style="background:#4c1d95">4</div>
+        <div class="step-body">
+          <div class="step-title">Pyrolysis & Vapour Formation</div>
+          <div class="step-desc">At peak flame temperatures, the metal precursor decomposes completely. Organic ligands combust (→ CO₂ + H₂O) and metal oxide vapour forms in the gas phase.</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num" style="background:#3b0764">5</div>
+        <div class="step-body">
+          <div class="step-title">Nucleation, Growth & Quench</div>
+          <div class="step-desc">As gases cool downstream, metal oxide vapour supersaturates → nucleation occurs → nanocrystals grow by coagulation/sintering → rapid quench freezes final particle size.</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num" style="background:#2e1065">6</div>
+        <div class="step-body">
+          <div class="step-title">Collection</div>
+          <div class="step-desc">Nanoparticles are thermophoretically driven toward a glass fiber filter downstream, where they are captured with >99.9% efficiency by Brownian diffusion.</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Why FSP Matters — Key Advantages</h2>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">✅ Technical Advantages</div>
+        <ul class="styled">
+          <li><strong>One-step, continuous</strong> — no post-synthesis calcination required</li>
+          <li><strong>Scalable:</strong> mg/hr (lab) to kg/hr (pilot plant)</li>
+          <li><strong>High purity & crystallinity</strong> — complete combustion of organics</li>
+          <li><strong>Compositionally flexible</strong> — virtually any metal can be incorporated</li>
+          <li><strong>Narrow size distribution</strong> (2–100 nm)</li>
+          <li><strong>In-situ doping</strong> possible during particle formation</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🔑 Key Technical Details</div>
+        <ul class="styled">
+          <li>Temperature range: <strong>1000–3000 °C</strong></li>
+          <li>Particle size range: <strong>2–100 nm</strong></li>
+          <li>Production rate: <strong>mg/hr → kg/hr</strong></li>
+          <li>Surface area: <strong>50–200 m²/g</strong></li>
+          <li>Collection efficiency: <strong>&gt;99.9%</strong></li>
+          <li>Process time: <strong>milliseconds to seconds</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="summary-block">
+      <h3>§1 Summary</h3>
+      <ul>
+        <li>FSP = one-step, continuous, gas-phase nanoparticle synthesis; liquid precursor → flame → nanoparticles (2–100 nm)</li>
+        <li>Name explains mechanism: Flame (high-T combustion) + Spray (aerosol delivery) + Pyrolysis (fire-driven decomposition)</li>
+        <li>Key advantages: continuous, scalable, high purity, compositionally flexible, narrow size distribution</li>
+        <li>Temperature: 1000–3000 °C; operates in milliseconds; self-sustaining (solvent is the fuel)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 2 ═══ -->
+  <div class="section" id="s2">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div>
+        <div class="section-title">Historical Development of FSP</div>
+        <div class="section-sub">Five decades of innovation — from industrial flames to precision nanoengineering</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot">
+          <div class="timeline-circle" style="background:#0284c7">1950s–<br>60s</div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-era">Industrial Flame Processes</div>
+          <div class="timeline-text">
+            <p><strong>Degussa's Aerosil® process:</strong> SiCl₄ is burned in an H₂/O₂ flame, producing fumed SiO₂ — one of the first industrial gas-phase synthesis methods. The Evonik chloride process produced TiO₂ similarly. These were <strong>gas-phase only</strong> — no liquid precursors were used. The chemistry was limited to volatile chloride precursors (e.g., TiCl₄, SiCl₄) which could be delivered as gases.</p>
+            <div class="box note" style="margin-top:10px; padding:12px 16px;">
+              <div class="box-label">⚠️ Limitation</div>
+              <p>Only elements with volatile chlorides could be processed. Compositional flexibility was very limited.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">
+          <div class="timeline-circle" style="background:#0d9488">1970s–<br>80s</div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-era">Spray Flame Processes Emerge</div>
+          <div class="timeline-text">
+            <p><strong>Liquid precursors introduced into flames</strong> — a revolutionary step. This enabled vastly greater chemical flexibility: virtually any metal can be dissolved in organic solvent as a salt (e.g., metal nitrate, acetate) or alkoxide (e.g., Ti(OPr)₄). The transition from gas-phase to liquid-phase precursor delivery opened the door to multi-component systems and the synthesis of complex oxide phases.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">
+          <div class="timeline-circle" style="background:#d97706">1990s</div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-era">Systematic FSP Development — ETH Zürich</div>
+          <div class="timeline-text">
+            <p><strong>Kammler, Mädler, and Pratsinis</strong> at ETH Zürich systematically studied and optimized FSP. Their landmark 2002 paper <em>'Flame Made Nanoparticles'</em> (Mädler et al., J. Aerosol Sci.) established the scientific framework for FSP. This work identified the key process parameters, explained nucleation and growth mechanisms, and showed how to tune particle properties predictably.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">
+          <div class="timeline-circle" style="background:#dc2626">2000s–<br>Now</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-era">FSP Matures & Scales</div>
+          <div class="timeline-text">
+            <p>Hundreds of nanomaterials have been synthesized by FSP. Scale-up from lab-scale (g/hr) to pilot-scale (kg/hr) has been demonstrated. FSP has been <strong>commercialized</strong> for catalysis, energy storage, medicine, and electronics applications. Companies like Evonik and various start-ups now use FSP-derived materials.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="summary-block">
+      <h3>§2 Summary</h3>
+      <ul>
+        <li>1950s–60s: Industrial gas-phase only (Aerosil® SiO₂, Evonik TiO₂) — limited to volatile chlorides</li>
+        <li>1970s–80s: Liquid precursors introduced → vastly greater chemical flexibility</li>
+        <li>1990s: ETH Zürich (Kammler, Mädler, Pratsinis) systematized FSP; landmark 2002 paper</li>
+        <li>2000s–Now: Commercialization at kg/hr scale across catalysis, energy, medicine, electronics</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 3 ═══ -->
+  <div class="section" id="s3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div>
+        <div class="section-title">Core Chemistry: What Happens in the Flame?</div>
+        <div class="section-sub">Three sequential transformations: metal ions → nanoparticles in milliseconds</div>
+      </div>
+    </div>
+
+    <p>Three sequential chemical transformations convert dissolved metal ions into solid nanoparticles in microseconds to milliseconds. Each step is spatially and temporally distinct within the flame.</p>
+
+    <h2>Step A: Combustion of Solvent</h2>
+    <div class="card">
+      <p>The organic solvent (e.g., ethanol, xylene, 2-EHA) serves a <strong>dual role</strong>:</p>
+      <ul class="styled">
+        <li><strong>Carrier:</strong> Dissolves and transports the metal precursor to the flame</li>
+        <li><strong>Fuel:</strong> Combusts exothermically to provide the thermal energy required for precursor decomposition (pyrolysis)</li>
+      </ul>
+      <p style="margin-top:12px;">Without sufficient combustion enthalpy from the solvent, the flame cannot reach the temperatures needed for complete precursor decomposition and nanocrystal formation.</p>
+    </div>
+
+    <div class="box formula">
+      <div class="box-label">⚗️ Reaction A: Ethanol Combustion (complete)</div>
+      <div class="math">
+C₂H₅OH + 3 O₂  →  2 CO₂ + 3 H₂O
+<span class="comment">ΔH° = −1367 kJ/mol  (highly exothermic)</span>
+      </div>
+      <p>This reaction is the <strong>primary energy source</strong> in ethanol-based FSP. Xylene and 2-EHA provide even more energy per mole (4.33 and 4.85 MJ/mol respectively).</p>
+    </div>
+
+    <h2>Step B: Precursor Decomposition (Pyrolysis)</h2>
+    <div class="card">
+      <p>At peak flame temperatures (1500–3000 °C), the metal precursor compound decomposes thermally:</p>
+      <ul class="styled">
+        <li>Organic ligands (carboxylate, alkoxide groups) combust → CO₂ + H₂O</li>
+        <li>Metal atoms are liberated in a highly reactive state</li>
+        <li>Metal atoms react with O₂ in the flame → <strong>metal oxide vapour</strong> forms</li>
+        <li>At very high T, additional hydrocarbon by-products may form transiently</li>
+      </ul>
+    </div>
+
+    <div class="box formula">
+      <div class="box-label">⚗️ Reaction B: Metal Carboxylate Decomposition (general)</div>
+      <div class="math">
+M(OOCR)ₙ  →  MₓOᵧ + n CO₂ + n H₂O  [+ hydrocarbons at high T]
+
+<span class="comment">Where M = metal, OOCR = carboxylate ligand</span>
+<span class="comment">Example: Fe(C₈H₁₅O₂)₃  →  Fe₂O₃ + CO₂ + H₂O</span>
+      </div>
+    </div>
+
+    <div class="box note">
+      <div class="box-label">📌 Key Point — No Solid Phase Yet</div>
+      <p>At the end of Step B, <strong>no solid particles exist yet</strong>. The metal is entirely in the gas phase as metal oxide vapour (e.g., Fe₂O₃ vapour, TiO₂ vapour). Particle formation only begins in Step C.</p>
+    </div>
+
+    <h2>Step C: Nucleation & Condensation</h2>
+    <div class="card">
+      <p>As the hot gas stream cools downstream of the combustion zone, the metal oxide vapour becomes <strong>supersaturated</strong> (i.e., its concentration exceeds the equilibrium solubility). This drives spontaneous nucleation:</p>
+      <ul class="styled">
+        <li><strong>Nucleation:</strong> Metal oxide embryos form when the particle radius exceeds the critical radius r*</li>
+        <li><strong>Growth by Condensation:</strong> Vapour molecules deposit onto nuclei surfaces</li>
+        <li><strong>Growth by Coagulation:</strong> Particles collide and stick together (coalesce or sinter)</li>
+        <li><strong>Sintering:</strong> At high T, colliding particles fuse into a single sphere</li>
+      </ul>
+    </div>
+
+    <div class="box analogy">
+      <div class="box-label">💡 Intuitive Analogy — Morning Dew</div>
+      <p>This is exactly like <strong>morning dew forming on a cold glass surface</strong>. When warm, humid air contacts a cold surface, water vapour supersaturates and condenses into liquid droplets. In FSP, as the hot metal oxide vapour cools rapidly, it supersaturates and condenses into solid nanocrystals — but in mid-air, within microseconds.</p>
+    </div>
+
+    <h2>Precursor Solution Components</h2>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🧪 Metal Precursor</div>
+        <p>Source of metal ions. Must be <strong>soluble, combustible, and thermally stable</strong> in solution.</p>
+        <ul class="styled">
+          <li><strong>Metal alkoxides:</strong> Ti(OPr)₄, Al(OBu)₃</li>
+          <li><strong>Metal carboxylates:</strong> Fe(III) 2-EHA, Ce(III) naphthenate</li>
+          <li>Nitrates, acetylacetonates</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🔥 Solvent / Fuel</div>
+        <p>Dissolves precursor and provides combustion energy. <strong>High ΔH<sub>comb</sub> → hotter flame.</strong></p>
+        <ul class="styled">
+          <li>Xylene: 4.33 MJ/mol</li>
+          <li>2-Ethylhexanoic acid: 4.85 MJ/mol</li>
+          <li>Toluene: 3.91 MJ/mol</li>
+          <li>Ethanol: 1.37 MJ/mol</li>
+          <li>Acetonitrile: 1.25 MJ/mol</li>
+          <li>Methanol: 0.73 MJ/mol</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🛡️ Stabilizer / Chelator</div>
+        <p>Prevents premature precipitation of metal precursor in solution. <strong>Must leave no non-volatile residue</strong> (otherwise contaminates NPs).</p>
+        <ul class="styled">
+          <li>Acetic acid</li>
+          <li>Acetylacetone (acac)</li>
+          <li>Propionic acid</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">⚛️ Co-dopant Precursor</div>
+        <p>Introduces secondary metal atoms for multi-component nanoparticles. Must not react adversely with main precursor in solution.</p>
+        <p style="margin-top:8px;">Example: Pt nitrate co-dissolved with Ce(III) naphthenate → Pt/CeO₂ catalyst NPs</p>
+      </div>
+    </div>
+
+    <div class="box note">
+      <div class="box-label">🔑 Solvent Selection Criteria</div>
+      <p>When selecting a solvent for FSP, consider these factors in order of importance: <strong>Enthalpy of combustion (ΔH<sub>comb</sub>)</strong> · Boiling point (affects droplet evaporation rate) · Solvating power (must dissolve the precursor) · Flash point (safety) · Viscosity (affects atomization)</p>
+    </div>
+
+    <div class="summary-block">
+      <h3>§3 Summary</h3>
+      <ul>
+        <li>Step A: Solvent combustion provides thermal energy (e.g., ethanol: ΔH° = −1367 kJ/mol)</li>
+        <li>Step B: Metal precursor decomposes thermally; ligands burn off; metal oxide vapour forms — NO solid yet</li>
+        <li>Step C: Vapour supersaturates as gas cools → nucleation → growth by condensation/coagulation → nanocrystals</li>
+        <li>Precursor solution has 4 components: metal precursor, solvent/fuel, stabilizer, co-dopant</li>
+        <li>Solvent choice controls flame temperature; high ΔH<sub>comb</sub> (2-EHA, xylene) → hotter flame → better crystallinity</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 4 ═══ -->
+  <div class="section" id="s4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div>
+        <div class="section-title">Thermodynamics of Combustion in FSP</div>
+        <div class="section-sub">Adiabatic Flame Temperature · Equivalence Ratio · Solvent Data</div>
+      </div>
+    </div>
+
+    <h2>Adiabatic Flame Temperature (AFT)</h2>
+    <div class="box definition">
+      <div class="box-label">📐 Definition</div>
+      <p>The <strong>Adiabatic Flame Temperature (AFT)</strong> is the maximum theoretical temperature reached in the combustion products, assuming <em>no heat loss to the surroundings</em> (adiabatic = zero heat exchange). In reality, the actual flame temperature is lower due to radiation losses and mixing with cooler gas.</p>
+    </div>
+
+    <div class="box formula">
+      <div class="box-label">🔢 AFT Formula</div>
+      <div class="math">
+T_ad = T_reactants + ΔH_comb / (n_products × C̄_p)
+
+<span class="comment">Where:</span>
+<span class="value">T_ad</span>        = adiabatic flame temperature (K)
+<span class="value">T_reactants</span> = initial temperature of reactants (typically 298 K)
+<span class="value">ΔH_comb</span>     = enthalpy of combustion of solvent (J/mol)
+<span class="value">n_products</span>  = moles of gaseous products
+<span class="value">C̄_p</span>         = mean molar heat capacity of products (J/mol·K)
+      </div>
+      <p class="eq-label">Typical FSP flames: AFT = 2000–2700 K | Actual temperature is lower due to radiation &amp; mixing with entrained air</p>
+    </div>
+
+    <div class="box note">
+      <div class="box-label">💡 Intuition</div>
+      <p>Think of ΔH_comb as the "energy deposited" by combustion, and (n × C̄_p) as the "thermal mass" that must absorb it. A high-energy solvent (large ΔH_comb) or a small number of product molecules → higher temperature. This is why xylene and 2-EHA produce hotter flames than ethanol or methanol.</p>
+    </div>
+
+    <h2>Equivalence Ratio (φ) — Flame Stoichiometry</h2>
+    <div class="box definition">
+      <div class="box-label">📐 Definition</div>
+      <p>The <strong>equivalence ratio (φ)</strong> quantifies how the actual fuel-to-oxidant ratio compares to the stoichiometrically balanced ratio required for complete combustion. It is a dimensionless number that fully characterizes whether a flame is fuel-lean, stoichiometric, or fuel-rich.</p>
+    </div>
+
+    <div class="box formula">
+      <div class="box-label">🔢 Equivalence Ratio Formula</div>
+      <div class="math">
+φ = (F/O)_actual / (F/O)_stoichiometric
+
+<span class="comment">F/O = Fuel-to-Oxidant mass ratio</span>
+      </div>
+    </div>
+
+    <div class="phi-row">
+      <div class="phi-card" style="background:#dcfce7; border:2px solid #16a34a;">
+        <div class="phi-label" style="color:#16a34a;">φ = 1</div>
+        <strong>Stoichiometric</strong>
+        <p style="margin-top:6px; font-size:0.88rem; color:#166534;">Complete combustion. Maximum adiabatic temperature. Exact ratio of fuel to oxygen required for full oxidation. C → CO₂, H → H₂O entirely.</p>
+      </div>
+      <div class="phi-card" style="background:#dbeafe; border:2px solid #2563eb;">
+        <div class="phi-label" style="color:#2563eb;">φ &lt; 1</div>
+        <strong>Fuel-Lean (Oxidizing)</strong>
+        <p style="margin-top:6px; font-size:0.88rem; color:#1e40af;">Excess O₂ present. Oxidizing atmosphere. <strong>Preferred for metal oxide nanoparticles</strong> — ensures complete metal oxidation (M → MₓOᵧ). Most FSP runs use φ &lt; 1.</p>
+      </div>
+      <div class="phi-card" style="background:#fef3c7; border:2px solid #f59e0b;">
+        <div class="phi-label" style="color:#92400e;">φ &gt; 1</div>
+        <strong>Fuel-Rich (Reducing)</strong>
+        <p style="margin-top:6px; font-size:0.88rem; color:#92400e;">Excess fuel, insufficient O₂. Reducing atmosphere. Can produce metallic nanoparticles (e.g., Fe⁰, Ni⁰) or sub-oxides. Used intentionally for certain applications.</p>
+      </div>
+    </div>
+
+    <div class="box warning">
+      <div class="box-label">⚠️ Critical Point for Oxide Synthesis</div>
+      <p>The vast majority of FSP synthesis for oxide nanoparticles (catalysts, sensors, pigments) is conducted under <strong>fuel-lean conditions (φ &lt; 1)</strong>. This ensures that all metal atoms are fully oxidized and that no residual carbon from incomplete solvent combustion contaminates the product.</p>
+    </div>
+
+    <h2>Solvent Combustion Data</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Solvent</th>
+          <th>ΔH<sub>comb</sub> (MJ/mol)</th>
+          <th>Boiling Point (°C)</th>
+          <th>Flame Energy</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>2-Ethylhexanoic acid (2-EHA)</strong></td>
+          <td style="color:#16a34a; font-weight:700;">4.85</td>
+          <td>228</td>
+          <td><span class="badge badge-green">Highest</span></td>
+          <td>Most common FSP solvent; high BP enables good droplet evaporation</td>
+        </tr>
+        <tr>
+          <td><strong>Xylene</strong></td>
+          <td style="color:#16a34a; font-weight:700;">4.33</td>
+          <td>138</td>
+          <td><span class="badge badge-green">Very High</span></td>
+          <td>Aromatic; good solvating power for many precursors</td>
+        </tr>
+        <tr>
+          <td><strong>Toluene</strong></td>
+          <td>3.91</td>
+          <td>111</td>
+          <td><span class="badge badge-purple">High</span></td>
+          <td>Similar to xylene but more volatile</td>
+        </tr>
+        <tr>
+          <td><strong>Ethanol</strong></td>
+          <td>1.37</td>
+          <td>78</td>
+          <td><span class="badge badge-amber">Moderate</span></td>
+          <td>Widely available; lower energy → cooler flame</td>
+        </tr>
+        <tr>
+          <td><strong>Acetonitrile</strong></td>
+          <td>1.25</td>
+          <td>82</td>
+          <td><span class="badge badge-amber">Moderate</span></td>
+          <td>Useful for certain polar precursors</td>
+        </tr>
+        <tr>
+          <td><strong>Methanol</strong></td>
+          <td>0.73</td>
+          <td>65</td>
+          <td><span class="badge badge-red">Low</span></td>
+          <td>May not sustain a self-supporting flame alone at low feed rates</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="box success">
+      <div class="box-label">✅ Design Rule</div>
+      <p><strong>Higher ΔH<sub>comb</sub> → hotter flame → better crystallinity</strong> (more complete pyrolysis and sintering during particle formation). For highly crystalline products like anatase TiO₂ or α-Fe₂O₃, prefer xylene or 2-EHA solvents over ethanol.</p>
+    </div>
+
+    <div class="summary-block">
+      <h3>§4 Summary</h3>
+      <ul>
+        <li>AFT = T_reactants + ΔH_comb/(n × C̄_p); typical FSP AFT = 2000–2700 K</li>
+        <li>φ = actual F/O ÷ stoichiometric F/O; φ=1 complete combustion; φ&lt;1 oxidizing (preferred for oxides); φ&gt;1 reducing</li>
+        <li>Most FSP for oxide NPs uses φ &lt; 1 to ensure complete metal oxidation</li>
+        <li>Solvent energy ranking: 2-EHA (4.85) &gt; Xylene (4.33) &gt; Toluene (3.91) &gt; Ethanol (1.37) &gt; Acetonitrile (1.25) &gt; Methanol (0.73) [MJ/mol]</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 5 ═══ -->
+  <div class="section" id="s5">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div>
+        <div class="section-title">FSP Setup & Hardware Overview</div>
+        <div class="section-sub">The five-component system: precursor → nozzle → flame → quench → filter</div>
+      </div>
+    </div>
+
+    <p>A complete FSP apparatus consists of five functional units, each with a distinct and critical role in nanoparticle synthesis. Understanding the function of each component is essential for designing experiments and troubleshooting.</p>
+
+    <div class="card" style="background: linear-gradient(135deg, var(--purple-50), white);">
+      <div class="card-title">System Flow Diagram</div>
+      <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:8px;">
+        <div style="background:var(--purple-600);color:white;padding:10px 14px;border-radius:8px;font-size:0.85rem;font-weight:600;text-align:center;">① Syringe Pump<br><span style="font-weight:300;font-size:0.78rem;">Precursor Solution</span></div>
+        <div style="color:var(--purple-400);font-size:1.4rem;">→</div>
+        <div style="background:#6d28d9;color:white;padding:10px 14px;border-radius:8px;font-size:0.85rem;font-weight:600;text-align:center;">② Gas Supply<br><span style="font-weight:300;font-size:0.78rem;">O₂ Dispersion Gas</span></div>
+        <div style="color:var(--purple-400);font-size:1.4rem;">→</div>
+        <div style="background:#5b21b6;color:white;padding:10px 14px;border-radius:8px;font-size:0.85rem;font-weight:600;text-align:center;">③ Nozzle<br><span style="font-weight:300;font-size:0.78rem;">Atomizer + Pilot</span></div>
+        <div style="color:var(--purple-400);font-size:1.4rem;">→</div>
+        <div style="background:#dc2626;color:white;padding:10px 14px;border-radius:8px;font-size:0.85rem;font-weight:600;text-align:center;">④ FSP Flame<br><span style="font-weight:300;font-size:0.78rem;">1500–3000 K</span></div>
+        <div style="color:var(--purple-400);font-size:1.4rem;">→</div>
+        <div style="background:#0d9488;color:white;padding:10px 14px;border-radius:8px;font-size:0.85rem;font-weight:600;text-align:center;">⑤ Quench Zone<br><span style="font-weight:300;font-size:0.78rem;">Rapid Cooling</span></div>
+        <div style="color:var(--purple-400);font-size:1.4rem;">→</div>
+        <div style="background:#374151;color:white;padding:10px 14px;border-radius:8px;font-size:0.85rem;font-weight:600;text-align:center;">⑥ Filter<br><span style="font-weight:300;font-size:0.78rem;">Collection &gt;99.9%</span></div>
+      </div>
+    </div>
+
+    <p>The process is entirely upward: gas flows from the nozzle at the base upward through the flame, quench zone, and into the filter at the top. The nozzle sits at the bottom; the filter (collection point) is at the top.</p>
+
+    <div class="summary-block">
+      <h3>§5 Summary</h3>
+      <ul>
+        <li>5-component system: Syringe pump → O₂ gas → Nozzle (atomizer + pilot flame) → FSP flame → Quench → Filter</li>
+        <li>Gas flow direction: upward from nozzle (base) to filter (top)</li>
+        <li>The syringe pump controls liquid feed rate; O₂ gas controls atomization and combustion support</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 6 ═══ -->
+  <div class="section" id="s6">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div>
+        <div class="section-title">Nozzle & Atomization System</div>
+        <div class="section-sub">Gas-assisted pressure atomization · Kelvin-Helmholtz instability · Pilot flame</div>
+      </div>
+    </div>
+
+    <h2>Atomization Mechanism</h2>
+    <div class="box definition">
+      <div class="box-label">🔬 Kelvin-Helmholtz Instability</div>
+      <p>The atomization in FSP nozzles relies on <strong>Kelvin-Helmholtz (KH) shear instability</strong> at the liquid-gas interface. When a liquid jet (the precursor solution) flows co-axially with a fast-moving gas stream (O₂), the velocity difference across the interface creates surface waves. These waves grow and amplify, breaking the liquid jet into ligaments and then into fine spherical droplets. This is a <em>purely hydrodynamic</em> breakup mechanism — no external vibration or ultrasound is needed.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">📊 Flow Parameters</div>
+        <ul class="styled">
+          <li>Liquid flow rate: <strong>1–20 mL/min</strong></li>
+          <li>O₂ dispersion gas flow: <strong>5–15 L/min</strong></li>
+          <li>Resulting droplet diameter (d₃₂): <strong>20–100 µm typical</strong></li>
+          <li>d₃₂ = Sauter mean diameter (volume/surface ratio)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">📐 Droplet Size Control</div>
+        <ul class="styled">
+          <li>↑ Dispersion gas flow → ↓ d₃₂ → smaller droplets → smaller nanoparticles</li>
+          <li>↑ Liquid flow rate → ↑ d₃₂ → larger droplets</li>
+          <li>Higher gas velocity = more KH instability = finer atomization</li>
+          <li>Nozzle geometry (orifice size) also affects droplet distribution</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>The Pilot Flame — Critical Distinction</h2>
+    <div class="box warning">
+      <div class="box-label">⚠️ Common Misconception — Pilot Flame ≠ Main Flame</div>
+      <p>The <strong>pilot flame</strong> is a ring of small CH₄/O₂ or H₂/O₂ flamelets surrounding the nozzle exit. Its roles are <em>purely ignition and stability</em>:</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card" style="border-color:#16a34a; border-width:2px;">
+        <div class="card-title" style="color:#16a34a;">✅ What Pilot Flame DOES</div>
+        <ul class="styled">
+          <li>Ignites the main spray flame at startup</li>
+          <li>Stabilizes main flame against extinction (especially at low liquid flow rates)</li>
+          <li>Acts as a continuous ignition source</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:#dc2626; border-width:2px;">
+        <div class="card-title" style="color:#dc2626;">❌ What Pilot Flame does NOT do</div>
+        <ul class="styled">
+          <li>Does NOT control nanoparticle properties</li>
+          <li>Does NOT significantly contribute to precursor decomposition</li>
+          <li>Is NOT the primary heat source for pyrolysis</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>The <strong>main flame</strong> is driven <em>solely</em> by combustion of the precursor solution (solvent + precursor). All particle properties (size, crystallinity, phase) are determined by the main flame chemistry and temperature — not the pilot.</p>
+
+    <div class="box note">
+      <div class="box-label">📌 Design Note — Nozzle Materials</div>
+      <p>The nozzle body and concentric tubes are typically made of <strong>quartz</strong> or high-temperature stainless steel. Quartz is preferred for the inner parts because it is chemically inert, transparent (allowing optical diagnostics), and withstands the high exit temperatures near the flame base.</p>
+    </div>
+
+    <div class="summary-block">
+      <h3>§6 Summary</h3>
+      <ul>
+        <li>Atomization via Kelvin-Helmholtz shear instability at liquid-gas interface → 20–100 µm droplets</li>
+        <li>Higher O₂ dispersion flow → smaller droplets → smaller nanoparticles</li>
+        <li>Liquid: 1–20 mL/min; O₂: 5–15 L/min</li>
+        <li>Pilot flame (CH₄/O₂ or H₂/O₂): only for ignition and stabilization — does NOT control NP properties</li>
+        <li>Main flame (solvent combustion) determines all particle properties</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 7 ═══ -->
+  <div class="section" id="s7">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div>
+        <div class="section-title">Flame Structure & Reaction Zones</div>
+        <div class="section-sub">Five spatial zones from nozzle to filter — each with distinct chemistry</div>
+      </div>
+    </div>
+
+    <p>The FSP flame has a well-defined spatial structure with <strong>five sequential reaction zones</strong>. Moving upward from the nozzle to the filter, both temperature and chemistry change dramatically. Knowing which zone produces which effect is critical for particle engineering.</p>
+
+    <div class="zone-card" style="border-color:#6366f1;">
+      <div class="zone-label" style="color:#6366f1;">Zone 1 — Evaporation & Ignition</div>
+      <div class="zone-temp">Temperature: Ambient → 1000–1500 K</div>
+      <div class="zone-desc">
+        <p>Immediately above the nozzle, spray droplets enter the flame base. The <strong>solvent evaporates</strong> from the droplet surface (controlled by heat transfer from the flame and internal temperature). The solvent vapour <strong>ignites</strong> at the pilot flame. At low temperatures, the precursor remains dissolved in the droplet — no decomposition yet. The goal of this zone is complete droplet evaporation before the high-temperature core.</p>
+      </div>
+    </div>
+
+    <div class="zone-card" style="border-color:#dc2626;">
+      <div class="zone-label" style="color:#dc2626;">Zone 2 — Combustion / Pyrolysis Core</div>
+      <div class="zone-temp">Temperature: 1500–3000 K (peak)</div>
+      <div class="zone-desc">
+        <p>This is the <strong>highest-temperature zone</strong> — the reaction core. Peak temperature depends on solvent choice and feed rate. Here, the solvent combusts completely, and the metal precursor undergoes <strong>complete thermal decomposition</strong>. Organic ligands combust; metal atoms react with O₂ to form metal oxide vapour. <strong>No solid particles exist yet</strong> — everything is in the gas phase. This zone occurs 0–30 mm above the nozzle (for typical lab FSP).</p>
+      </div>
+    </div>
+
+    <div class="zone-card" style="border-color:#d97706;">
+      <div class="zone-label" style="color:#d97706;">Zone 3 — Nucleation</div>
+      <div class="zone-temp">Temperature: 1500–2000 °C | Location: 30–120 mm above nozzle</div>
+      <div class="zone-desc">
+        <p>As the gas stream expands and cools downstream, the metal oxide vapour becomes <strong>supersaturated</strong>. When supersaturation S &gt; 1, <strong>homogeneous nucleation</strong> occurs: embryonic clusters form when their radius exceeds the critical radius r*. Primary particles (1–5 nm) appear here for the first time. Nucleation events are nearly simultaneous across the flame cross-section, contributing to the narrow size distribution characteristic of FSP.</p>
+      </div>
+    </div>
+
+    <div class="zone-card" style="border-color:#16a34a;">
+      <div class="zone-label" style="color:#16a34a;">Zone 4 — Particle Growth</div>
+      <div class="zone-temp">Temperature: 800–1500 °C</div>
+      <div class="zone-desc">
+        <p>Nuclei grow by two competing mechanisms: <strong>coagulation</strong> (particles collide and stick) and <strong>sintering</strong> (at elevated T, colliding particles fuse into a single sphere). The final primary particle size is set in this zone. The ratio of τ_collision (time between collisions) to τ_sintering (time to complete sintering) determines morphology: if τ_sintering &lt; τ_collision → spherical particles; if τ_collision &lt; τ_sintering → fractal chain aggregates.</p>
+      </div>
+    </div>
+
+    <div class="zone-card" style="border-color:#0284c7;">
+      <div class="zone-label" style="color:#0284c7;">Zone 5 — Post-Flame / Quench</div>
+      <div class="zone-temp">Temperature: &lt;800 °C</div>
+      <div class="zone-desc">
+        <p>Rapid cooling occurs above the flame tip. No further significant growth occurs here. <strong>Thermophoresis</strong> (particle migration from hot to cold regions due to gas molecule momentum gradients) drives particles toward the cooler filter. Rapid quench freezes the particle size and crystal phase. A faster quench can preserve metastable phases; slower quench allows thermodynamic equilibrium (more stable, coarser phases).</p>
+      </div>
+    </div>
+
+    <div class="box note">
+      <div class="box-label">📌 Thermophoresis Explained</div>
+      <p>Thermophoresis is the movement of particles in a temperature gradient — from hot to cold. Gas molecules on the hot side of a particle have higher momentum than on the cold side, creating a net force pushing the particle toward lower temperatures. In FSP, this drives nanoparticles from the hot flame zone toward the cooler filter, aiding collection. This is the same principle that makes smoke particles deposit on cold surfaces near fires.</p>
+    </div>
+
+    <div class="summary-block">
+      <h3>§7 Summary — Five Flame Zones</h3>
+      <ul>
+        <li>Zone 1 (ambient→1500K): Droplet evaporation and ignition</li>
+        <li>Zone 2 (1500–3000K): Peak combustion; precursor fully decomposes; metal oxide vapour forms; NO solid yet</li>
+        <li>Zone 3 (1500–2000°C, 30–120mm): Nucleation; supersaturation → primary particles 1–5 nm</li>
+        <li>Zone 4 (800–1500°C): Growth by coagulation + sintering; final size established; morphology set by τ_collision vs τ_sintering</li>
+        <li>Zone 5 (&lt;800°C): Quench; no further growth; thermophoresis drives particles to filter</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 8 ═══ -->
+  <div class="section" id="s8">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <div>
+        <div class="section-title">Particle Collection Systems</div>
+        <div class="section-sub">Four methods compared — glass fiber, ESP, thermophoretic, cyclone</div>
+      </div>
+    </div>
+
+    <p>After the quench zone, nanoparticles are suspended in the gas stream and must be separated and collected. The choice of collection method affects product <strong>purity, yield, and particle state</strong> (dispersed vs. aggregated).</p>
+
+    <table>
+      <thead>
+        <tr><th>Method</th><th>Efficiency</th><th>Principle</th><th>Pros</th><th>Cons</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Glass Fiber Filter</strong> ⭐ Most Used</td>
+          <td style="color:#16a34a; font-weight:700;">&gt;99.9%</td>
+          <td>Brownian diffusion + mechanical interception</td>
+          <td>Simple, inexpensive, standard lab; highest efficiency</td>
+          <td>Batch collection; can clog at high production rates</td>
+        </tr>
+        <tr>
+          <td><strong>Electrostatic Precipitator (ESP)</strong></td>
+          <td style="color:#16a34a; font-weight:700;">&gt;99%</td>
+          <td>Particles charged by corona discharge → collect on grounded plate</td>
+          <td>Continuous operation possible; high efficiency</td>
+          <td>High-voltage power supply required; more complex setup</td>
+        </tr>
+        <tr>
+          <td><strong>Thermophoretic Sampling</strong></td>
+          <td style="color:#dc2626;">Low (analysis only)</td>
+          <td>Particles migrate toward cooled TEM grid in T gradient</td>
+          <td>Direct TEM grid deposition for structural analysis</td>
+          <td>Not suitable for bulk collection; sample too small</td>
+        </tr>
+        <tr>
+          <td><strong>Cyclone Separator</strong></td>
+          <td style="color:#dc2626;">Low for &lt;100 nm</td>
+          <td>Centrifugal inertial separation</td>
+          <td>Effective for coarser particles (&gt;1 µm)</td>
+          <td>Very inefficient for sub-100 nm particles — they follow gas streamlines</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Why Glass Fiber Filters Work — The Physics</h2>
+    <div class="box definition">
+      <div class="box-label">🔬 Brownian Diffusion Capture</div>
+      <p>For particles &lt;100 nm, the dominant capture mechanism is <strong>Brownian diffusion</strong>, not sieving. According to the Stokes-Einstein equation, the diffusion coefficient <code>D ∝ 1/d</code> — smaller particles diffuse faster. As nanoparticles flow through the fibrous filter matrix, they undergo rapid random Brownian motion and collide with (and adhere to) fiber surfaces. The fiber pore size can be much larger than the particle, yet capture is still &gt;99.9% efficient.</p>
+    </div>
+
+    <div class="box analogy">
+      <div class="box-label">💡 Analogy — HEPA Filters</div>
+      <p>This is exactly the same physics as <strong>HEPA (High-Efficiency Particulate Air) filters</strong> used in clean rooms and medical environments. HEPA filters capture &gt;99.97% of particles &gt;0.3 µm by Brownian diffusion, interception, and impaction — not by acting as a simple sieve.</p>
+    </div>
+
+    <div class="summary-block">
+      <h3>§8 Summary</h3>
+      <ul>
+        <li>Glass fiber filter: &gt;99.9% efficiency; most common; works by Brownian diffusion (D ∝ 1/d, Stokes-Einstein)</li>
+        <li>ESP: &gt;99% efficiency; continuous; needs high voltage; good for scale-up</li>
+        <li>Thermophoretic sampling: TEM analysis only; not for bulk collection</li>
+        <li>Cyclone: inefficient for sub-100 nm; good only for coarse particles (&gt;1 µm)</li>
+        <li>Key insight: nanoparticles captured by Brownian diffusion, NOT sieving — filter pore size is irrelevant</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 9 ═══ -->
+  <div class="section" id="s9">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <div>
+        <div class="section-title">FSP Process Parameters & Their Effects</div>
+        <div class="section-sub">5 tunable handles: concentration · dispersion gas · flame T · residence time · quench rate</div>
+      </div>
+    </div>
+
+    <div class="box definition">
+      <div class="box-label">🔑 Key Principle</div>
+      <p>Each FSP parameter is an <strong>independent tunable handle</strong> — altering one often shifts the balance of others. Precise control over all five parameters enables <strong>engineered nanoparticles with predictable properties</strong>. These parameters govern particle size, morphology, crystallinity, surface area, and phase composition.</p>
+    </div>
+
+    <h2>Parameter 1: Precursor Concentration [M]</h2>
+    <div class="card">
+      <p><strong>Definition:</strong> Molar concentration of metal precursor in the solvent feed (e.g., 0.05–1.0 M). Governs the metal flux (moles per second) arriving in the flame.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card" style="border-color:#dc2626;">
+        <div class="card-title">↑ Increasing [M]</div>
+        <ul class="styled">
+          <li>Larger primary particle size (more nuclei available → more coagulation)</li>
+          <li>Higher production rate (kg/h yield)</li>
+          <li>Increased surface area per gram (at very low [M])</li>
+          <li>&gt;0.5 M risks sintering and hard agglomeration</li>
+          <li>More combustion load → can lower effective flame T if O₂ limited</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:#16a34a;">
+        <div class="card-title">↓ Decreasing [M]</div>
+        <ul class="styled">
+          <li>Smaller primary particle size</li>
+          <li>Narrower size distribution (PSD)</li>
+          <li>Better dispersibility in downstream applications</li>
+          <li>Controls stoichiometry in multi-metal systems</li>
+          <li>Lower production rate</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box note">
+      <div class="box-label">📌 Typical Range</div>
+      <p>Precursor concentration: <strong>0.05–1.0 M</strong>. Above 0.5 M, sintering becomes significant. For research-scale FSP, 0.1–0.5 M is most common.</p>
+    </div>
+
+    <h2>Parameter 2: Dispersion Gas & Flow Rate</h2>
+    <div class="card">
+      <p><strong>Definition:</strong> Gas (typically O₂ or air) used to atomize the liquid precursor feed and sustain combustion. Flow rate (L/min) controls droplet size and spray cone angle.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">↑ Higher O₂ Flow</div>
+        <ul class="styled">
+          <li>Finer droplets (smaller d₃₂) → smaller primary particles</li>
+          <li>Wider spray cone angle</li>
+          <li>Better oxidation (more O₂ available → more complete combustion)</li>
+          <li>Better flame mixing, more turbulent</li>
+          <li>Shorter residence time in hot zone (higher gas velocity)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">↓ Lower O₂ Flow</div>
+        <ul class="styled">
+          <li>Larger droplets → larger particles</li>
+          <li>Narrower spray cone</li>
+          <li>Laminar flame → narrower PSD</li>
+          <li>Longer residence time in hot zone</li>
+          <li>Risk of incomplete combustion → carbon contamination</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box formula">
+      <div class="box-label">🔢 O₂ Flow Effects Chain</div>
+      <div class="math">
+↑ O₂ flow rate  →  ↑ KH instability  →  ↓ droplet d₃₂  →  ↓ particle size
+↑ O₂ flow rate  →  ↑ O₂:fuel ratio  →  more oxidizing atmosphere  →  complete MₓOᵧ formation
+↑ O₂ flow rate  →  ↑ gas velocity  →  ↓ residence time in hot zone  →  smaller particles
+      </div>
+    </div>
+
+    <h2>Parameter 3: Flame Temperature</h2>
+    <div class="card">
+      <p><strong>What controls it?</strong></p>
+      <ul class="styled">
+        <li>Solvent type and combustion enthalpy (xylene ~42 MJ/kg &gt; ethanol ~27 MJ/kg)</li>
+        <li>Feed rate of precursor solution (mL/min)</li>
+        <li>O₂:fuel equivalence ratio (φ)</li>
+        <li>Sheath gas flow around the flame (dilutes and cools)</li>
+      </ul>
+    </div>
+
+    <div class="grid-2">
+      <div class="card" style="border-color:#dc2626;">
+        <div class="card-title" style="color:#dc2626;">↑ High T (&gt;2000 °C)</div>
+        <ul class="styled">
+          <li><strong>Promotes crystallinity</strong> — more complete sintering during growth</li>
+          <li>Enables synthesis of high-melting oxides (ZrO₂, HfO₂)</li>
+          <li>Phase transitions: TiO₂ anatase → rutile above ~1000 °C</li>
+          <li>Risk: sintering and hard agglomeration above NP melting point</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:#0284c7;">
+        <div class="card-title" style="color:#0284c7;">↓ Low T (&lt;1500 °C)</div>
+        <ul class="styled">
+          <li><strong>Amorphous phases dominate</strong></li>
+          <li>Kinetically trapped metastable structures</li>
+          <li>Lower sintering rate → smaller, more porous particles</li>
+          <li>Incomplete precursor decomposition possible</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box warning">
+      <div class="box-label">⚠️ Phase Control with Temperature — TiO₂ Example</div>
+      <p>Temperature directly controls crystal phase. For TiO₂: <strong>anatase phase</strong> forms at lower temperatures (600–900 °C) and is preferred for photocatalysis; <strong>rutile phase</strong> forms above ~1000 °C and is preferred for pigments. By tuning flame temperature, both phases can be produced by FSP.</p>
+    </div>
+
+    <h2>Parameter 4: Residence Time</h2>
+    <div class="card">
+      <p><strong>Definition:</strong> The time nanoparticles spend in the high-temperature flame region (milliseconds to seconds).</p>
+      <p><strong>Controlled by:</strong> flame height, feed rate, gas velocity, nozzle geometry.</p>
+      <p><strong>Effect:</strong> Longer residence time → more coarsening via sintering and coalescence → larger, more crystalline primary particles.</p>
+    </div>
+
+    <div class="box formula">
+      <div class="box-label">🔢 Residence Time Concept</div>
+      <div class="math">
+τ_res ≈ L_flame / v_gas
+
+<span class="comment">Where L_flame = height of high-T zone, v_gas = gas velocity</span>
+<span class="comment">Longer τ_res → more time for sintering → larger, more crystalline NPs</span>
+<span class="comment">Note: ↑ O₂ flow → ↑ v_gas → ↓ τ_res (inverse relationship)</span>
+      </div>
+    </div>
+
+    <h2>Parameter 5: Quench Rate</h2>
+    <div class="card">
+      <p><strong>Definition:</strong> Rate of post-flame cooling (°C/ms). Controls whether kinetically or thermodynamically favored phases are preserved.</p>
+      <p><strong>Methods to control quench rate:</strong></p>
+      <ul class="styled">
+        <li>Dilution gas injection above flame tip</li>
+        <li>Quench rings (water-cooled)</li>
+        <li>Water-cooled reactor walls</li>
+        <li>Electrostatic precipitators (also cool and collect simultaneously)</li>
+      </ul>
+    </div>
+
+    <div class="grid-2">
+      <div class="card" style="border-color:#0284c7;">
+        <div class="card-title" style="color:#0284c7;">Fast Quench</div>
+        <p>"Freezes" kinetically favored phases — amorphous or metastable structures. Particles don't have time to crystallize or coarsen. Used when targeting amorphous materials or preserving metastable phases (e.g., metastable γ-Al₂O₃).</p>
+      </div>
+      <div class="card" style="border-color:#d97706;">
+        <div class="card-title" style="color:#d97706;">Slow Quench</div>
+        <p>Allows thermodynamic equilibrium — more stable, crystalline, potentially coarser phases form. Used when targeting well-crystallized, stable phases like α-Al₂O₃ or rutile TiO₂.</p>
+      </div>
+    </div>
+
+    <h2>Parameter Interdependencies</h2>
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Controlled By</th><th>↑ Increases</th><th>↓ Decreases</th><th>Key NP Effect</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Precursor Conc.</strong></td>
+          <td>Molarity (M)</td>
+          <td>NP size, yield</td>
+          <td>Surface area</td>
+          <td>Size &amp; production rate</td>
+        </tr>
+        <tr>
+          <td><strong>Dispersion Gas</strong></td>
+          <td>O₂ flow (L/min)</td>
+          <td>Oxidation, mixing</td>
+          <td>Droplet size</td>
+          <td>Phase purity, spray angle</td>
+        </tr>
+        <tr>
+          <td><strong>Flame Temp.</strong></td>
+          <td>Solvent, feed rate</td>
+          <td>Crystallinity, grain size</td>
+          <td>Amorphous content</td>
+          <td>Phase identity</td>
+        </tr>
+        <tr>
+          <td><strong>Residence Time</strong></td>
+          <td>Flame height, velocity</td>
+          <td>Sintering, grain growth</td>
+          <td>Metastability</td>
+          <td>Particle coarsening</td>
+        </tr>
+        <tr>
+          <td><strong>Quench Rate</strong></td>
+          <td>Cooling gas, geometry</td>
+          <td>Amorphous content</td>
+          <td>Crystal size</td>
+          <td>Phase trapping</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="box note">
+      <div class="box-label">🔗 Key Interdependencies</div>
+      <ul class="styled">
+        <li><strong>Precursor Conc. → Flame Temp.:</strong> Higher [M] → more combustion load → lower effective T if O₂ is limited</li>
+        <li><strong>Dispersion Gas → Residence Time:</strong> ↑ O₂ flow → higher gas velocity → shorter τ_res in hot zone</li>
+        <li><strong>Flame Temp. → Quench Rate:</strong> Higher ΔT requires faster quench to preserve metastable phases</li>
+      </ul>
+    </div>
+
+    <div class="summary-block">
+      <h3>§9 Summary</h3>
+      <ul>
+        <li>[M]: 0.05–1.0 M; higher [M] → bigger NPs, more yield; &gt;0.5 M risks sintering</li>
+        <li>O₂ flow (5–15 L/min): higher flow → smaller droplets → smaller NPs; also increases oxidation</li>
+        <li>Flame T: controlled by solvent (2-EHA &gt; xylene &gt; EtOH), feed rate, φ; high T → crystalline; low T → amorphous</li>
+        <li>Residence time: longer → coarser, more crystalline NPs; controlled by flame height and gas velocity</li>
+        <li>Quench rate: fast → amorphous/metastable; slow → crystalline/stable; determines final phase</li>
+        <li>Parameters are interdependent — changing one affects others</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 10 ═══ -->
+  <div class="section" id="s10">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <div>
+        <div class="section-title">Particle Formation Mechanisms</div>
+        <div class="section-sub">Gas-to-particle vs. droplet-to-particle · Nucleation physics · Evaporation number</div>
+      </div>
+    </div>
+
+    <h2>The Two Competing Routes</h2>
+    <p>There are two possible pathways from liquid precursor droplet to solid nanoparticle. The pathway taken depends critically on the <strong>Evaporation Number (Ev)</strong>.</p>
+
+    <div class="box definition">
+      <div class="box-label">📐 Evaporation Number (Ev)</div>
+      <div class="math">
+Ev = τ_evap / τ_residence
+
+<span class="comment">τ_evap = time required for complete droplet evaporation</span>
+<span class="comment">τ_residence = time available in the high-temperature zone</span>
+
+<span class="highlight">Ev &lt; 1</span>  →  Droplet fully evaporates before leaving hot zone  →  <span class="value">Gas-to-Particle Route (DESIRED)</span>
+<span class="highlight">Ev &gt; 1</span>  →  Droplet does not fully evaporate  →  <span class="value">Droplet-to-Particle Route (UNDESIRED)</span>
+      </div>
+    </div>
+
+    <h2>Route 1: Gas-to-Particle Conversion (Preferred, Ev &lt; 1)</h2>
+    <div class="box success">
+      <div class="box-label">✅ Preferred Pathway</div>
+      <p>This is the dominant route in well-optimized FSP. It produces the finest, most uniform, most crystalline nanoparticles.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num" style="background:#7c3aed">1</div>
+        <div class="step-body">
+          <div class="step-title">Droplet Evaporation</div>
+          <div class="step-desc">The entire droplet evaporates completely in the flame zone. The metal precursor also vaporizes/decomposes into metal oxide vapour.</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num" style="background:#5b21b6">2</div>
+        <div class="step-body">
+          <div class="step-title">Metal Oxide Vapour Formation</div>
+          <div class="step-desc">All metal atoms are now in the gas phase as MₓOᵧ vapour at very high temperature. The vapour is undersaturated at peak T.</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num" style="background:#4c1d95">3</div>
+        <div class="step-body">
+          <div class="step-title">Supersaturation (S &gt; 1)</div>
+          <div class="step-desc">As gas cools downstream, the equilibrium vapour pressure of MₓOᵧ decreases. When actual concentration exceeds the new equilibrium → supersaturation S &gt; 1. The driving force for nucleation builds.</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num" style="background:#3b0764">4</div>
+        <div class="step-body">
+          <div class="step-title">Nucleation (r &gt; r*)</div>
+          <div class="step-desc">Spontaneous formation of stable clusters (nuclei) when cluster radius exceeds the critical radius r*. Below r*, clusters dissolve (surface energy dominates); above r*, clusters are stable and grow (bulk energy dominates).</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num" style="background:#2e1065">5</div>
+        <div class="step-body">
+          <div class="step-title">Condensation & Growth</div>
+          <div class="step-desc">Vapour molecules deposit on stable nuclei. Particles also collide and coalesce (coagulation). At high T, they sinter into spheres. Final particle size: 5–20 nm.</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Key Physics of Nucleation</h2>
+
+    <div class="box formula">
+      <div class="box-label">🔢 Critical Radius</div>
+      <div class="math">
+r* = 2γΩ / (kT ln S)
+
+<span class="comment">γ = surface energy of the nanoparticle material (J/m²)</span>
+<span class="comment">Ω = molecular volume of the condensing species (m³)</span>
+<span class="comment">k = Boltzmann constant (1.38×10⁻²³ J/K)</span>
+<span class="comment">T = temperature (K)</span>
+<span class="comment">S = supersaturation ratio = P_actual / P_equilibrium</span>
+
+<span class="highlight">High S (rapid cooling) → small r* → easier nucleation → many small nuclei → small particles</span>
+<span class="highlight">Low S (slow cooling) → large r* → fewer, larger particles</span>
+      </div>
+      <p class="eq-label">This is the Kelvin equation for the critical nucleus radius in homogeneous nucleation</p>
+    </div>
+
+    <div class="box formula">
+      <div class="box-label">🔢 Nucleation Rate</div>
+      <div class="math">
+J = A · exp(−ΔG*/kT)
+
+<span class="comment">J = nucleation rate (nuclei/m³·s)</span>
+<span class="comment">A = pre-exponential frequency factor</span>
+<span class="comment">ΔG* = activation energy for nucleation = (16π/3) · γ³Ω² / (kT ln S)²</span>
+
+<span class="highlight">Higher T or higher S → lower ΔG* → exponentially higher J</span>
+<span class="highlight">Near-simultaneous nucleation → narrow particle size distribution</span>
+      </div>
+    </div>
+
+    <div class="box formula">
+      <div class="box-label">🔢 Growth Rate (Diffusion-Controlled)</div>
+      <div class="math">
+dr/dt = D_M (C − C_s) / (ρ_p · r)
+
+<span class="comment">D_M = diffusion coefficient of metal oxide vapour</span>
+<span class="comment">C = actual vapour concentration</span>
+<span class="comment">C_s = saturation concentration at particle surface</span>
+<span class="comment">ρ_p = particle density</span>
+<span class="comment">r = current particle radius</span>
+
+<span class="highlight">Larger particles grow faster (proportional to C−C_s) but the rate per unit radius decreases</span>
+<span class="highlight">This self-limiting growth contributes to narrow size distributions</span>
+      </div>
+    </div>
+
+    <h2>Route 2: Droplet-to-Particle Route (Undesired, Ev &gt; 1)</h2>
+    <div class="box warning">
+      <div class="box-label">⚠️ Problematic Pathway</div>
+      <p>When the droplet does not fully evaporate before particle formation, this route produces micron-scale, hollow, or porous particles — far too large for nanoscale applications. A bimodal particle size distribution (both nm and µm particles) is the diagnostic signature of droplet-route contamination.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num" style="background:#0284c7">1</div>
+        <div class="step-body">
+          <div class="step-title">Droplet Heating & Surface Evaporation</div>
+          <div class="step-desc">Outer solvent evaporates from the droplet surface. As it does, the precursor concentration increases toward the droplet interior. A concentration gradient develops (dilute core, concentrated surface).</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num" style="background:#7c3aed">2</div>
+        <div class="step-body">
+          <div class="step-title">Shell Precipitation</div>
+          <div class="step-desc">Surface concentration reaches the saturation limit for the metal precursor → a solid or semi-solid crust (shell) precipitates at the droplet surface. A hollow sphere is born with a liquid core.</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num" style="background:#dc2626">3</div>
+        <div class="step-body">
+          <div class="step-title">Puffing, Bursting, or Densification</div>
+          <div class="step-desc">Internal liquid vaporizes → pressure builds inside the shell. Three outcomes: (a) Puffing — shell inflates and remains hollow; (b) Bursting — shell ruptures, releasing fragments; (c) Dense sphere — liquid re-distributes before shell fully solidifies.</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num" style="background:#374151">4</div>
+        <div class="step-body">
+          <div class="step-title">Final Product: Micron-Scale Hollow/Porous Particle</div>
+          <div class="step-desc">Particle size ≈ original droplet size (µm range). These contaminate the nanoparticle product and degrade performance. Bimodal PSD (a peak at nm and one at µm) diagnoses this route.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box note">
+      <div class="box-label">📌 How to Avoid the Droplet Route</div>
+      <ul class="styled">
+        <li>Use a solvent with a <strong>lower boiling point</strong> (evaporates faster → reduces τ_evap)</li>
+        <li>Increase <strong>dispersion gas flow</strong> (smaller droplets → faster complete evaporation)</li>
+        <li>Increase <strong>flame temperature</strong> (faster heating → faster evaporation)</li>
+        <li>Reduce <strong>precursor concentration</strong> (less material per droplet → easier evaporation)</li>
+        <li>Goal: always maintain <strong>Ev &lt; 1</strong></li>
+      </ul>
+    </div>
+
+    <div class="summary-block">
+      <h3>§10 Summary</h3>
+      <ul>
+        <li>Ev = τ_evap/τ_residence; Ev&lt;1 → gas route (desired); Ev&gt;1 → droplet route (avoid)</li>
+        <li>Gas-to-particle route: complete evaporation → vapour → supersaturation → nucleation → condensation → 5–20 nm spherical crystalline NPs</li>
+        <li>Critical radius: r* = 2γΩ/(kT ln S); higher S → smaller r* → easier nucleation</li>
+        <li>Nucleation rate: J = A·exp(−ΔG*/kT); near-simultaneous → narrow PSD</li>
+        <li>Droplet route: incomplete evaporation → shell precipitation → puffing/bursting → µm-scale hollow particles; diagnosed by bimodal PSD</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 11 ═══ -->
+  <div class="section" id="s11">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <div>
+        <div class="section-title">Sintering & Agglomeration</div>
+        <div class="section-sub">Post-nucleation evolution · τ_collision vs τ_sintering · Three particle types</div>
+      </div>
+    </div>
+
+    <h2>Three Levels of Particle Structure</h2>
+    <div class="grid-3">
+      <div class="card" style="border-color:#7c3aed; text-align:center;">
+        <div style="font-size:2rem; margin-bottom:8px;">●</div>
+        <div class="card-title">Primary Particle</div>
+        <p>The smallest individual nanocrystal. A <strong>single crystalline domain</strong>. Formed by nucleation + growth by condensation. This is the "true" nanoparticle size. Measured by XRD (Scherrer equation) or HRTEM.</p>
+      </div>
+      <div class="card" style="border-color:#dc2626; text-align:center;">
+        <div style="font-size:2rem; margin-bottom:8px;">◎◎</div>
+        <div class="card-title">Aggregate (Hard)</div>
+        <p>Primary particles <strong>fused by solid-state sintering</strong> at high temperature. Particles share crystalline necks. <strong>Cannot be redispersed</strong> — the fusion is permanent. Measured by TEM.</p>
+        <p style="margin-top:8px;"><span class="badge badge-red">Irreversible</span></p>
+      </div>
+      <div class="card" style="border-color:#0284c7; text-align:center;">
+        <div style="font-size:2rem; margin-bottom:8px;">◎◎◎</div>
+        <div class="card-title">Agglomerate (Soft)</div>
+        <p>Groups of aggregates held together by <strong>van der Waals forces</strong>. Weaker physical attraction. <strong>Can be redispersed</strong> by ultrasonication or chemical dispersants.</p>
+        <p style="margin-top:8px;"><span class="badge badge-green">Reversible</span></p>
+      </div>
+    </div>
+
+    <h2>Sintering Physics</h2>
+    <div class="box definition">
+      <div class="box-label">🔬 What is Sintering?</div>
+      <p>Sintering is the <strong>solid-state diffusion-driven fusion</strong> of two touching nanoparticles into a single, larger spherical particle. At high temperatures, atoms diffuse along grain boundaries and free surfaces, eliminating the interface between colliding particles. Sintering requires high temperature because atomic diffusion is thermally activated (Arrhenius-type). For nanoparticles, sintering temperatures are significantly <em>lower</em> than for bulk materials due to the high surface-area-to-volume ratio.</p>
+    </div>
+
+    <div class="box formula">
+      <div class="box-label">🔢 Sintering Time</div>
+      <div class="math">
+τ_s = d⁴kT / (64γΩD_s)
+
+<span class="comment">d = primary particle diameter</span>
+<span class="comment">k = Boltzmann constant</span>
+<span class="comment">T = temperature</span>
+<span class="comment">γ = surface energy</span>
+<span class="comment">Ω = atomic volume</span>
+<span class="comment">D_s = surface diffusion coefficient (exponentially T-dependent: D_s = D₀ exp(-E_a/kT))</span>
+
+<span class="highlight">Critical insight: τ_s ∝ d⁴ — larger particles sinter MUCH more slowly!</span>
+<span class="highlight">Higher T → much faster sintering (D_s exponentially increases with T)</span>
+      </div>
+    </div>
+
+    <div class="box formula">
+      <div class="box-label">🔢 Neck Growth Rate</div>
+      <div class="math">
+(x/r)² = (56 D_s γ Ω / kT) · (t / r³)
+
+<span class="comment">x = neck radius between two sintering particles</span>
+<span class="comment">r = particle radius</span>
+<span class="comment">t = time</span>
+
+<span class="highlight">Neck grows as t^(1/2) — initially rapid, then slows as neck grows</span>
+      </div>
+    </div>
+
+    <h2>The τ_collision vs τ_sintering Race</h2>
+    <p>The final morphology of FSP nanoparticles is determined by the competition between two timescales:</p>
+
+    <div class="grid-2">
+      <div class="card" style="border-color:#7c3aed; border-width:2px;">
+        <div class="card-title" style="color:#7c3aed;">τ_sintering &lt;&lt; τ_collision</div>
+        <p>Sintering completes <em>before</em> the next collision. Each collision event fuses two particles into one sphere, which fully relaxes to a sphere before the next collision arrives.</p>
+        <p style="margin-top:8px;"><strong>Result: Spherical primary particles.</strong> This occurs at <em>high temperatures</em> where sintering is rapid.</p>
+      </div>
+      <div class="card" style="border-color:#dc2626; border-width:2px;">
+        <div class="card-title" style="color:#dc2626;">τ_collision &lt;&lt; τ_sintering</div>
+        <p>New collisions occur <em>before</em> sintering is complete. Particles chain together, forming fractal aggregate structures. Sintering creates permanent necks but incomplete coalescence.</p>
+        <p style="margin-top:8px;"><strong>Result: Chain-like fractal aggregates.</strong> This occurs at <em>lower temperatures</em> (below sintering onset).</p>
+      </div>
+    </div>
+
+    <div class="box formula">
+      <div class="box-label">🔢 BET Particle Size from Surface Area</div>
+      <div class="math">
+d_BET = 6 / (ρ_p · SSA)
+
+<span class="comment">d_BET = equivalent spherical diameter from BET surface area (m)</span>
+<span class="comment">ρ_p = particle density (kg/m³)</span>
+<span class="comment">SSA = specific surface area measured by N₂ BET adsorption (m²/kg)</span>
+
+<span class="highlight">d_BET represents the primary particle size (assuming non-porous spheres)</span>
+<span class="highlight">If d_BET &gt;&gt; d_XRD, particles are porous or agglomerated</span>
+      </div>
+    </div>
+
+    <div class="box note">
+      <div class="box-label">📌 Coagulation Rate</div>
+      <p>The rate of particle collisions (coagulation) scales with the square of particle number concentration: <code>Rate ∝ N²</code>. This means that higher precursor concentrations (more nuclei formed → higher N) lead to much more rapid coagulation and therefore larger final particles. This explains why increasing [M] increases particle size.</p>
+    </div>
+
+    <div class="summary-block">
+      <h3>§11 Summary</h3>
+      <ul>
+        <li>Three particle types: Primary (single crystal, irreducible) → Aggregate (sintered, hard, irreversible) → Agglomerate (van der Waals, soft, reversible)</li>
+        <li>Sintering time: τ_s = d⁴kT/(64γΩD_s); scales as d⁴; higher T → faster sintering</li>
+        <li>τ_sintering &lt;&lt; τ_collision → spherical primaries (high T); τ_collision &lt;&lt; τ_sintering → fractal aggregates (low T)</li>
+        <li>Coagulation rate ∝ N² → high [precursor] → rapid coagulation → larger NPs</li>
+        <li>d_BET = 6/(ρ_p·SSA); measures equivalent spherical diameter from surface area measurement</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 12 ═══ -->
+  <div class="section" id="s12">
+    <div class="section-header">
+      <div class="section-num">12</div>
+      <div>
+        <div class="section-title">FSP vs. Other Synthesis Methods</div>
+        <div class="section-sub">Comparative analysis across six major synthesis routes</div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Route</th>
+          <th>Scale</th>
+          <th>Purity</th>
+          <th>Crystallinity</th>
+          <th>FSP Advantage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#f5f3ff;">
+          <td><strong>FSP ★</strong></td>
+          <td>Gas-phase, flame</td>
+          <td><span class="badge badge-green">★★★★</span></td>
+          <td><span class="badge badge-green">Very High</span></td>
+          <td><span class="badge badge-green">High</span></td>
+          <td>— Reference —</td>
+        </tr>
+        <tr>
+          <td><strong>Sol-Gel</strong></td>
+          <td>Liquid, hydrolysis</td>
+          <td><span class="badge badge-purple">★★★</span></td>
+          <td><span class="badge badge-amber">Moderate</span></td>
+          <td><span class="badge badge-red">Low (needs calcination)</span></td>
+          <td>No calcination step; continuous; directly crystalline</td>
+        </tr>
+        <tr>
+          <td><strong>Coprecipitation</strong></td>
+          <td>Liquid, precipitation</td>
+          <td><span class="badge badge-purple">★★</span></td>
+          <td><span class="badge badge-amber">Moderate</span></td>
+          <td><span class="badge badge-red">Low</span></td>
+          <td>Higher T → better crystal quality without calcination</td>
+        </tr>
+        <tr>
+          <td><strong>Hydrothermal</strong></td>
+          <td>Liquid, high P/T</td>
+          <td><span class="badge badge-amber">★★</span></td>
+          <td><span class="badge badge-green">High</span></td>
+          <td><span class="badge badge-green">High</span></td>
+          <td>Scalable; no autoclave needed; continuous operation</td>
+        </tr>
+        <tr>
+          <td><strong>CVD</strong></td>
+          <td>Gas-phase, vapor</td>
+          <td><span class="badge badge-purple">★★★</span></td>
+          <td><span class="badge badge-green">Very High</span></td>
+          <td><span class="badge badge-green">High</span></td>
+          <td>Lower cost; liquid precursors OK (no need for volatile precursors)</td>
+        </tr>
+        <tr>
+          <td><strong>Spray Pyrolysis</strong></td>
+          <td>Aerosol, furnace</td>
+          <td><span class="badge badge-purple">★★★</span></td>
+          <td><span class="badge badge-green">High</span></td>
+          <td><span class="badge badge-amber">Moderate</span></td>
+          <td>Flame T (1500–3000 K) &gt;&gt; furnace (500–1200 °C); faster synthesis</td>
+        </tr>
+        <tr>
+          <td><strong>Laser Ablation</strong></td>
+          <td>Solid-phase</td>
+          <td><span class="badge badge-red">★</span></td>
+          <td><span class="badge badge-green">Very High</span></td>
+          <td><span class="badge badge-amber">Variable</span></td>
+          <td>Massively more scalable; far cheaper per gram</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>FSP vs. Spray Pyrolysis — Key Comparison</h2>
+    <div class="grid-2">
+      <div class="card" style="border-color:#dc2626;">
+        <div class="card-title" style="color:#dc2626;">Spray Pyrolysis (Conventional)</div>
+        <ul class="styled">
+          <li>External furnace heating: 500–1200 °C</li>
+          <li>Droplets may not fully evaporate (Ev &gt; 1 risk)</li>
+          <li>Slow heating rate (seconds in furnace)</li>
+          <li>Energy from external source (electricity)</li>
+          <li>Larger primary particles (µm range possible)</li>
+          <li>Often requires post-annealing for crystallinity</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:#7c3aed;">
+        <div class="card-title" style="color:#7c3aed;">FSP</div>
+        <ul class="styled">
+          <li>Self-sustaining flame: 1500–3000 K</li>
+          <li>Complete precursor evaporation and decomposition</li>
+          <li>Ultrafast heating rate (milliseconds)</li>
+          <li>Energy from solvent combustion (self-powered)</li>
+          <li>Smaller primary particles (nm range)</li>
+          <li>Directly crystalline — no post-annealing needed</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box success">
+      <div class="box-label">✅ FSP's Unique Position</div>
+      <p>FSP uniquely combines the <strong>chemical versatility of solution-phase methods</strong> (ability to dissolve any metal salt) with the <strong>purity and crystallinity of gas-phase methods</strong> (CVD, flame hydrolysis). No other single technique offers this combination at scalable, continuous production rates.</p>
+    </div>
+
+    <div class="summary-block">
+      <h3>§12 Summary</h3>
+      <ul>
+        <li>FSP outperforms sol-gel and coprecipitation on crystallinity (no calcination needed)</li>
+        <li>FSP outperforms hydrothermal on scalability (no autoclave; continuous operation)</li>
+        <li>FSP outperforms laser ablation on cost and scale</li>
+        <li>FSP vs spray pyrolysis: flame (1500–3000K) &gt;&gt; furnace (500–1200°C) → better crystallinity, smaller NPs, faster synthesis</li>
+        <li>FSP's unique niche: chemical versatility of liquid-phase + purity of gas-phase</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 13 ═══ -->
+  <div class="section" id="s13">
+    <div class="section-header">
+      <div class="section-num">13</div>
+      <div>
+        <div class="section-title">Applications of FSP-Synthesized Nanoparticles</div>
+        <div class="section-sub">Catalysis · Energy · Biomedical · Environmental · Advanced Materials</div>
+      </div>
+    </div>
+
+    <h2>Part I: Catalysis & Energy</h2>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🔥 Heterogeneous Catalysis</div>
+        <ul class="styled">
+          <li>High surface area (50–200 m²/g) enhances catalytic activity</li>
+          <li>Pt, Pd, Au NPs on metal oxide supports (TiO₂, CeO₂, Al₂O₃)</li>
+          <li>Applications: CO oxidation, hydrocarbon reforming, NOₓ reduction</li>
+          <li>Example: <strong>Pt/CeO₂</strong> for automotive 3-way catalysts (emission control)</li>
+          <li>FSP enables precise control of metal loading and dispersion on support</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">⚡ Energy Storage & Conversion</div>
+        <ul class="styled">
+          <li>Li-ion battery anodes: <strong>SnO₂, Fe₂O₃</strong> NPs with high capacity</li>
+          <li>Fuel cell electrocatalysts: Pt-alloy NPs with improved durability</li>
+          <li>Photocatalytic water splitting: TiO₂, BiVO₄, g-C₃N₄</li>
+          <li>Solid oxide fuel cells: <strong>Ce₀.₈Gd₀.₂O₁.₉</strong> electrolyte particles</li>
+          <li>Supercapacitor electrode materials</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">☀️ Photocatalysis</div>
+        <ul class="styled">
+          <li>UV/Vis-active TiO₂ (anatase) for pollutant degradation</li>
+          <li>Doped ZnO NPs for enhanced visible-light response</li>
+          <li>Removal of organic dyes, pharmaceuticals in wastewater</li>
+          <li><strong>N-doped TiO₂:</strong> bandgap shift from 3.2 → 2.6 eV (UV to visible light active)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">📡 Gas Sensing</div>
+        <ul class="styled">
+          <li>SnO₂, ZnO, WO₃ sensors for NO₂, H₂, ethanol detection</li>
+          <li>FSP enables precisely controlled grain size (5–15 nm) → high sensitivity</li>
+          <li>Sub-ppm detection limits at 200–400 °C operating temperature</li>
+          <li>Multi-metal oxides (e.g., Pd/SnO₂) for selectivity tuning</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Part II: Biomedical Applications</h2>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">💊 Drug Delivery</div>
+        <p><strong>Fe₃O₄ NPs</strong> for magnetically guided targeted therapy — a magnetic field gradient can steer drug-loaded iron oxide particles to a tumor site. Surface-functionalized <strong>SiO₂</strong> for pH-responsive release — pores open in the acidic tumor microenvironment.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">🧲 MRI Contrast Agents</div>
+        <p><strong>Superparamagnetic iron oxide NPs (SPIONs)</strong> enhance T₂ MRI contrast by disturbing local magnetic fields. FSP produces SPIONs with tunable size 5–20 nm — a critical parameter for MRI performance and biological clearance.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">🦠 Antimicrobial</div>
+        <p><strong>Ag, ZnO, CuO NPs</strong> disrupt microbial cell membranes and interfere with cellular processes. Effective against MRSA (methicillin-resistant Staphylococcus aureus) and multidrug-resistant strains — a major advantage in the era of antibiotic resistance.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">🔆 Photothermal Therapy</div>
+        <p><strong>Au and Bi₂S₃ NPs</strong> convert near-infrared (NIR) radiation to heat. NIR light penetrates tissue deeply; gold NPs absorb it and heat up locally. Used for selective tumor cell ablation without major collateral damage.</p>
+      </div>
+    </div>
+
+    <h2>Part III: Environmental Remediation</h2>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🌬️ Air Purification</div>
+        <p>Mn–Ce oxide NPs for low-temperature Selective Catalytic Reduction (SCR) of NOₓ. Pd/TiO₂ for VOC (volatile organic compound) oxidation at 150 °C — significantly lower than bulk Pd catalysts.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">💧 Wastewater Treatment</div>
+        <p>Photocatalytic degradation of endocrine-disrupting compounds, antibiotics, and azo dyes under solar irradiation. FSP-made TiO₂ has higher surface area and more active sites than commercial P25 TiO₂ for photocatalytic applications.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">☠️ Heavy Metal Removal</div>
+        <p>TiO₂ and ZrO₂ NPs for Cr⁶⁺, Pb²⁺, As³⁺ adsorption from contaminated water. Surface functionalization enhances selectivity for specific metal ions.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">🌿 CO₂ Capture & Conversion</div>
+        <p>FSP-made CeO₂–ZrO₂ solid solutions for thermocatalytic CO₂ methanation (CO₂ + 4H₂ → CH₄ + 2H₂O) and dry reforming. High oxygen storage capacity of CeO₂–ZrO₂ enables redox cycling.</p>
+      </div>
+    </div>
+
+    <h2>Part IV: Advanced Materials</h2>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">💡 Transparent Conductors</div>
+        <p>Indium tin oxide (ITO) and Al-doped ZnO (AZO) NPs for thin-film electrode coatings in touchscreens, solar cells, and OLEDs. FSP produces dispersible NP inks for solution-processed electrode fabrication.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">✨ Luminescent Materials</div>
+        <p>Eu³⁺- and Tb³⁺-doped Y₂O₃ phosphors for LEDs, displays, and bioimaging probes. FSP's ability to precisely control dopant concentration at the atomic level enables optimization of quantum yield and emission wavelength.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">⚡ High-κ Dielectrics</div>
+        <p>HfO₂, ZrO₂ NPs in transistor gate dielectrics (replacing SiO₂ in advanced CMOS). FSP ensures phase purity and narrow size distribution, critical for gate oxide reliability and performance.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">🔧 Polymer Nanocomposites</div>
+        <p>SiO₂, Al₂O₃ reinforcement fillers in polymers for improved mechanical (tensile strength, hardness), thermal (T_g), and barrier properties. FSP produces surface-functionalized NPs with better polymer compatibility.</p>
+      </div>
+    </div>
+
+    <div class="summary-block">
+      <h3>§13 Summary</h3>
+      <ul>
+        <li>Catalysis: Pt/CeO₂ (automotive), high SSA oxides (CO oxidation, reforming, NOₓ)</li>
+        <li>Energy: SnO₂/Fe₂O₃ anodes, Pt-alloy fuel cells, TiO₂/BiVO₄ photocatalysts, SOFC electrolytes</li>
+        <li>Biomedical: Fe₃O₄ (drug delivery/MRI), Ag/ZnO/CuO (antimicrobial), Au/Bi₂S₃ (photothermal therapy)</li>
+        <li>Environmental: Mn-Ce (SCR NOₓ), TiO₂ (wastewater photocatalysis), TiO₂/ZrO₂ (heavy metal removal), CeO₂-ZrO₂ (CO₂ conversion)</li>
+        <li>Advanced: ITO/AZO (transparent conductors), Eu/Tb:Y₂O₃ (phosphors), HfO₂/ZrO₂ (gate dielectrics), SiO₂/Al₂O₃ (nanocomposites)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 14 ═══ -->
+  <div class="section" id="s14">
+    <div class="section-header">
+      <div class="section-num">14</div>
+      <div>
+        <div class="section-title">Challenges & Limitations of FSP</div>
+        <div class="section-sub">Six major challenge areas · Future research directions</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card" style="border-left: 5px solid #f59e0b;">
+        <div class="card-title">01 — Scalability & Cost</div>
+        <ul class="styled">
+          <li>High-purity organic precursors are expensive (e.g., metal 2-ethylhexanoates)</li>
+          <li>Energy-intensive: combustion of organic solvents at ~2500 °C</li>
+          <li>Scale-up leads to particle agglomeration — requires dispersants or gas-phase tuning</li>
+          <li>Batch-to-batch reproducibility deteriorates at industrial scale</li>
+          <li>Multiple parallel nozzles needed for kg/hr production → complex engineering</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left: 5px solid #dc2626;">
+        <div class="card-title">02 — Particle Agglomeration</div>
+        <ul class="styled">
+          <li>Freshly formed NPs are thermophoretically driven to aggregate</li>
+          <li>Hard agglomerates form above sintering temperature — irreversible</li>
+          <li>Degrades catalytic surface area, drug delivery payload, optical properties</li>
+          <li>Mitigation: in-situ surface functionalization, faster quench cooling, electrostatic dispersion</li>
+          <li>In-situ surface modification with silanes or phosphonates during FSP is possible</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left: 5px solid #7c3aed;">
+        <div class="card-title">03 — Precursor Incompatibility</div>
+        <ul class="styled">
+          <li>Multi-component systems require matched solubility and volatility</li>
+          <li>Immiscible precursors → phase segregation and stoichiometric deviation</li>
+          <li>Heavy metals (W, Mo, Re) lack suitable organic precursors → limits accessible compositions</li>
+          <li>Side reactions can produce unintended phases (e.g., perovskite vs. spinel)</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left: 5px solid #0284c7;">
+        <div class="card-title">04 — Toxicology & Safety</div>
+        <ul class="styled">
+          <li>Ultrafine particles (&lt;10 nm) penetrate lung alveoli and can cross the blood–brain barrier</li>
+          <li>Metal oxide NPs (CuO, ZnO, TiO₂) show dose-dependent cytotoxicity</li>
+          <li>Inhalation risk in open FSP setups → requires HEPA filtration and full PPE</li>
+          <li>Regulatory frameworks (REACH, EPA) still evolving for engineered NPs</li>
+          <li>Fire/explosion risk from flammable organic solvents</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left: 5px solid #16a34a;">
+        <div class="card-title">05 — Phase & Crystal Control</div>
+        <ul class="styled">
+          <li>Polymorphic systems (TiO₂: anatase vs. rutile) sensitive to flame temperature</li>
+          <li>Mixed phases can reduce catalytic or electronic performance</li>
+          <li>Quench rate and O₂:fuel ratio must be tightly controlled</li>
+          <li>In-situ XRD monitoring is expensive and technically demanding</li>
+          <li>Predicting phase outcomes in multi-metal systems is complex</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left: 5px solid #d97706;">
+        <div class="card-title">06 — Environmental & Life-Cycle Impact</div>
+        <ul class="styled">
+          <li>CO₂ and CO emissions from solvent combustion → carbon footprint concerns</li>
+          <li>Solvent selection impacts green chemistry metrics (E-factor)</li>
+          <li>NP fate in ecosystems poorly understood — nano-ecotoxicology is an emerging field</li>
+          <li>End-of-life recycling of NP-containing products largely unsolved</li>
+          <li>Water and soil contamination risks from NP release</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Future Research Directions</h2>
+    <div class="grid-3">
+      <div class="card" style="border-top: 4px solid #f59e0b;">
+        <div class="card-title">🤖 AI-Assisted Design</div>
+        <p>Machine learning models predicting FSP process parameters from target NP properties. Bayesian optimization of multi-parameter FSP design space. Autonomous synthesis platforms.</p>
+      </div>
+      <div class="card" style="border-top: 4px solid #16a34a;">
+        <div class="card-title">🌿 Green Solvents</div>
+        <p>Bio-derived, low-emission solvents (e.g., ethyl lactate, limonene) to reduce carbon footprint of FSP. Solvent mixtures optimized for both ΔH_comb and bio-renewability.</p>
+      </div>
+      <div class="card" style="border-top: 4px solid #7c3aed;">
+        <div class="card-title">🔬 In-Situ Diagnostics</div>
+        <p>Real-time SAXS/WAXS (X-ray scattering) for particle size and phase monitoring during FSP. Laser-Induced Incandescence (LII) for soot/particle temperature measurement. Closed-loop feedback process control.</p>
+      </div>
+    </div>
+
+    <div class="summary-block">
+      <h3>§14 Summary — Key Strengths vs. Challenges</h3>
+      <ul>
+        <li>Strengths: continuous one-step synthesis, precise size/composition control, scalable mg→kg/hr, versatile, in-situ doping</li>
+        <li>Challenge 1 (Cost): expensive precursors, energy-intensive, agglomeration at scale</li>
+        <li>Challenge 2 (Agglomeration): hard agglomerates degrade performance; mitigated by in-situ functionalization or fast quench</li>
+        <li>Challenge 3 (Precursors): heavy metals (W, Mo, Re) incompatible; phase segregation in multi-component systems</li>
+        <li>Challenge 4 (Safety): ultrafine NPs are lung/BBB hazards; flammable solvents; evolving regulations</li>
+        <li>Challenge 5 (Phase control): polymorphic systems sensitive to T; mixed phases degrade performance</li>
+        <li>Challenge 6 (Environment): CO₂ from combustion; NP ecotoxicology poorly understood</li>
+        <li>Future: AI-assisted design, green solvents, in-situ SAXS/WAXS/LII diagnostics</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ MASTER SUMMARY ═══ -->
+  <div class="master-summary" id="master">
+    <h2>★ Master Revision Sheet — FSP Complete</h2>
+    <div class="master-grid">
+
+      <div class="master-card">
+        <div class="master-card-title">🔬 What is FSP?</div>
+        <ul>
+          <li>One-step, continuous, gas-phase NP synthesis</li>
+          <li>Liquid precursor → atomize → flame (1000–3000°C) → 2–100 nm NPs</li>
+          <li>Solvent = carrier + fuel (self-sustaining flame)</li>
+          <li>Key advantages: scalable, pure, crystalline, compositionally flexible</li>
+        </ul>
+      </div>
+
+      <div class="master-card">
+        <div class="master-card-title">📜 History</div>
+        <ul>
+          <li>1950s: Aerosil® SiO₂ via H₂/O₂ flame (gas-phase only)</li>
+          <li>1970s: Liquid precursors introduced → greater flexibility</li>
+          <li>1990s: ETH Zürich (Kammler, Mädler, Pratsinis); 2002 landmark paper</li>
+          <li>2000s: Scale-up to kg/hr; commercialization</li>
+        </ul>
+      </div>
+
+      <div class="master-card">
+        <div class="master-card-title">⚗️ Core Chemistry (3 Steps)</div>
+        <ul>
+          <li>A: Solvent combustion → heat (EtOH: ΔH° = −1367 kJ/mol)</li>
+          <li>B: Precursor decomposition → metal oxide vapour (no solid yet)</li>
+          <li>C: Cooling → supersaturation → nucleation (r &gt; r*) → NPs</li>
+          <li>High ΔH_comb solvent → hotter flame → better crystallinity</li>
+        </ul>
+      </div>
+
+      <div class="master-card">
+        <div class="master-card-title">🌡️ Thermodynamics</div>
+        <ul>
+          <li>AFT = T_reactants + ΔH_comb/(n·C̄_p); 2000–2700 K typical</li>
+          <li>φ = (F/O)_actual/(F/O)_stoich; φ&lt;1 → oxidizing (preferred)</li>
+          <li>φ=1: complete combustion; φ&gt;1: reducing → metals/sub-oxides</li>
+          <li>2-EHA (4.85) &gt; xylene (4.33) &gt; ethanol (1.37) MJ/mol</li>
+        </ul>
+      </div>
+
+      <div class="master-card">
+        <div class="master-card-title">⚙️ Hardware</div>
+        <ul>
+          <li>Syringe pump → nozzle (Kelvin-Helmholtz) → 20–100 µm droplets</li>
+          <li>O₂ dispersion gas: 5–15 L/min; ↑ flow → ↓ droplets → ↓ NPs</li>
+          <li>Pilot flame: CH₄/O₂ or H₂/O₂; ONLY ignition/stability, NOT NP control</li>
+          <li>Filter: &gt;99.9% via Brownian diffusion (D ∝ 1/d)</li>
+        </ul>
+      </div>
+
+      <div class="master-card">
+        <div class="master-card-title">🔥 5 Flame Zones</div>
+        <ul>
+          <li>Zone 1 (ambient→1500K): evaporation + ignition</li>
+          <li>Zone 2 (1500–3000K): pyrolysis; all vapour; NO solid</li>
+          <li>Zone 3 (1500–2000°C): nucleation; 1–5 nm nuclei; 30–120mm</li>
+          <li>Zone 4 (800–1500°C): coagulation + sintering; final size set</li>
+          <li>Zone 5 (&lt;800°C): quench; thermophoresis to filter</li>
+        </ul>
+      </div>
+
+      <div class="master-card">
+        <div class="master-card-title">🎛️ 5 Process Parameters</div>
+        <ul>
+          <li>[M] 0.05–1.0M: ↑[M]→bigger, more NPs; &gt;0.5M risks sintering</li>
+          <li>O₂ flow: ↑→smaller droplets→smaller NPs; more oxidizing</li>
+          <li>Flame T: ↑→crystalline, phase transitions; ↓→amorphous</li>
+          <li>τ_res: ↑→coarser; controlled by flame height + gas velocity</li>
+          <li>Quench: fast→amorphous/metastable; slow→crystalline/stable</li>
+        </ul>
+      </div>
+
+      <div class="master-card">
+        <div class="master-card-title">🔵 Particle Formation</div>
+        <ul>
+          <li>Ev = τ_evap/τ_res; Ev&lt;1 → gas route; Ev&gt;1 → droplet route</li>
+          <li>r* = 2γΩ/(kT ln S); high S → small r* → easy nucleation</li>
+          <li>J = A·exp(−ΔG*/kT); near-simultaneous → narrow PSD</li>
+          <li>Droplet route: bimodal PSD; µm hollow particles; AVOIDED</li>
+        </ul>
+      </div>
+
+      <div class="master-card">
+        <div class="master-card-title">🔗 Sintering & Agglomeration</div>
+        <ul>
+          <li>Primary (single crystal) → Aggregate (sintered, hard, irreversible) → Agglomerate (vdW, soft, reversible)</li>
+          <li>τ_s = d⁴kT/(64γΩD_s); scales as d⁴; high T → fast sinter</li>
+          <li>τ_sinter&lt;&lt;τ_collision → spheres (high T); τ_collision&lt;&lt;τ_sinter → fractal chains (low T)</li>
+          <li>d_BET = 6/(ρ_p·SSA)</li>
+        </ul>
+      </div>
+
+      <div class="master-card">
+        <div class="master-card-title">⚔️ FSP vs Others</div>
+        <ul>
+          <li>vs Sol-gel: no calcination needed; directly crystalline</li>
+          <li>vs Hydrothermal: scalable; no autoclave</li>
+          <li>vs Spray pyrolysis: 1500–3000K vs 500–1200°C; faster, smaller NPs</li>
+          <li>vs Laser ablation: massively cheaper and more scalable</li>
+        </ul>
+      </div>
+
+      <div class="master-card">
+        <div class="master-card-title">🏭 Applications</div>
+        <ul>
+          <li>Catalysis: Pt/CeO₂ (3-way), high-SSA oxides</li>
+          <li>Energy: SnO₂ anodes, SOFC electrolytes, photocatalysts</li>
+          <li>Bio: Fe₃O₄ (MRI/drug), Ag/ZnO (antimicrobial), Au (PTT)</li>
+          <li>Env: TiO₂ photocatalysis, NOₓ SCR, CO₂ conversion</li>
+        </ul>
+      </div>
+
+      <div class="master-card">
+        <div class="master-card-title">⚠️ Challenges</div>
+        <ul>
+          <li>Cost: expensive precursors, energy-intensive</li>
+          <li>Agglomeration: hard agglomerates degrade performance</li>
+          <li>Precursor: W/Mo/Re incompatible; multi-phase systems tricky</li>
+          <li>Safety: ultrafine inhalation, flammable solvents, evolving regs</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div style="margin-top:32px; padding:24px; background:rgba(255,255,255,0.08); border-radius:12px; border:1px solid rgba(240,171,252,0.3);">
+      <p style="color:rgba(255,255,255,0.9); font-size:0.95rem; line-height:1.8; margin:0;">
+        <strong style="color:#f0abfc;">The Core Insight of FSP:</strong> FSP occupies a unique niche — it bridges <em>solution-phase chemistry</em> (unlimited compositional flexibility) with <em>gas-phase purity and crystallinity</em> (complete organics combustion, direct nanocrystal formation). The self-sustaining flame is both the energy source and the reaction environment, operating at temperatures 2–5× higher than conventional spray pyrolysis furnaces, in milliseconds, continuously, and scalably. Understanding how each process parameter independently and interdependently controls particle size, phase, and morphology is the key to rational FSP design.
+      </p>
+    </div>
+  </div>
+
+</div> <!-- end page-wrap -->
+
+<a href="#top" class="back-top" title="Back to top">↑</a>
+
+<script>
+  // Smooth scroll for TOC links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Show/hide back-to-top button
+  const btn = document.querySelector('.back-top');
+  window.addEventListener('scroll', () => {
+    btn.style.opacity = window.scrollY > 400 ? '1' : '0';
+    btn.style.pointerEvents = window.scrollY > 400 ? 'auto' : 'none';
+  });
+  btn.style.opacity = '0';
+</script>
+</body>
+</html>

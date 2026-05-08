@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Co–CN / PAA / SMX Degradation — Complete Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ===== DESIGN TOKENS ===== */
+  :root {
+    --bg:          #faf9fd;
+    --surface:     #ffffff;
+    --surface2:    #f3f0fb;
+    --border:      #e4ddf5;
+
+    --p900: #2d1b69;
+    --p800: #3d2585;
+    --p700: #4f35a0;
+    --p600: #6547c0;
+    --p500: #7c5cdb;
+    --p400: #9b82e8;
+    --p300: #bfaaee;
+    --p200: #dfd6f7;
+    --p100: #f0ebfd;
+
+    --accent:  #c084fc;
+    --gold:    #d4a843;
+    --teal:    #0d9488;
+    --rose:    #e11d48;
+    --amber:   #d97706;
+
+    --text:    #1a1033;
+    --text2:   #4a3f70;
+    --text3:   #7c6fa8;
+    --muted:   #a89fc8;
+
+    --ff-display: 'Playfair Display', Georgia, serif;
+    --ff-body:    'DM Sans', sans-serif;
+    --ff-mono:    'DM Mono', monospace;
+
+    --shadow-sm: 0 1px 4px rgba(79,53,160,.08);
+    --shadow-md: 0 4px 20px rgba(79,53,160,.13);
+    --shadow-lg: 0 12px 48px rgba(79,53,160,.18);
+
+    --radius:    14px;
+    --radius-sm: 8px;
+  }
+
+  /* ===== RESET ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: var(--ff-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* ===== SIDEBAR NAV ===== */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 270px;
+    height: 100vh;
+    background: var(--p900);
+    overflow-y: auto;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: thin;
+    scrollbar-color: var(--p600) var(--p900);
+  }
+  .sidebar-logo {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .sidebar-logo h2 {
+    font-family: var(--ff-display);
+    font-size: 1.05rem;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .sidebar-logo .badge {
+    display: inline-block;
+    margin-top: 8px;
+    background: var(--accent);
+    color: var(--p900);
+    font-size: .65rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .nav-section {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .nav-section-title {
+    font-size: .62rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--p400);
+    padding: 0 24px 8px;
+    font-weight: 600;
+  }
+  .nav-link {
+    display: block;
+    padding: 7px 24px;
+    color: var(--p300);
+    text-decoration: none;
+    font-size: .82rem;
+    font-weight: 400;
+    transition: all .18s;
+    border-left: 3px solid transparent;
+  }
+  .nav-link:hover {
+    color: #fff;
+    background: rgba(255,255,255,.06);
+    border-left-color: var(--accent);
+  }
+  .nav-link.sub {
+    padding-left: 38px;
+    font-size: .78rem;
+    color: var(--muted);
+  }
+  .nav-link.sub:hover { color: var(--p200); }
+
+  /* ===== MAIN CONTENT ===== */
+  .main {
+    margin-left: 270px;
+    padding: 0 48px 80px;
+    max-width: 980px;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--p900) 0%, var(--p700) 55%, var(--p500) 100%);
+    margin: 0 -48px 60px;
+    padding: 72px 48px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(192,132,252,.25) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 60px;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(125,92,219,.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2);
+    color: var(--p200);
+    font-size: .72rem;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 20px;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: var(--ff-display);
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    max-width: 640px;
+    margin-bottom: 18px;
+  }
+  .hero-sub {
+    color: var(--p200);
+    font-size: 1rem;
+    max-width: 560px;
+    opacity: .9;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--p300);
+    font-size: .8rem;
+    font-weight: 500;
+  }
+  .hero-meta-item .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ===== SECTION HEADINGS ===== */
+  .section {
+    margin-bottom: 64px;
+    scroll-margin-top: 24px;
+  }
+  h2 {
+    font-family: var(--ff-display);
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--p900);
+    margin-bottom: 6px;
+    line-height: 1.2;
+    padding-top: 12px;
+  }
+  .h2-rule {
+    width: 56px; height: 4px;
+    background: linear-gradient(90deg, var(--p500), var(--accent));
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+  h3 {
+    font-family: var(--ff-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--p800);
+    margin: 32px 0 14px;
+    padding-left: 14px;
+    border-left: 4px solid var(--p400);
+  }
+  h4 {
+    font-family: var(--ff-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--p700);
+    margin: 20px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-size: .85rem;
+  }
+  p { margin-bottom: 14px; color: var(--text2); font-size: .97rem; }
+
+  /* ===== SPECIAL BOXES ===== */
+  .box {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 20px 0;
+    position: relative;
+  }
+  .box-title {
+    font-family: var(--ff-body);
+    font-size: .72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .box-title::before {
+    content: '';
+    display: inline-block;
+    width: 12px; height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  /* Definition box */
+  .def {
+    background: var(--p100);
+    border: 1.5px solid var(--p200);
+    border-left: 5px solid var(--p500);
+  }
+  .def .box-title { color: var(--p600); }
+  .def .box-title::before { background: var(--p500); }
+
+  /* Formula box */
+  .formula {
+    background: linear-gradient(135deg, #1a1033 0%, #2d1b69 100%);
+    border: 1px solid var(--p700);
+    color: #fff;
+  }
+  .formula .box-title { color: var(--accent); }
+  .formula .box-title::before { background: var(--accent); }
+  .formula p { color: #ddd; margin-bottom: 10px; }
+  .formula code, .formula .eq { color: #fff; font-family: var(--ff-mono); }
+
+  /* Important / key note */
+  .important {
+    background: var(--surface2);
+    border: 1.5px solid var(--p300);
+    border-left: 5px solid var(--p500);
+  }
+  .important .box-title { color: var(--p700); }
+  .important .box-title::before { background: var(--p500); }
+
+  /* Warning */
+  .warning {
+    background: #fff7ed;
+    border: 1.5px solid #fed7aa;
+    border-left: 5px solid var(--amber);
+  }
+  .warning .box-title { color: var(--amber); }
+  .warning .box-title::before { background: var(--amber); }
+
+  /* Mechanism / reaction */
+  .reaction {
+    background: #f0fdf4;
+    border: 1.5px solid #bbf7d0;
+    border-left: 5px solid var(--teal);
+    font-family: var(--ff-mono);
+    font-size: .88rem;
+  }
+  .reaction .box-title { color: var(--teal); font-family: var(--ff-body); }
+  .reaction .box-title::before { background: var(--teal); }
+
+  /* Summary */
+  .summary-box {
+    background: linear-gradient(135deg, var(--p800) 0%, var(--p600) 100%);
+    border-radius: var(--radius);
+    padding: 28px 30px;
+    margin-top: 32px;
+    color: #FFFFFF;
+  }
+  .summary-box h4 {
+    color: #FFFFFF;
+    margin-top: 0;
+  }
+  .summary-box ul { color: #FFFFFF; }
+  .summary-box li { margin-bottom: 6px; }
+
+  /* ===== TABLES ===== */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 22px 0;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    font-size: .88rem;
+  }
+  thead { background: var(--p900); }
+  thead th {
+    color: #fff;
+    padding: 13px 18px;
+    text-align: left;
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--p100); }
+  td {
+    padding: 12px 18px;
+    color: var(--text2);
+    vertical-align: top;
+  }
+  td:first-child { font-weight: 600; color: var(--p700); }
+
+  /* ===== STEP LIST ===== */
+  .steps { list-style: none; padding: 0; }
+  .steps li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--p600), var(--p400));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: .82rem;
+    margin-top: 2px;
+  }
+  .step-body { flex: 1; padding-top: 4px; }
+  .step-body strong { color: var(--p800); }
+
+  /* ===== PATHWAY CARDS ===== */
+  .pathway-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .pathway-card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 16px;
+    transition: all .2s;
+    box-shadow: var(--shadow-sm);
+  }
+  .pathway-card:hover {
+    border-color: var(--p400);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .pathway-num {
+    font-size: .68rem;
+    font-weight: 700;
+    color: var(--p500);
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 8px;
+  }
+  .pathway-title {
+    font-family: var(--ff-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--p900);
+    margin-bottom: 8px;
+  }
+  .pathway-desc {
+    font-size: .82rem;
+    color: var(--text3);
+    line-height: 1.6;
+  }
+
+  /* ===== FACTOR CARDS ===== */
+  .factor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 18px 0;
+  }
+  .factor-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    border-top: 4px solid var(--p500);
+    box-shadow: var(--shadow-sm);
+  }
+  .factor-card h5 {
+    font-weight: 700;
+    font-size: .88rem;
+    color: var(--p800);
+    margin-bottom: 6px;
+  }
+  .factor-card p {
+    font-size: .82rem;
+    color: var(--text3);
+    margin: 0;
+  }
+
+  /* ===== TECHNIQUE TIMELINE ===== */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 12px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--p400), var(--p200));
+    border-radius: 2px;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 22px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -26px; top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--p500);
+    border: 3px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--p400);
+  }
+  .timeline-item h5 {
+    font-weight: 700;
+    font-size: .9rem;
+    color: var(--p800);
+    margin-bottom: 4px;
+  }
+  .timeline-item p {
+    font-size: .85rem;
+    margin-bottom: 0;
+  }
+
+  /* ===== PRODUCT TABLE ===== */
+  .product-tag {
+    display: inline-block;
+    background: var(--p100);
+    color: var(--p700);
+    font-family: var(--ff-mono);
+    font-size: .78rem;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--p200);
+  }
+
+  /* ===== COMPARISON ROW ===== */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 18px 0;
+  }
+  .compare-card {
+    border-radius: var(--radius-sm);
+    padding: 18px;
+    border: 1.5px solid;
+  }
+  .compare-card.good {
+    background: #f0fdf4;
+    border-color: #86efac;
+  }
+  .compare-card.bad {
+    background: #fff1f2;
+    border-color: #fecdd3;
+  }
+  .compare-card h5 {
+    font-weight: 700;
+    font-size: .85rem;
+    margin-bottom: 8px;
+  }
+  .compare-card.good h5 { color: var(--teal); }
+  .compare-card.bad h5 { color: var(--rose); }
+  .compare-card ul {
+    padding-left: 16px;
+    font-size: .84rem;
+    color: var(--text2);
+  }
+  .compare-card li { margin-bottom: 4px; }
+
+  /* ===== INLINE CODE ===== */
+  code {
+    font-family: var(--ff-mono);
+    background: var(--p100);
+    color: var(--p700);
+    padding: 1px 7px;
+    border-radius: 5px;
+    font-size: .88em;
+  }
+
+  /* ===== LISTS ===== */
+  ul, ol { padding-left: 22px; }
+  li { margin-bottom: 6px; color: var(--text2); font-size: .95rem; }
+  li strong { color: var(--p800); }
+
+  /* ===== HORIZONTAL RULE ===== */
+  hr {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    margin: 40px 0;
+  }
+
+  /* ===== MASTER SUMMARY ===== */
+  .master-summary {
+    background: var(--p900);
+    border-radius: var(--radius);
+    padding: 40px;
+    margin-top: 20px;
+    color: #fff;
+  }
+  .master-summary h2 {
+    color: var(--accent);
+    font-family: var(--ff-display);
+    font-size: 1.7rem;
+    margin-bottom: 6px;
+  }
+  .master-summary .h2-rule { background: linear-gradient(90deg, var(--accent), var(--p400)); }
+  .master-summary h3 {
+    color: var(--p300);
+    border-left-color: var(--accent);
+    font-size: 1rem;
+    margin: 24px 0 10px;
+  }
+  .master-summary li { color: var(--p200); font-size: .9rem; }
+  .master-summary p { color: var(--p200); }
+
+  /* ===== SCROLL PROGRESS BAR ===== */
+  #progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--p400));
+    z-index: 9999;
+    width: 0%;
+    transition: width .05s;
+  }
+
+  /* ===== EQUATION DISPLAY ===== */
+  .eq-block {
+    font-family: var(--ff-mono);
+    font-size: .93rem;
+    padding: 12px 18px;
+    background: rgba(255,255,255,.07);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+    margin: 8px 0;
+    color: #e0d4ff;
+    line-height: 1.6;
+  }
+
+  .label-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--p600);
+  }
+  .label-arrow::before {
+    content: '→';
+    color: var(--accent);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 0 20px 60px; }
+    .hero { margin: 0 -20px 40px; padding: 48px 20px 40px; }
+    .hero h1 { font-size: 1.7rem; }
+    .compare-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    .sidebar, #progress { display: none; }
+    .main { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- ===== SIDEBAR ===== -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <h2>Co–CN / PAA / SMX<br>Degradation</h2>
+    <span class="badge">Complete Study Guide</span>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-title">Overview</div>
+    <a class="nav-link" href="#background">Background & Context</a>
+    <a class="nav-link sub" href="#antibiotics">Antibiotic Pollution</a>
+    <a class="nav-link sub" href="#smx">Sulfamethoxazole (SMX)</a>
+    <a class="nav-link sub" href="#aops">Advanced Oxidation Processes</a>
+    <a class="nav-link sub" href="#paa">Peracetic Acid (PAA)</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-title">Catalyst</div>
+    <a class="nav-link" href="#gcn">Graphitic Carbon Nitride (g-C₃N₄)</a>
+    <a class="nav-link" href="#cocn">Co–CN Synthesis & Structure</a>
+    <a class="nav-link" href="#characterization">Characterization Methods</a>
+    <a class="nav-link sub" href="#xrd">XRD Results</a>
+    <a class="nav-link sub" href="#xps">XPS Results</a>
+    <a class="nav-link sub" href="#sem">SEM & BET Results</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-title">Mechanism</div>
+    <a class="nav-link" href="#activation">PAA Activation Mechanism</a>
+    <a class="nav-link" href="#reactive">Reactive Species</a>
+    <a class="nav-link" href="#scavenging">Radical Scavenging</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-title">Performance</div>
+    <a class="nav-link" href="#systems">System Comparisons</a>
+    <a class="nav-link" href="#factors">Operational Factors</a>
+    <a class="nav-link sub" href="#cobalt-content">Cobalt Doping Content</a>
+    <a class="nav-link sub" href="#ph">Initial pH</a>
+    <a class="nav-link sub" href="#paa-dose">PAA Dosage</a>
+    <a class="nav-link sub" href="#cocn-dose">Co–CN Dosage</a>
+    <a class="nav-link" href="#stability">Stability & Reusability</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-title">Pathways & Summary</div>
+    <a class="nav-link" href="#pathways">SMX Degradation Pathways</a>
+    <a class="nav-link" href="#products">Transformation Products</a>
+    <a class="nav-link" href="#master">Master Revision Sheet</a>
+  </div>
+</nav>
+
+<!-- ===== MAIN ===== -->
+<main class="main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">RSC Advances · 2022 · Vol. 12</div>
+    <h1>Cobalt Doped Graphitic Carbon Nitride (Co–CN) for PAA-Activated SMX Degradation</h1>
+    <p class="hero-sub">A complete, exam-ready study guide covering catalyst synthesis, characterization, mechanism, operational factors, degradation pathways and all key findings from Zhou et al. (2022).</p>
+    <div class="hero-meta">
+      <span class="hero-meta-item"><span class="dot"></span>Co–CN Catalyst</span>
+      <span class="hero-meta-item"><span class="dot"></span>Peracetic Acid Activation</span>
+      <span class="hero-meta-item"><span class="dot"></span>Antibiotic Degradation</span>
+      <span class="hero-meta-item"><span class="dot"></span>Advanced Oxidation</span>
+    </div>
+  </div>
+
+  <!-- ===================== SECTION 1 ===================== -->
+  <section class="section" id="background">
+    <h2>1. Background &amp; Context</h2>
+    <div class="h2-rule"></div>
+
+    <h3 id="antibiotics">1.1 Antibiotic Pollution — Why It Matters</h3>
+    <p>Antibiotics are extensively used in <strong>aquaculture, animal breeding, and medicine</strong> to treat and prevent bacterial infections. Their mass consumption means large quantities — including active parent compounds and metabolic by-products — are discharged into the environment via <strong>industrial effluents and municipal sewage</strong>.</p>
+
+    <div class="box important">
+      <div class="box-title">⚡ Key Problem</div>
+      <p>Conventional wastewater treatment plants (WWTPs) are <strong>unable to completely remove</strong> antibiotics. These compounds persist in effluents, accumulate in ground water and surface water, and exert chronic toxicity on aquatic organisms while promoting antibiotic-resistant bacteria in the environment — a global public health threat.</p>
+    </div>
+
+    <h3 id="smx">1.2 Sulfamethoxazole (SMX) — Target Pollutant</h3>
+
+    <div class="box def">
+      <div class="box-title">📖 Definition</div>
+      <p><strong>Sulfamethoxazole (SMX)</strong> is a common <em>sulfonamide</em> antibiotic widely used in treating bacterial infectious diseases. Chemically, it contains an <em>aniline (–NH₂) aromatic ring</em> connected via a <em>sulfonamide (S–N) bond</em> to a methyl-isoxazole group. Its molecular formula corresponds to m/z 254 in mass spectrometry.</p>
+    </div>
+
+    <ul>
+      <li>Persistently detected in <strong>groundwater and surface water</strong> worldwide due to incomplete WWTP removal.</li>
+      <li>Raises concern about <strong>ecotoxicity</strong> and promotion of antibiotic resistance genes.</li>
+      <li>Chosen as the model contaminant in this study because it is a well-studied, environmentally relevant emerging pollutant.</li>
+    </ul>
+
+    <h3 id="aops">1.3 Advanced Oxidation Processes (AOPs)</h3>
+    <p>AOPs are chemical treatment methods that generate highly reactive oxidizing species (ROS) to destroy pollutants that resist conventional treatment. They can achieve <strong>near-complete mineralization</strong> of organic contaminants.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Reactive Species</th><th>Symbol</th><th>Source / How Generated</th><th>Oxidation Power</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Hydroxyl radical</td><td>•OH</td><td>H₂O₂ + UV, Fenton reaction</td><td>Very high (E° = 2.80 V)</td></tr>
+          <tr><td>Sulfate radical</td><td>SO₄•⁻</td><td>Persulfate / PMS activation</td><td>High (E° = 2.5–3.1 V)</td></tr>
+          <tr><td>Acetyloxy radical</td><td>CH₃C(O)O•</td><td>PAA + metal activation</td><td>Moderate–High</td></tr>
+          <tr><td>Acetylperoxy radical</td><td>CH₃C(O)OO•</td><td>PAA + metal activation</td><td>Moderate</td></tr>
+          <tr><td>Methyl radical</td><td>•CH₃</td><td>β-scission of CH₃C(O)O•</td><td>Low (weak oxidant)</td></tr>
+          <tr><td>Methyl peroxy radical</td><td>CH₃OO•</td><td>•CH₃ + O₂</td><td>Low</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="paa">1.4 Peracetic Acid (PAA) — The Oxidant Precursor</h3>
+
+    <div class="box def">
+      <div class="box-title">📖 Definition</div>
+      <p><strong>Peracetic acid (PAA)</strong>, chemical formula <strong>CH₃C(O)OOH</strong>, is an organic peroxide widely used as a disinfectant in textile, medical, and food industries, as well as in wastewater treatment. It is commercially supplied as an <em>equilibrium mixture</em> with hydrogen peroxide (H₂O₂), acetic acid, and water.</p>
+    </div>
+
+    <h4>Why PAA is Attractive in AOPs</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Oxidant</th><th>O–O Bond Energy</th><th>Ease of Activation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Peracetic Acid (PAA)</td><td><strong>159 kJ mol⁻¹</strong></td><td>Easiest (lowest energy needed)</td></tr>
+          <tr><td>Hydrogen Peroxide (H₂O₂)</td><td>213 kJ mol⁻¹</td><td>Moderate</td></tr>
+          <tr><td>Peroxymonosulfate (PMS)</td><td>317 kJ mol⁻¹</td><td>Hardest</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The <strong>weaker O–O bond</strong> in PAA compared to PMS and H₂O₂ means it requires less energy input to be activated, making it more cost-effective and efficient when paired with the right catalyst.</p>
+
+    <h4>PAA Activation Methods</h4>
+    <ul>
+      <li><strong>UV radiation</strong> — photolytic cleavage of the O–O bond.</li>
+      <li><strong>Thermal activation</strong> — elevated temperature breaks the peroxide bond.</li>
+      <li><strong>Transition metals</strong> — electron transfer from metal ions/surface species cleaves O–O; considered the <em>most cost-effective and energy-efficient</em> due to natural abundance and low cost.</li>
+    </ul>
+
+    <h4>Why Cobalt is the Best Transition Metal for PAA Activation</h4>
+    <p>Among transition metals (Cu, Fe, Mn, Co), <strong>cobalt shows the highest catalytic performance</strong> for PAA activation. In homogeneous Co(II)/PAA systems, extremely low Co(II) concentrations (&lt;1 μM) can induce 99.9% SMX removal. However, homogeneous cobalt systems release free Co²⁺ ions which are toxic to aquatic life — causing <strong>secondary pollution</strong>. This motivates the development of heterogeneous cobalt catalysts.</p>
+
+    <h4>Limitations of Prior Cobalt-Based Heterogeneous Catalysts</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Catalyst</th><th>Issue</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Cobaltosic oxide (Co₃O₄)</td><td>Poor dispersibility; cobalt leaching; unsatisfactory efficiency</td></tr>
+          <tr><td>Cobalt ferrite (CoFe₂O₄)</td><td>Cobalt leaching; limited reusability</td></tr>
+          <tr><td>Lanthanum cobaltite perovskite (LaCoO₃)</td><td>Cobalt leaching; complex synthesis</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The core challenge: <strong>promote catalytic efficiency + prevent cobalt ion leaching</strong>. This is where g-C₃N₄ comes in as the ideal support material.</p>
+
+    <div class="summary-box-n">
+      <h4>Section 1 Summary</h4>
+      <ul>
+        <li>SMX is a sulfonamide antibiotic persistently detected in water bodies — a major environmental concern.</li>
+        <li>AOPs using reactive oxygen species are effective for SMX elimination.</li>
+        <li>PAA has the weakest O–O bond among common peroxides → easiest to activate.</li>
+        <li>Cobalt is the most efficient metal for PAA activation, but homogeneous Co²⁺ causes toxicity.</li>
+        <li>Heterogeneous cobalt catalysts are needed; prior ones suffer from leaching and poor efficiency.</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ===================== SECTION 2 ===================== -->
+  <section class="section" id="gcn">
+    <h2>2. Graphitic Carbon Nitride (g-C₃N₄)</h2>
+    <div class="h2-rule"></div>
+
+    <div class="box def">
+      <div class="box-title">📖 Definition</div>
+      <p><strong>Graphitic carbon nitride (g-C₃N₄)</strong> is a metal-free, polymer semiconductor composed of <em>heptazine (tri-s-triazine) rings</em> connected by nitrogen bridges, forming a 2D layered structure analogous to graphene. Each heptazine unit contains six pyridinic nitrogen atoms bearing lone electron pairs.</p>
+    </div>
+
+    <h3>2.1 Unique Properties of g-C₃N₄ Relevant to This Study</h3>
+
+    <div class="factor-grid">
+      <div class="factor-card">
+        <h5>🔵 High Chemical Stability</h5>
+        <p>Resistant to acid, base, and oxidants up to ~600°C in air — survives harsh reaction conditions.</p>
+      </div>
+      <div class="factor-card">
+        <h5>⚡ Electron-Rich Structure</h5>
+        <p>Six nitrogen lone pairs per heptazine ring donate electron density — excellent for binding metal cations.</p>
+      </div>
+      <div class="factor-card">
+        <h5>🧲 Metal Ion Entrapment</h5>
+        <p>Pyridinic N atoms act as Lewis base sites, chelating metal ions via strong metal–N coordination bonds.</p>
+      </div>
+      <div class="factor-card">
+        <h5>🌱 Non-Toxic</h5>
+        <p>Environmentally benign; prepared from cheap precursors (urea, melamine, dicyandiamide).</p>
+      </div>
+      <div class="factor-card">
+        <h5>🔄 Charge Transfer</h5>
+        <p>The delocalized π-system facilitates internal electron transfer between embedded metals and the framework.</p>
+      </div>
+      <div class="factor-card">
+        <h5>🏗️ Versatile Platform</h5>
+        <p>Framework immobilizes metal catalysts, preventing leaching while promoting catalytic activity.</p>
+      </div>
+    </div>
+
+    <h3>2.2 Crystal Structure Details</h3>
+    <p>The XRD pattern of pure g-C₃N₄ shows two characteristic diffraction peaks:</p>
+    <ul>
+      <li><strong>2θ ≈ 12.9° → (100) plane</strong>: Corresponds to the in-plane ordering of tri-s-triazine (heptazine) structural units.</li>
+      <li><strong>2θ ≈ 27.2° → (002) plane</strong>: Corresponds to interlayer stacking distance (~0.326 nm), analogous to the graphite (002) reflection — hence the name "graphitic" carbon nitride.</li>
+    </ul>
+
+    <div class="box important">
+      <div class="box-title">⚡ Key Insight</div>
+      <p>g-C₃N₄ alone is <strong>ineffective</strong> at activating PAA (negligible SMX removal observed in g-C₃N₄/PAA system). Its role is purely as a <em>structural support and anchor</em> for the active cobalt species — not as an activator itself.</p>
+    </div>
+
+    <h3>2.3 Synthesis of Pure g-C₃N₄</h3>
+    <p>Pure g-C₃N₄ is synthesized by <strong>thermal polycondensation (calcination)</strong> of nitrogen-rich precursors such as urea. Urea decomposes and self-polymerizes upon heating to form the heptazine-based polymer network. The absence of Co(NO₃)₂·6H₂O during calcination yields pure g-C₃N₄.</p>
+  </section>
+
+  <hr>
+
+  <!-- ===================== SECTION 3 ===================== -->
+  <section class="section" id="cocn">
+    <h2>3. Co–CN: Synthesis &amp; Structure</h2>
+    <div class="h2-rule"></div>
+
+    <h3>3.1 What is Co–CN?</h3>
+
+    <div class="box def">
+      <div class="box-title">📖 Definition</div>
+      <p><strong>Co–CN</strong> (Cobalt-doped graphitic carbon nitride) is a heterogeneous catalyst where cobalt atoms are <em>atomically incorporated</em> into the heptazine framework of g-C₃N₄ via <strong>Co–N chemical bonds</strong> — not merely mixed physically or coated onto the surface.</p>
+    </div>
+
+    <h3>3.2 Synthesis Protocol</h3>
+    <p>Co–CN is synthesized via a <strong>facile one-step calcination method</strong>:</p>
+
+    <ol class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-body"><strong>Mix precursors:</strong> Urea (nitrogen/carbon source) + Co(NO₃)₂·6H₂O (cobalt source) in appropriate mass ratio.</div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-body"><strong>Calcination:</strong> Heat the mixture to high temperature in a muffle furnace. Urea undergoes thermal polycondensation to form g-C₃N₄ while Co(NO₃)₂·6H₂O simultaneously decomposes, releasing Co²⁺/Co³⁺ ions that coordinate with the pyridinic N atoms of the forming g-C₃N₄ framework.</div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-body"><strong>Result:</strong> Cobalt becomes <em>chemically bonded</em> within the g-C₃N₄ matrix (Co–N bond), uniformly distributed throughout the framework as confirmed by EDS element mapping.</div>
+      </li>
+    </ol>
+
+    <div class="box warning">
+      <div class="box-title">⚠️ Important Distinction</div>
+      <p>Co–CN is <strong>NOT</strong> a simple physical mixture of Co₃O₄ and g-C₃N₄. XRD shows no Co₃O₄ peaks and SEM shows no Co₃O₄ particle morphology in fresh Co–CN. Cobalt is incorporated <em>atomically</em> into the g-C₃N₄ framework.</p>
+    </div>
+
+    <h3>3.3 Cobalt Doping Content Variants</h3>
+    <p>Multiple Co–CN variants were synthesized by varying the amount of Co(NO₃)₂·6H₂O added:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Label</th><th>Co(NO₃)₂·6H₂O Added</th><th>Co wt% in Co–CN (EDS)</th><th>SMX Removal (%)</th><th>k<sub>obs</sub> (min⁻¹)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Co–CN-0.5</td><td>0.05 g</td><td>2.38%</td><td>51.7%</td><td>0.0021</td></tr>
+          <tr><td>Co–CN-1</td><td>0.1 g</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Co–CN-1.5</td><td>0.15 g</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td><strong>Co–CN-2 (recommended)</strong></td><td><strong>0.2 g</strong></td><td>—</td><td><strong>~98–99%</strong></td><td><strong>~0.013</strong></td></tr>
+          <tr><td>Co–CN-5</td><td>0.5 g</td><td>22.53%</td><td>99%</td><td>0.015</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Co–CN-2 (0.2 g Co(NO₃)₂·6H₂O) is selected as the <strong>recommended catalyst</strong> — it achieves excellent SMX removal without unnecessarily high cobalt loading.</p>
+  </section>
+
+  <hr>
+
+  <!-- ===================== SECTION 4 ===================== -->
+  <section class="section" id="characterization">
+    <h2>4. Catalyst Characterization</h2>
+    <div class="h2-rule"></div>
+    <p>Fresh Co–CN and used Co–CN (after reaction) were characterized by XRD, XPS, SEM+EDS, and BET to confirm structure, composition, and stability.</p>
+
+    <h3 id="xrd">4.1 X-Ray Diffraction (XRD)</h3>
+
+    <div class="box def">
+      <div class="box-title">📖 What XRD Tells Us</div>
+      <p>XRD identifies <em>crystalline phases</em> by their characteristic 2θ diffraction angles. It confirms what compounds are present, their crystal structure, and changes in interlayer spacing.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <h5>Cobalt Oxide Reference</h5>
+        <p>Peaks at 2θ = 19.1°, 31.4°, 36.9°, 38.7°, 44.9°, 55.8°, 59.5°, 65.4° → all match <strong>Co₃O₄</strong> (PDF#74-1656). This confirms the cobalt oxide reference sample is Co₃O₄.</p>
+      </div>
+      <div class="timeline-item">
+        <h5>Pure g-C₃N₄</h5>
+        <p>Peaks at 12.9° (100) and 27.2° (002) — characteristic tri-s-triazine units and aromatic stacking.</p>
+      </div>
+      <div class="timeline-item">
+        <h5>Fresh Co–CN</h5>
+        <p>Both g-C₃N₄ peaks are present but <strong>shifted to higher 2θ</strong> and show <strong>reduced intensity</strong> → indicates decreased interlayer stacking distance (lattice compression) caused by Co incorporation. <em>No Co₃O₄ peaks</em> → cobalt is not forming separate oxide nanoparticles; it is embedded atomically.</p>
+      </div>
+      <div class="timeline-item">
+        <h5>Used Co–CN</h5>
+        <p><strong>Little change</strong> compared to fresh Co–CN → crystal structure is preserved during PAA activation reaction. Confirms <em>structural stability</em> of Co–CN.</p>
+      </div>
+    </div>
+
+    <h3 id="xps">4.2 X-Ray Photoelectron Spectroscopy (XPS)</h3>
+
+    <div class="box def">
+      <div class="box-title">📖 What XPS Tells Us</div>
+      <p>XPS probes <em>elemental composition</em> and <em>chemical bonding states</em> at the surface (top 5–10 nm). Each element has characteristic binding energies; shifts in binding energy indicate different chemical environments (oxidation states, bonding partners).</p>
+    </div>
+
+    <h4>Survey Spectrum (Fresh Co–CN)</h4>
+    <p>Peaks detected: <strong>C 1s, N 1s, Co 2p, O 1s</strong> — confirms the elemental composition of the catalyst.</p>
+
+    <h4>C 1s Spectrum</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Binding Energy</th><th>Assignment</th><th>Significance</th></tr></thead>
+        <tbody>
+          <tr><td>284.8 eV</td><td>C–C bonds</td><td>Surface adventitious carbon</td></tr>
+          <tr><td>288.3 eV</td><td>N–C=N in triazine rings</td><td>Confirms g-C₃N₄ triazine units preserved in Co–CN</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>N 1s Spectrum</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Binding Energy</th><th>Assignment</th><th>Significance</th></tr></thead>
+        <tbody>
+          <tr><td>398.7 eV</td><td>C–N=C (pyridinic N in triazine)</td><td>Triazine ring nitrogen — main building block of g-C₃N₄</td></tr>
+          <tr><td><strong>399.9 eV</strong></td><td><strong>Co–N bond</strong></td><td><strong>Direct chemical bond between Co and N — key evidence of Co doping mechanism</strong></td></tr>
+          <tr><td>401.2 eV</td><td>H–N–C₂ (amino groups)</td><td>Terminal –NH groups in g-C₃N₄</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box important">
+      <div class="box-title">⚡ Critical Finding — Co–N Bond</div>
+      <p>The peak at <strong>399.9 eV</strong> in the N 1s spectrum directly proves that cobalt is bonded to nitrogen atoms in the g-C₃N₄ framework — this is the <em>chemical bonding mechanism</em> responsible for anchoring cobalt and preventing leaching.</p>
+    </div>
+
+    <h4>Co 2p Spectrum — Surface Cobalt Species</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Peak</th><th>Binding Energy (Fresh)</th><th>Assignment</th></tr></thead>
+        <tbody>
+          <tr><td>Co 2p₃/₂</td><td>781.1 eV</td><td>≡Co(III) (surface-bound Co³⁺)</td></tr>
+          <tr><td>Co 2p₁/₂</td><td>796.7 eV</td><td>≡Co(III)</td></tr>
+          <tr><td>Co 2p₃/₂</td><td>783.6 eV</td><td>≡Co(II) (surface-bound Co²⁺)</td></tr>
+          <tr><td>Co 2p₁/₂</td><td>799.4 eV</td><td>≡Co(II)</td></tr>
+          <tr><td>Satellite</td><td>786.9, 802.7 eV</td><td>Shake-up satellites (characteristic of Co²⁺)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>≡Co(II)/≡Co(III) Ratio — Evidence for the Redox Mechanism</h4>
+    <div class="compare-grid">
+      <div class="compare-card good">
+        <h5>Fresh Co–CN</h5>
+        <ul>
+          <li>≡Co(II)/≡Co(III) ratio = <strong>0.48</strong></li>
+          <li>More Co(III) on surface initially</li>
+        </ul>
+      </div>
+      <div class="compare-card bad">
+        <h5>Used Co–CN (after reaction)</h5>
+        <ul>
+          <li>≡Co(II)/≡Co(III) ratio = <strong>0.39</strong></li>
+          <li>Decrease of only 0.09</li>
+          <li>Proves Co(II)→Co(III) and Co(III)→Co(II) both occur (redox cycle)</li>
+        </ul>
+      </div>
+    </div>
+    <p>The <em>small</em> decrease in ratio (0.09) — not a large drop — demonstrates that <strong>both oxidation and reduction of surface cobalt occur simultaneously</strong>, maintaining a dynamic equilibrium (redox cycle of ≡Co(II)/≡Co(III)).</p>
+
+    <h3 id="sem">4.3 SEM + EDS Element Mapping &amp; BET Analysis</h3>
+
+    <div class="box def">
+      <div class="box-title">📖 SEM / BET Definitions</div>
+      <p><strong>SEM</strong> (Scanning Electron Microscopy): Images surface morphology at nanometer resolution. <strong>EDS</strong> (Energy Dispersive X-ray Spectroscopy): Maps elemental distribution across the SEM image. <strong>BET</strong> (Brunauer–Emmett–Teller): Measures specific surface area via N₂ gas adsorption/desorption isotherms.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Sample</th><th>SEM Morphology</th><th>EDS Cobalt Distribution</th></tr></thead>
+        <tbody>
+          <tr><td>g-C₃N₄</td><td>Coral porous structure with large dispersive nanopores</td><td>No cobalt (as expected)</td></tr>
+          <tr><td>Cobalt oxide (Co₃O₄)</td><td>Large agglomerated particles (poor dispersibility)</td><td>Dense cobalt regions</td></tr>
+          <tr><td>Fresh Co–CN</td><td>Coral porous structure preserved; pores slightly tighter (denser) than g-C₃N₄ due to reduced interlayer spacing from Co incorporation. No Co₃O₄ particle morphology.</td><td><strong>Uniform, homogeneous Co distribution</strong> throughout C and N framework</td></tr>
+          <tr><td>Used Co–CN</td><td><strong>No obvious morphological change</strong> after reaction</td><td>Co still uniformly distributed — good stability</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>BET Surface Area</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Sample</th><th>BET Surface Area</th><th>Implication</th></tr></thead>
+        <tbody>
+          <tr><td>g-C₃N₄</td><td>40.77 m² g⁻¹</td><td>Baseline surface area</td></tr>
+          <tr><td>Co–CN</td><td><strong>61.36 m² g⁻¹</strong></td><td>~50% increase — Co incorporation enlarges surface area, providing more active sites for PAA activation</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box important">
+      <div class="box-title">⚡ Why Higher Surface Area Matters</div>
+      <p>A larger surface area means more exposed Co–N active sites per gram of catalyst, leading to faster PAA activation and higher SMX degradation rates.</p>
+    </div>
+
+    <div class="summary-box-n">
+      <h4>Characterization Summary</h4>
+      <ul>
+        <li><strong>XRD:</strong> Confirms g-C₃N₄ structure preserved; no Co₃O₄ phase; Co incorporated atomically; structure stable after use.</li>
+        <li><strong>XPS:</strong> Co–N bond at 399.9 eV confirms chemical bonding; both ≡Co(II) and ≡Co(III) present; redox cycle evidenced by ratio change.</li>
+        <li><strong>SEM+EDS:</strong> Coral porous morphology preserved; Co uniformly distributed — not agglomerated; morphology stable after use.</li>
+        <li><strong>BET:</strong> Co–CN has 50% larger surface area than g-C₃N₄ → more active sites for catalysis.</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ===================== SECTION 5 ===================== -->
+  <section class="section" id="activation">
+    <h2>5. PAA Activation Mechanism</h2>
+    <div class="h2-rule"></div>
+
+    <h3>5.1 The Core Activation Equations</h3>
+    <p>The surface cobalt species ≡Co(II) and ≡Co(III) in Co–CN participate in a <strong>redox cycle</strong> that cleaves the O–O bond in PAA to generate organic radicals:</p>
+
+    <div class="box formula">
+      <div class="box-title">🧪 Core Reactions</div>
+      <div class="eq-block">Eq. (2): ≡Co(II) + CH₃C(O)OOH → ≡Co(III) + CH₃C(O)O• + OH⁻</div>
+      <p>Co(II) <em>donates</em> an electron to PAA → O–O bond breaks → acetyloxy radical (CH₃C(O)O•) released + Co(II) oxidized to Co(III) + hydroxide ion.</p>
+      <div class="eq-block">Eq. (3): ≡Co(III) + CH₃C(O)OOH → ≡Co(II) + CH₃C(O)OO• + H⁺</div>
+      <p>Co(III) <em>accepts</em> an electron from PAA → acetylperoxy radical (CH₃C(O)OO•) released + Co(III) reduced back to Co(II).</p>
+    </div>
+
+    <div class="box important">
+      <div class="box-title">⚡ The Redox Cycle — Why Co–CN is Stable &amp; Efficient</div>
+      <p>Equations (2) and (3) work <em>together</em>: Co(II)→Co(III) in Eq. 2, Co(III)→Co(II) in Eq. 3. This creates a <strong>continuous self-regenerating redox cycle</strong> (≡Co(II) ⇌ ≡Co(III)). The catalyst is never permanently consumed — it keeps generating radicals as long as PAA is present.</p>
+    </div>
+
+    <h3>5.2 Secondary Radical Reactions (Minor Pathways)</h3>
+
+    <div class="box formula">
+      <div class="box-title">🧪 Secondary Reactions</div>
+      <div class="eq-block">Eq. (4): CH₃C(O)O• → •CH₃ + CO₂ (β-scission of acetyloxy radical)</div>
+      <div class="eq-block">Eq. (5): •CH₃ + O₂ → CH₃OO• (methyl radical reacts with dissolved O₂)</div>
+    </div>
+
+    <p>•CH₃ and CH₃OO• have <strong>weaker oxidation capacity</strong> than the primary organic radicals and their contribution to SMX removal is negligible. This was confirmed by N₂ purging experiments (removing dissolved O₂) — which had negligible impact on SMX removal, proving CH₃OO• (which requires O₂ to form) is not important.</p>
+
+    <h3>5.3 Alkaline Decomposition Reactions (Why High pH Hurts)</h3>
+
+    <div class="box formula">
+      <div class="box-title">🧪 PAA Decomposition at Alkaline pH</div>
+      <div class="eq-block">Eq. (6): CH₃C(O)OO⁻ + CH₃C(O)OOH → CH₃C(O)OH + CH₃C(O)O⁻ + O₂</div>
+      <div class="eq-block">Eq. (7): CH₃C(O)OO⁻ + H₂O₂ → CH₃C(O)O⁻ + H₂O + O₂</div>
+    </div>
+
+    <p>At high pH, PAA deprotonates (pKa ≈ 8.2) to form <code>CH₃C(O)OO⁻</code>, which is more reactive but rapidly decomposes via reactions (6) and (7), consuming PAA before it can be catalytically activated. This reduces radical generation and suppresses SMX removal.</p>
+
+    <h3>5.4 Complete Mechanism Diagram (Text-Based)</h3>
+
+    <div class="box reaction">
+      <div class="box-title">🔄 Full Mechanism Flow</div>
+      PAA (CH₃C(O)OOH) adsorbs/interacts with Co–CN surface<br><br>
+      ↓ ≡Co(II) site<br>
+      CH₃C(O)O• (acetyloxy radical) + ≡Co(III) + OH⁻   [Eq. 2]<br><br>
+      ↓ ≡Co(III) site<br>
+      CH₃C(O)OO• (acetylperoxy radical) + ≡Co(II) + H⁺   [Eq. 3]<br><br>
+      ↓ Both radicals attack SMX<br>
+      SMX undergoes hydroxylation, nitration, S–N bond cleavage, coupling<br><br>
+      ↓ Minor pathway (negligible)<br>
+      CH₃C(O)O• → •CH₃ + CO₂ → •CH₃ + O₂ → CH₃OO•   [Eqs. 4, 5]
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ===================== SECTION 6 ===================== -->
+  <section class="section" id="reactive">
+    <h2>6. Identification of Reactive Species</h2>
+    <div class="h2-rule"></div>
+
+    <h3 id="scavenging">6.1 Radical Scavenging Experiments — Methodology &amp; Rationale</h3>
+
+    <p>Scavenging experiments use <strong>chemical quenchers</strong> (scavengers) that react rapidly with specific reactive species. By adding a scavenger and observing the change in SMX degradation rate, we can infer which species are responsible.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Scavenger</th><th>Quenches</th><th>Rate Constant</th><th>Selectivity</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>tert-Butanol (TBA)</strong><br>50 mM</td><td>•OH only</td><td>k<sub>TBA/•OH</sub> = 6×10⁸ M⁻¹s⁻¹</td><td>Selective — does NOT quench organic radicals</td></tr>
+          <tr><td><strong>Methanol (MeOH)</strong><br>50 mM</td><td>•OH AND organic radicals (R–O•)</td><td>k<sub>MeOH/•OH</sub> = 6×10⁸ M⁻¹s⁻¹; k<sub>MeOH/R-O•</sub> unknown but efficient</td><td>Non-selective — quenches both</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>6.2 Results and Interpretation</h3>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>System</th><th>SMX Removal</th><th>k<sub>obs</sub> (min⁻¹)</th><th>Interpretation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Co–CN/PAA (no scavenger)</td><td>~98.5%</td><td>0.0113</td><td>Baseline — full activity</td></tr>
+          <tr><td>Co–CN/PAA + TBA</td><td>~98% (negligible change)</td><td>≈0.0113</td><td>•OH is <em>absent</em> — TBA has no effect</td></tr>
+          <tr><td>Co–CN/PAA + MeOH</td><td>~24% (74.4% inhibition)</td><td>0.0011</td><td>Organic radicals (CH₃C(O)O• and CH₃C(O)OO•) are the <em>dominant</em> reactive species</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box important">
+      <div class="box-title">⚡ Critical Conclusions from Scavenging</div>
+      <ul>
+        <li><strong>•OH is NOT generated</strong> in the Co–CN/PAA system (TBA shows no inhibition). This is consistent with prior cobalt-based PAA studies.</li>
+        <li><strong>Organic radicals (R–O•) are the dominant reactive species</strong>: CH₃C(O)O• and CH₃C(O)OO• are responsible for 74.4% of SMX degradation.</li>
+        <li>MeOH inhibition confirms organic radicals; the remaining ~24% SMX removal even with MeOH may reflect incomplete scavenging or direct oxidation by PAA.</li>
+      </ul>
+    </div>
+
+    <h3>6.3 Why •OH is Absent</h3>
+    <p>In Equation (2), the O–O bond in PAA is cleaved <em>homolytically</em> to produce <code>CH₃C(O)O•</code> and <code>OH⁻</code> — the hydroxide ion, <strong>not</strong> the hydroxyl radical (•OH). This is a fundamentally different bond cleavage pattern compared to H₂O₂-based Fenton systems (which do produce •OH). The PAA O–O bond, when broken by Co(II), yields organic radicals rather than •OH.</p>
+
+    <div class="summary-box-n">
+      <h4>Reactive Species Summary</h4>
+      <ul>
+        <li><strong>Dominant:</strong> CH₃C(O)O• (acetyloxy) + CH₃C(O)OO• (acetylperoxy) — together responsible for most SMX degradation.</li>
+        <li><strong>Absent:</strong> •OH — TBA experiment confirms this.</li>
+        <li><strong>Negligible:</strong> •CH₃ and CH₃OO• — N₂ purging experiment confirms their contribution is insignificant.</li>
+        <li><strong>Method:</strong> Differential scavenging (TBA vs. MeOH) to distinguish •OH from R–O•.</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ===================== SECTION 7 ===================== -->
+  <section class="section" id="systems">
+    <h2>7. System Comparisons — Control Experiments</h2>
+    <div class="h2-rule"></div>
+    <p>Several control experiments established the necessity of <strong>both Co–CN and PAA</strong>, and quantified the contribution of leached cobalt ions.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>System</th><th>SMX Removal</th><th>Why This Result?</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>PAA alone</td><td>6.2%</td><td>PAA is a weak oxidant by itself — negligible direct oxidation</td></tr>
+          <tr><td>Co–CN alone</td><td>~0%</td><td>No reactive species; negligible SMX adsorption onto Co–CN</td></tr>
+          <tr><td>g-C₃N₄/PAA</td><td>~0%</td><td>g-C₃N₄ cannot activate PAA — no metal active sites</td></tr>
+          <tr><td>Cobalt oxide (Co₃O₄)/PAA</td><td>13.1%</td><td>Poor dispersibility; Co₃O₄ is a poor PAA activator when undoped</td></tr>
+          <tr><td>Co–CN/H₂O₂</td><td>~0%</td><td>H₂O₂ (present in commercial PAA solution) plays negligible role; only PAA matters</td></tr>
+          <tr><td><strong>Co–CN/PAA</strong></td><td><strong>98.5%</strong></td><td><strong>Synergy of Co–CN and PAA generates organic radicals efficiently</strong></td></tr>
+          <tr><td>Co²⁺/PAA (20 μg L⁻¹ Co²⁺)</td><td>49.6%</td><td>Leached Co²⁺ at realistic concentration — much lower than Co–CN/PAA; heterogeneous catalysis dominates</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box important">
+      <div class="box-title">⚡ Leached Cobalt Ion Contribution</div>
+      <p>After reaction, the leached Co²⁺ concentration was <strong>18 μg L⁻¹</strong>. Testing Co²⁺/PAA at 20 μg L⁻¹ gave only 49.6% SMX removal (vs. 98.5% for Co–CN/PAA). Since the actual leached concentration is <em>lower than 18 μg L⁻¹ throughout</em> the reaction (it accumulates over time), the contribution of leached Co²⁺ is even smaller in practice. Therefore, <strong>heterogeneous catalysis at the Co–CN surface dominates</strong> SMX removal.</p>
+    </div>
+
+    <div class="box warning">
+      <div class="box-title">⚠️ Commercial PAA Solution Note</div>
+      <p>Commercial PAA is an equilibrium mixture of PAA, H₂O₂, acetic acid, and water. The Co–CN/H₂O₂ control experiment confirms that H₂O₂ in the PAA solution does <strong>not</strong> contribute to SMX removal — only PAA itself is the active oxidant precursor.</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ===================== SECTION 8 ===================== -->
+  <section class="section" id="factors">
+    <h2>8. Operational Factors Affecting SMX Degradation</h2>
+    <div class="h2-rule"></div>
+    <p>Four operational parameters were systematically investigated. Understanding each is crucial for system optimization.</p>
+
+    <h3 id="cobalt-content">8.1 Effect of Cobalt Doping Content</h3>
+
+    <p>As cobalt doping content (Co wt%) increases in Co–CN:</p>
+    <ul>
+      <li>More active ≡Co(II)/≡Co(III) sites per gram of catalyst → faster PAA activation.</li>
+      <li>More reactive radicals generated → higher SMX removal rate.</li>
+    </ul>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Co–CN Variant</th><th>SMX Removal (240 s)</th><th>k<sub>obs</sub> within 240 s (min⁻¹)</th></tr></thead>
+        <tbody>
+          <tr><td>Co–CN-0.5 (2.38% Co)</td><td>51.7%</td><td>0.0021</td></tr>
+          <tr><td>Co–CN-1</td><td>↑</td><td>↑</td></tr>
+          <tr><td>Co–CN-1.5</td><td>↑</td><td>↑</td></tr>
+          <tr><td>Co–CN-2 (recommended)</td><td>~99%</td><td>~0.013</td></tr>
+          <tr><td>Co–CN-5 (22.53% Co)</td><td>99%</td><td>0.015</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Co–CN-2 is recommended because it already achieves excellent SMX removal; further increasing cobalt doping (Co–CN-5) provides minimal additional benefit while increasing material cost.</p>
+
+    <h3 id="ph">8.2 Effect of Initial pH</h3>
+
+    <p>pH profoundly affects PAA speciation, radical generation, and cobalt surface chemistry.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>pH</th><th>SMX Removal</th><th>Mechanism of pH Effect</th></tr></thead>
+        <tbody>
+          <tr><td>3.5 (strongly acidic)</td><td>Low</td><td>High [H⁺] suppresses CH₃C(O)OO• generation [Eq. 3]; PAA mainly neutral form (stable, hard to activate)</td></tr>
+          <tr><td>5.0 (acidic)</td><td>Moderate</td><td>Same reasons, less severe</td></tr>
+          <tr><td><strong>6.5 (near-neutral)</strong></td><td><strong>98.5% — Optimal</strong></td><td>Best balance: PAA mostly protonated (activatable), no excessive H⁺ suppression, no rapid deprotonation</td></tr>
+          <tr><td>9.5 (alkaline)</td><td>Low</td><td>PAA deprotonates (pKa ≈ 8.2) → rapid non-productive decomposition via Eqs. (6) and (7)</td></tr>
+          <tr><td>11.0 (strongly alkaline)</td><td>Very low</td><td>Same as above, more severe PAA decomposition</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box def">
+      <div class="box-title">📖 pKa of PAA</div>
+      <p>The <strong>pKa of PAA ≈ 8.2</strong>. Below this pH, PAA exists predominantly in the protonated (neutral) form CH₃C(O)OOH. Above this pH, the deprotonated (anionic) form CH₃C(O)OO⁻ dominates. The neutral form is more stable and can be catalytically activated; the anionic form rapidly self-decomposes.</p>
+    </div>
+
+    <div class="box important">
+      <div class="box-title">⚡ Practical Implication</div>
+      <p>The optimal near-neutral pH (6.5) is highly practical for real wastewater treatment, since most effluents are near-neutral — no need for costly pH adjustment.</p>
+    </div>
+
+    <h3 id="paa-dose">8.3 Effect of PAA Dosage</h3>
+
+    <p>PAA dosage is expressed as the <strong>molar ratio [PAA]/[SMX]</strong>.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>PAA/SMX Ratio</th><th>SMX Removal (360 s)</th><th>k<sub>obs</sub> (min⁻¹)</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td>50</td><td>78.7%</td><td>0.0048</td><td>Limited PAA → fewer radicals generated</td></tr>
+          <tr><td>100</td><td>↑</td><td>↑</td><td rowspan="2">More PAA → more radical generation</td></tr>
+          <tr><td><strong>200 (recommended)</strong></td><td><strong>~98%</strong></td><td><strong>0.0113</strong></td></tr>
+          <tr><td>300</td><td>100%</td><td>0.0165</td><td>Marginal extra benefit over 200; higher cost</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>PAA/SMX = 200 is <strong>recommended</strong>, balancing treatment efficiency with operation cost.</p>
+
+    <h3 id="cocn-dose">8.4 Effect of Co–CN Dosage</h3>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Co–CN Dosage (mg L⁻¹)</th><th>k<sub>obs</sub> within 240 s (min⁻¹)</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td>30</td><td>0.0085</td><td>Fewer active sites → slower PAA activation</td></tr>
+          <tr><td>40</td><td>↑</td><td rowspan="2">More catalyst → more active sites → more radicals</td></tr>
+          <tr><td><strong>50 (standard)</strong></td><td><strong>~0.0113</strong></td></tr>
+          <tr><td>60</td><td>↑</td><td rowspan="2">Diminishing returns; 50 mg L⁻¹ already near-optimal</td></tr>
+          <tr><td>80</td><td>0.0212</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Increasing Co–CN dosage provides more ≡Co(II)/≡Co(III) surface sites, accelerating PAA activation and increasing reactive radical concentration. The relationship is <strong>monotonically positive</strong> within the tested range.</p>
+
+    <div class="summary-box-n">
+      <h4>Operational Factors Summary</h4>
+      <ul>
+        <li><strong>Cobalt content:</strong> Higher doping → more active sites → faster degradation. Co–CN-2 (0.2 g precursor) recommended.</li>
+        <li><strong>pH:</strong> Optimal at 6.5 (near-neutral). Acidic: H⁺ suppresses radical generation. Alkaline: PAA deprotonates and decomposes unproductively.</li>
+        <li><strong>PAA dosage:</strong> Higher ratio → more radicals. PAA/SMX = 200 recommended as the cost-effective optimum.</li>
+        <li><strong>Co–CN dosage:</strong> Higher dose → more surface sites → faster kinetics. 50 mg L⁻¹ used as standard condition.</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ===================== SECTION 9 ===================== -->
+  <section class="section" id="stability">
+    <h2>9. Stability &amp; Reusability of Co–CN</h2>
+    <div class="h2-rule"></div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Cycle</th><th>SMX Removal</th><th>Observation</th></tr></thead>
+        <tbody>
+          <tr><td>Round 1</td><td>98.5%</td><td>Full activity</td></tr>
+          <tr><td>Round 2</td><td>98.4%</td><td>Negligible decline</td></tr>
+          <tr><td>Round 3</td><td>97.7%</td><td>Minimal decline — excellent reusability</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Why Co–CN is So Stable</h3>
+    <ol class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-body"><strong>Strong Co–N Chemical Bond:</strong> Cobalt is anchored to g-C₃N₄ through covalent-like coordination bonds, not physical adsorption. This prevents cobalt from leaching into solution during repeated use.</div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-body"><strong>Self-Regenerating Redox Cycle:</strong> The ≡Co(II)/≡Co(III) cycle (Eqs. 2 &amp; 3) continuously regenerates both oxidation states — no permanent deactivation of active sites occurs.</div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-body"><strong>Structural Stability:</strong> XRD and SEM of used Co–CN show no morphological or crystallographic changes — the g-C₃N₄ framework is not degraded by PAA.</div>
+      </li>
+    </ol>
+
+    <h3>Catalyst Regeneration Protocol</h3>
+    <p>After each cycle, the used Co–CN is recovered by filtration, washed with deionized water five times (to remove residual SMX and reactive species), and dried in vacuum at 60°C overnight before the next run. This simple protocol maintains catalyst performance.</p>
+
+    <div class="box important">
+      <div class="box-title">⚡ Significance of Stability</div>
+      <p>High reusability dramatically reduces the cost per unit of wastewater treated, making Co–CN economically viable for practical water treatment applications.</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ===================== SECTION 10 ===================== -->
+  <section class="section" id="pathways">
+    <h2>10. SMX Degradation Pathways</h2>
+    <div class="h2-rule"></div>
+
+    <p>Eight transformation products (TPs) were identified by mass spectrometry (LC–MS/MS). Based on these TPs, four probable degradation pathways were proposed:</p>
+
+    <div class="pathway-grid">
+      <div class="pathway-card">
+        <div class="pathway-num">Pathway 1</div>
+        <div class="pathway-title">Hydroxylation</div>
+        <div class="pathway-desc">Reactive species attack the electron-rich aniline ring of SMX, adding –OH group. SMX (m/z 254) → m/z 270.</div>
+      </div>
+      <div class="pathway-card">
+        <div class="pathway-num">Pathway 2</div>
+        <div class="pathway-title">Nitration</div>
+        <div class="pathway-desc">Amino group (–NH₂) on the aniline ring is oxidized to a nitro group (–NO₂). SMX → m/z 284; m/z 270 → m/z 300. Also m/z 284 → m/z 300 via hydroxylation.</div>
+      </div>
+      <div class="pathway-card">
+        <div class="pathway-num">Pathway 3</div>
+        <div class="pathway-title">Bond Cleavage</div>
+        <div class="pathway-desc">CH₃C(O)O• and CH₃C(O)OO• attack the S–N bond in SMX, breaking it to yield m/z 99 (isoxazole-amine fragment) and m/z 158 (sulfonate fragment, not detected but inferred).</div>
+      </div>
+      <div class="pathway-card">
+        <div class="pathway-num">Pathway 4</div>
+        <div class="pathway-title">Coupling Reaction</div>
+        <div class="pathway-desc">N-centered radicals from SMX (generated by H-abstraction from –NH₂) couple together to form dimeric products: m/z 503, m/z 519, m/z 348, m/z 364.</div>
+      </div>
+    </div>
+
+    <h3 id="products">10.1 All Identified Transformation Products</h3>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>m/z</th><th>Product</th><th>Pathway</th><th>Formation Route</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="product-tag">254</span></td><td>SMX (parent compound)</td><td>—</td><td>Starting material</td></tr>
+          <tr><td><span class="product-tag">270</span></td><td>Hydroxylated SMX</td><td>1 (Hydroxylation)</td><td>•OH/radical attack on aniline ring → –OH addition</td></tr>
+          <tr><td><span class="product-tag">284</span></td><td>Nitrated SMX</td><td>2 (Nitration)</td><td>–NH₂ oxidized to –NO₂ on SMX</td></tr>
+          <tr><td><span class="product-tag">300</span></td><td>Nitrated + hydroxylated SMX</td><td>1 &amp; 2</td><td>From m/z 270 (via nitration) or m/z 284 (via hydroxylation)</td></tr>
+          <tr><td><span class="product-tag">99</span></td><td>Isoxazole-amine fragment</td><td>3 (Bond Cleavage)</td><td>S–N bond cleavage of SMX</td></tr>
+          <tr><td><span class="product-tag">158</span></td><td>Sulfonate fragment</td><td>3 (Bond Cleavage)</td><td>S–N bond cleavage (not detected but inferred)</td></tr>
+          <tr><td><span class="product-tag">503</span></td><td>Dimer: 2×SMX N-radicals coupled</td><td>4 (Coupling)</td><td>N-centered radical from SMX + N-centered radical from SMX</td></tr>
+          <tr><td><span class="product-tag">519</span></td><td>Dimer: SMX + m/z270 N-radicals</td><td>4 (Coupling)</td><td>N-centered radical from SMX + N-centered radical from m/z 270</td></tr>
+          <tr><td><span class="product-tag">348</span></td><td>Dimer</td><td>4 (Coupling)</td><td>N-radical from S–N cleavage product + N-radical from SMX</td></tr>
+          <tr><td><span class="product-tag">364</span></td><td>Dimer</td><td>4 (Coupling)</td><td>N-radical from S–N cleavage product + N-radical from m/z 270</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>10.2 Why N-Centered Radicals Form</h3>
+    <p>The <strong>aniline group (–NH₂) in SMX</strong> is an electron-rich moiety — a prime target for radical species. Organic radicals (CH₃C(O)O• and CH₃C(O)OO•) can abstract a hydrogen atom from the –NH₂ group, generating a <strong>nitrogen-centered radical on SMX</strong>. These N-radicals are highly reactive and can couple with other N-radicals to form the dimeric products observed in Pathway 4.</p>
+
+    <div class="box warning">
+      <div class="box-title">⚠️ Incomplete Mineralization Note</div>
+      <p>The formation of dimeric coupling products (m/z 503, 519, 348, 364) shows that SMX is not always fully mineralized — some larger intermediate molecules are formed. Further treatment (longer reaction time, higher dosages) or combination with other processes may be needed for complete mineralization.</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ===================== MASTER SUMMARY ===================== -->
+  <section class="section" id="master">
+    <div class="master-summary-n">
+      <h2>Master Revision Sheet</h2>
+      <div class="h2-rule"></div>
+
+      <h3>The Paper in One Sentence</h3>
+      <p>Co–CN (cobalt atomically doped into g-C₃N₄ via Co–N bonds) efficiently activates PAA to generate organic radicals (CH₃C(O)O• and CH₃C(O)OO•) that degrade SMX via a redox cycle (≡Co(II)/≡Co(III)), achieving 98.5% removal at neutral pH with excellent reusability over 3 cycles.</p>
+
+      <h3>Key Numbers to Remember</h3>
+      <ul>
+        <li>PAA O–O bond energy: <strong>159 kJ mol⁻¹</strong> (weaker than PMS: 317, H₂O₂: 213)</li>
+        <li>PAA pKa: <strong>~8.2</strong></li>
+        <li>Optimal pH: <strong>6.5</strong></li>
+        <li>Optimal PAA/SMX ratio: <strong>200</strong></li>
+        <li>Optimal Co–CN dose: <strong>50 mg L⁻¹</strong></li>
+        <li>SMX removal (Co–CN/PAA): <strong>98.5%</strong></li>
+        <li>Leached Co²⁺ after reaction: <strong>18 μg L⁻¹</strong></li>
+        <li>Co²⁺/PAA at 20 μg L⁻¹ Co²⁺: <strong>49.6%</strong> SMX removal (vs. 98.5% for Co–CN/PAA)</li>
+        <li>BET surface area — g-C₃N₄: 40.77 m² g⁻¹; Co–CN: <strong>61.36 m² g⁻¹</strong></li>
+        <li>≡Co(II)/≡Co(III) ratio: fresh = 0.48; used = 0.39 (Δ = 0.09)</li>
+        <li>MeOH inhibition: <strong>74.4%</strong> (k<sub>obs</sub>: 0.0113 → 0.0011 min⁻¹)</li>
+        <li>TBA inhibition: <strong>~0%</strong> (confirms •OH absent)</li>
+        <li>3-cycle reusability: <strong>98.5%, 98.4%, 97.7%</strong></li>
+      </ul>
+
+      <h3>Characterization Techniques &amp; What They Proved</h3>
+      <ul>
+        <li><strong>XRD:</strong> Co incorporated in g-C₃N₄ framework (no Co₃O₄ peaks); structural stability of used Co–CN.</li>
+        <li><strong>XPS (N 1s):</strong> Co–N bond at 399.9 eV → chemical bonding confirmed; both Co(II) and Co(III) present.</li>
+        <li><strong>XPS (Co 2p):</strong> Co(II)/Co(III) ratio change → redox cycle mechanism.</li>
+        <li><strong>SEM+EDS:</strong> Uniform Co distribution; porous morphology preserved after reaction.</li>
+        <li><strong>BET:</strong> Co–CN has higher surface area than g-C₃N₄ → more active sites.</li>
+      </ul>
+
+      <h3>The 5 Core Equations</h3>
+      <ul>
+        <li><strong>Eq. 2:</strong> ≡Co(II) + CH₃C(O)OOH → ≡Co(III) + CH₃C(O)O• + OH⁻</li>
+        <li><strong>Eq. 3:</strong> ≡Co(III) + CH₃C(O)OOH → ≡Co(II) + CH₃C(O)OO• + H⁺</li>
+        <li><strong>Eq. 4:</strong> CH₃C(O)O• → •CH₃ + CO₂</li>
+        <li><strong>Eq. 5:</strong> •CH₃ + O₂ → CH₃OO•</li>
+        <li><strong>Kinetics:</strong> ln(C₀/Cₜ) = k<sub>obs</sub>·t (pseudo-first-order model)</li>
+      </ul>
+
+      <h3>4 SMX Degradation Pathways</h3>
+      <ul>
+        <li>① Hydroxylation: SMX (m/z 254) → m/z 270</li>
+        <li>② Nitration: SMX → m/z 284; m/z 270 → m/z 300</li>
+        <li>③ S–N Bond Cleavage: SMX → m/z 99 + m/z 158</li>
+        <li>④ Coupling: N-radicals + N-radicals → dimers (m/z 503, 519, 348, 364)</li>
+      </ul>
+
+      <h3>Advantages of Co–CN over Prior Catalysts</h3>
+      <ul>
+        <li>Atomic Co dispersion → no agglomeration → better catalytic contact</li>
+        <li>Co–N bond → stronger anchoring → minimal leaching vs. Co₃O₄, CoFe₂O₄, LaCoO₃</li>
+        <li>Larger BET surface area than pure g-C₃N₄</li>
+        <li>Excellent reusability (3 cycles, minimal activity loss)</li>
+        <li>Works at neutral pH — practical for real wastewater</li>
+        <li>No toxic •OH — avoids unselective radical chemistry</li>
+      </ul>
+
+      <h3>Common Exam Pitfalls</h3>
+      <ul>
+        <li>•OH is <em>NOT</em> produced in Co–CN/PAA — do not confuse with Fenton-type systems.</li>
+        <li>g-C₃N₄ alone does <em>NOT</em> activate PAA — cobalt is essential.</li>
+        <li>Commercial PAA contains H₂O₂ — but H₂O₂ contributes negligibly to SMX removal.</li>
+        <li>The ≡Co(II)/≡Co(III) ratio <em>decreases</em> slightly (not eliminates) after reaction — both states are regenerated.</li>
+        <li>PAA deprotonates at pH &gt;8.2 — alkaline conditions hurt, not help.</li>
+        <li>m/z 158 was <em>not detected</em> but its formation cannot be excluded (it's an intermediate in Pathway 3).</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Scroll progress bar
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    document.getElementById('progress').style.width = progress + '%';
+  });
+</script>
+
+</body>
+</html>

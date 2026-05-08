@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Characterization of Metal Oxide Nanoparticles — Complete Study Guide</title>
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple-50:  #f5f0ff;
+    --purple-100: #ede5ff;
+    --purple-200: #d8c8ff;
+    --purple-300: #b89aff;
+    --purple-400: #9b6dff;
+    --purple-500: #7c3aed;
+    --purple-600: #6d28d9;
+    --purple-700: #5b21b6;
+    --purple-800: #4c1d95;
+    --purple-900: #2e1065;
+    --accent:     #a855f7;
+    --accent-light:#e9d5ff;
+    --text-main:  #1e1b4b;
+    --text-body:  #374151;
+    --text-light: #6b7280;
+    --white:      #ffffff;
+    --bg:         #faf9ff;
+    --card-bg:    #ffffff;
+    --border:     #e5e7eb;
+    --success:    #059669;
+    --warning:    #d97706;
+    --danger:     #dc2626;
+    --info:       #2563eb;
+    --shadow-sm:  0 1px 3px rgba(124,58,237,0.08), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md:  0 4px 16px rgba(124,58,237,0.12), 0 2px 6px rgba(0,0,0,0.06);
+    --shadow-lg:  0 8px 32px rgba(124,58,237,0.18), 0 4px 12px rgba(0,0,0,0.08);
+    --radius:     12px;
+    --radius-lg:  18px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text-body);
+    line-height: 1.75;
+    font-size: 16px;
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--purple-50); }
+  ::-webkit-scrollbar-thumb { background: var(--purple-300); border-radius: 4px; }
+
+  /* ===== TOP HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--purple-800) 0%, var(--purple-600) 50%, var(--accent) 100%);
+    color: var(--white);
+    padding: 70px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero h1 { font-size: clamp(2rem,5vw,3.2rem); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; }
+  .hero .subtitle { font-size: 1.1rem; opacity: 0.88; max-width: 700px; margin: 0 auto 28px; }
+  .hero-tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .hero-tag {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--white);
+    padding: 5px 16px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .hero-ref {
+    font-size: 0.82rem; opacity: 0.72;
+    font-style: italic;
+    max-width: 600px; margin: 0 auto;
+  }
+
+  /* ===== LAYOUT ===== */
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* ===== TABLE OF CONTENTS ===== */
+  .toc-card {
+    background: var(--white);
+    border: 1px solid var(--purple-200);
+    border-radius: var(--radius-lg);
+    padding: 36px 40px;
+    margin: 48px 0 56px;
+    box-shadow: var(--shadow-md);
+  }
+  .toc-card h2 { color: var(--purple-700); font-size: 1.4rem; margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
+  .toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 8px 24px; }
+  .toc-item { list-style: none; }
+  .toc-item a {
+    text-decoration: none;
+    color: var(--purple-600);
+    font-size: 0.93rem;
+    font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 10px; border-radius: 8px;
+    transition: background 0.18s, color 0.18s;
+  }
+  .toc-item a:hover { background: var(--purple-50); color: var(--purple-800); }
+  .toc-item a .toc-num {
+    background: var(--purple-100); color: var(--purple-700);
+    width: 24px; height: 24px; border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
+  }
+
+  /* ===== SECTION ===== */
+  .section { margin-bottom: 72px; }
+  .section-header {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 32px; padding-bottom: 16px;
+    border-bottom: 2px solid var(--purple-100);
+  }
+  .section-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--purple-500), var(--accent));
+    color: white; display: grid; place-items: center;
+    font-size: 1.4rem; flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+  }
+  h2.section-title { font-size: clamp(1.5rem,3vw,2rem); color: var(--purple-800); font-weight: 800; }
+  h3 { font-size: 1.2rem; color: var(--purple-700); font-weight: 700; margin: 28px 0 14px; }
+  h4 { font-size: 1rem; color: var(--purple-600); font-weight: 600; margin: 18px 0 8px; }
+  p { margin-bottom: 14px; color: var(--text-body); }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 18px;
+  }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 18px; margin-bottom: 24px; }
+  .card-purple { border-left: 4px solid var(--purple-500); background: var(--purple-50); }
+  .card-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 24px; }
+
+  /* ===== SPECIAL BOXES ===== */
+  .box {
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin: 18px 0;
+    border-left: 4px solid;
+  }
+  .box-def   { background: #f3e8ff; border-color: var(--purple-500); }
+  .box-formula { background: #faf5ff; border-color: var(--purple-400); font-family: 'Courier New', monospace; }
+  .box-note  { background: #eff6ff; border-color: var(--info); }
+  .box-warn  { background: #fffbeb; border-color: var(--warning); }
+  .box-danger{ background: #fef2f2; border-color: var(--danger); }
+  .box-success{background: #f0fdf4; border-color: var(--success); }
+  .box-label {
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 8px; display: block;
+  }
+  .box-def   .box-label { color: var(--purple-600); }
+  .box-formula .box-label { color: var(--purple-500); }
+  .box-note  .box-label { color: var(--info); }
+  .box-warn  .box-label { color: var(--warning); }
+  .box-danger .box-label { color: var(--danger); }
+  .box-success .box-label { color: var(--success); }
+
+  /* ===== FORMULA DISPLAY ===== */
+  .formula-block {
+    background: linear-gradient(135deg, var(--purple-800), var(--purple-600));
+    color: white; border-radius: var(--radius);
+    padding: 24px 32px; text-align: center; margin: 22px 0;
+    box-shadow: var(--shadow-md);
+  }
+  .formula-block .formula-main { font-size: 1.8rem; font-weight: 700; font-family: 'Courier New', monospace; margin-bottom: 8px; }
+  .formula-block .formula-name { font-size: 0.82rem; opacity: 0.8; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* ===== TABLE ===== */
+  .table-wrap { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow-sm); margin: 22px 0; }
+  table { width: 100%; border-collapse: collapse; background: white; }
+  thead { background: linear-gradient(90deg, var(--purple-700), var(--purple-500)); color: white; }
+  thead th { padding: 13px 16px; font-size: 0.88rem; font-weight: 700; text-align: left; white-space: nowrap; }
+  tbody tr { border-bottom: 1px solid var(--purple-100); transition: background 0.15s; }
+  tbody tr:hover { background: var(--purple-50); }
+  tbody td { padding: 12px 16px; font-size: 0.9rem; vertical-align: top; }
+  td strong { color: var(--purple-700); }
+
+  /* ===== TIMELINE ===== */
+  .timeline { position: relative; padding-left: 36px; margin: 22px 0; }
+  .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: var(--purple-200); }
+  .timeline-item { position: relative; margin-bottom: 24px; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -30px; top: 6px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--purple-500); border: 2px solid var(--white);
+    box-shadow: 0 0 0 3px var(--purple-200);
+  }
+  .timeline-year { font-size: 0.78rem; font-weight: 700; color: var(--purple-500); text-transform: uppercase; letter-spacing: 0.5px; }
+  .timeline-item h4 { margin: 2px 0 6px; color: var(--purple-800); }
+
+  /* ===== STEPS ===== */
+  .steps { counter-reset: step; margin: 22px 0; }
+  .step-item { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+  .step-num {
+    counter-increment: step;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple-600), var(--accent));
+    color: white; display: grid; place-items: center;
+    font-weight: 800; font-size: 0.9rem; flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .step-content h4 { margin-top: 2px; }
+
+  /* ===== BADGE ===== */
+  .badge {
+    display: inline-block; padding: 3px 10px; border-radius: 999px;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.3px;
+  }
+  .badge-purple { background: var(--purple-100); color: var(--purple-700); }
+  .badge-green  { background: #d1fae5; color: #065f46; }
+  .badge-blue   { background: #dbeafe; color: #1e40af; }
+  .badge-orange { background: #fed7aa; color: #9a3412; }
+
+  /* ===== SIGNAL TYPE GRID ===== */
+  .signal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 22px 0; }
+  .signal-card { padding: 18px 20px; border-radius: var(--radius); border: 1px solid var(--border); background: white; }
+  .signal-card .signal-title { font-weight: 700; color: var(--purple-700); margin-bottom: 6px; font-size: 0.95rem; }
+  .signal-card .signal-badge { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin-bottom: 8px; }
+  .se   { border-top: 3px solid #7c3aed; }
+  .bse  { border-top: 3px solid #2563eb; }
+  .aug  { border-top: 3px solid #059669; }
+  .cl   { border-top: 3px solid #d97706; }
+
+  /* ===== COMPARISON TABLE HIGHLIGHT ===== */
+  .highlight-row td:first-child { font-weight: 700; color: var(--purple-700); }
+
+  /* ===== SUMMARY BOX ===== */
+  .summary-box {
+    background: linear-gradient(135deg, var(--purple-50), #f0f9ff);
+    border: 1px solid var(--purple-200);
+    border-radius: var(--radius-lg);
+    padding: 30px 36px;
+    margin-top: 36px;
+  }
+  .summary-box h3 { color: var(--purple-800); margin-bottom: 14px; margin-top: 0; }
+  .summary-list { list-style: none; }
+  .summary-list li {
+    padding: 7px 0 7px 28px; position: relative;
+    border-bottom: 1px dashed var(--purple-100); color: var(--text-body);
+    font-size: 0.94rem;
+  }
+  .summary-list li:last-child { border-bottom: none; }
+  .summary-list li::before { content: '✦'; position: absolute; left: 0; color: var(--purple-400); font-size: 0.75rem; top: 10px; }
+
+  /* ===== MASTER REVISION ===== */
+  .master-revision {
+    background: linear-gradient(135deg, var(--purple-800) 0%, var(--purple-900) 100%);
+    color: white; border-radius: var(--radius-lg);
+    padding: 48px 44px; margin-top: 56px;
+    box-shadow: var(--shadow-lg);
+  }
+  .master-revision h2 { font-size: 1.8rem; margin-bottom: 30px; text-align: center; }
+  .master-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 18px; }
+  .master-card { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 22px; }
+  .master-card h4 { color: var(--purple-200); margin-bottom: 12px; font-size: 1rem; }
+  .master-card ul { list-style: none; }
+  .master-card ul li { font-size: 0.84rem; padding: 4px 0; opacity: 0.9; padding-left: 16px; position: relative; }
+  .master-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--purple-300); }
+
+  /* ===== INSTRUMENT DIAGRAM (ASCII-style CSS) ===== */
+  .instrument-diagram {
+    background: var(--purple-50);
+    border: 1px solid var(--purple-200);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin: 22px 0;
+  }
+  .instrument-diagram .component-row { display: flex; align-items: center; gap: 0; margin-bottom: 2px; }
+  .component-box {
+    background: white; border: 2px solid var(--purple-300);
+    border-radius: 8px; padding: 8px 16px;
+    font-size: 0.82rem; font-weight: 600; color: var(--purple-700);
+    text-align: center; min-width: 160px;
+    box-shadow: var(--shadow-sm);
+  }
+  .component-arrow { flex: 1; text-align: center; color: var(--purple-400); font-size: 1.4rem; padding: 0 4px; }
+  .component-note { font-size: 0.75rem; color: var(--text-light); margin-left: 8px; }
+
+  /* ===== BEFORE/AFTER COMPARE ===== */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 22px 0; }
+  .compare-card { border-radius: var(--radius); padding: 22px; }
+  .compare-before { background: #fef3c7; border: 2px solid var(--warning); }
+  .compare-after  { background: #f0fdf4; border: 2px solid var(--success); }
+  .compare-card h4 { margin-top: 0; margin-bottom: 12px; }
+  .compare-before h4 { color: #92400e; }
+  .compare-after  h4 { color: #065f46; }
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width: 700px) {
+    .card-grid-2, .signal-grid, .compare-grid, .master-grid { grid-template-columns: 1fr; }
+    .hero { padding: 48px 20px 40px; }
+    .page-wrap { padding: 0 14px 60px; }
+    .toc-card { padding: 24px 18px; }
+    .master-revision { padding: 32px 20px; }
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    .hero { background: var(--purple-800) !important; }
+    .page-wrap { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<div class="hero">
+  <h1>Characterization of Metal Oxide Nanoparticles</h1>
+  <p class="subtitle" style="color: white;">A complete, in-depth study guide covering IR Spectroscopy, SEM, TEM, and XRD — applied to Co₃O₄ nanoparticles synthesized via thermal decomposition.</p>
+  <div class="hero-tags">
+    <span class="hero-tag">IR Spectroscopy</span>
+    <span class="hero-tag">SEM</span>
+    <span class="hero-tag">TEM</span>
+    <span class="hero-tag">XRD</span>
+    <span class="hero-tag">Co₃O₄ Nanoparticles</span>
+  </div>
+  <p class="hero-ref" style="color: white;">Reference: Characterization of Cobalt Oxide Nanoparticles Prepared by the Thermal Decomposition of Co(NH₃)₅(H₂O)₃ Complex and Study of Their Photocatalytic Activity. <em>Acta Chim. Slov.</em> 2016, 63(2), 335–343. Department of Chemistry, Lorestan University.</p>
+</div>
+
+<div class="page-wrap">
+
+<!-- ===================== TABLE OF CONTENTS ===================== -->
+<div class="toc-card">
+  <h2>📚 Table of Contents</h2>
+  <ul class="toc-grid">
+    <li class="toc-item"><a href="#overview"><span class="toc-num">1</span>Overview of Characterization</a></li>
+    <li class="toc-item"><a href="#synthesis"><span class="toc-num">2</span>Synthesis of Co₃O₄</a></li>
+    <li class="toc-item"><a href="#ir-principles"><span class="toc-num">3</span>IR Spectroscopy — Principles</a></li>
+    <li class="toc-item"><a href="#ir-mechanism"><span class="toc-num">4</span>IR — Mechanism & Theory</a></li>
+    <li class="toc-item"><a href="#ir-results"><span class="toc-num">5</span>FT-IR Results: Co₃O₄</a></li>
+    <li class="toc-item"><a href="#ir-comparison"><span class="toc-num">6</span>IR Comparative Examples</a></li>
+    <li class="toc-item"><a href="#ir-applications"><span class="toc-num">7</span>IR Applications</a></li>
+    <li class="toc-item"><a href="#tem-principles"><span class="toc-num">8</span>TEM — Principles</a></li>
+    <li class="toc-item"><a href="#tem-mechanism"><span class="toc-num">9</span>TEM — Image Formation</a></li>
+    <li class="toc-item"><a href="#tem-types"><span class="toc-num">10</span>TEM — Techniques</a></li>
+    <li class="toc-item"><a href="#tem-results"><span class="toc-num">11</span>TEM Results: Co₃O₄</a></li>
+    <li class="toc-item"><a href="#tem-applications"><span class="toc-num">12</span>TEM Applications</a></li>
+    <li class="toc-item"><a href="#sem-history"><span class="toc-num">13</span>SEM — History & Signals</a></li>
+    <li class="toc-item"><a href="#sem-mechanism"><span class="toc-num">14</span>SEM — Mechanism</a></li>
+    <li class="toc-item"><a href="#sem-results"><span class="toc-num">15</span>SEM Results: Co₃O₄</a></li>
+    <li class="toc-item"><a href="#sem-applications"><span class="toc-num">16</span>SEM Applications</a></li>
+    <li class="toc-item"><a href="#xrd-principles"><span class="toc-num">17</span>XRD — Principles & History</a></li>
+    <li class="toc-item"><a href="#braggs-law"><span class="toc-num">18</span>Bragg's Law — Deep Dive</a></li>
+    <li class="toc-item"><a href="#scherrer"><span class="toc-num">19</span>Scherrer Equation</a></li>
+    <li class="toc-item"><a href="#xrd-setup"><span class="toc-num">20</span>XRD Experimental Setup</a></li>
+    <li class="toc-item"><a href="#xrd-results"><span class="toc-num">21</span>XRD Results: Co₃O₄</a></li>
+    <li class="toc-item"><a href="#xrd-applications"><span class="toc-num">22</span>XRD Applications</a></li>
+    <li class="toc-item"><a href="#sem-tem-compare"><span class="toc-num">23</span>SEM vs TEM Comparison</a></li>
+    <li class="toc-item"><a href="#master-summary"><span class="toc-num">24</span>Master Revision Sheet</a></li>
+  </ul>
+</div>
+
+<!-- ===================== SECTION 1: OVERVIEW ===================== -->
+<div class="section" id="overview">
+  <div class="section-header">
+    <div class="section-icon">🔬</div>
+    <h2 class="section-title">1. Overview of Characterization Techniques</h2>
+  </div>
+
+  <p>Nanoparticles (1–100 nm range) possess fundamentally different properties from their bulk counterparts — including higher surface area, quantum effects, and altered optical/magnetic behavior. To understand these materials, we use <strong>characterization techniques</strong> that probe different dimensions of a nanoparticle's identity.</p>
+
+  <div class="box box-def">
+    <span class="box-label">🔷 Definition</span>
+    <strong>Characterization of nanoparticles</strong> refers to the use of analytical techniques to determine the structural, morphological, chemical, and physical properties of nanoscale materials. Each technique reveals a unique, complementary dimension.
+  </div>
+
+  <div class="card-grid">
+    <div class="card card-purple">
+      <h4>📡 IR Spectroscopy</h4>
+      <p>Uses infrared light to detect vibrations of chemical bonds. Identifies <strong>functional groups</strong>, metal–oxygen bonds, surface molecules, and residual ligands. Confirms the chemical identity of the nanoparticle and the success of synthesis.</p>
+    </div>
+    <div class="card card-purple">
+      <h4>🔭 TEM (Transmission Electron Microscopy)</h4>
+      <p>Transmits a beam of electrons through an ultra-thin sample. Provides <strong>atomic-level imaging</strong>, direct size measurement, morphology, and crystal lattice information. Highest resolution technique.</p>
+    </div>
+    <div class="card card-purple">
+      <h4>🖥️ SEM (Scanning Electron Microscopy)</h4>
+      <p>Scans a focused electron beam across the specimen surface. Reveals <strong>surface topography</strong>, morphology, aggregation behavior, and (with EDS) elemental composition.</p>
+    </div>
+    <div class="card card-purple">
+      <h4>📊 XRD (X-Ray Diffraction)</h4>
+      <p>Diffracts X-rays through crystalline materials. Determines <strong>phase purity</strong>, crystal structure, crystallite size (via Scherrer equation), and lattice parameters.</p>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Technique</th>
+          <th>What It Probes</th>
+          <th>Key Output</th>
+          <th>Unique Strength</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>IR / FT-IR</strong></td>
+          <td>Chemical bonds, functional groups</td>
+          <td>Absorption peaks (cm⁻¹)</td>
+          <td>Identifies surface chemistry & ligands</td>
+        </tr>
+        <tr>
+          <td><strong>TEM</strong></td>
+          <td>Interior structure, lattice planes</td>
+          <td>Atomic-resolution images, SAED patterns</td>
+          <td>True size + crystal lattice at atomic scale</td>
+        </tr>
+        <tr>
+          <td><strong>SEM</strong></td>
+          <td>Surface topography, morphology</td>
+          <td>Greyscale surface images</td>
+          <td>Aggregation behavior, surface texture</td>
+        </tr>
+        <tr>
+          <td><strong>XRD</strong></td>
+          <td>Crystal planes, long-range order</td>
+          <td>2θ diffraction pattern, d-spacings</td>
+          <td>Phase ID + crystallite size (non-destructive)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="summary-box">
+    <h3>Section Summary</h3>
+    <ul class="summary-list">
+      <li>Each technique is complementary — no single technique provides complete information.</li>
+      <li>IR → chemical identity; TEM → atomic-scale imaging; SEM → surface morphology; XRD → crystal structure.</li>
+      <li>Together, these four techniques give a complete picture of nanoparticle identity, structure, and properties.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== SECTION 2: SYNTHESIS ===================== -->
+<div class="section" id="synthesis">
+  <div class="section-header">
+    <div class="section-icon">⚗️</div>
+    <h2 class="section-title">2. Synthesis of Co₃O₄ Nanoparticles</h2>
+  </div>
+
+  <div class="box box-def">
+    <span class="box-label">🔷 Background</span>
+    <strong>Co₃O₄</strong> (cobalt(II,III) oxide) is a mixed-valence transition metal oxide with a cubic spinel structure. It is used in photocatalysis, energy storage, gas sensing, and magnetic applications. Its nanoparticle form shows enhanced catalytic activity due to high surface area.
+  </div>
+
+  <h3>Synthesis Method: Thermal Decomposition</h3>
+  <p>The nanoparticles in the referenced study were prepared by the <strong>thermal decomposition</strong> of the precursor complex <strong>[Co(NH₃)₅(H₂O)](NO₃)₃</strong>.</p>
+
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Precursor Complex Formation</h4>
+        <p>The cobalt complex <strong>Co(NH₃)₅(H₂O)₃</strong> is synthesized. This complex contains Co²⁺/Co³⁺ coordinated to five ammonia (NH₃) ligands and one water (H₂O) ligand, with nitrate (NO₃⁻) as the counter anion.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Thermal Decomposition</h4>
+        <p>The complex is heated to <strong>150°C and 175°C</strong>. Heat drives off all coordinated ligands (NH₃, H₂O) and the nitrate anions, leaving behind cobalt and oxygen atoms that reorganize into the <strong>Co₃O₄ spinel lattice</strong>.</p>
+        <div class="box box-formula" style="font-size:0.9rem;">
+          <span class="box-label">Reaction (Simplified)</span>
+          [Co(NH₃)₅(H₂O)](NO₃)₃ → Co₃O₄ + NH₃↑ + H₂O↑ + NO₂↑ + O₂↑
+        </div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Nanoparticle Formation</h4>
+        <p>The rapid decomposition of the precursor limits crystal growth, yielding <strong>nanoparticles in the 5–30 nm range</strong>. The porous morphology arises from gas evolution during thermal decomposition.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box box-note">
+    <span class="box-label">📘 Why Thermal Decomposition?</span>
+    Thermal decomposition is simple, scalable, and does not require complex reducing agents or solvents. The precursor complex acts as a "pre-organized" source of cobalt, enabling controlled nanoparticle formation.
+  </div>
+
+  <div class="card-grid-2">
+    <div class="card">
+      <h4>Precursor: Co(NH₃)₅(H₂O)₃</h4>
+      <ul style="padding-left:18px; color:var(--text-body); font-size:0.93rem;">
+        <li>Contains NH₃ ligands (confirmed by IR)</li>
+        <li>Contains NO₃⁻ counter anions</li>
+        <li>Contains coordinated H₂O</li>
+        <li>All confirmed by FT-IR before heating</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Product: Co₃O₄</h4>
+      <ul style="padding-left:18px; color:var(--text-body); font-size:0.93rem;">
+        <li>Cubic spinel crystal structure</li>
+        <li>Co²⁺ in tetrahedral sites, Co³⁺ in octahedral sites</li>
+        <li>No residual ligands (confirmed by IR)</li>
+        <li>Average size ≈ 17.5 nm (confirmed by TEM)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    <h3>Section Summary</h3>
+    <ul class="summary-list">
+      <li>Co₃O₄ is synthesized by thermal decomposition of [Co(NH₃)₅(H₂O)](NO₃)₃ complex.</li>
+      <li>Heating at 150°C and 175°C removes all ligands, forming pure Co₃O₄ nanoparticles.</li>
+      <li>The characterization techniques (IR, TEM, SEM, XRD) are then used to confirm and study the product.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== SECTION 3: IR PRINCIPLES ===================== -->
+<div class="section" id="ir-principles">
+  <div class="section-header">
+    <div class="section-icon">📡</div>
+    <h2 class="section-title">3. IR Spectroscopy — Principles & Theory</h2>
+  </div>
+
+  <div class="box box-def">
+    <span class="box-label">🔷 Definition</span>
+    <strong>Infrared (IR) Spectroscopy</strong> is an analytical technique that measures the absorption of infrared light by a sample. When IR radiation interacts with a molecule, it causes bonds to vibrate (stretch or bend) at specific frequencies. The resulting absorption spectrum is a unique molecular "fingerprint."
+  </div>
+
+  <h3>The Electromagnetic Spectrum & IR Region</h3>
+  <p>IR radiation occupies the region between visible light and microwaves:</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>IR Region</th><th>Wavenumber Range (cm⁻¹)</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td>Near-IR (NIR)</td><td>14,000 – 4,000</td><td>Overtones, combination bands</td></tr>
+        <tr class="highlight-row"><td><strong>Mid-IR (MIR)</strong></td><td><strong>4,000 – 400</strong></td><td><strong>Main functional group analysis — most used</strong></td></tr>
+        <tr><td>Far-IR (FIR)</td><td>400 – 10</td><td>Metal–oxygen bonds, lattice vibrations</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box box-note">
+    <span class="box-label">📘 Key Point</span>
+    For metal oxide nanoparticles, the most important peaks are in the <strong>400–700 cm⁻¹ region (Far/Low Mid-IR)</strong>, where metal–oxygen stretching vibrations occur. These peaks directly confirm nanoparticle formation.
+  </div>
+
+  <h3>How IR Works — The Fundamental Principle</h3>
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Molecular Vibrations</h4>
+        <p>All chemical bonds vibrate continuously. The frequency of vibration depends on two factors: <strong>(1) the masses of the atoms</strong> and <strong>(2) the strength (force constant) of the bond</strong>. This is described by:</p>
+        <div class="formula-block">
+          <div class="formula-name">Hooke's Law (Bond Vibration)</div>
+          <div class="formula-main">ν̃ = (1/2πc) √(k/μ)</div>
+        </div>
+        <p style="font-size:0.88rem; color:var(--text-light);">where <strong>ν̃</strong> = wavenumber (cm⁻¹), <strong>c</strong> = speed of light, <strong>k</strong> = force constant (bond strength), <strong>μ</strong> = reduced mass of the two bonded atoms.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>IR Absorption Condition</h4>
+        <p>For a bond to absorb IR radiation, the vibration must cause a <strong>change in the dipole moment</strong> of the molecule. Symmetric vibrations that do not change the dipole are IR-inactive.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Resonance Absorption</h4>
+        <p>When the frequency of IR light matches the natural vibration frequency of a bond, the bond <strong>absorbs that energy</strong>, causing an increased amplitude of vibration. This absorption is recorded as a dip in the transmittance spectrum (or a peak in the absorbance spectrum).</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Types of Bond Vibrations</h3>
+  <div class="card-grid">
+    <div class="card">
+      <h4>Stretching Vibrations</h4>
+      <p><strong>Symmetric stretch:</strong> Both atoms move away from/toward each other simultaneously along the bond axis.</p>
+      <p><strong>Asymmetric stretch:</strong> One atom moves away while the other moves toward the center.</p>
+    </div>
+    <div class="card">
+      <h4>Bending Vibrations</h4>
+      <p><strong>In-plane bending:</strong> Scissoring, rocking — movement within the plane of the molecule.</p>
+      <p><strong>Out-of-plane bending:</strong> Wagging, twisting — movement perpendicular to the molecular plane.</p>
+    </div>
+  </div>
+
+  <h3>FT-IR vs Dispersive IR</h3>
+  <p>Modern instruments use <strong>Fourier Transform IR (FT-IR)</strong> rather than the older dispersive (grating) spectrometers:</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Feature</th><th>FT-IR</th><th>Dispersive IR</th></tr></thead>
+      <tbody>
+        <tr><td>Speed</td><td>Seconds (entire spectrum at once)</td><td>Minutes (scanned wavelength by wavelength)</td></tr>
+        <tr><td>Sensitivity</td><td>Much higher (Fellgett advantage)</td><td>Lower</td></tr>
+        <tr><td>Resolution</td><td>High, adjustable</td><td>Limited</td></tr>
+        <tr><td>Signal averaging</td><td>Easy — multiple scans</td><td>Slow</td></tr>
+        <tr><td>Use in nanoparticles</td><td>Standard for all modern studies</td><td>Obsolete</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="summary-box">
+    <h3>Section Summary</h3>
+    <ul class="summary-list">
+      <li>IR spectroscopy measures bond vibration frequencies by recording which wavelengths of IR light are absorbed.</li>
+      <li>Absorption requires a change in dipole moment (IR-active vibrations).</li>
+      <li>Wavenumber (cm⁻¹) = reciprocal of wavelength — higher wavenumber = higher frequency = stronger/lighter bond.</li>
+      <li>FT-IR is the modern standard — simultaneous full spectrum, fast, high sensitivity.</li>
+      <li>Metal–oxygen bonds appear at 400–700 cm⁻¹ in the mid/far-IR.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== SECTION 4: IR MECHANISM ===================== -->
+<div class="section" id="ir-mechanism">
+  <div class="section-header">
+    <div class="section-icon">⚙️</div>
+    <h2 class="section-title">4. IR Spectroscopy — What It Identifies in Nanoparticles</h2>
+  </div>
+
+  <h3>Key Information from IR of Metal Oxide Nanoparticles</h3>
+  <div class="card-grid">
+    <div class="card card-purple">
+      <h4>1. Metal–Oxygen Bonds</h4>
+      <p>Peaks in the <strong>400–700 cm⁻¹</strong> region confirm the formation of metal–oxygen bonds. This is the <strong>definitive confirmation</strong> that a metal oxide nanoparticle has formed. Different metal oxides show slightly different positions in this range.</p>
+    </div>
+    <div class="card card-purple">
+      <h4>2. Surface –OH Groups & H₂O</h4>
+      <p>Broad absorption around <strong>3200–3500 cm⁻¹</strong> (O–H stretch) and ~1630 cm⁻¹ (H–O–H bend) indicates surface hydroxyl groups or adsorbed water. Nanoparticles have high surface area → more OH groups than bulk.</p>
+    </div>
+    <div class="card card-purple">
+      <h4>3. Organic Ligands & Residues</h4>
+      <p>Peaks from synthesis ligands (NH₃: ~3300 cm⁻¹, ~1600 cm⁻¹; NO₃⁻: ~1380 cm⁻¹, ~820 cm⁻¹) indicate residual organics from synthesis. Their <strong>disappearance after heating confirms clean product</strong>.</p>
+    </div>
+    <div class="card card-purple">
+      <h4>4. Peak Shifts Due to Size</h4>
+      <p>In nanoparticles, metal–oxygen bond peaks can <strong>shift slightly</strong> compared to bulk due to phonon confinement effects and increased surface strain. This confirms nanoscale nature.</p>
+    </div>
+    <div class="card card-purple">
+      <h4>5. Broad Peaks = Hydrogen Bonding / Disorder</h4>
+      <p>Broad, diffuse peaks indicate hydrogen bonding networks or structural disorder. Sharp peaks indicate well-ordered crystalline material.</p>
+    </div>
+    <div class="card card-purple">
+      <h4>6. Impurity Detection</h4>
+      <p>Any unexpected absorption peaks reveal <strong>unwanted chemicals or by-products</strong> from synthesis — critical for quality control.</p>
+    </div>
+  </div>
+
+  <div class="box box-warn">
+    <span class="box-label">⚠️ Common Mistake</span>
+    Students often confuse "peaks" in transmittance spectra (which are actually dips/minima) with absorbance peaks. In transmittance mode, a downward dip = absorption. In absorbance mode (inverted), peaks go upward. Always note which mode the spectrum is displayed in.
+  </div>
+
+  <h3>Key IR Absorption Regions — Reference Table</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Wavenumber (cm⁻¹)</th>
+          <th>Bond / Group</th>
+          <th>Relevance to Nanoparticles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>3200–3600</td><td>O–H stretch (broad)</td><td>Surface hydroxyl groups, adsorbed water</td></tr>
+        <tr><td>3100–3400</td><td>N–H stretch</td><td>Ammonia ligands from precursor complex</td></tr>
+        <tr><td>1600–1650</td><td>H–O–H bend / N–H bend</td><td>Water / amine groups</td></tr>
+        <tr><td>1350–1400</td><td>NO₃⁻ vibration</td><td>Nitrate counter-anion in precursor</td></tr>
+        <tr><td>700–900</td><td>NO₃⁻ out-of-plane</td><td>Residual nitrate</td></tr>
+        <tr class="highlight-row"><td><strong>400–700</strong></td><td><strong>Metal–O stretch</strong></td><td><strong>CONFIRMATION OF METAL OXIDE NANOPARTICLES</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===================== SECTION 5: IR RESULTS ===================== -->
+<div class="section" id="ir-results">
+  <div class="section-header">
+    <div class="section-icon">📈</div>
+    <h2 class="section-title">5. FT-IR Results: Co₃O₄ Nanoparticles</h2>
+  </div>
+
+  <h3>Three Spectra Compared (Figure 2 from Reference)</h3>
+  <p>The study recorded FT-IR spectra at three stages: <strong>(a) original complex, (b) decomposition at 150°C, (c) decomposition at 175°C</strong>.</p>
+
+  <div class="compare-grid">
+    <div class="compare-card compare-before">
+      <h4>🔴 Before Heating — Spectrum (a)</h4>
+      <p>The precursor complex <strong>[Co(NH₃)₅(H₂O)](NO₃)₃</strong> shows multiple peaks:</p>
+      <ul style="padding-left:18px; font-size:0.9rem;">
+        <li><strong>NH₃ + H₂O peaks:</strong> broad absorptions at ~3200–3400 cm⁻¹ (N–H and O–H stretches)</li>
+        <li><strong>NO₃⁻ peaks:</strong> characteristic nitrate peaks at ~1380 cm⁻¹ and ~820 cm⁻¹</li>
+        <li><strong>NH₃ + NO₃⁻ combination bands</strong> visible</li>
+        <li>Multiple overlapping peaks from ligands</li>
+        <li><strong>No Co–O peaks</strong> yet (nanoparticles not yet formed)</li>
+      </ul>
+    </div>
+    <div class="compare-card compare-after">
+      <h4>🟢 After Heating — Spectra (b) & (c)</h4>
+      <p>After thermal decomposition at 150°C and 175°C:</p>
+      <ul style="padding-left:18px; font-size:0.9rem;">
+        <li><strong>ALL ligand peaks disappear</strong> — NH₃, H₂O, NO₃⁻ all removed by heating</li>
+        <li><strong>Co–O peaks appear at 560–660 cm⁻¹</strong> — two characteristic bands of Co₃O₄</li>
+        <li>Spectrum (c) at 175°C shows sharper, more intense Co–O peaks</li>
+        <li>Confirms successful formation of <strong>Co₃O₄ spinel oxide</strong></li>
+        <li>No residual ligands = <strong>pure product</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box box-success">
+    <span class="box-label">✅ Key Interpretation</span>
+    The <strong>disappearance of ligand peaks + appearance of Co–O bond peaks at 560–660 cm⁻¹</strong> is the definitive FT-IR evidence of successful thermal decomposition of the precursor into Co₃O₄ nanoparticles. This is the "graph tells us" takeaway.
+  </div>
+
+  <h3>Why Two Co–O Peaks?</h3>
+  <p>Co₃O₄ has a <strong>spinel structure (AB₂O₄)</strong> where Co²⁺ occupies tetrahedral (A) sites and Co³⁺ occupies octahedral (B) sites. These two different coordination environments produce <strong>two distinct Co–O stretching bands</strong>:</p>
+  <div class="card-grid-2">
+    <div class="card">
+      <h4>Peak ~660 cm⁻¹</h4>
+      <p>Corresponds to <strong>Co³⁺–O stretching</strong> in the octahedral (B-site) coordination environment.</p>
+    </div>
+    <div class="card">
+      <h4>Peak ~560 cm⁻¹</h4>
+      <p>Corresponds to <strong>Co²⁺–O stretching</strong> in the tetrahedral (A-site) coordination environment.</p>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    <h3>Section Summary</h3>
+    <ul class="summary-list">
+      <li>Before heating: Multiple ligand peaks (NH₃, H₂O, NO₃⁻) confirm the precursor complex structure.</li>
+      <li>After heating: All ligand peaks vanish; Co–O peaks at 560–660 cm⁻¹ appear.</li>
+      <li>Two Co–O peaks arise from the two coordination environments in the spinel structure (Co²⁺ tetrahedral + Co³⁺ octahedral).</li>
+      <li>FT-IR is the primary tool for confirming synthesis success and phase purity by chemical bond identification.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== SECTION 6: IR COMPARISON ===================== -->
+<div class="section" id="ir-comparison">
+  <div class="section-header">
+    <div class="section-icon">⚖️</div>
+    <h2 class="section-title">6. Comparative IR Examples Across Metal Oxides</h2>
+  </div>
+
+  <p>Different metal oxide nanoparticles show characteristic M–O stretching peaks at slightly different positions, acting as a chemical "fingerprint":</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Metal Oxide</th>
+          <th>M–O Peak Position</th>
+          <th>Other Notable Peaks</th>
+          <th>What It Confirms</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>ZnO</strong></td>
+          <td>~450–500 cm⁻¹</td>
+          <td>~3400 cm⁻¹ (OH surface group)</td>
+          <td>Zn–O bond; zinc oxide nanoparticle formation</td>
+        </tr>
+        <tr>
+          <td><strong>Fe₂O₃</strong></td>
+          <td>~550–600 cm⁻¹</td>
+          <td>—</td>
+          <td>Fe–O bond; iron oxide (hematite) formation</td>
+        </tr>
+        <tr class="highlight-row">
+          <td><strong>Co₃O₄</strong></td>
+          <td>~560–660 cm⁻¹ (two peaks)</td>
+          <td>—</td>
+          <td>Co–O bond; cubic spinel structure confirmed</td>
+        </tr>
+        <tr>
+          <td><strong>TiO₂</strong></td>
+          <td>~400–700 cm⁻¹ (broad)</td>
+          <td>~1630 cm⁻¹ (OH)</td>
+          <td>Ti–O–Ti bonds; titania phase</td>
+        </tr>
+        <tr>
+          <td><strong>CuO</strong></td>
+          <td>~430–600 cm⁻¹</td>
+          <td>—</td>
+          <td>Cu–O bond; copper oxide formation</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box box-note">
+    <span class="box-label">📘 Note</span>
+    The exact position of M–O peaks can shift slightly based on particle size, crystallinity, and synthesis conditions. Nanoparticles often show slightly broadened or shifted peaks compared to bulk due to phonon confinement and surface effects.
+  </div>
+</div>
+
+<!-- ===================== SECTION 7: IR APPLICATIONS ===================== -->
+<div class="section" id="ir-applications">
+  <div class="section-header">
+    <div class="section-icon">🌐</div>
+    <h2 class="section-title">7. IR Spectroscopy — Applications in Nanoparticle Research</h2>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>💊 Medicine — Drug Delivery</h4>
+      <p>IR confirms <strong>surface functionalization</strong> of nanoparticles for targeted drug delivery. When a drug or targeting ligand is attached to a nanoparticle surface, new IR peaks appear. This verifies successful conjugation without chemically destroying the sample.</p>
+    </div>
+    <div class="card">
+      <h4>⚡ Energy — Solar Cells & Batteries</h4>
+      <p>IR verifies <strong>metal oxide composition in electrode materials</strong>. For example, in lithium-ion batteries, metal oxide electrode materials must have specific bonding confirmed by IR. Solar cell photoanodes (e.g., TiO₂, ZnO) are characterized by IR to confirm phase and surface groups.</p>
+    </div>
+    <div class="card">
+      <h4>🌿 Environment — Pollution Control</h4>
+      <p>IR identifies <strong>surface functional groups responsible for catalytic degradation</strong> of pollutants. Metal oxide nanoparticles used as photocatalysts are characterized by IR before and after degradation experiments to understand reaction mechanisms.</p>
+    </div>
+    <div class="card">
+      <h4>🔍 Sensors — Gas Detection</h4>
+      <p>IR confirms the <strong>surface chemistry of metal oxide gas sensors</strong>. Selective gas adsorption depends on surface –OH groups and metal–O bonds. IR characterizes these before and after gas exposure to understand sensing mechanisms.</p>
+    </div>
+    <div class="card">
+      <h4>✅ Synthesis Confirmation</h4>
+      <p>The most direct application — IR confirms that synthesis has proceeded correctly by showing the appearance of M–O peaks and disappearance of precursor ligand peaks. Acts as a quick quality control tool.</p>
+    </div>
+    <div class="card">
+      <h4>🔬 Studying Chemical Behavior</h4>
+      <p>In situ IR can monitor chemical reactions in real time as they happen on nanoparticle surfaces, revealing intermediates and reaction mechanisms in catalytic processes.</p>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    <h3>Section Summary — IR Spectroscopy Complete</h3>
+    <ul class="summary-list">
+      <li>IR spectroscopy is versatile: confirms synthesis, identifies surface chemistry, detects impurities, and studies reactions.</li>
+      <li>Applications span medicine, energy, environment, and sensors.</li>
+      <li>FT-IR is the standard modern implementation — fast, sensitive, non-destructive.</li>
+      <li>For Co₃O₄: peaks at 560–660 cm⁻¹ are the definitive signature.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== SECTION 8: TEM PRINCIPLES ===================== -->
+<div class="section" id="tem-principles">
+  <div class="section-header">
+    <div class="section-icon">🔭</div>
+    <h2 class="section-title">8. TEM — Principles & Background</h2>
+  </div>
+
+  <div class="box box-def">
+    <span class="box-label">🔷 Definition</span>
+    <strong>Transmission Electron Microscopy (TEM)</strong> is a microscopy technique in which a beam of high-energy electrons is transmitted through an ultra-thin specimen (typically &lt;100 nm thick). The interaction of electrons with the sample produces an image at atomic-level resolution — far beyond the capability of light microscopes.
+  </div>
+
+  <h3>Why Electrons, Not Light?</h3>
+  <p>The resolution of any microscope is fundamentally limited by the <strong>wavelength of the radiation used</strong> (Rayleigh criterion: resolution ≈ λ/2). Visible light has wavelengths of 400–700 nm, limiting resolution to ~200 nm. Electrons, when accelerated to high voltages, have much shorter de Broglie wavelengths:</p>
+
+  <div class="formula-block">
+    <div class="formula-name">de Broglie Wavelength of Electrons</div>
+    <div class="formula-main">λ = h / (mv) = h / √(2meV)</div>
+  </div>
+  <p style="font-size:0.88rem; color:var(--text-light); text-align:center;">At 100 kV accelerating voltage, λ ≈ 0.0037 nm — ~100,000× shorter than visible light!</p>
+
+  <div class="box box-note">
+    <span class="box-label">📘 Why TEM Needs Ultra-Thin Samples</span>
+    Electrons are easily stopped by matter (unlike X-rays). The sample must be thin enough (&lt;100 nm, ideally &lt;50 nm) for electrons to actually pass through and reach the detector. Thick samples cause too much scattering and produce no usable image.
+  </div>
+
+  <h3>Key Operating Parameters</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Parameter</th><th>Typical Value</th><th>Effect</th></tr></thead>
+      <tbody>
+        <tr><td>Accelerating Voltage</td><td>80–300 kV</td><td>Higher V → shorter λ → better resolution, but more beam damage</td></tr>
+        <tr><td>Sample Thickness</td><td>&lt;100 nm</td><td>Must be thin enough for electron transmission</td></tr>
+        <tr><td>Resolution</td><td>0.1–0.2 nm (HRTEM)</td><td>Atomic columns visible</td></tr>
+        <tr><td>Vacuum</td><td>~10⁻⁷ Torr</td><td>Prevents electron scattering by air molecules</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===================== SECTION 9: TEM IMAGE FORMATION ===================== -->
+<div class="section" id="tem-mechanism">
+  <div class="section-header">
+    <div class="section-icon">⚙️</div>
+    <h2 class="section-title">9. TEM — Working Principle & Image Formation</h2>
+  </div>
+
+  <h3>Step-by-Step Process Flow</h3>
+  <div class="instrument-diagram">
+    <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+      <div class="component-box">1. Electron Gun<br><small style="font-weight:400; color:var(--text-light)">Produces high-voltage electrons (thermionic or field emission)</small></div>
+      <div style="color:var(--purple-400); font-size:1.5rem;">↓</div>
+      <div class="component-box">2. Anode<br><small style="font-weight:400; color:var(--text-light)">Accelerates electrons to high voltage (80–300 kV)</small></div>
+      <div style="color:var(--purple-400); font-size:1.5rem;">↓</div>
+      <div class="component-box">3. Condenser Lenses<br><small style="font-weight:400; color:var(--text-light)">Focus and collimate the electron beam; condenser aperture limits beam</small></div>
+      <div style="color:var(--purple-400); font-size:1.5rem;">↓</div>
+      <div class="component-box">4. Ultra-Thin Sample (on Grid)<br><small style="font-weight:400; color:var(--text-light)">Electrons pass through; some are scattered, some transmitted</small></div>
+      <div style="color:var(--purple-400); font-size:1.5rem;">↓</div>
+      <div class="component-box">5. Objective Lens<br><small style="font-weight:400; color:var(--text-light)">Forms the first magnified image; objective aperture controls contrast</small></div>
+      <div style="color:var(--purple-400); font-size:1.5rem;">↓</div>
+      <div class="component-box">6. Selected Area Aperture<br><small style="font-weight:400; color:var(--text-light)">Selects specific area for diffraction (SAED)</small></div>
+      <div style="color:var(--purple-400); font-size:1.5rem;">↓</div>
+      <div class="component-box">7. Projector Lenses<br><small style="font-weight:400; color:var(--text-light)">Further magnify the image</small></div>
+      <div style="color:var(--purple-400); font-size:1.5rem;">↓</div>
+      <div class="component-box">8. Detectors / Viewing Screen / CCD Camera<br><small style="font-weight:400; color:var(--text-light)">BF, ADF, HAADF detectors; EELS spectrometer; CCD camera records image</small></div>
+    </div>
+  </div>
+
+  <h3>Mechanism of Image Formation — Contrast</h3>
+  <p>The contrast in a TEM image comes from differential scattering of electrons by the sample. Regions with <strong>more electrons (heavier atoms, thicker regions)</strong> scatter more electrons away from the beam, appearing <strong>dark</strong> (in bright-field mode). Regions with fewer electrons appear bright.</p>
+
+  <div class="signal-grid">
+    <div class="signal-card se">
+      <div class="signal-title">Elastic Scattering</div>
+      <span class="signal-badge" style="background:var(--purple-100); color:var(--purple-700);">Main imaging mechanism</span>
+      <p style="font-size:0.88rem;">Electrons change direction <strong>without energy loss</strong>. Creates image contrast. Forms the basis of bright-field and dark-field imaging.</p>
+    </div>
+    <div class="signal-card bse">
+      <div class="signal-title">Inelastic Scattering</div>
+      <span class="signal-badge" style="background:#dbeafe; color:#1e40af;">Diffraction & spectroscopy</span>
+      <p style="font-size:0.88rem;">Electrons lose energy to the sample (phonons, plasmons). Contributes to diffraction patterns (SAED) and EELS (Electron Energy Loss Spectroscopy).</p>
+    </div>
+    <div class="signal-card aug">
+      <div class="signal-title">Bright-Field (BF) Imaging</div>
+      <span class="signal-badge" style="background:#d1fae5; color:#065f46;">Standard imaging</span>
+      <p style="font-size:0.88rem;">Uses the <strong>direct transmitted beam</strong>. Dense/thick areas appear dark; empty/thin areas appear bright. Most common TEM mode.</p>
+    </div>
+    <div class="signal-card cl">
+      <div class="signal-title">Dark-Field (DF) Imaging</div>
+      <span class="signal-badge" style="background:#fed7aa; color:#9a3412;">Crystal features</span>
+      <p style="font-size:0.88rem;">Uses <strong>scattered/diffracted electrons</strong>. Crystalline regions satisfying diffraction conditions appear bright. Highlights crystal grains and defects.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION 10: TEM TYPES ===================== -->
+<div class="section" id="tem-types">
+  <div class="section-header">
+    <div class="section-icon">🔧</div>
+    <h2 class="section-title">10. Types of TEM Techniques</h2>
+  </div>
+
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>CTEM — Conventional TEM</h4>
+        <p>The standard TEM mode. Provides bright-field images of nanoparticle morphology, size, and distribution. Resolution typically 0.3–1 nm. Used for routine nanoparticle sizing and shape analysis.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>HRTEM — High-Resolution TEM</h4>
+        <p>Achieves sub-Ångström resolution. Can directly image <strong>atomic columns and crystal lattice planes</strong>. Phase contrast imaging. Essential for confirming crystal structure, measuring d-spacings, and studying defects at atomic scale. Requires aberration-corrected instruments for best results.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>SAED — Selected Area Electron Diffraction</h4>
+        <p>A diffraction pattern is obtained from a selected region of the sample. Produces rings (polycrystalline) or spots (single crystal). Ring patterns can be used to determine crystal structure and d-spacings — complementary to XRD but from nanoscale regions.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>STEM — Scanning Transmission EM</h4>
+        <p>A focused electron probe is scanned point by point across the sample (like SEM, but in transmission). STEM with HAADF (High-Angle Annular Dark-Field) detector gives Z-contrast imaging (heavier atoms appear brighter). Combined with EDS and EELS for elemental mapping at atomic scale.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box box-note">
+    <span class="box-label">📘 TEM vs SAED vs XRD</span>
+    SAED gives crystal structure information from a nanoscale region (same particle you are imaging), while XRD gives average structure from millions of particles in bulk powder. SAED is essential when you want to know the crystal structure of a specific individual nanoparticle.
+  </div>
+</div>
+
+<!-- ===================== SECTION 11: TEM RESULTS ===================== -->
+<div class="section" id="tem-results">
+  <div class="section-header">
+    <div class="section-icon">📸</div>
+    <h2 class="section-title">11. TEM Characterization Results: Co₃O₄ Nanoparticles</h2>
+  </div>
+
+  <h3>Observations from TEM Images</h3>
+  <div class="card-grid">
+    <div class="card card-purple">
+      <h4>Morphology</h4>
+      <p><strong>Spherical particles</strong>, approximately uniform in shape. Individual particles are clearly visible at high magnification.</p>
+    </div>
+    <div class="card card-purple">
+      <h4>Size Range</h4>
+      <p><strong>5–30 nm</strong> observed across multiple particles. Confirms true nanoscale dimensions.</p>
+    </div>
+    <div class="card card-purple">
+      <h4>Average Size</h4>
+      <p><strong>≈ 17.5 nm</strong> (average of multiple measurements). This is the <em>true particle size</em> — compared to the crystallite size from XRD.</p>
+    </div>
+    <div class="card card-purple">
+      <h4>Aggregation</h4>
+      <p>Some clustering of particles visible. This is less pronounced than in SEM because TEM images individual particles through the sample thickness.</p>
+    </div>
+  </div>
+
+  <div class="box box-success">
+    <span class="box-label">✅ TEM Conclusion</span>
+    TEM <strong>directly confirms</strong> the nanoscale size and near-spherical morphology of Co₃O₄ nanoparticles. Clear individual particles are visible, validating successful synthesis. The scale bar (25 nm) in the image directly demonstrates the nanoscale dimensions.
+  </div>
+
+  <h3>TEM vs XRD: Particle Size vs Crystallite Size</h3>
+  <div class="box box-note">
+    <span class="box-label">📘 Important Distinction</span>
+    <p><strong>TEM particle size</strong> = actual physical dimension of the whole nanoparticle as seen in the image.</p>
+    <p><strong>XRD crystallite size (Scherrer)</strong> = size of a single coherently diffracting crystal domain within the particle.</p>
+    <p>A nanoparticle may be a <strong>single crystal</strong> (TEM size ≈ XRD size) or may consist of <strong>multiple crystallite domains</strong> (TEM size > XRD size). Comparing both gives insight into internal crystal structure.</p>
+  </div>
+
+  <div class="summary-box">
+    <h3>Section Summary</h3>
+    <ul class="summary-list">
+      <li>TEM confirms spherical morphology of Co₃O₄ nanoparticles with size range 5–30 nm, average ~17.5 nm.</li>
+      <li>TEM provides direct visual evidence of individual nanoparticles — highest resolution of all four techniques.</li>
+      <li>TEM size and XRD crystallite size can differ if particles are polycrystalline.</li>
+      <li>HRTEM can additionally reveal lattice planes and confirm crystal structure visually.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== SECTION 12: TEM APPLICATIONS ===================== -->
+<div class="section" id="tem-applications">
+  <div class="section-header">
+    <div class="section-icon">🌐</div>
+    <h2 class="section-title">12. TEM — Applications</h2>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>📏 Size & Shape Determination</h4>
+      <p>Direct, real-space measurement of nanoparticle dimensions. Statistical analysis of size distributions. Confirms nanoscale nature claimed by other techniques.</p>
+    </div>
+    <div class="card">
+      <h4>🔬 Crystal Structure Analysis</h4>
+      <p>HRTEM reveals lattice fringes — direct imaging of atomic planes. Combined with SAED, determines crystal structure, orientation, and phase from individual particles.</p>
+    </div>
+    <div class="card">
+      <h4>⚡ Defects & Dislocations</h4>
+      <p>Study of grain boundaries, dislocations, stacking faults, and vacancies in nanomaterials. Essential for understanding mechanical and electronic properties.</p>
+    </div>
+    <div class="card">
+      <h4>🧪 Nanomaterial Characterization</h4>
+      <p>Carbon nanotubes, quantum dots, core-shell nanoparticles, composites — TEM is the gold standard for characterizing all nanoscale architectures and their internal structures.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION 13: SEM HISTORY ===================== -->
+<div class="section" id="sem-history">
+  <div class="section-header">
+    <div class="section-icon">🖥️</div>
+    <h2 class="section-title">13. SEM — History, Principle & Signal Types</h2>
+  </div>
+
+  <div class="box box-def">
+    <span class="box-label">🔷 Definition</span>
+    <strong>Scanning Electron Microscopy (SEM)</strong> is a technique that uses a focused beam of electrons <em>scanned across the surface</em> of a sample to produce detailed images of surface topography, morphology, and (with EDS) elemental composition. Unlike TEM, electrons do <strong>not</strong> pass through the sample — they interact with the surface and near-surface regions.
+  </div>
+
+  <h3>Historical Milestones</h3>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1942</div>
+      <h4>First SEM Prototype</h4>
+      <p>Vladimir Zworykin demonstrated the first working prototype SEM. Resolution was poor by today's standards, but the fundamental principle was established.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1965</div>
+      <h4>First Commercial SEM</h4>
+      <p>Cambridge Instruments (UK) launched the first commercially available SEM. This made the technique accessible to research laboratories worldwide and revolutionized materials science.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1980s</div>
+      <h4>Environmental SEM (ESEM)</h4>
+      <p>Environmental SEM was introduced, allowing wet, non-conductive, and biological samples to be imaged without requiring the vacuum conditions of conventional SEM or metallic coating.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Today</div>
+      <h4>Sub-nm Resolution & EDS/EBSD Integration</h4>
+      <p>Modern FE-SEM (Field Emission SEM) achieves sub-nanometer resolution. Integration with EDS (Energy Dispersive X-ray Spectroscopy) gives elemental maps, and EBSD (Electron Backscatter Diffraction) provides crystal orientation maps — enabling full compositional and structural analysis from a single instrument.</p>
+    </div>
+  </div>
+
+  <h3>Four Signal Types Produced by SEM</h3>
+  <p>When the electron beam strikes the sample, multiple types of signals are generated simultaneously:</p>
+
+  <div class="signal-grid">
+    <div class="signal-card se">
+      <div class="signal-title">Secondary Electrons (SE)</div>
+      <span class="signal-badge" style="background:var(--purple-100); color:var(--purple-700);">KE &lt; 50 eV</span>
+      <p style="font-size:0.88rem; margin-top:8px;">Generated near the surface (&lt;10 nm depth). Low energy. <strong>Most common SEM signal — used for topography imaging.</strong> High resolution. Emitted from regions directly under the beam.</p>
+    </div>
+    <div class="signal-card bse">
+      <div class="signal-title">Backscattered Electrons (BSE)</div>
+      <span class="signal-badge" style="background:#dbeafe; color:#1e40af;">KE &gt; 50 eV</span>
+      <p style="font-size:0.88rem; margin-top:8px;">Elastically reflected from deeper in the sample. <strong>Z-contrast: heavier elements → more BSE → appear brighter.</strong> Used for compositional contrast imaging. Lower resolution than SE.</p>
+    </div>
+    <div class="signal-card aug">
+      <div class="signal-title">Auger Electrons</div>
+      <span class="signal-badge" style="background:#d1fae5; color:#065f46;">Surface chemistry</span>
+      <p style="font-size:0.88rem; margin-top:8px;">Emitted from the outermost surface (1–3 nm). Element-specific energies. <strong>Combined with Auger Electron Spectroscopy (AES) for surface chemical analysis.</strong> Very surface-sensitive.</p>
+    </div>
+    <div class="signal-card cl">
+      <div class="signal-title">Cathodoluminescence (CL)</div>
+      <span class="signal-badge" style="background:#fed7aa; color:#9a3412;">Optical emission</span>
+      <p style="font-size:0.88rem; margin-top:8px;">Visible/UV photons emitted when excited electrons relax. <strong>Reveals band gaps, defects, and dopant distributions</strong> in semiconductors and minerals. Optical emission mapped spatially.</p>
+    </div>
+  </div>
+
+  <div class="box box-note">
+    <span class="box-label">📘 Also: X-Ray Signals (EDS/EDX)</span>
+    When the electron beam ionizes inner-shell electrons, characteristic X-rays are emitted as outer electrons fill the vacancies. These X-rays are characteristic of each element and are detected by <strong>EDS (Energy Dispersive X-ray Spectroscopy)</strong> to perform elemental analysis and mapping. This is an extremely important SEM add-on capability.
+  </div>
+</div>
+
+<!-- ===================== SECTION 14: SEM MECHANISM ===================== -->
+<div class="section" id="sem-mechanism">
+  <div class="section-header">
+    <div class="section-icon">⚙️</div>
+    <h2 class="section-title">14. SEM — Working Mechanism & Process Flow</h2>
+  </div>
+
+  <h3>Step-by-Step SEM Process</h3>
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Sample Preparation</h4>
+        <p>Clean, dry specimen is required. <strong>Non-conductive samples</strong> (like metal oxide nanoparticle powders) must be <strong>coated with a thin conductive layer (Au/Pd, ~10 nm)</strong> via sputter coating. This prevents charge accumulation that would distort the image. (Environmental SEM avoids this requirement.)</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Electron Generation</h4>
+        <p><strong>Thermionic emission</strong> (heated tungsten filament or LaB₆ crystal) or <strong>field emission</strong> (FE-SEM — sharp tip, no heating). Electrons are accelerated by a high-voltage anode (typically 1–30 kV for SEM).</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Beam Focusing</h4>
+        <p>Condenser lenses reduce (demagnify) the beam cross-section. Objective lens focuses the beam to a fine spot (1–20 nm diameter) on the sample surface. Condenser aperture controls beam current and coherence.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Raster Scanning</h4>
+        <p>X-Y scan coils (electromagnetic deflection coils) move the focused beam point by point across the sample surface in a raster (grid) pattern. The beam dwells at each point for a fraction of a millisecond.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Signal Detection</h4>
+        <p>SE signals are collected by an Everhart-Thornley (ET) detector (scintillator + photomultiplier). BSE signals by a solid-state detector above the sample. X-rays by an EDS detector. All signals are processed simultaneously.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Image Construction</h4>
+        <p>The intensity of the detected signal at each scan point is mapped to a pixel brightness value, constructing a greyscale SEM image. <strong>Higher signal intensity → brighter pixel → protruding surface features appear bright.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box box-warn">
+    <span class="box-label">⚠️ Common Mistake</span>
+    SEM images are <strong>NOT photographs</strong>. They are maps of electron signal intensity. The "3D" appearance comes from the angular dependence of SE emission — surfaces facing the detector emit more SE and appear brighter. The contrast is topographic, not photographic.
+  </div>
+</div>
+
+<!-- ===================== SECTION 15: SEM RESULTS ===================== -->
+<div class="section" id="sem-results">
+  <div class="section-header">
+    <div class="section-icon">📸</div>
+    <h2 class="section-title">15. SEM Characterization Results: Co₃O₄ Nanoparticles</h2>
+  </div>
+
+  <h3>Observations from SEM Images</h3>
+  <div class="card-grid">
+    <div class="card card-purple">
+      <h4>Particle Shape</h4>
+      <p><strong>Spherical morphology</strong> observed. Individual particles appear roughly rounded, consistent with TEM observations.</p>
+    </div>
+    <div class="card card-purple">
+      <h4>Aggregation</h4>
+      <p><strong>Highly aggregated (clustered) particles.</strong> Rather than clearly separated individual particles, clusters of nanoparticles are visible. This is <em>characteristic</em> of Co₃O₄ synthesis via thermal decomposition.</p>
+    </div>
+    <div class="card card-purple">
+      <h4>Structure</h4>
+      <p><strong>Porous structure</strong> formed after thermal decomposition. The release of gases (NH₃, H₂O, NO₂) during decomposition creates pores and channels in the particle aggregates.</p>
+    </div>
+    <div class="card card-purple">
+      <h4>Scale</h4>
+      <p>Scale bar of <strong>300 nm</strong> in the SEM image. At this magnification, individual particles (~17.5 nm average) are not always clearly resolvable, but the aggregate morphology and overall structure are well-characterized.</p>
+    </div>
+  </div>
+
+  <div class="box box-success">
+    <span class="box-label">✅ SEM Conclusion</span>
+    SEM reveals the <strong>surface morphology and aggregation behavior</strong> of Co₃O₄, confirming porous, clustered morphology typical of thermal decomposition synthesis. The clusters arise from particle-particle interaction and sintering during heating. SEM complements TEM — while TEM shows individual particle size, SEM shows how particles aggregate in bulk.
+  </div>
+
+  <h3>SEM vs TEM — Why Different Views?</h3>
+  <div class="compare-grid">
+    <div class="compare-card compare-before">
+      <h4>SEM View of Co₃O₄</h4>
+      <ul style="font-size:0.9rem; padding-left:18px;">
+        <li>Shows clusters and aggregates</li>
+        <li>Surface topography visible</li>
+        <li>Porous network apparent</li>
+        <li>Individual nanoparticles less distinct</li>
+        <li>3D-like surface appearance</li>
+      </ul>
+    </div>
+    <div class="compare-card compare-after">
+      <h4>TEM View of Co₃O₄</h4>
+      <ul style="font-size:0.9rem; padding-left:18px;">
+        <li>Individual nanoparticles clearly visible</li>
+        <li>Size and shape measurable directly</li>
+        <li>2D projection through sample</li>
+        <li>Internal structure accessible</li>
+        <li>Higher resolution but needs thin sample</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    <h3>Section Summary</h3>
+    <ul class="summary-list">
+      <li>Co₃O₄ SEM shows highly aggregated, porous clusters of spherical nanoparticles.</li>
+      <li>Aggregation is caused by particle-particle attractions and sintering during thermal decomposition.</li>
+      <li>Porous structure arises from gas evolution (NH₃, H₂O, NO₂) during synthesis.</li>
+      <li>SEM provides surface morphology and bulk aggregation information complementary to TEM's individual particle imaging.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== SECTION 16: SEM APPLICATIONS ===================== -->
+<div class="section" id="sem-applications">
+  <div class="section-header">
+    <div class="section-icon">🌐</div>
+    <h2 class="section-title">16. SEM — Applications Across Disciplines</h2>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>⚙️ Materials Science</h4>
+      <ul style="padding-left:18px; font-size:0.9rem;">
+        <li>Fracture surface & failure analysis</li>
+        <li>Thin film and coating characterization</li>
+        <li>Corrosion studies</li>
+        <li>Semiconductor device inspection</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>🧬 Life Sciences</h4>
+      <ul style="padding-left:18px; font-size:0.9rem;">
+        <li>Cell and tissue ultrastructure</li>
+        <li>Biofilm and bacterial morphology</li>
+        <li>Nanoparticle–cell interactions</li>
+        <li>Bone and dental microstructure</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>🔍 Forensic Sciences</h4>
+      <ul style="padding-left:18px; font-size:0.9rem;">
+        <li>Gunshot residue (GSR) analysis</li>
+        <li>Document and paint layer analysis</li>
+        <li>Fiber and textile identification</li>
+        <li>Counterfeit currency examination</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>🌍 Geosciences</h4>
+      <ul style="padding-left:18px; font-size:0.9rem;">
+        <li>Mineral and rock microstructure</li>
+        <li>Soil particle characterization</li>
+        <li>Fossil analysis</li>
+        <li>Sediment grain morphology</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION 17: XRD PRINCIPLES ===================== -->
+<div class="section" id="xrd-principles">
+  <div class="section-header">
+    <div class="section-icon">📊</div>
+    <h2 class="section-title">17. XRD — Principles, Background & History</h2>
+  </div>
+
+  <div class="box box-def">
+    <span class="box-label">🔷 Definition</span>
+    <strong>X-Ray Diffraction (XRD)</strong> is a non-destructive analytical technique that determines the crystallographic structure, chemical composition, and physical properties of solid crystalline materials by measuring the diffraction of X-rays by crystal planes. It provides a unique "fingerprint" pattern for each crystalline phase.
+  </div>
+
+  <h3>Historical Discovery</h3>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1912</div>
+      <h4>Max von Laue — First XRD Observation</h4>
+      <p>Max von Laue first observed X-ray diffraction from a crystal of copper sulfate. He proposed that crystals, with their regular atomic arrangement, could act as a diffraction grating for X-rays. This earned him the Nobel Prize in Physics (1914).</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1913</div>
+      <h4>W.H. Bragg & W.L. Bragg — Bragg's Law</h4>
+      <p>Father and son William Henry and William Lawrence Bragg formulated <strong>Bragg's Law (nλ = 2d sinθ)</strong>, providing a simple mathematical description of the conditions for constructive interference of diffracted X-rays. They shared the Nobel Prize in Physics (1915) — William Lawrence Bragg remains the youngest Nobel laureate in Physics at age 25.</p>
+    </div>
+  </div>
+
+  <h3>Why X-Rays for Crystals?</h3>
+  <div class="box box-note">
+    <span class="box-label">📘 Key Physical Insight</span>
+    X-rays have wavelengths in the range <strong>0.01–10 Å (0.001–1 nm)</strong>. The interatomic spacings in crystals are typically <strong>1–5 Å</strong>. Because the wavelength of X-rays is <em>comparable to</em> the spacing between atomic planes, crystals act as 3D diffraction gratings for X-rays — producing measurable diffraction patterns from which structure can be determined.
+  </div>
+
+  <h3>How Crystals Diffract X-Rays</h3>
+  <p>A crystalline material consists of atoms arranged in a periodic, repeating 3D lattice. X-rays scattered by atoms in adjacent planes can <strong>interfere constructively or destructively</strong>:</p>
+
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>X-Rays Hit Crystal</h4>
+        <p>An incident X-ray beam strikes the crystal surface at angle θ (Bragg angle). Parallel rays hit successive parallel atomic planes separated by distance <em>d</em> (d-spacing).</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Scattering from Planes</h4>
+        <p>Each atomic plane reflects a fraction of the X-ray beam. The beam reflected from the lower plane travels an extra path length of <strong>2d sinθ</strong> compared to the beam reflected from the upper plane.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Constructive Interference → Diffraction Peak</h4>
+        <p>When the extra path length equals a whole number of wavelengths (nλ), the two reflected beams are <strong>in phase</strong> → constructive interference → a diffraction peak is recorded at angle 2θ. At all other angles, destructive interference occurs and no peak is observed.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box box-note">
+    <span class="box-label">📘 Non-Destructive Advantage</span>
+    XRD is completely non-destructive — the X-rays scatter from the sample without altering it chemically or structurally. The same sample can be used for multiple measurements and other techniques.
+  </div>
+</div>
+
+<!-- ===================== SECTION 18: BRAGG'S LAW ===================== -->
+<div class="section" id="braggs-law">
+  <div class="section-header">
+    <div class="section-icon">📐</div>
+    <h2 class="section-title">18. Bragg's Law — Deep Dive</h2>
+  </div>
+
+  <div class="formula-block">
+    <div class="formula-name">Bragg's Law</div>
+    <div class="formula-main">nλ = 2d sinθ</div>
+  </div>
+
+  <h3>Variable-by-Variable Explanation</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Name</th>
+          <th>Units</th>
+          <th>Physical Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>n</strong></td>
+          <td>Order of diffraction</td>
+          <td>Integer (1, 2, 3...)</td>
+          <td>Number of wavelengths in the path difference. Usually n=1 (first order) in practice.</td>
+        </tr>
+        <tr>
+          <td><strong>λ</strong></td>
+          <td>X-ray wavelength</td>
+          <td>Å or nm</td>
+          <td>Fixed by the X-ray source. Cu Kα = 1.54 Å (most common). Mo Kα = 0.71 Å.</td>
+        </tr>
+        <tr>
+          <td><strong>d</strong></td>
+          <td>Interplanar d-spacing</td>
+          <td>Å</td>
+          <td>Distance between adjacent parallel crystal planes (hkl). Unique for each crystal phase → "fingerprint".</td>
+        </tr>
+        <tr>
+          <td><strong>θ</strong></td>
+          <td>Bragg angle</td>
+          <td>degrees</td>
+          <td>Angle between the incident X-ray beam and the crystal plane surface. (Note: the detector records at <strong>2θ</strong>.)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Deriving Bragg's Law — Geometric Proof</h3>
+  <div class="card">
+    <p>Consider two parallel X-ray beams (Wave 1 and Wave 2) hitting parallel crystal planes (separated by d) at angle θ:</p>
+    <ol style="padding-left:20px; font-size:0.93rem; line-height:2;">
+      <li>Wave 1 reflects from the top plane. Wave 2 hits the bottom plane at point B, reflects, and returns.</li>
+      <li>The extra distance traveled by Wave 2 = path ABC = BC + CB.</li>
+      <li>From geometry: BC = d sinθ, so path difference = <strong>2d sinθ</strong>.</li>
+      <li>For constructive interference: path difference = whole number of wavelengths → <strong>2d sinθ = nλ</strong>.</li>
+    </ol>
+    <div class="box box-formula" style="margin-top:12px;">
+      <span class="box-label">Therefore</span>
+      nλ = 2d sinθ &nbsp;(Bragg's Law) — condition for diffraction peak to appear.
+    </div>
+  </div>
+
+  <h3>Practical Use: Calculating d-Spacing</h3>
+  <p>From experimental XRD data (measured 2θ values and known λ), the d-spacing is calculated:</p>
+  <div class="formula-block">
+    <div class="formula-name">d-spacing from Bragg's Law</div>
+    <div class="formula-main">d = nλ / (2 sinθ)</div>
+  </div>
+
+  <div class="box box-note">
+    <span class="box-label">📘 XRD Pattern = Fingerprint</span>
+    Each crystalline material has a unique set of d-spacings (determined by its unit cell dimensions and atomic arrangement). The XRD pattern (plot of intensity vs 2θ) is therefore a unique fingerprint for each phase. This pattern is compared against the <strong>ICDD PDF-4 database</strong> (International Centre for Diffraction Data) for phase identification.
+  </div>
+
+  <h3>Miller Indices (hkl) and Crystal Planes</h3>
+  <p>Each set of parallel crystal planes is described by <strong>Miller indices (hkl)</strong> — three integers that specify the plane orientation relative to the unit cell axes. In XRD, peaks are labeled by their (hkl) indices (e.g., (311), (220), (400) for Co₃O₄).</p>
+  <div class="box box-note">
+    <span class="box-label">📘 Co₃O₄ XRD Peaks</span>
+    The XRD pattern of Co₃O₄ shows characteristic peaks at 2θ positions labeled: (111), (220), (311), (222), (400), (422), (511), (440), (533). The (311) peak is the most intense — used as the primary identification peak. These match the cubic spinel structure (Fd3̄m space group).
+  </div>
+</div>
+
+<!-- ===================== SECTION 19: SCHERRER EQUATION ===================== -->
+<div class="section" id="scherrer">
+  <div class="section-header">
+    <div class="section-icon">📏</div>
+    <h2 class="section-title">19. The Scherrer Equation — Crystallite Size from XRD</h2>
+  </div>
+
+  <div class="formula-block">
+    <div class="formula-name">Scherrer Equation</div>
+    <div class="formula-main">D = Kλ / (β cosθ)</div>
+  </div>
+
+  <h3>Variable-by-Variable Explanation</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Name</th>
+          <th>Value/Units</th>
+          <th>Physical Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>D</strong></td>
+          <td>Crystallite size</td>
+          <td>nm</td>
+          <td>The average size of coherently diffracting crystal domains. This is the XRD "crystallite size" — may differ from TEM particle size.</td>
+        </tr>
+        <tr>
+          <td><strong>K</strong></td>
+          <td>Scherrer shape factor</td>
+          <td>~0.89–1.0 (dimensionless)</td>
+          <td>Depends on crystal shape. K = 0.9 is standard for spherical particles with FWHM. K = 1.0 for cubic crystallites.</td>
+        </tr>
+        <tr>
+          <td><strong>λ</strong></td>
+          <td>X-ray wavelength</td>
+          <td>nm (or Å)</td>
+          <td>Same as in Bragg's Law. Cu Kα = 0.154 nm.</td>
+        </tr>
+        <tr>
+          <td><strong>β</strong></td>
+          <td>Peak broadening (FWHM)</td>
+          <td>radians</td>
+          <td>Full Width at Half Maximum of the diffraction peak in radians. <strong>Smaller D → broader peak → larger β.</strong></td>
+        </tr>
+        <tr>
+          <td><strong>θ</strong></td>
+          <td>Bragg angle</td>
+          <td>degrees (convert to radians for β)</td>
+          <td>Half the 2θ position of the peak center.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Why Does Peak Broadening Indicate Smaller Crystallites?</h3>
+  <div class="box box-note">
+    <span class="box-label">📘 Physical Explanation</span>
+    In a very large crystal, many atomic planes contribute to diffraction. Rays from each plane must cancel at angles slightly off the Bragg angle — requiring many planes for complete destructive interference. For a <strong>small crystallite</strong>, there are fewer planes, so destructive interference at off-Bragg angles is incomplete → diffraction persists over a broader angular range → <strong>broader peak (larger β)</strong>.
+    <br><br>
+    Think of it like this: <strong>larger crystallite = sharper peak; smaller crystallite = broader peak.</strong>
+  </div>
+
+  <h3>Important Limitations of the Scherrer Equation</h3>
+  <div class="box box-warn">
+    <span class="box-label">⚠️ Limitations</span>
+    <ul style="padding-left:18px; margin-top:6px; font-size:0.93rem;">
+      <li>Gives <strong>crystallite size</strong>, not particle size. A particle can contain multiple crystallites.</li>
+      <li>Peak broadening also arises from <strong>microstrain</strong> (lattice distortions). The Scherrer equation ignores strain. The <strong>Williamson-Hall plot</strong> separates size and strain contributions.</li>
+      <li>Only valid for crystallite sizes roughly <strong>2–100 nm</strong>. Above this range, peaks are too sharp for meaningful FWHM measurement.</li>
+      <li>Assumes no instrumental broadening (must subtract instrument contribution from β).</li>
+    </ul>
+  </div>
+
+  <h3>Example Calculation</h3>
+  <div class="card card-purple">
+    <h4>Sample Calculation — Co₃O₄</h4>
+    <p>For the (311) peak of Co₃O₄ (most intense peak in the XRD pattern):</p>
+    <ul style="padding-left:18px; font-size:0.93rem; line-height:1.9;">
+      <li>λ = 0.154 nm (Cu Kα)</li>
+      <li>2θ ≈ 36.8° → θ ≈ 18.4° → cosθ ≈ 0.949</li>
+      <li>β (FWHM) ≈ measured from the peak (example: 0.6° = 0.01047 rad)</li>
+      <li>K = 0.9</li>
+      <li>D = (0.9 × 0.154) / (0.01047 × 0.949) = 0.1386 / 0.00994 ≈ <strong>13.9 nm</strong></li>
+    </ul>
+    <p style="font-size:0.85rem; color:var(--text-light);">This crystallite size should be compared with the TEM average particle size (~17.5 nm) — if XRD < TEM, particles may be polycrystalline.</p>
+  </div>
+
+  <div class="summary-box">
+    <h3>Section Summary</h3>
+    <ul class="summary-list">
+      <li>Scherrer equation: D = Kλ / (β cosθ) — calculates crystallite size from XRD peak broadening.</li>
+      <li>Smaller crystallites → broader peaks (larger β).</li>
+      <li>K ≈ 0.9 for spherical particles; λ = X-ray wavelength; β in radians; θ = Bragg angle.</li>
+      <li>Detects nanocrystalline materials in the 2–100 nm range.</li>
+      <li>Limitations: does not include microstrain; gives crystallite not particle size.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== SECTION 20: XRD SETUP ===================== -->
+<div class="section" id="xrd-setup">
+  <div class="section-header">
+    <div class="section-icon">🔧</div>
+    <h2 class="section-title">20. XRD — Experimental Setup</h2>
+  </div>
+
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>X-Ray Tube (Source)</h4>
+        <p>Cu or Mo anode generates <strong>bremsstrahlung (broad continuous) + characteristic X-rays</strong>. Most common: Cu anode → <strong>Cu Kα radiation at λ = 1.54 Å (0.154 nm)</strong>. The characteristic Kα line is produced when an outer electron fills the vacancy left by inner-shell (K-shell) electron ejection.</p>
+        <div class="box box-note" style="margin-top:8px;">
+          <span class="box-label">📘 Why Cu Kα?</span>
+          Copper is cheap, produces intense characteristic X-rays, and the 1.54 Å wavelength is ideal for most d-spacings in common materials (1–5 Å). Mo Kα (0.71 Å) is used for hard-to-penetrate materials.
+        </div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Monochromator</h4>
+        <p>Selects a <strong>single wavelength</strong> (Kα line) from the polychromatic X-ray beam. Uses a <strong>graphite crystal</strong> or a <strong>nickel filter</strong>. Reduces background noise and eliminates unwanted wavelengths (Kβ, bremsstrahlung). Essential for accurate peak positions and d-spacing calculations.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Sample Stage (Goniometer)</h4>
+        <p>The <strong>goniometer</strong> is a precision rotation mechanism that controls the angle θ. For powder XRD: the sample is a finely ground powder pressed onto a flat holder. For single crystal: mounted on a spindle. The goniometer rotates at precise angles to systematically scan through all Bragg conditions (θ–2θ scan).</p>
+        <div class="box box-note" style="margin-top:8px;">
+          <span class="box-label">📘 Powder vs Single Crystal XRD</span>
+          <strong>Powder XRD</strong> (most common for nanoparticles): Randomly oriented crystallites ensure all crystal planes are simultaneously presented at their Bragg angles during the scan → produces rings in 2D, plotted as 1D pattern.
+          <strong>Single crystal XRD</strong>: Measures specific reflections — used for full structure determination.
+        </div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Detector</h4>
+        <p><strong>Scintillator counter</strong> (NaI crystal + photomultiplier) or modern <strong>CCD array / position-sensitive detector</strong>. Records <strong>2θ vs intensity</strong>. Position-sensitive detectors collect multiple angles simultaneously, dramatically reducing scan time. Dynamic range &gt;10⁸ (can detect both weak and strong peaks simultaneously).</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>The θ–2θ Scan</h3>
+  <p>In a standard powder XRD scan:</p>
+  <ul style="padding-left:24px; font-size:0.93rem; line-height:1.9;">
+    <li>The X-ray source is fixed (or moves) and the detector moves to twice the angle of the sample (2θ geometry).</li>
+    <li>As 2θ is scanned from ~10° to 80°, diffraction peaks appear at angles satisfying Bragg's Law for each family of crystal planes (hkl).</li>
+    <li>The result is a diffractogram (intensity vs 2θ) — the XRD pattern.</li>
+  </ul>
+</div>
+
+<!-- ===================== SECTION 21: XRD RESULTS ===================== -->
+<div class="section" id="xrd-results">
+  <div class="section-header">
+    <div class="section-icon">📈</div>
+    <h2 class="section-title">21. XRD Results: Co₃O₄ Nanoparticles</h2>
+  </div>
+
+  <h3>XRD Pattern Analysis (Figure 3 from Reference)</h3>
+  <p>XRD patterns were recorded for Co₃O₄ nanoparticles at two decomposition temperatures: <strong>150°C (a) and 175°C (b)</strong>.</p>
+
+  <div class="card-grid-2">
+    <div class="card">
+      <h4>Pattern (a) — 150°C</h4>
+      <p>All characteristic Co₃O₄ peaks present. Peaks appear with moderate sharpness. All expected (hkl) reflections of cubic spinel visible: <strong>(111), (220), (311), (222), (400), (422), (511), (440), (533)</strong>.</p>
+    </div>
+    <div class="card">
+      <h4>Pattern (b) — 175°C</h4>
+      <p>Same peak positions, but peaks are <strong>sharper and more intense</strong>. Sharper peaks indicate <strong>larger, more crystalline domains</strong> at higher decomposition temperature. Higher crystallinity = better-ordered structure.</p>
+    </div>
+  </div>
+
+  <div class="box box-success">
+    <span class="box-label">✅ Phase Identification</span>
+    All peaks in both patterns match perfectly with the reference pattern for <strong>Co₃O₄ cubic spinel structure</strong> (JCPDS card / ICDD database entry). No impurity peaks are present → <strong>phase-pure Co₃O₄</strong> confirmed. The characteristic (311) peak at 2θ ≈ 36.8° is the strongest peak.
+  </div>
+
+  <h3>Miller Indices and Co₃O₄ Spinel Structure</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Miller Indices (hkl)</th>
+          <th>Approximate 2θ (Cu Kα)</th>
+          <th>Relative Intensity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>(111)</td><td>~19°</td><td>Weak</td></tr>
+        <tr><td>(220)</td><td>~31°</td><td>Medium</td></tr>
+        <tr class="highlight-row"><td><strong>(311)</strong></td><td><strong>~36.8°</strong></td><td><strong>Strongest (100%)</strong></td></tr>
+        <tr><td>(222)</td><td>~38°</td><td>Weak</td></tr>
+        <tr><td>(400)</td><td>~44.8°</td><td>Medium</td></tr>
+        <tr><td>(422)</td><td>~55.6°</td><td>Medium</td></tr>
+        <tr><td>(511)</td><td>~59.4°</td><td>Medium</td></tr>
+        <tr><td>(440)</td><td>~65.2°</td><td>Medium</td></tr>
+        <tr><td>(533)</td><td>~77.3°</td><td>Weak</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box box-note">
+    <span class="box-label">📘 Spinel Structure Confirmed</span>
+    The set of allowed reflections (determined by the extinction rules for the face-centered cubic Fd3̄m space group of Co₃O₄ spinel) match perfectly — confirming not just the composition but the <strong>crystal structure type</strong>. This is more information than any other technique provides.
+  </div>
+
+  <div class="summary-box">
+    <h3>Section Summary</h3>
+    <ul class="summary-list">
+      <li>XRD confirms phase-pure Co₃O₄ (cubic spinel) at both 150°C and 175°C decomposition temperatures.</li>
+      <li>Peaks match (111), (220), (311), (222), (400), (422), (511), (440), (533) reflections of Co₃O₄.</li>
+      <li>Higher temperature → sharper, more intense peaks → higher crystallinity.</li>
+      <li>Scherrer equation applied to peak broadening gives crystallite size for comparison with TEM particle size.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== SECTION 22: XRD APPLICATIONS ===================== -->
+<div class="section" id="xrd-applications">
+  <div class="section-header">
+    <div class="section-icon">🌐</div>
+    <h2 class="section-title">22. XRD — Applications</h2>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>🔍 Phase Identification</h4>
+      <p>Unique diffraction fingerprints identify crystalline phases — matched against ICDD PDF-4 database containing &gt;900,000 reference patterns. Examples: Quartz vs Calcite vs Gypsum; Rutile vs Anatase TiO₂; α-Fe₂O₃ vs Fe₃O₄.</p>
+    </div>
+    <div class="card">
+      <h4>🔬 Crystal Structure Determination</h4>
+      <p>Solve unit cell dimensions (a, b, c) and angles (α, β, γ). <strong>Rietveld refinement</strong> uses the entire diffraction pattern to determine atom positions, occupancies, and thermal parameters. Full structural analysis without single crystals.</p>
+    </div>
+    <div class="card">
+      <h4>📏 Crystallite Size & Microstrain</h4>
+      <p><strong>Scherrer equation</strong> for crystallite size. <strong>Williamson-Hall analysis</strong> separates size and microstrain contributions. Detects nanocrystalline materials (2–100 nm). Monitors grain growth during annealing.</p>
+    </div>
+    <div class="card">
+      <h4>💊 Industrial & Pharmaceutical</h4>
+      <p>QC of API (Active Pharmaceutical Ingredient) polymorphs in drug manufacturing — different crystal forms have different solubility and bioavailability. Monitoring cement hydration phases. Steel heat treatment analysis and alloy QC.</p>
+    </div>
+    <div class="card">
+      <h4>🌡️ In-Situ & High-Temperature XRD</h4>
+      <p>Monitor phase transformations in real time as temperature changes. Study thermal decomposition (as in this Co₃O₄ study). Observe reactions under applied pressure or gas environments.</p>
+    </div>
+    <div class="card">
+      <h4>🔋 Energy Materials</h4>
+      <p>Characterize battery electrode materials, fuel cell catalysts, photovoltaic absorber layers. Monitor structural changes during charge/discharge cycles in batteries.</p>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    <h3>Section Summary — XRD Complete</h3>
+    <ul class="summary-list">
+      <li>XRD is the definitive technique for crystal structure and phase identification.</li>
+      <li>Bragg's Law (nλ = 2d sinθ) governs diffraction — peaks appear only at specific 2θ angles.</li>
+      <li>Scherrer equation (D = Kλ/β cosθ) extracts crystallite size from peak broadening.</li>
+      <li>XRD is non-destructive, accurate, and backed by a massive reference database (ICDD).</li>
+      <li>Applications span pharmaceuticals, materials science, energy, and geology.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== SECTION 23: SEM vs TEM COMPARISON ===================== -->
+<div class="section" id="sem-tem-compare">
+  <div class="section-header">
+    <div class="section-icon">⚖️</div>
+    <h2 class="section-title">23. Comprehensive Technique Comparison</h2>
+  </div>
+
+  <h3>SEM vs TEM — Key Differences</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>SEM</th>
+          <th>TEM</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Electron Interaction</strong></td>
+          <td>Scanned across the <em>surface</em></td>
+          <td><em>Transmitted through</em> the sample</td>
+        </tr>
+        <tr>
+          <td><strong>Sample Preparation</strong></td>
+          <td>Clean, dry; conductive coating often needed</td>
+          <td>Must be ultra-thin (&lt;100 nm); extensive prep</td>
+        </tr>
+        <tr>
+          <td><strong>Resolution</strong></td>
+          <td>1–20 nm (surface features)</td>
+          <td>0.1–0.2 nm (atomic resolution with HRTEM)</td>
+        </tr>
+        <tr>
+          <td><strong>Information</strong></td>
+          <td>Surface topography, morphology, aggregation</td>
+          <td>Internal structure, true size, crystal lattice</td>
+        </tr>
+        <tr>
+          <td><strong>Image Type</strong></td>
+          <td>3D-like surface appearance</td>
+          <td>2D projection through sample</td>
+        </tr>
+        <tr>
+          <td><strong>Elemental Analysis</strong></td>
+          <td>EDS (energy dispersive spectroscopy) add-on</td>
+          <td>EDS + EELS (electron energy loss spectroscopy)</td>
+        </tr>
+        <tr>
+          <td><strong>Depth Probed</strong></td>
+          <td>~1–10 nm (SE) to ~1 µm (BSE)</td>
+          <td>Full sample thickness (if thin enough)</td>
+        </tr>
+        <tr>
+          <td><strong>Co₃O₄ Observation</strong></td>
+          <td>Aggregated porous clusters, spherical shape</td>
+          <td>Individual spherical particles, 5–30 nm, avg 17.5 nm</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>All Four Techniques — Master Comparison</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Technique</th>
+          <th>Probe</th>
+          <th>Sample Requirement</th>
+          <th>Information Provided</th>
+          <th>Co₃O₄ Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>FT-IR</strong></td>
+          <td>Infrared photons</td>
+          <td>KBr pellet or ATR; powder or film</td>
+          <td>Chemical bonds, functional groups, ligands</td>
+          <td>Co–O peaks at 560–660 cm⁻¹; no ligands = pure product</td>
+        </tr>
+        <tr>
+          <td><strong>TEM</strong></td>
+          <td>High-energy electrons (transmitted)</td>
+          <td>Ultra-thin (&lt;100 nm) on TEM grid</td>
+          <td>True particle size, morphology, crystal lattice (HRTEM), crystal structure (SAED)</td>
+          <td>Spherical, 5–30 nm, avg 17.5 nm</td>
+        </tr>
+        <tr>
+          <td><strong>SEM</strong></td>
+          <td>Focused electrons (surface interaction)</td>
+          <td>Dry, conductive-coated specimen</td>
+          <td>Surface topography, morphology, aggregation, composition (EDS)</td>
+          <td>Highly aggregated porous clusters, spherical shape</td>
+        </tr>
+        <tr>
+          <td><strong>XRD</strong></td>
+          <td>X-rays (diffracted by crystal planes)</td>
+          <td>Powder or thin film, no special prep</td>
+          <td>Phase identity, crystal structure, d-spacings, crystallite size</td>
+          <td>Phase-pure Co₃O₄ cubic spinel; crystallite size from Scherrer</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box box-note">
+    <span class="box-label">📘 The Power of Combining Techniques</span>
+    <ul style="padding-left:18px; margin-top:6px; font-size:0.93rem; line-height:1.8;">
+      <li><strong>IR tells us WHAT it is chemically</strong> (Co–O bonds confirmed, no ligands).</li>
+      <li><strong>XRD tells us its CRYSTAL STRUCTURE</strong> (cubic spinel Co₃O₄, phase pure).</li>
+      <li><strong>TEM tells us the TRUE SIZE and SHAPE</strong> of individual particles.</li>
+      <li><strong>SEM tells us how particles AGGREGATE and the SURFACE MORPHOLOGY</strong>.</li>
+      <li>Together → complete characterization of the nanomaterial.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== MASTER REVISION SHEET ===================== -->
+<div class="master-revision" id="master-summary">
+  <h2>🎯 Master Revision Sheet</h2>
+  <div class="master-grid">
+
+    <div class="master-card">
+      <h4>📡 IR Spectroscopy</h4>
+      <ul>
+        <li>Measures bond vibration via IR absorption</li>
+        <li>Needs dipole change to absorb</li>
+        <li>Metal–O bonds: 400–700 cm⁻¹</li>
+        <li>OH/H₂O: ~3200–3600 cm⁻¹</li>
+        <li>NH₃: ~3300 cm⁻¹, 1600 cm⁻¹</li>
+        <li>NO₃⁻: ~1380 cm⁻¹, ~820 cm⁻¹</li>
+        <li>FT-IR = modern standard (fast, sensitive)</li>
+        <li>Confirms synthesis by ligand disappearance</li>
+      </ul>
+    </div>
+
+    <div class="master-card">
+      <h4>Co₃O₄ — IR Results</h4>
+      <ul>
+        <li>Before heating: NH₃, H₂O, NO₃⁻ peaks</li>
+        <li>After heating (150/175°C): all ligands gone</li>
+        <li>Co–O peaks at 560 cm⁻¹ and 660 cm⁻¹</li>
+        <li>Two peaks = two Co coordination sites</li>
+        <li>660 cm⁻¹ → Co³⁺–O (octahedral)</li>
+        <li>560 cm⁻¹ → Co²⁺–O (tetrahedral)</li>
+        <li>Cubic spinel structure confirmed</li>
+      </ul>
+    </div>
+
+    <div class="master-card">
+      <h4>🔭 TEM</h4>
+      <ul>
+        <li>Electrons transmitted through ultra-thin sample</li>
+        <li>Resolution: 0.1–0.2 nm (atomic)</li>
+        <li>Elastic scatter → image contrast</li>
+        <li>Inelastic scatter → diffraction/EELS</li>
+        <li>BF: transmitted beam; DF: scattered beam</li>
+        <li>Types: CTEM, HRTEM, SAED, STEM</li>
+        <li>Sample must be &lt;100 nm thick</li>
+      </ul>
+    </div>
+
+    <div class="master-card">
+      <h4>Co₃O₄ — TEM Results</h4>
+      <ul>
+        <li>Morphology: spherical particles</li>
+        <li>Size range: 5–30 nm</li>
+        <li>Average size: ~17.5 nm</li>
+        <li>Clear individual particles visible</li>
+        <li>Nanoscale size directly confirmed</li>
+        <li>TEM size ≠ XRD crystallite size (if polycrystalline)</li>
+      </ul>
+    </div>
+
+    <div class="master-card">
+      <h4>🖥️ SEM</h4>
+      <ul>
+        <li>Electrons scanned across surface</li>
+        <li>Detects electrons that "bounce off"</li>
+        <li>SE (&lt;50 eV): topography imaging</li>
+        <li>BSE (&gt;50 eV): composition contrast</li>
+        <li>Auger: surface chemistry</li>
+        <li>CL: optical emission mapping</li>
+        <li>History: 1942 Zworykin → 1965 commercial</li>
+        <li>ESEM: wet samples (1980s)</li>
+      </ul>
+    </div>
+
+    <div class="master-card">
+      <h4>Co₃O₄ — SEM Results</h4>
+      <ul>
+        <li>Spherical morphology</li>
+        <li>Highly aggregated clusters</li>
+        <li>Porous structure (gas evolved during decomposition)</li>
+        <li>Individual particles less distinct than TEM</li>
+        <li>Scale bar: 300 nm in image</li>
+        <li>Complements TEM — bulk aggregate view</li>
+      </ul>
+    </div>
+
+    <div class="master-card">
+      <h4>📊 XRD</h4>
+      <ul>
+        <li>X-rays diffracted by crystal planes</li>
+        <li>Bragg's Law: nλ = 2d sinθ</li>
+        <li>Cu Kα: λ = 1.54 Å (most common)</li>
+        <li>Scherrer: D = Kλ/β cosθ</li>
+        <li>Phase ID via ICDD PDF-4 database</li>
+        <li>Non-destructive technique</li>
+        <li>Max von Laue (1912) + Bragg (1913)</li>
+        <li>XRD range detects 2–100 nm crystallites</li>
+      </ul>
+    </div>
+
+    <div class="master-card">
+      <h4>Co₃O₄ — XRD Results</h4>
+      <ul>
+        <li>Peaks: (111)(220)(311)(222)(400)(422)(511)(440)(533)</li>
+        <li>Strongest peak: (311) at 2θ ≈ 36.8°</li>
+        <li>Phase-pure cubic spinel Co₃O₄</li>
+        <li>175°C → sharper peaks → higher crystallinity</li>
+        <li>Scherrer equation gives crystallite size</li>
+        <li>Fd3̄m space group (spinel)</li>
+      </ul>
+    </div>
+
+    <div class="master-card">
+      <h4>🔑 Key Formulas</h4>
+      <ul>
+        <li>Bragg's Law: nλ = 2d sinθ</li>
+        <li>d-spacing: d = nλ / (2 sinθ)</li>
+        <li>Scherrer: D = Kλ / (β cosθ)</li>
+        <li>de Broglie (TEM electrons): λ = h/mv</li>
+        <li>IR vibration (Hooke's): ν̃ = (1/2πc)√(k/μ)</li>
+      </ul>
+    </div>
+
+    <div class="master-card">
+      <h4>⚠️ Common Mistakes</h4>
+      <ul>
+        <li>IR transmittance dips ≠ absorbance peaks (opposite)</li>
+        <li>TEM particle size ≠ XRD crystallite size</li>
+        <li>SEM shows surface, not interior structure</li>
+        <li>Scherrer ignores microstrain</li>
+        <li>Bragg angle θ ≠ detector angle 2θ</li>
+        <li>SEM images are signal maps, not photos</li>
+      </ul>
+    </div>
+
+    <div class="master-card">
+      <h4>🧪 Synthesis Summary</h4>
+      <ul>
+        <li>Precursor: [Co(NH₃)₅(H₂O)](NO₃)₃</li>
+        <li>Method: thermal decomposition</li>
+        <li>Temperatures: 150°C and 175°C</li>
+        <li>Product: Co₃O₄ cubic spinel NPs</li>
+        <li>Porous structure from gas evolution</li>
+        <li>All 4 techniques confirm product</li>
+      </ul>
+    </div>
+
+    <div class="master-card">
+      <h4>🌐 Applications of All Techniques</h4>
+      <ul>
+        <li>IR: medicine, energy, sensors, environment</li>
+        <li>TEM: drug delivery, semiconductors, defects</li>
+        <li>SEM: materials, forensics, life sciences, geology</li>
+        <li>XRD: pharma QC, steel, battery, geology</li>
+        <li>All: nanoparticle characterization research</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div style="margin-top:32px; padding:24px; background:rgba(255,255,255,0.1); border-radius:12px; border:1px solid rgba(255,255,255,0.2); text-align:center;">
+    <p  margin:0;" style="color: white;">
+      <strong>Golden Rule of Nanoparticle Characterization:</strong><br>
+      No single technique is sufficient. IR + XRD + TEM + SEM together provide the complete chemical, structural, morphological, and surface identity of a nanomaterial. Each technique is a lens revealing a different dimension of the same object.
+    </p>
+  </div>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<div style="text-align:center; margin-top:56px; padding:28px; border-top:1px solid var(--purple-100); color:var(--text-light); font-size:0.85rem;">
+  <p><strong style="color:var(--purple-600);">Characterization of Metal Oxide Nanoparticles — Complete Study Guide</strong></p>
+  <p style="margin-top:6px;">Based on: <em>Acta Chim. Slov.</em> 2016, 63(2), 335–343 | Techniques: IR · SEM · TEM · XRD | Material: Co₃O₄</p>
+  <p style="margin-top:6px;">Authors: M. Bilal Alvi · Esha Rani · Asad Mehmood · Humna Shahid</p>
+</div>
+
+</div><!-- end page-wrap -->
+</body>
+</html>
